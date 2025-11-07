@@ -55,7 +55,13 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <Carousel className="w-full max-w-7xl mx-auto mb-12 group/carousel">
+        <Carousel 
+          className="w-full max-w-7xl mx-auto mb-12 group/carousel"
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
           <CarouselContent>
             {caseStudies.map((study, index) => (
               <CarouselItem key={index}>
