@@ -60,7 +60,7 @@ const CaseStudiesSection = () => {
             {caseStudies.map((study, index) => (
               <CarouselItem key={index}>
                 <Card className="glass rounded-3xl border-2 border-muted-foreground/10 hover:border-secondary/30 overflow-hidden glow-on-hover hover:shadow-xl transition-all duration-300 group">
-                  <div className="grid md:grid-cols-2 min-h-[600px]">
+                  <div className="grid md:grid-cols-2 min-h-[450px]">
                     {/* Left Side - Stats with Image Background */}
                     <div className="relative overflow-hidden group">
                       <img 
