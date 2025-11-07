@@ -54,15 +54,15 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-[1920px] mx-auto">
+        <div className="flex gap-4 mb-12 max-w-[1920px] mx-auto group/accordion h-[600px]">
           {caseStudies.map((study, index) => (
             <Card 
               key={index}
-              className="glass rounded-3xl border-2 border-muted-foreground/10 hover:border-secondary/30 overflow-hidden glow-on-hover hover:shadow-xl transition-all duration-500 group hover:scale-105 cursor-pointer"
+              className="glass rounded-3xl border-2 border-muted-foreground/10 hover:border-secondary/30 overflow-hidden glow-on-hover hover:shadow-xl transition-all duration-500 group cursor-pointer flex-1 hover:flex-[2] group-hover/accordion:flex-[0.5]"
             >
               <div className="flex flex-col h-full">
                 {/* Top - Stats with Image Background */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden flex-1">
                   <img 
                     src={study.bgImage} 
                     alt={study.title}
@@ -74,7 +74,7 @@ const CaseStudiesSection = () => {
                   <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl"></div>
                   
-                  <div className="relative z-10 flex flex-col items-center justify-center p-6 lg:p-8 text-white">
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full p-6 lg:p-8 text-white">
                     <div className="mb-4 relative">
                       <div className="absolute inset-0 bg-white/20 rounded-3xl blur-xl"></div>
                       <div className={`relative ${study.bgColor} w-16 h-16 rounded-3xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transform group-hover:scale-110 transition-transform duration-300`}>
@@ -102,7 +102,7 @@ const CaseStudiesSection = () => {
                 </div>
 
                 {/* Bottom - Content */}
-                <div className="p-6 lg:p-8 flex flex-col justify-between flex-grow bg-gradient-to-br from-white to-gray-50/30 relative">
+                <div className="p-6 lg:p-8 flex flex-col justify-between bg-gradient-to-br from-white to-gray-50/30 relative opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-h-0 group-hover:max-h-[400px] overflow-hidden">
                   {/* Decorative corner accent */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-full"></div>
                   
