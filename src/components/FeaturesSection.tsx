@@ -2,18 +2,8 @@ import { Brain, Cloud, Workflow, DollarSign, Sparkles } from "lucide-react";
 
 const FeaturesSection = () => {
   return (
-    <section className="py-12 bg-gradient-to-b from-white to-muted relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="animated-background">
-        <span className="ball"></span>
-        <span className="ball"></span>
-        <span className="ball"></span>
-        <span className="ball"></span>
-        <span className="ball"></span>
-        <span className="ball"></span>
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-12 bg-gradient-to-b from-white to-muted">
+      <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
