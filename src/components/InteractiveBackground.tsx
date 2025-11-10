@@ -32,14 +32,14 @@ const InteractiveBackground = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 3 + 2;
         this.color = Math.random() > 0.5 ? '#3DC47E' : '#0097FF';
       }
 
       update() {
-        const speed = isHovering.current ? 1.5 : 1;
+        const speed = isHovering.current ? 3 : 1;
         this.x += this.vx * speed;
         this.y += this.vy * speed;
 
@@ -49,16 +49,28 @@ const InteractiveBackground = () => {
 
       draw() {
         if (!ctx) return;
+        
+        // Add glow effect on hover
+        if (isHovering.current) {
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = this.color;
+        } else {
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = this.color;
+        }
+        
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + (isHovering.current ? '60' : '30');
+        ctx.fillStyle = this.color + (isHovering.current ? 'AA' : '60');
         ctx.fill();
+        
+        ctx.shadowBlur = 0;
       }
     }
 
     const initParticles = () => {
       particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      const particleCount = Math.floor((canvas.width * canvas.height) / 8000);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -66,7 +78,7 @@ const InteractiveBackground = () => {
 
     const drawConnections = () => {
       if (!ctx) return;
-      const maxDistance = isHovering.current ? 150 : 120;
+      const maxDistance = isHovering.current ? 180 : 140;
       
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -75,9 +87,12 @@ const InteractiveBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
+            const opacity = (1 - distance / maxDistance) * (isHovering.current ? 0.5 : 0.3);
+            const color = Math.random() > 0.5 ? '0, 151, 255' : '61, 196, 126';
+            
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(61, 196, 126, ${(1 - distance / maxDistance) * (isHovering.current ? 0.25 : 0.15)})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(${color}, ${opacity})`;
+            ctx.lineWidth = isHovering.current ? 1.5 : 1;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
