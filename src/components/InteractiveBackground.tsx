@@ -39,7 +39,7 @@ const InteractiveBackground = () => {
       }
 
       update() {
-        const speed = isHovering.current ? 3 : 1;
+        const speed = isHovering.current ? 4 : 0.8;
         this.x += this.vx * speed;
         this.y += this.vy * speed;
 
@@ -52,16 +52,15 @@ const InteractiveBackground = () => {
         
         // Add glow effect on hover
         if (isHovering.current) {
-          ctx.shadowBlur = 15;
+          ctx.shadowBlur = 20;
           ctx.shadowColor = this.color;
         } else {
-          ctx.shadowBlur = 5;
-          ctx.shadowColor = this.color;
+          ctx.shadowBlur = 0;
         }
         
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + (isHovering.current ? 'AA' : '60');
+        ctx.fillStyle = this.color + (isHovering.current ? 'BB' : '20');
         ctx.fill();
         
         ctx.shadowBlur = 0;
@@ -78,7 +77,7 @@ const InteractiveBackground = () => {
 
     const drawConnections = () => {
       if (!ctx) return;
-      const maxDistance = isHovering.current ? 180 : 140;
+      const maxDistance = isHovering.current ? 200 : 140;
       
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -87,12 +86,12 @@ const InteractiveBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
-            const opacity = (1 - distance / maxDistance) * (isHovering.current ? 0.5 : 0.3);
+            const opacity = (1 - distance / maxDistance) * (isHovering.current ? 0.6 : 0.12);
             const color = Math.random() > 0.5 ? '0, 151, 255' : '61, 196, 126';
             
             ctx.beginPath();
             ctx.strokeStyle = `rgba(${color}, ${opacity})`;
-            ctx.lineWidth = isHovering.current ? 1.5 : 1;
+            ctx.lineWidth = isHovering.current ? 2 : 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
