@@ -32,67 +32,74 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-b from-white via-muted/50 to-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-white via-muted/50 to-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/20 to-accent/20 px-6 py-3 rounded-full mb-6">
-              <Sparkles className="h-5 w-5 text-accent" />
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">FAQ</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-muted-foreground font-body">
-              Everything you need to know about Venio's eDiscovery platform
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="glass rounded-2xl px-6 md:px-8 border-2 border-transparent hover:border-secondary/30 transition-all duration-300 group hover:shadow-lg overflow-hidden relative"
-              >
-                {/* Gradient background on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <Accordion type="single" collapsible className="relative z-10">
-                  <AccordionItem value={`item-${index}`} className="border-0">
-                    <AccordionTrigger className="text-left text-lg font-bold text-primary hover:text-primary/80 py-6 hover:no-underline">
-                      <div className="flex items-start gap-4">
-                        <div className="bg-gradient-to-br from-secondary to-accent text-white w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-1 text-sm font-bold">
-                          {index + 1}
-                        </div>
-                        <span className="pr-4">{faq.question}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground font-body leading-relaxed pb-6 pl-12 whitespace-pre-line">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            {/* Left side - Title and Subtitle */}
+            <div className="lg:col-span-2">
+              <div className="lg:sticky lg:top-24">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/20 to-accent/20 px-6 py-3 rounded-full mb-6">
+                  <Sparkles className="h-5 w-5 text-accent" />
+                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">FAQ</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xl text-muted-foreground font-body leading-relaxed">
+                  Everything you need to know about Venio's eDiscovery platform
+                </p>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center glass rounded-3xl p-8 md:p-12 border-2 border-secondary/20">
-            <div className="bg-gradient-to-br from-secondary/10 to-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <MessageCircle className="h-8 w-8 text-accent" />
             </div>
-            <h3 className="text-2xl font-bold text-primary mb-3">
-              Still have questions?
-            </h3>
-            <p className="text-muted-foreground font-body mb-6 max-w-md mx-auto">
-              Our team is here to help you find the perfect eDiscovery solution for your needs
-            </p>
-            <Button size="lg" className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white shadow-lg">
-              Contact Our Team
-            </Button>
+
+            {/* Right side - FAQs */}
+            <div className="lg:col-span-3">
+              <Accordion type="single" collapsible className="space-y-0">
+                {faqs.map((faq, index) => (
+                  <div key={index}>
+                    <AccordionItem value={`item-${index}`} className="border-0 py-6">
+                      <AccordionTrigger className="text-left text-lg font-bold text-primary hover:text-secondary py-0 hover:no-underline group">
+                        <div className="flex items-start gap-4 pr-8">
+                          <div className="bg-gradient-to-br from-secondary to-accent text-white w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold group-hover:scale-110 transition-transform">
+                            {index + 1}
+                          </div>
+                          <span>{faq.question}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground font-body leading-relaxed pt-4 pl-12 whitespace-pre-line">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                    {index < faqs.length - 1 && (
+                      <div className="h-[1px] bg-secondary/30"></div>
+                    )}
+                  </div>
+                ))}
+              </Accordion>
+
+              <div className="mt-12 glass rounded-2xl p-8 border-2 border-secondary/20">
+                <div className="flex items-start gap-4">
+                  <div className="bg-gradient-to-br from-secondary/10 to-accent/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="h-6 w-6 text-accent" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-primary mb-2">
+                      Still have questions?
+                    </h3>
+                    <p className="text-muted-foreground font-body mb-4">
+                      Our team is here to help you find the perfect eDiscovery solution
+                    </p>
+                    <Button className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white">
+                      Contact Our Team
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
