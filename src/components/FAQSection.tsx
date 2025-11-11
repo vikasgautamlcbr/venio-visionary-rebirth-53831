@@ -4,8 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { MessageCircle, Sparkles } from "lucide-react";
 
 const FAQSection = () => {
   const faqs = [
@@ -32,25 +30,18 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-muted/50 to-white relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-5 gap-12 items-start">
             {/* Left side - Title and Subtitle */}
             <div className="lg:col-span-2">
               <div className="lg:sticky lg:top-24">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/20 to-accent/20 px-6 py-3 rounded-full mb-6">
-                  <Sparkles className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">FAQ</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">FAQ</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-3">
                   Frequently Asked Questions
                 </h2>
-                <p className="text-xl text-muted-foreground font-body leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   Everything you need to know about Venio's eDiscovery platform
                 </p>
               </div>
@@ -62,15 +53,10 @@ const FAQSection = () => {
                 {faqs.map((faq, index) => (
                   <div key={index}>
                     <AccordionItem value={`item-${index}`} className="border-0 py-6">
-                      <AccordionTrigger className="text-left text-lg font-bold text-primary hover:text-secondary py-0 hover:no-underline group">
-                        <div className="flex items-start gap-4 pr-8">
-                          <div className="bg-gradient-to-br from-secondary to-accent text-white w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold group-hover:scale-110 transition-transform">
-                            {index + 1}
-                          </div>
-                          <span>{faq.question}</span>
-                        </div>
+                      <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:text-secondary py-0 hover:no-underline">
+                        {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground font-body leading-relaxed pt-4 pl-12 whitespace-pre-line">
+                      <AccordionContent className="text-muted-foreground leading-relaxed pt-3 whitespace-pre-line">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -80,25 +66,6 @@ const FAQSection = () => {
                   </div>
                 ))}
               </Accordion>
-
-              <div className="mt-12 glass rounded-2xl p-8 border-2 border-secondary/20">
-                <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-secondary/10 to-accent/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="h-6 w-6 text-accent" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-primary mb-2">
-                      Still have questions?
-                    </h3>
-                    <p className="text-muted-foreground font-body mb-4">
-                      Our team is here to help you find the perfect eDiscovery solution
-                    </p>
-                    <Button className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white">
-                      Contact Our Team
-                    </Button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
