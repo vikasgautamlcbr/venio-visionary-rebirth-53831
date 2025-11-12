@@ -1,5 +1,10 @@
 import { Brain, Cloud, Workflow, DollarSign, Sparkles } from "lucide-react";
 import InteractiveBackground from "./InteractiveBackground";
+import aiAutomationImg from "@/assets/features/ai-automation.png";
+import flexibleDeploymentImg from "@/assets/features/flexible-deployment.png";
+import endToEndWorkflowsImg from "@/assets/features/end-to-end-workflows.png";
+import costEfficiencyImg from "@/assets/features/cost-efficiency.png";
+import intuitiveInterfaceImg from "@/assets/features/intuitive-interface.png";
 
 const FeaturesSection = () => {
   return (
@@ -37,8 +42,9 @@ const FeaturesSection = () => {
                 </p>
               </div>
               
-              {/* Visual Placeholder */}
-              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center min-h-[300px]">
+              {/* AI Automation Image */}
+              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center min-h-[300px] p-8">
+                <img src={aiAutomationImg} alt="AI-Powered Automation" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
@@ -47,8 +53,9 @@ const FeaturesSection = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Card 1: Flexible Deployment */}
             <div className="glass rounded-3xl p-8 border-2 border-muted-foreground/10 hover:border-accent/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
-              {/* Visual Placeholder */}
-              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center mb-8">
+              {/* Flexible Deployment Image */}
+              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center mb-8 p-8">
+                <img src={flexibleDeploymentImg} alt="Flexible Deployment" className="w-full h-full object-contain" />
               </div>
               
               <div className="flex items-center gap-4 mb-4">
@@ -66,8 +73,9 @@ const FeaturesSection = () => {
 
             {/* Card 2: End-to-End Workflows */}
             <div className="glass rounded-3xl p-8 border-2 border-muted-foreground/10 hover:border-secondary/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
-              {/* Visual Placeholder */}
-              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center mb-8">
+              {/* End-to-End Workflows Image */}
+              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center mb-8 p-8">
+                <img src={endToEndWorkflowsImg} alt="End-to-End Workflows" className="w-full h-full object-contain" />
               </div>
               
               <div className="flex items-center gap-4 mb-4">
@@ -87,8 +95,9 @@ const FeaturesSection = () => {
           {/* Feature 4: Cost Efficiency - Visual Left, Text Right */}
           <div className="glass rounded-3xl p-8 md:p-12 border-2 border-muted-foreground/10 hover:border-accent/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              {/* Visual Placeholder */}
-              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center min-h-[300px]">
+              {/* Cost Efficiency Image */}
+              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center min-h-[300px] p-8">
+                <img src={costEfficiencyImg} alt="Cost Efficiency" className="w-full h-full object-contain" />
               </div>
 
               <div>
@@ -124,8 +133,9 @@ const FeaturesSection = () => {
                 </p>
               </div>
 
-              {/* Visual Placeholder */}
-              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center min-h-[300px]">
+              {/* Intuitive Interface Image */}
+              <div className="relative aspect-video bg-white rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center min-h-[300px] p-8">
+                <img src={intuitiveInterfaceImg} alt="Intuitive Interface" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
