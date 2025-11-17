@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
+import { ScrollFeatureAccordion } from "@/components/ScrollFeatureAccordion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
@@ -7,16 +8,17 @@ import {
   Shield, 
   Clock, 
   Users, 
-  Bell, 
   CheckCircle, 
-  BarChart3, 
   Building2, 
   Briefcase, 
   Landmark, 
   Building,
   Download,
   Play,
-  ChevronRight
+  ChevronRight,
+  Sparkles,
+  ArrowRight,
+  BarChart3
 } from "lucide-react";
 
 const sections = [
@@ -173,76 +175,8 @@ const VenioLegalHold = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold mb-4">Complete Legal Hold Platform</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to manage legal holds efficiently and defensibly
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { 
-                icon: Bell, 
-                title: "Automated Notices", 
-                desc: "Send, track, and manage custodian notifications automatically",
-                features: ["Email templates", "Scheduled reminders", "Escalation workflows"]
-              },
-              { 
-                icon: Users, 
-                title: "Custodian Portal", 
-                desc: "Self-service portal for acknowledgments and questions",
-                features: ["One-click acknowledgment", "Document upload", "Status tracking"]
-              },
-              { 
-                icon: Shield, 
-                title: "Full Audit Trails", 
-                desc: "Complete defensibility with detailed activity logs",
-                features: ["Every action logged", "Timestamped records", "Export reports"]
-              },
-              { 
-                icon: FileText, 
-                title: "Hold Templates", 
-                desc: "Standardize your process with reusable templates",
-                features: ["Custom templates", "Pre-approved language", "Quick deployment"]
-              },
-              { 
-                icon: BarChart3, 
-                title: "Dashboards & Reports", 
-                desc: "Real-time visibility into all active legal holds",
-                features: ["Status overview", "Response rates", "Custom reports"]
-              },
-              { 
-                icon: CheckCircle, 
-                title: "Release Workflows", 
-                desc: "Manage the entire lifecycle from notice to release",
-                features: ["Bulk operations", "Approval chains", "Documentation"]
-              },
-            ].map((feature, index) => (
-              <Card key={index} className="glass hover:shadow-xl transition-all duration-300 border-border/50 group">
-                <CardContent className="p-8 space-y-4">
-                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <feature.icon className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.desc}</p>
-                  <ul className="space-y-2 pt-2">
-                    {feature.features.map((item, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Features Section - Scroll Interactive Accordion */}
+      <ScrollFeatureAccordion />
 
       {/* Case Studies Section */}
       <section id="case-studies" className="py-24 px-6 bg-muted/30">
@@ -326,53 +260,102 @@ const VenioLegalHold = () => {
         </div>
       </section>
 
-      {/* Download Product Brief Section */}
-      <section id="download" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="glass rounded-3xl overflow-hidden">
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div className="bg-secondary/5 p-12 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-48 h-64 mx-auto bg-white/10 rounded-lg shadow-2xl flex items-center justify-center mb-6">
-                    <FileText className="h-24 w-24 text-secondary" />
+      {/* Download Product Brief Section - Enhanced */}
+      <section id="download" className="py-24 px-6 relative overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="glass-dark rounded-3xl overflow-hidden border-2 border-accent/20 shadow-2xl">
+            <div className="grid lg:grid-cols-5 gap-0">
+              {/* Left side - PDF Preview with 3D effect */}
+              <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 p-12 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+                
+                <div className="relative group">
+                  {/* 3D Stack Effect */}
+                  <div className="absolute -inset-4 bg-white/5 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+                  <div className="absolute -inset-2 bg-white/5 rounded-2xl -rotate-2 group-hover:-rotate-3 transition-transform duration-500"></div>
+                  
+                  {/* Main PDF Card */}
+                  <div className="relative w-56 h-72 bg-white rounded-2xl shadow-2xl group-hover:scale-105 transition-all duration-500 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                      <div className="w-16 h-16 rounded-xl bg-accent/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <FileText className="h-8 w-8 text-accent" />
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground mb-2">Legal Hold</h3>
+                      <p className="text-sm font-semibold text-muted-foreground mb-1">Product Brief</p>
+                      <div className="mt-4 px-4 py-1.5 bg-accent/10 rounded-full">
+                        <p className="text-xs font-medium text-accent">2024 Edition</p>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/5 to-transparent"></div>
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">Legal Hold Product Brief</p>
-                  <p className="text-xs text-muted-foreground mt-1">PDF • 2.4 MB</p>
+
+                  {/* Floating badge */}
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white rounded-full shadow-lg flex items-center gap-2 animate-float">
+                    <Sparkles className="h-3 w-3 text-accent" />
+                    <span className="text-xs font-semibold text-foreground">PDF • 2.4 MB</span>
+                  </div>
                 </div>
               </div>
-              <div className="p-12 flex flex-col justify-center space-y-6">
-                <div>
-                  <h2 className="text-3xl font-heading font-bold mb-4">
-                    Get the Complete Product Brief
+
+              {/* Right side - Content */}
+              <div className="lg:col-span-3 p-12 flex flex-col justify-center space-y-8 bg-gradient-to-br from-background/95 to-background/80 backdrop-blur">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-2">
+                    <Download className="h-4 w-4 text-accent" />
+                    <span className="text-sm font-medium text-accent">Free Resource</span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-heading font-bold leading-tight">
+                    Get the Complete
+                    <span className="text-accent"> Product Brief</span>
                   </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Download our comprehensive guide covering features, deployment options, security details, and technical specifications.
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Download our comprehensive 24-page guide with everything you need to evaluate Venio Legal Hold for your organization.
                   </p>
                 </div>
-                
-                <ul className="space-y-3">
+
+                {/* What's Inside */}
+                <div className="grid sm:grid-cols-2 gap-4">
                   {[
-                    "Complete feature breakdown",
-                    "Deployment & integration options",
-                    "Security & compliance details",
-                    "Pricing information",
+                    { icon: CheckCircle, text: "Complete feature breakdown" },
+                    { icon: Shield, text: "Security & compliance" },
+                    { icon: Users, text: "Deployment options" },
+                    { icon: BarChart3, text: "ROI analysis & pricing" },
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="h-4 w-4 text-accent" />
+                      </div>
+                      <span className="text-sm font-medium">{item.text}</span>
+                    </div>
                   ))}
-                </ul>
-                
-                <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                  <button className="btn btn-primary px-8 py-3 group flex-1">
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <button className="btn btn-primary px-8 py-4 text-lg group flex-1">
                     <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
-                    Download Brief
+                    Download Now
                   </button>
-                  <button className="btn btn-secondary px-8 py-3 flex-1">
-                    Request Demo
+                  <button className="btn btn-secondary px-8 py-4 text-lg group flex-1">
+                    Talk to Expert
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
+
+                <p className="text-xs text-muted-foreground text-center sm:text-left">
+                  No email required • Instant download • Updated quarterly
+                </p>
               </div>
             </div>
           </div>
