@@ -40,7 +40,7 @@ export const BenefitsSection = () => {
               className="sticky"
               style={{ 
                 top: `${120 + (index * 24)}px`,
-                zIndex: benefits.length - index 
+                zIndex: index + 1
               }}
             >
               <Card className="glass shadow-2xl border-border/50 overflow-hidden w-full aspect-[3/2]">
