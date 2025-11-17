@@ -92,7 +92,6 @@ export const ScrollFeatureAccordion = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   // Match heights
   useEffect(() => {
@@ -115,49 +114,34 @@ export const ScrollFeatureAccordion = () => {
     };
   }, [activeIndex]);
 
+  // Scroll-based feature activation
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (!sectionRef.current) return;
+    const observers = featureRefs.current.map((ref, index) => {
+      if (!ref) return null;
 
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      
-      // Only handle scroll when section is in view
-      if (rect.top > 100 || rect.bottom < window.innerHeight - 100) return;
-
-      e.preventDefault();
-
-      // Clear existing timeout
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
-      // Debounce the scroll to treat it as one step
-      scrollTimeoutRef.current = setTimeout(() => {
-        if (e.deltaY > 0 && activeIndex < features.length - 1) {
-          // Scroll down - next feature
-          setActiveIndex(activeIndex + 1);
-        } else if (e.deltaY < 0 && activeIndex > 0) {
-          // Scroll up - previous feature
-          setActiveIndex(activeIndex - 1);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Activate when feature is in the center of viewport
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              setActiveIndex(index);
+            }
+          });
+        },
+        {
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+          rootMargin: "-45% 0px -45% 0px", // Center detection zone
         }
-      }, 50);
-    };
+      );
 
-    const section = sectionRef.current;
-    if (section) {
-      section.addEventListener('wheel', handleWheel, { passive: false });
-    }
+      observer.observe(ref);
+      return observer;
+    });
 
     return () => {
-      if (section) {
-        section.removeEventListener('wheel', handleWheel);
-      }
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
+      observers.forEach((observer) => observer?.disconnect());
     };
-  }, [activeIndex]);
+  }, []);
 
   return (
     <section id="features" ref={sectionRef} className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
