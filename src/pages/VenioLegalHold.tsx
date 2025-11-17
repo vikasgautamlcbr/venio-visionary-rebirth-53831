@@ -22,6 +22,8 @@ import {
 } from "lucide-react";
 import CTABanner from "@/components/CTABanner";
 import { BenefitsSection } from "@/components/BenefitsSection";
+import { DemoGateDialog } from "@/components/DemoGateDialog";
+import { useState } from "react";
 
 const sections = [
   { id: "hero", label: "Overview" },
@@ -33,6 +35,23 @@ const sections = [
 ];
 
 const VenioLegalHold = () => {
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
+  const [isDemoUnlocked, setIsDemoUnlocked] = useState(false);
+
+  const handleDemoAccess = () => {
+    if (!isDemoUnlocked) {
+      setIsDemoDialogOpen(true);
+    } else {
+      // Open demo or navigate to demo page
+      window.open('https://demo.venio.com', '_blank');
+    }
+  };
+
+  const handleDemoSuccess = () => {
+    setIsDemoUnlocked(true);
+    // Open demo after successful form submission
+    window.open('https://demo.venio.com', '_blank');
+  };
 
   return (
     <div className="min-h-screen">
@@ -77,7 +96,10 @@ const VenioLegalHold = () => {
                 Streamline notices, confirmations, and compliance with a modern automated legal hold solution built for speed and accuracy.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="btn btn-primary text-lg px-8 py-3 group">
+                <button 
+                  onClick={handleDemoAccess}
+                  className="btn btn-primary text-lg px-8 py-3 group"
+                >
                   <Play className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   Try Interactive Demo
                 </button>
@@ -141,7 +163,9 @@ const VenioLegalHold = () => {
           </div>
           
           <div className="max-w-5xl mx-auto space-y-8">
-            <div className="relative aspect-video glass rounded-2xl p-8 flex items-center justify-center group hover:shadow-2xl transition-all duration-300">
+            <div className="relative aspect-video glass rounded-2xl p-8 flex items-center justify-center group hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              onClick={handleDemoAccess}
+            >
               <div className="text-center">
                 <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Play className="h-12 w-12 text-secondary" />
@@ -152,7 +176,10 @@ const VenioLegalHold = () => {
             </div>
             
             <div className="text-center">
-              <button className="btn btn-primary text-lg px-10 py-4 group">
+              <button 
+                onClick={handleDemoAccess}
+                className="btn btn-primary text-lg px-10 py-4 group"
+              >
                 Start Interactive Demo
                 <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -374,6 +401,13 @@ const VenioLegalHold = () => {
       <CTABanner />
 
       <Footer />
+      
+      {/* Demo Gate Dialog */}
+      <DemoGateDialog
+        isOpen={isDemoDialogOpen}
+        onClose={() => setIsDemoDialogOpen(false)}
+        onSuccess={handleDemoSuccess}
+      />
     </div>
   );
 };
