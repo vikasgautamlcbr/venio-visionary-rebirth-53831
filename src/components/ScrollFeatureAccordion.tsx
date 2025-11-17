@@ -174,15 +174,14 @@ export const ScrollFeatureAccordion = () => {
   }, [activeIndex]);
 
   return (
-    <section id="features" ref={sectionRef} className="relative py-24 px-6 bg-gradient-to-b from-background to-muted/30">
-      <div className="container mx-auto max-w-7xl">
+    <section id="features" ref={sectionRef} className="relative py-24 px-6 bg-gradient-to-b from-background to-muted/30" style={{ height: `${(features.length + 1) * 100}vh` }}>
+      <div className="container mx-auto max-w-7xl sticky top-0 h-screen">
         <div 
           className={cn(
-            "text-center mb-16 animate-fade-in transition-all duration-500",
-            "sticky top-0 z-20 bg-gradient-to-b from-background via-background to-background/80 backdrop-blur-sm pb-8 pt-8",
-            activeIndex === features.length - 1 && "relative"
+            "text-center mb-16 animate-fade-in transition-all duration-500"
           )}
         >
+
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             Complete Legal Hold Platform
           </h2>

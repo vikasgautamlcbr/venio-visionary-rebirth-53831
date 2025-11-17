@@ -20,6 +20,7 @@ import {
   ArrowRight,
   BarChart3
 } from "lucide-react";
+import CTABanner from "@/components/CTABanner";
 
 const sections = [
   { id: "hero", label: "Overview" },
@@ -287,7 +288,7 @@ const VenioLegalHold = () => {
                       <div className="w-16 h-16 rounded-xl bg-accent/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <FileText className="h-8 w-8 text-accent" />
                       </div>
-                      <h3 className="text-lg font-bold text-foreground mb-2">Legal Hold</h3>
+                      <h3 className="text-lg font-bold text-foreground mb-2">Venio Legal Hold</h3>
                       <p className="text-sm font-semibold text-muted-foreground mb-1">Product Brief</p>
                       <div className="mt-4 px-4 py-1.5 bg-accent/10 rounded-full">
                         <p className="text-xs font-medium text-accent">2024 Edition</p>
@@ -309,7 +310,7 @@ const VenioLegalHold = () => {
                 <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-2">
                     <Download className="h-4 w-4 text-accent" />
-                    <span className="text-sm font-medium text-accent">Free Resource</span>
+                    <span className="text-sm font-medium text-accent">Download</span>
                   </div>
                   
                   <h2 className="text-3xl md:text-4xl font-heading font-bold leading-tight">
@@ -343,19 +344,16 @@ const VenioLegalHold = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <button className="btn btn-primary px-8 py-4 text-lg group flex-1">
+                  <button className="btn px-8 py-4 text-lg group flex-1 bg-[#0b1c3f] hover:bg-[#0b1c3f]/90 text-white">
                     <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
                     Download Now
                   </button>
                   <button className="btn btn-secondary px-8 py-4 text-lg group flex-1">
-                    Talk to Expert
+                    Book a Demo
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
 
-                <p className="text-xs text-muted-foreground text-center sm:text-left">
-                  No email required • Instant download • Updated quarterly
-                </p>
               </div>
             </div>
           </div>
@@ -363,31 +361,7 @@ const VenioLegalHold = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24 px-6 bg-gradient-to-b from-muted/30 to-background">
-        <div className="container mx-auto max-w-4xl">
-          <div className="glass rounded-3xl p-12 md:p-16 text-center space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-heading font-bold">
-                Ready to Transform Your Legal Hold Process?
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Join leading organizations using Venio Legal Hold to automate workflows and ensure compliance.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <button className="btn btn-primary text-lg px-12 py-4 group">
-                Book a Demo
-                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-            
-            <p className="text-sm text-muted-foreground pt-4">
-              Schedule a personalized walkthrough with our team
-            </p>
-          </div>
-        </div>
-      </section>
+      <CTABanner />
 
       <Footer />
     </div>
