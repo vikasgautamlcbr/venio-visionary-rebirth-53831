@@ -21,36 +21,42 @@ const benefits = [
 ];
 
 export const BenefitsSection = () => {
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observers = cardRefs.current.map((card, index) => {
-      if (!card) return null;
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
       
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !visibleCards.includes(index)) {
-              setVisibleCards((prev) => [...prev, index]);
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-
-      observer.observe(card);
-      return observer;
-    });
-
-    return () => {
-      observers.forEach((observer) => observer?.disconnect());
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate progress from when section enters viewport until it exits
+      const start = windowHeight;
+      const end = -sectionHeight;
+      const progress = Math.max(0, Math.min(1, (start - sectionTop) / (start - end)));
+      
+      setScrollProgress(progress);
     };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Calculate individual card progress (each card animates in succession)
+  const getCardProgress = (index: number) => {
+    const cardStart = index / benefits.length;
+    const cardEnd = (index + 1) / benefits.length;
+    const cardProgress = Math.max(0, Math.min(1, (scrollProgress - cardStart) / (cardEnd - cardStart)));
+    return cardProgress;
+  };
+
   return (
-    <section ref={sectionRef} className="py-24 px-6 bg-gradient-to-b from-background via-muted/20 to-background">
+    <section ref={sectionRef} className="py-24 px-6 bg-gradient-to-b from-background via-muted/20 to-background min-h-[200vh]">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-heading font-bold mb-4">
@@ -58,47 +64,53 @@ export const BenefitsSection = () => {
           </h2>
         </div>
 
-        <div className="space-y-8 max-w-5xl mx-auto">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="transition-all duration-700 ease-out"
-              style={{
-                opacity: visibleCards.includes(index) ? 1 : 0,
-                transform: visibleCards.includes(index)
-                  ? "translateY(0) scale(1)"
-                  : "translateY(40px) scale(0.95)",
-              }}
-            >
-              <Card className="glass hover:shadow-2xl transition-all duration-300 border-border/50 overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-2 gap-0">
-                    {/* Text Content */}
-                    <div className="p-10 flex flex-col justify-center space-y-4">
-                      <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-2">
-                        <benefit.icon className="h-7 w-7 text-secondary" />
+        {/* Stacking Container */}
+        <div className="relative max-w-5xl mx-auto" style={{ height: '66vw', maxHeight: '600px' }}>
+          {benefits.map((benefit, index) => {
+            const progress = getCardProgress(index);
+            const translateY = (1 - progress) * 100;
+            const scale = 0.9 + (progress * 0.1);
+            const opacity = progress;
+            
+            return (
+              <div
+                key={index}
+                className="absolute inset-0 transition-all duration-300"
+                style={{
+                  transform: `translateY(${translateY}%) scale(${scale})`,
+                  opacity: opacity,
+                  zIndex: index,
+                }}
+              >
+                <Card className="glass shadow-2xl border-border/50 overflow-hidden h-full w-full">
+                  <CardContent className="p-0 h-full">
+                    <div className="grid md:grid-cols-2 gap-0 h-full">
+                      {/* Text Content */}
+                      <div className="p-10 flex flex-col justify-center space-y-4">
+                        <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-2">
+                          <benefit.icon className="h-7 w-7 text-secondary" />
+                        </div>
+                        <h3 className="text-2xl font-heading font-bold">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {benefit.description}
+                        </p>
                       </div>
-                      <h3 className="text-2xl font-heading font-bold">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </div>
 
-                    {/* Image Placeholder */}
-                    <div className="relative h-64 md:h-full bg-gradient-to-br from-secondary/10 to-accent/10 flex items-center justify-center">
-                      <div className="text-center text-muted-foreground/50">
-                        <benefit.icon className="h-16 w-16 mx-auto mb-2" />
-                        <p className="text-sm">Image Placeholder</p>
+                      {/* Image Placeholder */}
+                      <div className="relative h-full bg-gradient-to-br from-secondary/10 to-accent/10 flex items-center justify-center">
+                        <div className="text-center text-muted-foreground/50">
+                          <benefit.icon className="h-16 w-16 mx-auto mb-2" />
+                          <p className="text-sm">Image Placeholder</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
