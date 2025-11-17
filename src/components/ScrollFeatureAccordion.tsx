@@ -89,6 +89,7 @@ const features: Feature[] = [
 export const ScrollFeatureAccordion = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observers = featureRefs.current.map((ref, index) => {
@@ -97,14 +98,14 @@ export const ScrollFeatureAccordion = () => {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
               setActiveIndex(index);
             }
           });
         },
         {
-          threshold: 0.3,
-          rootMargin: "-10% 0px -50% 0px",
+          threshold: [0.5, 0.75, 1],
+          rootMargin: "-30% 0px -30% 0px",
         }
       );
 
@@ -129,9 +130,9 @@ export const ScrollFeatureAccordion = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left side - Accordion Items */}
-          <div className="space-y-4">
+          <div className="space-y-6" ref={containerRef}>
             {features.map((feature, index) => {
               const Icon = feature.icon;
               const isActive = activeIndex === index;
@@ -142,59 +143,74 @@ export const ScrollFeatureAccordion = () => {
                   ref={(el) => (featureRefs.current[index] = el)}
                   onClick={() => setActiveIndex(index)}
                   className={cn(
-                    "cursor-pointer transition-all duration-500",
-                    "scroll-mt-24"
+                    "cursor-pointer transition-all duration-700",
+                    "scroll-mt-32 min-h-[200px] flex items-center"
                   )}
                 >
                   <Card
                     className={cn(
-                      "transition-all duration-500 border-2",
+                      "transition-all duration-700 border-2 w-full",
                       isActive
-                        ? "border-accent shadow-lg shadow-accent/20 bg-accent/5"
-                        : "border-border/50 hover:border-accent/50 bg-card/50"
+                        ? "border-accent shadow-2xl shadow-accent/30 bg-accent/10 scale-105"
+                        : "border-border/30 hover:border-accent/40 bg-card/30 scale-95 opacity-60"
                     )}
                   >
-                    <CardContent className="p-6">
+                    <CardContent className={cn(
+                      "transition-all duration-500",
+                      isActive ? "p-8" : "p-6"
+                    )}>
                       <div className="flex items-start gap-4">
                         <div
                           className={cn(
-                            "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500",
+                            "rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-700",
                             isActive
-                              ? "bg-accent text-white scale-110"
-                              : "bg-secondary/10 text-secondary"
+                              ? "w-16 h-16 bg-accent text-white scale-110 shadow-lg shadow-accent/50"
+                              : "w-12 h-12 bg-secondary/10 text-secondary/70"
                           )}
                         >
-                          <Icon className="h-6 w-6" />
+                          <Icon className={cn(
+                            "transition-all duration-500",
+                            isActive ? "h-8 w-8" : "h-6 w-6"
+                          )} />
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3
                             className={cn(
-                              "text-xl font-semibold mb-2 transition-colors duration-300",
-                              isActive ? "text-foreground" : "text-foreground/80"
+                              "font-semibold transition-all duration-500",
+                              isActive ? "text-2xl mb-3 text-foreground" : "text-xl mb-0 text-foreground/70"
                             )}
                           >
                             {feature.title}
                           </h3>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            {feature.description}
-                          </p>
-
-                          {/* Expandable details */}
+                          
+                          {/* Description - only shown when active */}
                           <div
                             className={cn(
                               "overflow-hidden transition-all duration-500",
-                              isActive ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                              isActive ? "max-h-20 opacity-100 mb-4" : "max-h-0 opacity-0 mb-0"
                             )}
                           >
-                            <ul className="space-y-2 pt-2 border-t border-border/50">
+                            <p className="text-base text-muted-foreground">
+                              {feature.description}
+                            </p>
+                          </div>
+
+                          {/* Expandable details - only shown when active */}
+                          <div
+                            className={cn(
+                              "overflow-hidden transition-all duration-700",
+                              isActive ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                            )}
+                          >
+                            <ul className="space-y-3 pt-4 border-t border-border/50">
                               {feature.details.map((detail, i) => (
                                 <li
                                   key={i}
-                                  className="text-sm text-muted-foreground flex items-start gap-2 animate-fade-in"
-                                  style={{ animationDelay: `${i * 50}ms` }}
+                                  className="text-sm text-muted-foreground flex items-start gap-3 animate-fade-in"
+                                  style={{ animationDelay: `${i * 100}ms` }}
                                 >
-                                  <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0"></div>
-                                  <span>{detail}</span>
+                                  <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
+                                  <span className="leading-relaxed">{detail}</span>
                                 </li>
                               ))}
                             </ul>
@@ -209,8 +225,8 @@ export const ScrollFeatureAccordion = () => {
           </div>
 
           {/* Right side - Image Placeholder (sticky) */}
-          <div className="lg:sticky lg:top-32 hidden lg:block h-fit">
-            <div className="relative">
+          <div className="lg:sticky lg:top-32 hidden lg:block">
+            <div className="relative min-h-[1200px]">
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -221,9 +237,9 @@ export const ScrollFeatureAccordion = () => {
                       : "opacity-0 scale-95 pointer-events-none"
                   )}
                 >
-                  <Card className="glass overflow-hidden border-2 border-accent/20">
-                    <CardContent className="p-0">
-                      <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 flex items-center justify-center relative overflow-hidden">
+                  <Card className="glass overflow-hidden border-2 border-accent/30 h-full">
+                    <CardContent className="p-0 h-full">
+                      <div className="h-full bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 flex items-center justify-center relative overflow-hidden">
                         {/* Animated background */}
                         <div className="absolute inset-0">
                           <div className="absolute top-10 left-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
@@ -232,14 +248,14 @@ export const ScrollFeatureAccordion = () => {
 
                         {/* Content */}
                         <div className="relative z-10 text-center p-8">
-                          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-accent/10 flex items-center justify-center backdrop-blur">
-                            <feature.icon className="h-10 w-10 text-accent" />
+                          <div className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-accent/10 flex items-center justify-center backdrop-blur border-2 border-accent/30">
+                            <feature.icon className="h-12 w-12 text-accent" />
                           </div>
-                          <p className="text-xl font-semibold text-foreground mb-2">
+                          <p className="text-2xl font-semibold text-foreground mb-3">
                             {feature.imagePlaceholder}
                           </p>
-                          <p className="text-sm text-muted-foreground">
-                            Product Screenshot
+                          <p className="text-base text-muted-foreground">
+                            Product Screenshot Placeholder
                           </p>
                         </div>
 
@@ -251,8 +267,6 @@ export const ScrollFeatureAccordion = () => {
                 </div>
               ))}
             </div>
-            {/* Placeholder container for layout */}
-            <div className="aspect-[4/3]"></div>
           </div>
         </div>
       </div>
