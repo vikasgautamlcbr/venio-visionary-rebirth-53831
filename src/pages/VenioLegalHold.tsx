@@ -23,6 +23,7 @@ import {
 import CTABanner from "@/components/CTABanner";
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { DemoGateDialog } from "@/components/DemoGateDialog";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
 import { useState } from "react";
 
 const sections = [
@@ -210,86 +211,7 @@ const VenioLegalHold = () => {
       <ScrollFeatureAccordion />
 
       {/* Case Studies Section */}
-      <section id="case-studies" className="py-24 px-6 bg-muted/30">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold mb-4">Proven Results</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              See how leading organizations are transforming their legal hold processes
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              { 
-                icon: Building2, 
-                title: "Fortune 500 Corporation", 
-                industry: "Corporate Legal",
-                challenge: "Managing 200+ simultaneous holds across global operations",
-                result: "Reduced hold cycle time by 65% and improved custodian response rates to 95%",
-                metric: "65% faster"
-              },
-              { 
-                icon: Briefcase, 
-                title: "Am Law 100 Firm", 
-                industry: "Law Firms",
-                challenge: "Manual tracking across multiple client matters causing delays",
-                result: "Automated 90% of routine hold tasks and eliminated tracking spreadsheets",
-                metric: "90% automated"
-              },
-              { 
-                icon: Landmark, 
-                title: "Federal Agency", 
-                industry: "Government",
-                challenge: "Ensuring compliance with strict record retention requirements",
-                result: "Achieved 100% audit-ready documentation with full defensibility",
-                metric: "100% compliant"
-              },
-              { 
-                icon: Building, 
-                title: "Global Bank", 
-                industry: "Financial Services",
-                challenge: "High-volume litigation requiring rapid hold deployment",
-                result: "Cut deployment time from days to hours with automated workflows",
-                metric: "10x faster deployment"
-              },
-            ].map((study, index) => (
-              <Card key={index} className="glass hover:shadow-xl transition-all duration-300 group border-border/50">
-                <CardContent className="p-8 space-y-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <study.icon className="h-7 w-7 text-secondary" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold mb-1">{study.title}</h3>
-                        <p className="text-sm text-muted-foreground">{study.industry}</p>
-                      </div>
-                    </div>
-                    <div className="text-2xl font-bold text-secondary">{study.metric}</div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div>
-                      <p className="text-sm font-medium text-foreground mb-1">Challenge</p>
-                      <p className="text-sm text-muted-foreground">{study.challenge}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground mb-1">Result</p>
-                      <p className="text-sm text-muted-foreground">{study.result}</p>
-                    </div>
-                  </div>
-                  
-                  <button className="text-sm font-medium text-secondary hover:text-secondary/80 flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Read Full Case Study
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CaseStudiesSection />
 
       {/* Download Product Brief Section - Enhanced */}
       <section id="download" className="py-24 px-6 relative overflow-hidden">
