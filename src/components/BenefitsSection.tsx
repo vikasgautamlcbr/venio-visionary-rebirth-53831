@@ -43,8 +43,8 @@ export const BenefitsSection = () => {
                 zIndex: index + 1
               }}
             >
-              <Card className="glass shadow-2xl border-border/50 overflow-hidden w-full aspect-[3/2]">
-                <CardContent className="p-0 h-full">
+              <Card className="glass shadow-2xl border-border/50 overflow-hidden w-full aspect-[3/2] bg-background">
+                <CardContent className="p-0 h-full bg-background">
                   <div className="grid md:grid-cols-2 gap-0 h-full">
                     {/* Text Content */}
                     <div className="p-10 flex flex-col justify-center space-y-4">
