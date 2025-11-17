@@ -73,15 +73,29 @@ const Navbar = () => {
                 {item.hasDropdown && item.items && (
                   <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <div className="glass-navbar rounded-xl shadow-2xl p-4 min-w-[220px]">
-                      {item.items.map((subItem) => (
-                        <a
-                          key={subItem}
-                          href="#"
-                          className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
-                        >
-                          {subItem}
-                        </a>
-                      ))}
+                      {item.items.map((subItem) => {
+                        // Handle special link for Venio Legal Hold
+                        if (item.label === "Products" && subItem === "Venio Review") {
+                          return (
+                            <Link
+                              key={subItem}
+                              to="/venio-legal-hold"
+                              className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                            >
+                              Venio Legal Hold
+                            </Link>
+                          );
+                        }
+                        return (
+                          <a
+                            key={subItem}
+                            href="#"
+                            className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                          >
+                            {subItem}
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -116,15 +130,30 @@ const Navbar = () => {
                   {item.label}
                   {item.hasDropdown && <ChevronDown size={16} />}
                 </div>
-                {item.hasDropdown && item.items && item.items.map((subItem) => (
-                  <a
-                    key={subItem}
-                    href="#"
-                    className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
-                  >
-                    {subItem}
-                  </a>
-                ))}
+                {item.hasDropdown && item.items && item.items.map((subItem) => {
+                  // Handle special link for Venio Legal Hold in mobile menu
+                  if (item.label === "Products" && subItem === "Venio Review") {
+                    return (
+                      <Link
+                        key={subItem}
+                        to="/venio-legal-hold"
+                        className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Venio Legal Hold
+                      </Link>
+                    );
+                  }
+                  return (
+                    <a
+                      key={subItem}
+                      href="#"
+                      className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                    >
+                      {subItem}
+                    </a>
+                  );
+                })}
               </div>
             ))}
             <div className="mt-4">
