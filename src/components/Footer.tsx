@@ -41,22 +41,6 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-primary to-primary/90 text-white py-16">
       <div className="container mx-auto px-4">
-        {/* Top Section - CTA */}
-        <div className="mb-12 pb-12 border-b border-white/10">
-          <div className="max-w-4xl">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Ready to
-              <br />
-              <span className="text-accent">Get Started?</span>
-            </h2>
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-white glow-accent-hover mt-4"
-            >
-              Request a Demo
-            </Button>
-          </div>
-        </div>
 
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">

@@ -174,8 +174,8 @@ export const ScrollFeatureAccordion = () => {
   }, [activeIndex]);
 
   return (
-    <section id="features" ref={sectionRef} className="relative py-24 px-6 bg-gradient-to-b from-background to-muted/30" style={{ height: `${(features.length + 1) * 100}vh` }}>
-      <div className="container mx-auto max-w-7xl sticky top-0 h-screen">
+    <section id="features" ref={sectionRef} className="relative py-24 px-6 bg-gradient-to-b from-background to-muted/30" style={{ height: `${features.length * 100}vh` }}>
+      <div className="container mx-auto max-w-7xl sticky top-20 h-screen">
         <div 
           className={cn(
             "text-center mb-16 animate-fade-in transition-all duration-500"
