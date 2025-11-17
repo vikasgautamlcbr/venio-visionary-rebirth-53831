@@ -40,7 +40,7 @@ const VenioLegalHold = () => {
       <ScrollProgressIndicator sections={sections} />
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden gradient-animated pt-24 pb-20">
+      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden gradient-animated py-24">
         {/* Dynamic Animated Background */}
         <div className="absolute inset-0">
           {/* Large Glowing Orbs */}
@@ -273,7 +273,7 @@ const VenioLegalHold = () => {
         </div>
 
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="glass-dark rounded-3xl overflow-hidden border-2 border-accent/20 shadow-2xl">
+          <div className="glass-dark rounded-3xl overflow-hidden shadow-2xl">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left side - PDF Preview with 3D effect */}
               <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 p-12 flex items-center justify-center relative overflow-hidden">
