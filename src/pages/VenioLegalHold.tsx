@@ -1,12 +1,8 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
-import InteractiveBackground from "@/components/InteractiveBackground";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { 
+import {
   FileText, 
   Shield, 
   Clock, 
@@ -24,23 +20,15 @@ import {
 } from "lucide-react";
 
 const sections = [
-  { id: "overview", label: "Overview" },
-  { id: "benefits", label: "Benefits" },
-  { id: "data", label: "Data" },
+  { id: "hero", label: "Overview" },
+  { id: "data", label: "Impact" },
   { id: "demo", label: "Demo" },
   { id: "features", label: "Features" },
-  { id: "industries", label: "Industries" },
-  { id: "download", label: "Download" },
-];
-
-const problems = [
-  { id: "manual", title: "Manual Hold Process", description: "Still using spreadsheets and email?" },
-  { id: "tracking", title: "Poor Tracking", description: "Can't see custodian status in real time?" },
-  { id: "spoliation", title: "Risk of Spoliation", description: "Worried about defensibility?" },
+  { id: "case-studies", label: "Case Studies" },
+  { id: "download", label: "Resources" },
 ];
 
 const VenioLegalHold = () => {
-  const [selectedProblem, setSelectedProblem] = useState<string>("manual");
 
   return (
     <div className="min-h-screen">
@@ -48,7 +36,7 @@ const VenioLegalHold = () => {
       <ScrollProgressIndicator sections={sections} />
 
       {/* Hero Section */}
-      <section id="overview" className="relative min-h-[90vh] flex items-center overflow-hidden gradient-animated pt-24 pb-20">
+      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden gradient-animated pt-24 pb-20">
         {/* Dynamic Animated Background */}
         <div className="absolute inset-0">
           {/* Large Glowing Orbs */}
@@ -105,140 +93,78 @@ const VenioLegalHold = () => {
         </div>
       </section>
 
-      {/* Problem → Solution Section */}
-      <section className="py-20 px-6 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <h2 className="text-4xl font-heading font-bold text-center mb-12">
-            What challenge are you facing?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {problems.map((problem) => (
-              <Card
-                key={problem.id}
-                className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                  selectedProblem === problem.id
-                    ? "border-secondary shadow-lg ring-2 ring-secondary/20"
-                    : "border-border hover:border-secondary/50"
-                }`}
-                onClick={() => setSelectedProblem(problem.id)}
-              >
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-2">{problem.title}</h3>
-                  <p className="text-sm text-muted-foreground">{problem.description}</p>
+
+      {/* Data Points Section */}
+      <section id="data" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-bold mb-4">Measurable Impact</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See how Venio Legal Hold transforms legal operations with proven results
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { value: "70%", label: "Shorter hold cycles", icon: Clock },
+              { value: "40%", label: "Higher custodian response rate", icon: Users },
+              { value: "100%", label: "Defensible audit tracking", icon: Shield },
+              { value: "64%", label: "Of discovery failures avoidable", icon: CheckCircle },
+            ].map((stat, index) => (
+              <Card key={index} className="glass text-center hover:shadow-xl transition-all duration-300 border-border/50">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center">
+                    <stat.icon className="h-8 w-8 text-secondary" />
+                  </div>
+                  <div className="text-5xl font-bold text-secondary">{stat.value}</div>
+                  <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <Card className="glass border-secondary/30">
-            <CardContent className="p-8">
-              <p className="text-lg text-center">
-                Venio automates the entire legal hold lifecycle—ensuring faster notices, higher compliance, and full defensibility.
-              </p>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section id="benefits" className="py-20 px-6 relative overflow-hidden">
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <h2 className="text-4xl font-heading font-bold text-center mb-12">
-            Why Teams Choose Venio Legal Hold
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="glass hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-secondary" />
-                </div>
-                <h3 className="text-xl font-semibold">Automation & Consistency</h3>
-                <p className="text-muted-foreground">
-                  Eliminate spreadsheets, auto-send custodial notices, and scale with confidence.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="glass hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <Shield className="h-6 w-6 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold">Defensibility & Compliance</h3>
-                <p className="text-muted-foreground">
-                  Track every acknowledgment, build audit-ready logs, and reduce preservation risk.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="glass hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <BarChart3 className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Speed & Visibility</h3>
-                <p className="text-muted-foreground">
-                  Launch holds in minutes, monitor custodian status in real time, and stop chasing responses.
-                </p>
-              </CardContent>
-            </Card>
+      {/* Interactive Demo Section */}
+      <section id="demo" className="py-24 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-bold mb-4">Experience It Live</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Walk through the complete legal hold workflow from creation to release
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Data Points Section */}
-      <section id="data" className="py-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 via-accent/5 to-secondary/5"></div>
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { value: "70%", label: "shorter hold cycles" },
-              { value: "40%", label: "higher custodian response rate" },
-              { value: "100%", label: "defensible audit tracking" },
-              { value: "64%", label: "of discovery failures avoidable" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center space-y-2 animate-fade-in-scale">
-                <div className="text-5xl font-bold text-secondary">{stat.value}</div>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Demo Section */}
-      <section id="demo" className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-background to-muted/30">
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <h2 className="text-4xl font-heading font-bold text-center mb-12">
-            See Legal Holds in Action
-          </h2>
-          <div className="space-y-8">
-            <div className="relative h-[400px] glass-dark rounded-2xl p-8 flex items-center justify-center">
-              <div className="text-center text-white/70">
-                <Play className="h-16 w-16 mx-auto mb-4 text-secondary" />
-                <p>Autoplay Demo Video</p>
+          
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="relative aspect-video glass rounded-2xl p-8 flex items-center justify-center group hover:shadow-2xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Play className="h-12 w-12 text-secondary" />
+                </div>
+                <p className="text-muted-foreground text-lg font-medium">Interactive Product Demo</p>
+                <p className="text-sm text-muted-foreground mt-2">Click to explore the full workflow</p>
               </div>
             </div>
+            
             <div className="text-center">
-              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
+              <button className="btn btn-primary text-lg px-10 py-4 group">
                 Start Interactive Demo
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Button>
+                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 mt-12">
+
+            <div className="grid md:grid-cols-3 gap-6 mt-16">
               {[
-                { icon: FileText, label: "Create & Launch Holds" },
-                { icon: Users, label: "Custodian Dashboard" },
-                { icon: Bell, label: "Automated Reminders" },
-                { icon: CheckCircle, label: "Acknowledgment Tracking" },
-                { icon: Clock, label: "Release Workflows" },
-                { icon: Shield, label: "Audit Trail Logging" },
+                { icon: FileText, label: "Create & Launch", desc: "Set up holds in minutes" },
+                { icon: Users, label: "Track Custodians", desc: "Real-time status monitoring" },
+                { icon: Shield, label: "Audit & Release", desc: "Complete defensibility" },
               ].map((step, index) => (
-                <Card key={index} className="glass text-center hover:shadow-lg transition-all">
-                  <CardContent className="p-4 space-y-2">
-                    <step.icon className="h-8 w-8 mx-auto text-secondary" />
-                    <p className="text-xs font-medium">{step.label}</p>
+                <Card key={index} className="glass text-center hover:shadow-xl transition-all duration-300 border-border/50">
+                  <CardContent className="p-8 space-y-4">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center">
+                      <step.icon className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-lg font-semibold">{step.label}</h3>
+                    <p className="text-sm text-muted-foreground">{step.desc}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -248,72 +174,69 @@ const VenioLegalHold = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background"></div>
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <h2 className="text-4xl font-heading font-bold text-center mb-12">
-            Powerful Features for Modern Legal Teams
-          </h2>
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="custodian" className="glass border-none rounded-lg px-6">
-              <AccordionTrigger className="text-xl font-semibold hover:no-underline">
-                Custodian Management
-              </AccordionTrigger>
-              <AccordionContent className="space-y-2 text-muted-foreground">
-                <p>• Automated Notices</p>
-                <p>• Reminders & Escalations</p>
-                <p>• Custodian Portal</p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="defensibility" className="glass border-none rounded-lg px-6">
-              <AccordionTrigger className="text-xl font-semibold hover:no-underline">
-                Defensibility & Compliance
-              </AccordionTrigger>
-              <AccordionContent className="space-y-2 text-muted-foreground">
-                <p>• Full Audit Trails</p>
-                <p>• Legal Hold Templates</p>
-                <p>• Release Workflows</p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="efficiency" className="glass border-none rounded-lg px-6">
-              <AccordionTrigger className="text-xl font-semibold hover:no-underline">
-                Team Efficiency
-              </AccordionTrigger>
-              <AccordionContent className="space-y-2 text-muted-foreground">
-                <p>• Bulk Upload & Sync</p>
-                <p>• Dashboards & Reporting</p>
-                <p>• Integrations</p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </section>
-
-      {/* Industry Applications Section */}
-      <section id="industries" className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-background to-muted/20">
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <h2 className="text-4xl font-heading font-bold text-center mb-12">
-            Proven Across Industries
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section id="features" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-bold mb-4">Complete Legal Hold Platform</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Everything you need to manage legal holds efficiently and defensibly
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Building2, title: "Corporate Legal", link: "#" },
-              { icon: Briefcase, title: "Law Firms", link: "#" },
-              { icon: Landmark, title: "Government", link: "#" },
-              { icon: Building, title: "Financial Services", link: "#" },
-            ].map((industry, index) => (
-              <Card
-                key={index}
-                className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group"
-              >
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <industry.icon className="h-8 w-8 text-secondary" />
+              { 
+                icon: Bell, 
+                title: "Automated Notices", 
+                desc: "Send, track, and manage custodian notifications automatically",
+                features: ["Email templates", "Scheduled reminders", "Escalation workflows"]
+              },
+              { 
+                icon: Users, 
+                title: "Custodian Portal", 
+                desc: "Self-service portal for acknowledgments and questions",
+                features: ["One-click acknowledgment", "Document upload", "Status tracking"]
+              },
+              { 
+                icon: Shield, 
+                title: "Full Audit Trails", 
+                desc: "Complete defensibility with detailed activity logs",
+                features: ["Every action logged", "Timestamped records", "Export reports"]
+              },
+              { 
+                icon: FileText, 
+                title: "Hold Templates", 
+                desc: "Standardize your process with reusable templates",
+                features: ["Custom templates", "Pre-approved language", "Quick deployment"]
+              },
+              { 
+                icon: BarChart3, 
+                title: "Dashboards & Reports", 
+                desc: "Real-time visibility into all active legal holds",
+                features: ["Status overview", "Response rates", "Custom reports"]
+              },
+              { 
+                icon: CheckCircle, 
+                title: "Release Workflows", 
+                desc: "Manage the entire lifecycle from notice to release",
+                features: ["Bulk operations", "Approval chains", "Documentation"]
+              },
+            ].map((feature, index) => (
+              <Card key={index} className="glass hover:shadow-xl transition-all duration-300 border-border/50 group">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <feature.icon className="h-7 w-7 text-secondary" />
                   </div>
-                  <h3 className="text-lg font-semibold">{industry.title}</h3>
-                  <ChevronRight className="h-5 w-5 mx-auto text-muted-foreground group-hover:text-secondary transition-colors" />
+                  <h3 className="text-xl font-semibold">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.desc}</p>
+                  <ul className="space-y-2 pt-2">
+                    {feature.features.map((item, i) => (
+                      <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}
@@ -321,54 +244,164 @@ const VenioLegalHold = () => {
         </div>
       </section>
 
-      {/* Product Brief Download Section */}
-      <section id="download" className="py-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background"></div>
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="glass-dark rounded-2xl p-12 flex items-center justify-center h-[400px]">
-              <div className="text-center text-white/70">
-                <FileText className="h-32 w-32 mx-auto text-secondary mb-4" />
-                <p className="text-sm">PDF Thumbnail</p>
+      {/* Case Studies Section */}
+      <section id="case-studies" className="py-24 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-bold mb-4">Proven Results</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See how leading organizations are transforming their legal hold processes
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              { 
+                icon: Building2, 
+                title: "Fortune 500 Corporation", 
+                industry: "Corporate Legal",
+                challenge: "Managing 200+ simultaneous holds across global operations",
+                result: "Reduced hold cycle time by 65% and improved custodian response rates to 95%",
+                metric: "65% faster"
+              },
+              { 
+                icon: Briefcase, 
+                title: "Am Law 100 Firm", 
+                industry: "Law Firms",
+                challenge: "Manual tracking across multiple client matters causing delays",
+                result: "Automated 90% of routine hold tasks and eliminated tracking spreadsheets",
+                metric: "90% automated"
+              },
+              { 
+                icon: Landmark, 
+                title: "Federal Agency", 
+                industry: "Government",
+                challenge: "Ensuring compliance with strict record retention requirements",
+                result: "Achieved 100% audit-ready documentation with full defensibility",
+                metric: "100% compliant"
+              },
+              { 
+                icon: Building, 
+                title: "Global Bank", 
+                industry: "Financial Services",
+                challenge: "High-volume litigation requiring rapid hold deployment",
+                result: "Cut deployment time from days to hours with automated workflows",
+                metric: "10x faster deployment"
+              },
+            ].map((study, index) => (
+              <Card key={index} className="glass hover:shadow-xl transition-all duration-300 group border-border/50">
+                <CardContent className="p-8 space-y-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <study.icon className="h-7 w-7 text-secondary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-1">{study.title}</h3>
+                        <p className="text-sm text-muted-foreground">{study.industry}</p>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-secondary">{study.metric}</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Challenge</p>
+                      <p className="text-sm text-muted-foreground">{study.challenge}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Result</p>
+                      <p className="text-sm text-muted-foreground">{study.result}</p>
+                    </div>
+                  </div>
+                  
+                  <button className="text-sm font-medium text-secondary hover:text-secondary/80 flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Read Full Case Study
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Download Product Brief Section */}
+      <section id="download" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="glass rounded-3xl overflow-hidden">
+            <div className="grid lg:grid-cols-2 gap-0">
+              <div className="bg-secondary/5 p-12 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-48 h-64 mx-auto bg-white/10 rounded-lg shadow-2xl flex items-center justify-center mb-6">
+                    <FileText className="h-24 w-24 text-secondary" />
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium">Legal Hold Product Brief</p>
+                  <p className="text-xs text-muted-foreground mt-1">PDF • 2.4 MB</p>
+                </div>
               </div>
-            </div>
-            <div className="space-y-6 relative z-10">
-              <h2 className="text-4xl font-heading font-bold">
-                Download the Legal Hold Product Brief
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Get the full-feature overview, deployment options, and technical details.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="btn btn-primary text-lg px-8 py-3 group">
-                  <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
-                  Download Product Brief
-                </button>
-                <button className="btn btn-secondary text-lg px-8 py-3">
-                  Talk to an Expert
-                </button>
+              <div className="p-12 flex flex-col justify-center space-y-6">
+                <div>
+                  <h2 className="text-3xl font-heading font-bold mb-4">
+                    Get the Complete Product Brief
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Download our comprehensive guide covering features, deployment options, security details, and technical specifications.
+                  </p>
+                </div>
+                
+                <ul className="space-y-3">
+                  {[
+                    "Complete feature breakdown",
+                    "Deployment & integration options",
+                    "Security & compliance details",
+                    "Pricing information",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm">
+                      <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                  <button className="btn btn-primary px-8 py-3 group flex-1">
+                    <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
+                    Download Brief
+                  </button>
+                  <button className="btn btn-secondary px-8 py-3 flex-1">
+                    Request Demo
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Banner */}
-      <section className="py-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 via-accent/10 to-secondary/10"></div>
-        <InteractiveBackground />
-        <div className="container mx-auto max-w-4xl text-center space-y-8 relative z-10">
-          <h2 className="text-4xl font-heading font-bold">
-            Ready to simplify your Legal Hold process?
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="btn btn-primary text-lg px-10 py-4">
-              Book a Demo
-            </button>
-            <button className="btn btn-secondary text-lg px-10 py-4">
-              Talk to an Expert
-            </button>
+      {/* Final CTA Section */}
+      <section className="py-24 px-6 bg-gradient-to-b from-muted/30 to-background">
+        <div className="container mx-auto max-w-4xl">
+          <div className="glass rounded-3xl p-12 md:p-16 text-center space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold">
+                Ready to Transform Your Legal Hold Process?
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Join leading organizations using Venio Legal Hold to automate workflows and ensure compliance.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <button className="btn btn-primary text-lg px-12 py-4 group">
+                Book a Demo
+                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+            
+            <p className="text-sm text-muted-foreground pt-4">
+              Schedule a personalized walkthrough with our team
+            </p>
           </div>
         </div>
       </section>

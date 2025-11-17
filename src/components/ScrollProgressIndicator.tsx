@@ -39,35 +39,38 @@ export const ScrollProgressIndicator = ({ sections }: ScrollProgressIndicatorPro
   };
 
   return (
-    <div className="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
-      <div className="flex flex-col gap-4">
-        {sections.map((section) => (
-          <button
-            key={section.id}
-            onClick={() => scrollToSection(section.id)}
-            className="group flex items-center gap-3 text-left"
-            aria-label={`Navigate to ${section.label}`}
-          >
-            <div
-              className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300",
-                activeSection === section.id
-                  ? "bg-secondary w-3 h-3 shadow-lg shadow-secondary/30"
-                  : "bg-muted-foreground/30 group-hover:bg-muted-foreground/50"
-              )}
-            />
-            <span
-              className={cn(
-                "text-xs font-medium transition-all duration-300 opacity-0 group-hover:opacity-100 whitespace-nowrap",
-                activeSection === section.id
-                  ? "opacity-100 text-secondary"
-                  : "text-muted-foreground"
-              )}
+    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
+      <div className="glass-dark rounded-full px-3 py-6 shadow-xl">
+        <div className="flex flex-col items-center gap-3">
+          {sections.map((section, index) => (
+            <button
+              key={section.id}
+              onClick={() => scrollToSection(section.id)}
+              className="group relative"
+              aria-label={`Navigate to ${section.label}`}
             >
-              {section.label}
-            </span>
-          </button>
-        ))}
+              <div
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all duration-300",
+                  activeSection === section.id
+                    ? "bg-secondary w-2.5 h-2.5 shadow-lg shadow-secondary/50"
+                    : "bg-white/30 group-hover:bg-white/50 group-hover:w-2.5 group-hover:h-2.5"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute right-full mr-4 top-1/2 -translate-y-1/2 text-xs font-medium whitespace-nowrap px-3 py-1.5 rounded-lg transition-all duration-300",
+                  "opacity-0 invisible group-hover:opacity-100 group-hover:visible",
+                  activeSection === section.id
+                    ? "bg-secondary text-white shadow-lg"
+                    : "bg-white/90 text-foreground shadow-md"
+                )}
+              >
+                {section.label}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
