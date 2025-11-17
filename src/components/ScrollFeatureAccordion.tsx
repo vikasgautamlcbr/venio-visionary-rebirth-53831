@@ -98,14 +98,14 @@ export const ScrollFeatureAccordion = () => {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.8) {
               setActiveIndex(index);
             }
           });
         },
         {
-          threshold: [0.5, 0.75, 1],
-          rootMargin: "-30% 0px -30% 0px",
+          threshold: [0.8, 0.9, 1],
+          rootMargin: "-40% 0px -40% 0px",
         }
       );
 
@@ -177,23 +177,11 @@ export const ScrollFeatureAccordion = () => {
                           <h3
                             className={cn(
                               "font-semibold transition-all duration-500",
-                              isActive ? "text-2xl mb-3 text-foreground" : "text-xl mb-0 text-foreground/70"
+                              isActive ? "text-2xl mb-4 text-foreground" : "text-xl mb-0 text-foreground/70"
                             )}
                           >
                             {feature.title}
                           </h3>
-                          
-                          {/* Description - only shown when active */}
-                          <div
-                            className={cn(
-                              "overflow-hidden transition-all duration-500",
-                              isActive ? "max-h-20 opacity-100 mb-4" : "max-h-0 opacity-0 mb-0"
-                            )}
-                          >
-                            <p className="text-base text-muted-foreground">
-                              {feature.description}
-                            </p>
-                          </div>
 
                           {/* Expandable details - only shown when active */}
                           <div
