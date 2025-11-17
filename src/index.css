@@ -20,7 +20,7 @@ All colors MUST be HSL.
     --primary: 217 72% 15%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 202 100% 50%;
+    --secondary: 145 53% 51%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 155 39% 94%;
@@ -39,13 +39,13 @@ All colors MUST be HSL.
     --radius: 0.75rem;
     
     /* Venio Custom Design Tokens */
-    --glow-primary: 202 100% 50%;
+    --glow-primary: 217 72% 15%;
     --glow-accent: 145 53% 51%;
     --glass-bg: 0 0% 100%;
     --glass-border: 230 20% 90%;
     
     /* Shadows and Effects */
-    --shadow-glow: 0 8px 32px -8px hsl(var(--secondary) / 0.3);
+    --shadow-glow: 0 8px 32px -8px hsl(var(--accent) / 0.3);
     --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     
     /* Animations */
@@ -284,11 +284,13 @@ All colors MUST be HSL.
   .btn {
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius);
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     min-width: 140px;
     text-align: center;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     position: relative;
     overflow: hidden;
@@ -299,26 +301,27 @@ All colors MUST be HSL.
 
   .btn-primary {
     background-color: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
-    box-shadow: 0 4px 6px rgba(61, 196, 126, 0.3);
+    color: white;
+    box-shadow: 0 4px 14px hsl(var(--accent) / 0.4);
   }
 
   .btn-primary:hover {
-    background-color: #35AD6B;
+    background-color: hsl(145 53% 45%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(61, 196, 126, 0.4);
+    box-shadow: 0 8px 20px hsl(var(--accent) / 0.5);
   }
 
   .btn-secondary {
     background-color: transparent;
-    color: hsl(var(--secondary));
-    border: 2px solid hsl(var(--secondary));
-    box-shadow: 0 4px 6px rgba(0, 151, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
   }
 
   .btn-secondary:hover {
-    background-color: rgba(245, 246, 250, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 151, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
   }
 }
