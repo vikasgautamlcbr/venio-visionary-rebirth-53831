@@ -90,36 +90,77 @@ export const ScrollFeatureAccordion = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
+  // Match heights
   useEffect(() => {
-    const observers = featureRefs.current.map((ref, index) => {
-      if (!ref) return null;
+    const updateHeight = () => {
+      if (containerRef.current && imageContainerRef.current) {
+        const leftHeight = containerRef.current.offsetHeight;
+        imageContainerRef.current.style.height = `${leftHeight}px`;
+      }
+    };
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.8) {
-              setActiveIndex(index);
-            }
-          });
-        },
-        {
-          threshold: [0.8, 0.9, 1],
-          rootMargin: "-40% 0px -40% 0px",
-        }
-      );
-
-      observer.observe(ref);
-      return observer;
-    });
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    
+    // Update after content renders
+    const timeout = setTimeout(updateHeight, 100);
 
     return () => {
-      observers.forEach((observer) => observer?.disconnect());
+      window.removeEventListener('resize', updateHeight);
+      clearTimeout(timeout);
     };
-  }, []);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const rect = section.getBoundingClientRect();
+      
+      // Only handle scroll when section is in view
+      if (rect.top > 100 || rect.bottom < window.innerHeight - 100) return;
+
+      e.preventDefault();
+
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      // Debounce the scroll to treat it as one step
+      scrollTimeoutRef.current = setTimeout(() => {
+        if (e.deltaY > 0 && activeIndex < features.length - 1) {
+          // Scroll down - next feature
+          setActiveIndex(activeIndex + 1);
+        } else if (e.deltaY < 0 && activeIndex > 0) {
+          // Scroll up - previous feature
+          setActiveIndex(activeIndex - 1);
+        }
+      }, 50);
+    };
+
+    const section = sectionRef.current;
+    if (section) {
+      section.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (section) {
+        section.removeEventListener('wheel', handleWheel);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [activeIndex]);
 
   return (
-    <section id="features" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
+    <section id="features" ref={sectionRef} className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
@@ -132,7 +173,7 @@ export const ScrollFeatureAccordion = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left side - Accordion Items */}
-          <div className="space-y-3" ref={containerRef}>
+          <div className="space-y-3" ref={containerRef} id="features-list">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               const isActive = activeIndex === index;
@@ -205,7 +246,7 @@ export const ScrollFeatureAccordion = () => {
 
           {/* Right side - Image Placeholder (sticky) */}
           <div className="lg:sticky lg:top-32 hidden lg:block">
-            <div className="relative min-h-[1200px]">
+            <div ref={imageContainerRef} className="relative">
               {features.map((feature, index) => (
                 <div
                   key={index}
