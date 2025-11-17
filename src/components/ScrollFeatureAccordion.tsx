@@ -132,7 +132,7 @@ export const ScrollFeatureAccordion = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left side - Accordion Items */}
-          <div className="space-y-6" ref={containerRef}>
+          <div className="space-y-3" ref={containerRef}>
             {features.map((feature, index) => {
               const Icon = feature.icon;
               const isActive = activeIndex === index;
@@ -144,7 +144,7 @@ export const ScrollFeatureAccordion = () => {
                   onClick={() => setActiveIndex(index)}
                   className={cn(
                     "cursor-pointer transition-all duration-700",
-                    "scroll-mt-32 min-h-[200px] flex items-center"
+                    "scroll-mt-32"
                   )}
                 >
                   <Card
