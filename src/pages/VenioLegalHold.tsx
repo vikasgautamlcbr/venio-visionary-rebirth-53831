@@ -219,93 +219,73 @@ const VenioLegalHold = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               { 
                 icon: Building2, 
                 title: "Fortune 500 Corporation", 
-                category: "CORPORATION",
-                badge: "SUCCESS STORY",
-                description: "See how a Fortune 500 company reduced hold cycle time by 65% and improved custodian response rates to 95% with Venio's automated legal hold platform.",
-                metric: "65%",
-                metricLabel: "Faster Hold Cycles"
+                industry: "Corporate Legal",
+                challenge: "Managing 200+ simultaneous holds across global operations",
+                result: "Reduced hold cycle time by 65% and improved custodian response rates to 95%",
+                metric: "65% faster"
               },
               { 
                 icon: Briefcase, 
                 title: "Am Law 100 Firm", 
-                category: "LAW FIRM",
-                badge: "SUCCESS STORY",
-                description: "Discover how a leading law firm automated 90% of routine hold tasks and eliminated tracking spreadsheets with Venio Legal Hold.",
-                metric: "90%",
-                metricLabel: "Task Automation"
+                industry: "Law Firms",
+                challenge: "Manual tracking across multiple client matters causing delays",
+                result: "Automated 90% of routine hold tasks and eliminated tracking spreadsheets",
+                metric: "90% automated"
               },
               { 
                 icon: Landmark, 
                 title: "Federal Agency", 
-                category: "GOVERNMENT",
-                badge: "SUCCESS STORY",
-                description: "Learn how a federal agency achieved 100% audit-ready documentation with full defensibility using Venio's compliance-focused platform.",
-                metric: "100%",
-                metricLabel: "Audit Compliance"
+                industry: "Government",
+                challenge: "Ensuring compliance with strict record retention requirements",
+                result: "Achieved 100% audit-ready documentation with full defensibility",
+                metric: "100% compliant"
               },
               { 
                 icon: Building, 
                 title: "Global Bank", 
-                category: "FINANCIAL SERVICES",
-                badge: "SUCCESS STORY",
-                description: "See how a global financial institution achieved 99.9% accuracy in document review with Venio's AI-powered platform.",
-                metric: "99.9%",
-                metricLabel: "Accuracy Rate"
+                industry: "Financial Services",
+                challenge: "High-volume litigation requiring rapid hold deployment",
+                result: "Cut deployment time from days to hours with automated workflows",
+                metric: "10x faster deployment"
               },
             ].map((study, index) => (
-              <div key={index} className="glass rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group">
-                <div className="grid md:grid-cols-5">
-                  {/* Left side - Gradient with metric */}
-                  <div className="md:col-span-2 relative bg-gradient-to-br from-[#0b2447] via-[#1a4d5c] to-[#2a7a6f] p-10 flex flex-col items-center justify-center text-white overflow-hidden">
-                    {/* Background pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+              <Card key={index} className="glass hover:shadow-xl transition-all duration-300 group border-border/50">
+                <CardContent className="p-8 space-y-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <study.icon className="h-7 w-7 text-secondary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-1">{study.title}</h3>
+                        <p className="text-sm text-muted-foreground">{study.industry}</p>
+                      </div>
                     </div>
-                    
-                    {/* Content */}
-                    <div className="relative z-10 text-center space-y-6">
-                      <div className="w-16 h-16 mx-auto rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                        <study.icon className="h-8 w-8 text-white" />
-                      </div>
-                      
-                      <div className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 inline-block">
-                        <span className="text-xs font-semibold tracking-wider text-white/90">{study.category}</span>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <div className="text-6xl font-bold tracking-tight">{study.metric}</div>
-                        <div className="h-px w-16 mx-auto bg-white/30"></div>
-                        <div className="text-sm font-medium text-white/80">{study.metricLabel}</div>
-                      </div>
+                    <div className="text-2xl font-bold text-secondary">{study.metric}</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Challenge</p>
+                      <p className="text-sm text-muted-foreground">{study.challenge}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Result</p>
+                      <p className="text-sm text-muted-foreground">{study.result}</p>
                     </div>
                   </div>
                   
-                  {/* Right side - Content */}
-                  <div className="md:col-span-3 p-10 bg-background flex flex-col justify-center space-y-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 w-fit">
-                      <span className="text-xs font-semibold tracking-wider text-accent">{study.badge}</span>
-                    </div>
-                    
-                    <h3 className="text-3xl font-heading font-bold text-foreground">
-                      {study.title}
-                    </h3>
-                    
-                    <p className="text-muted-foreground leading-relaxed">
-                      {study.description}
-                    </p>
-                    
-                    <button className="btn btn-secondary w-fit group/btn">
-                      Read Full Case Study
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </div>
-              </div>
+                  <button className="text-sm font-medium text-secondary hover:text-secondary/80 flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Read Full Case Study
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
