@@ -21,6 +21,7 @@ import {
   BarChart3
 } from "lucide-react";
 import CTABanner from "@/components/CTABanner";
+import { BenefitsSection } from "@/components/BenefitsSection";
 
 const sections = [
   { id: "hero", label: "Overview" },
@@ -96,6 +97,8 @@ const VenioLegalHold = () => {
         </div>
       </section>
 
+      {/* Benefits Section */}
+      <BenefitsSection />
 
       {/* Data Points Section */}
       <section id="data" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
