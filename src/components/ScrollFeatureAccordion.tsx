@@ -103,8 +103,8 @@ export const ScrollFeatureAccordion = () => {
           });
         },
         {
-          threshold: 0.6,
-          rootMargin: "-20% 0px -20% 0px",
+          threshold: 0.3,
+          rootMargin: "-10% 0px -50% 0px",
         }
       );
 
@@ -131,7 +131,7 @@ export const ScrollFeatureAccordion = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left side - Accordion Items */}
-          <div className="space-y-4 lg:sticky lg:top-24">
+          <div className="space-y-4">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               const isActive = activeIndex === index;
@@ -209,7 +209,7 @@ export const ScrollFeatureAccordion = () => {
           </div>
 
           {/* Right side - Image Placeholder (sticky) */}
-          <div className="lg:sticky lg:top-24 hidden lg:block">
+          <div className="lg:sticky lg:top-32 hidden lg:block h-fit">
             <div className="relative">
               {features.map((feature, index) => (
                 <div
