@@ -177,31 +177,22 @@ export const ScrollFeatureAccordion = () => {
                           <h3
                             className={cn(
                               "font-semibold transition-all duration-500",
-                              isActive ? "text-2xl mb-4 text-foreground" : "text-xl mb-0 text-foreground/70"
+                              isActive ? "text-2xl mb-3 text-foreground" : "text-xl mb-0 text-foreground/70"
                             )}
                           >
                             {feature.title}
                           </h3>
-
-                          {/* Expandable details - only shown when active */}
+                          
+                          {/* Description - only shown when active */}
                           <div
                             className={cn(
-                              "overflow-hidden transition-all duration-700",
-                              isActive ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                              "overflow-hidden transition-all duration-500",
+                              isActive ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
                             )}
                           >
-                            <ul className="space-y-3 pt-4 border-t border-border/50">
-                              {feature.details.map((detail, i) => (
-                                <li
-                                  key={i}
-                                  className="text-sm text-muted-foreground flex items-start gap-3 animate-fade-in"
-                                  style={{ animationDelay: `${i * 100}ms` }}
-                                >
-                                  <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
-                                  <span className="leading-relaxed">{detail}</span>
-                                </li>
-                              ))}
-                            </ul>
+                            <p className="text-base text-muted-foreground">
+                              {feature.description}
+                            </p>
                           </div>
                         </div>
                       </div>
