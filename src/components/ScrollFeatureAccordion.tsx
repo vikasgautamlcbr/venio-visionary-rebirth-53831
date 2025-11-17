@@ -92,6 +92,8 @@ export const ScrollFeatureAccordion = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const scrollAccumulatorRef = useRef<number>(0);
+  const isScrollingFeaturesRef = useRef<boolean>(false);
 
   // Match heights
   useEffect(() => {
@@ -114,34 +116,62 @@ export const ScrollFeatureAccordion = () => {
     };
   }, [activeIndex]);
 
-  // Scroll-based feature activation
+  // Sticky scroll interaction
   useEffect(() => {
-    const observers = featureRefs.current.map((ref, index) => {
-      if (!ref) return null;
+    const SCROLL_THRESHOLD = 600; // 6x more scrolling needed (typical scroll is ~100)
+    
+    const handleWheel = (e: WheelEvent) => {
+      if (!sectionRef.current) return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            // Activate when feature is in the center of viewport
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-              setActiveIndex(index);
+      const section = sectionRef.current;
+      const rect = section.getBoundingClientRect();
+      
+      // Check if section is in viewport and can stick
+      const isInViewport = rect.top <= 0 && rect.bottom >= window.innerHeight;
+      
+      if (isInViewport) {
+        // Section should stick and handle scroll
+        isScrollingFeaturesRef.current = true;
+        
+        // Can we still scroll through features?
+        const canScrollDown = activeIndex < features.length - 1;
+        const canScrollUp = activeIndex > 0;
+        const isScrollingDown = e.deltaY > 0;
+        
+        if ((isScrollingDown && canScrollDown) || (!isScrollingDown && canScrollUp)) {
+          e.preventDefault();
+          
+          // Accumulate scroll
+          scrollAccumulatorRef.current += e.deltaY;
+          
+          // Check if we've scrolled enough to change feature
+          if (Math.abs(scrollAccumulatorRef.current) >= SCROLL_THRESHOLD) {
+            if (scrollAccumulatorRef.current > 0 && canScrollDown) {
+              setActiveIndex(activeIndex + 1);
+              scrollAccumulatorRef.current = 0;
+            } else if (scrollAccumulatorRef.current < 0 && canScrollUp) {
+              setActiveIndex(activeIndex - 1);
+              scrollAccumulatorRef.current = 0;
             }
-          });
-        },
-        {
-          threshold: [0, 0.25, 0.5, 0.75, 1],
-          rootMargin: "-45% 0px -45% 0px", // Center detection zone
+          }
+        } else {
+          // At the end/start of features, allow normal scroll to exit
+          isScrollingFeaturesRef.current = false;
+          scrollAccumulatorRef.current = 0;
         }
-      );
+      } else {
+        // Section not in sticky position, allow normal scroll
+        isScrollingFeaturesRef.current = false;
+        scrollAccumulatorRef.current = 0;
+      }
+    };
 
-      observer.observe(ref);
-      return observer;
-    });
+    window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      observers.forEach((observer) => observer?.disconnect());
+      window.removeEventListener('wheel', handleWheel);
     };
-  }, []);
+  }, [activeIndex]);
 
   return (
     <section id="features" ref={sectionRef} className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
