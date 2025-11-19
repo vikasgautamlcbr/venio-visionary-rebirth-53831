@@ -164,40 +164,33 @@ const TestimonialsSection = () => {
               Trusted by Industry Leaders
             </p>
           </div>
-          <div className="relative">
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
-            
-            {/* Scrolling container */}
-            <div className="flex gap-16 animate-scroll">
-              {/* First set of logos */}
-              {clientLogos.map((logo, index) => (
-                <div 
-                  key={`first-${index}`} 
-                  className="flex-shrink-0"
-                >
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    className="h-12 md:h-16 w-auto object-contain brightness-0"
-                  />
-                </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {clientLogos.map((logo, index) => (
-                <div 
-                  key={`second-${index}`} 
-                  className="flex-shrink-0"
-                >
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    className="h-12 md:h-16 w-auto object-contain brightness-0"
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="flex gap-16 animate-scroll">
+            {/* First set of logos */}
+            {clientLogos.map((logo, index) => (
+              <div 
+                key={`first-${index}`} 
+                className="flex-shrink-0"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="h-8 md:h-10 w-auto object-contain brightness-0"
+                />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {clientLogos.map((logo, index) => (
+              <div 
+                key={`second-${index}`} 
+                className="flex-shrink-0"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="h-8 md:h-10 w-auto object-contain brightness-0"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
