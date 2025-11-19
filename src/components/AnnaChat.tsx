@@ -198,7 +198,7 @@ export const AnnaChat = () => {
 
       {/* Minimal Input */}
       <div className="px-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-        <div className="flex gap-3 items-center bg-white/20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white/30 shadow-lg">
+        <div className="relative flex items-center bg-white/20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white/30 shadow-lg">
           <Input
             ref={inputRef}
             value={input}
@@ -206,14 +206,14 @@ export const AnnaChat = () => {
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
             disabled={isLoading}
-            className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0 placeholder:text-white/60"
+            className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0 placeholder:text-white/60 text-white pr-12"
             autoFocus
           />
           <Button
             onClick={sendMessage}
             disabled={isLoading || !input.trim()}
             size="icon"
-            className="shrink-0 h-10 w-10 bg-white hover:bg-white border border-white/30 text-[#0097FF] shadow-sm"
+            className="absolute right-2 shrink-0 h-10 w-10 bg-white hover:bg-white border border-white/30 text-[#0097FF] shadow-sm"
             variant="ghost"
           >
             {isLoading ? (
