@@ -16,12 +16,17 @@ const INITIAL_GREETING = "Hi, I'm Anna. Before we dive into how Venio can help y
 
 const FADE_DISTANCE = 60; // pixels from top where fade starts
 
+type CollectionMode = "name" | "email" | "chat";
+
 export const AnnaChat = () => {
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: INITIAL_GREETING }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [collectionMode, setCollectionMode] = useState<CollectionMode>("name");
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [messageOpacities, setMessageOpacities] = useState<number[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -100,6 +105,68 @@ export const AnnaChat = () => {
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
+    // Handle name collection
+    if (collectionMode === "name") {
+      const name = input.trim();
+      setUserName(name);
+      const userMessage: Message = { role: "user", content: name };
+      setMessages((prev) => [...prev, userMessage]);
+      setInput("");
+      
+      const assistantMessage: Message = {
+        role: "assistant",
+        content: `Thank you, ${name}. Could you please share your email address with me?`,
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
+      setCollectionMode("email");
+      return;
+    }
+
+    // Handle email collection
+    if (collectionMode === "email") {
+      const email = input.trim();
+      setUserEmail(email);
+      const userMessage: Message = { role: "user", content: email };
+      setMessages((prev) => [...prev, userMessage]);
+      setInput("");
+      setIsLoading(true);
+
+      // Send collected data to backend
+      try {
+        const { data, error } = await supabase.functions.invoke("anna-chat", {
+          body: { 
+            messages: [...messages, userMessage],
+            userName,
+            userEmail: email
+          },
+        });
+
+        if (error) throw error;
+
+        if (data?.choices?.[0]?.message?.content) {
+          const assistantMessage: Message = {
+            role: "assistant",
+            content: data.choices[0].message.content,
+          };
+          setMessages((prev) => [...prev, assistantMessage]);
+        }
+        setCollectionMode("chat");
+      } catch (error) {
+        console.error("Error sending message:", error);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: "I apologize, but I'm having trouble connecting right now. Please try again in a moment.",
+          },
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+      return;
+    }
+
+    // Normal chat mode
     const userMessage: Message = { role: "user", content: input.trim() };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
@@ -107,7 +174,11 @@ export const AnnaChat = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke("anna-chat", {
-        body: { messages: [...messages, userMessage] },
+        body: { 
+          messages: [...messages, userMessage],
+          userName,
+          userEmail
+        },
       });
 
       if (error) throw error;
@@ -196,15 +267,29 @@ export const AnnaChat = () => {
         </div>
       </div>
 
-      {/* Minimal Input */}
+      {/* Smart Input Transformation */}
       <div className="px-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-        <div className="relative flex items-center bg-white/20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white/30 shadow-lg">
+        <div className="relative flex items-center bg-white/20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white/30 shadow-lg transition-all duration-300">
+          {/* Mode Indicator */}
+          {collectionMode !== "chat" && (
+            <div className="absolute -top-8 left-6 bg-[#0097FF] text-white text-xs px-3 py-1 rounded-t-lg font-medium">
+              {collectionMode === "name" ? "📝 Name" : "📧 Email"}
+            </div>
+          )}
+          
           <Input
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type your message..."
+            placeholder={
+              collectionMode === "name" 
+                ? "Enter your name..." 
+                : collectionMode === "email" 
+                ? "Enter your email address..." 
+                : "Type your message..."
+            }
+            type={collectionMode === "email" ? "email" : "text"}
             disabled={isLoading}
             className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0 placeholder:text-white/60 text-white pr-12"
             autoFocus
