@@ -83,10 +83,10 @@ const CaseStudiesSection = () => {
             }}
             className="w-full"
           >
-            <CarouselContent>
+            <CarouselContent className="shadow-[0_10px_40px_rgba(0,0,0,0.15)] rounded-3xl">
               {caseStudies.map((study, index) => (
                 <CarouselItem key={index}>
-                  <Card className="group relative overflow-hidden border-0 shadow-[0_10px_40px_rgba(0,0,0,0.15)] rounded-3xl transition-all duration-500 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)] hover:scale-[1.02] transform">
+                  <Card className="group relative overflow-hidden border-0 rounded-3xl transition-all duration-500">
                     <div className="grid md:grid-cols-2 aspect-[2/1]">
                       {/* Left Side - Image with Overlay */}
                       <div className="relative overflow-hidden">
@@ -97,7 +97,7 @@ const CaseStudiesSection = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-accent/85"></div>
                         
-                        <div className="relative h-full flex flex-col justify-center p-8 md:p-12">
+                        <div className="relative h-full flex flex-col items-center justify-center text-center p-8 md:p-12">
                           <div className={`w-16 h-16 ${study.bgColor} rounded-2xl flex items-center justify-center mb-6`}>
                             <study.icon className={`w-8 h-8 ${study.color}`} />
                           </div>
@@ -110,11 +110,11 @@ const CaseStudiesSection = () => {
                             {study.title}
                           </h3>
                           
-                          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                            <div className="text-white text-5xl md:text-6xl font-bold mb-2">
+                          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 inline-block">
+                            <div className="text-white text-5xl md:text-6xl font-bold mb-1">
                               {study.stat}
                             </div>
-                            <div className="text-white/90 text-lg font-medium">
+                            <div className="text-white/90 text-base font-medium">
                               {study.statLabel}
                             </div>
                           </div>
