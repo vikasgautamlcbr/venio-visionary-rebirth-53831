@@ -31,17 +31,17 @@ const LawFirmSolutions = () => {
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
-          <div className="relative z-10 container mx-auto px-6 py-24 max-w-7xl">
-            <div className="text-center mb-12 animate-fade-in max-w-5xl mx-auto">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+          <div className="relative z-10 container mx-auto px-6 py-20 max-w-6xl">
+            <div className="text-center mb-10 animate-fade-in max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 How Venio Solves My Problem
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
                 Get tailored solutions for law firm workflows, eDiscovery challenges, and document-heavy cases. Ask your question below and Anna will guide you instantly.
               </p>
             </div>
 
-            <div className="animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: "0.2s" }}>
+            <div className="animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.2s" }}>
               <AnnaChat />
             </div>
           </div>
