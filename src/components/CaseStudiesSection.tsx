@@ -63,10 +63,13 @@ const CaseStudiesSection = () => {
   });
 
   return (
-    <section id="case-studies" className="py-12 bg-white">
-      <div className="container mx-auto px-4 max-w-[1200px]">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+    <section id="case-studies" className="py-20 bg-gradient-to-b from-background/95 to-background relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(96,165,250,0.08),transparent_50%)]" />
+      
+      <div className="container mx-auto px-4 max-w-[1200px] relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Real Results from Real Customers
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-body">
@@ -89,9 +92,9 @@ const CaseStudiesSection = () => {
                   {/* Hover glow wrapper */}
                   <div className="relative group">
                     {/* Animated glow on hover */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent via-primary to-accent rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-accent via-secondary to-accent rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-all duration-500"></div>
                     
-                    <Card className="relative overflow-hidden border-0 shadow-2xl rounded-3xl group-hover:shadow-[0_30px_70px_-10px_rgba(0,0,0,0.3)] transition-all duration-500 group-hover:scale-[1.02]">
+                    <Card className="relative overflow-hidden glass-dark backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl group-hover:shadow-[0_30px_70px_-10px_rgba(96,165,250,0.3)] transition-all duration-500 group-hover:scale-[1.02] group-hover:border-accent/30">
                       <div className="grid md:grid-cols-2 aspect-[2/1]">
                         {/* Left Side - Image with Overlay */}
                         <div className="relative overflow-hidden">
@@ -134,26 +137,35 @@ const CaseStudiesSection = () => {
                         </div>
 
                         {/* Right Side - Content */}
-                        <div className="bg-background p-8 flex flex-col justify-center">
-                          <div className="inline-block mb-4 w-fit">
-                            <span className="text-xs font-bold uppercase tracking-widest text-accent">
-                              Success Story
-                            </span>
+                        <div className="relative p-12 flex flex-col justify-center bg-gradient-to-br from-background/80 via-background/60 to-background/40 backdrop-blur-md">
+                          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/20 mb-6 w-fit shadow-lg">
+                            <study.icon className="h-5 w-5 text-accent" />
+                            <span className="text-sm font-semibold text-white">{study.category}</span>
                           </div>
                           
-                          <h3 className="text-3xl font-bold text-primary mb-4 leading-tight">
+                          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                             {study.title}
                           </h3>
                           
-                          <div className="w-12 h-1 bg-gradient-to-r from-secondary to-accent rounded-full mb-6"></div>
+                          <div className="flex items-baseline gap-4 mb-6">
+                            <div className="text-5xl font-bold bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
+                              {study.stat}
+                            </div>
+                            <div className="text-lg text-white/80">
+                              {study.statLabel}
+                            </div>
+                          </div>
                           
-                          <p className="text-base text-muted-foreground font-body leading-relaxed mb-8">
+                          <p className="text-white/70 text-lg mb-8 leading-relaxed font-body">
                             {study.description}
                           </p>
-
-                          <Button className="group/btn shadow-lg hover:shadow-xl transition-all duration-300 w-fit">
+                          
+                          <Button 
+                            size="lg"
+                            className="bg-gradient-to-r from-accent to-secondary hover:from-accent/90 hover:to-secondary/90 text-white shadow-lg shadow-accent/20 transition-all duration-300 hover:scale-105"
+                          >
                             Read Full Case Study
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-2 transition-transform duration-300" />
+                            <ArrowRight className="ml-2 h-5 w-5" />
                           </Button>
                         </div>
                       </div>
