@@ -26,6 +26,7 @@ export const AnnaChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const messageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ 
@@ -66,6 +67,13 @@ export const AnnaChat = () => {
     
     return () => container.removeEventListener('scroll', calculateOpacities);
   }, [messages]);
+
+  useEffect(() => {
+    // Focus input after loading completes
+    if (!isLoading) {
+      inputRef.current?.focus();
+    }
+  }, [isLoading]);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -168,12 +176,14 @@ export const AnnaChat = () => {
         <Card className="p-4 bg-background/90 backdrop-blur-lg border-border/50 shadow-2xl">
           <div className="flex gap-3">
             <Input
+              ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type your message..."
               disabled={isLoading}
               className="flex-1 bg-background/50 border-border/50"
+              autoFocus
             />
             <Button
               onClick={sendMessage}
