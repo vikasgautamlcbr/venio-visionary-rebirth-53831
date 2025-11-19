@@ -5,6 +5,7 @@ import { DataPointsSection } from "@/components/DataPointsSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { ResourcesCarousel } from "@/components/ResourcesCarousel";
+import ClientLogosSection from "@/components/ClientLogosSection";
 
 const LawFirmSolutions = () => {
   return (
@@ -49,6 +50,9 @@ const LawFirmSolutions = () => {
 
         {/* Data Points Section */}
         <DataPointsSection />
+
+        {/* Client Logos Section */}
+        <ClientLogosSection />
 
         {/* Case Studies Section */}
         <CaseStudiesSection />
