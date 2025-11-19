@@ -61,17 +61,17 @@ const TestimonialsSection = () => {
 
   return (
     <>
-      <section className="py-12 bg-gradient-to-b from-white to-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+      <section className="py-24 bg-gradient-to-b from-white to-muted">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="text-center mb-16 max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
               Trusted by Leading Legal Teams
               <br />
               Worldwide
             </h2>
           </div>
 
-          <div className="max-w-7xl mx-auto px-16 relative">
+          <div className="max-w-6xl mx-auto px-16 relative">
             <Carousel
               setApi={setApi}
               opts={{
