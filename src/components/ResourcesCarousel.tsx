@@ -1,0 +1,117 @@
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { FileText, BookOpen, Video, FileCheck } from "lucide-react";
+
+const resources = [
+  {
+    category: "Blog",
+    icon: FileText,
+    title: "5 Ways AI Transforms eDiscovery for Law Firms",
+    description: "Discover how artificial intelligence is revolutionizing document review and legal workflows.",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80"
+  },
+  {
+    category: "Guide",
+    icon: BookOpen,
+    title: "Complete Guide to Legal Hold Management",
+    description: "Best practices for implementing and managing legal holds across your organization.",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
+  },
+  {
+    category: "Webinar",
+    icon: Video,
+    title: "Cloud-Based eDiscovery: Security & Compliance",
+    description: "Learn how cloud deployment maintains enterprise-grade security and compliance.",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80"
+  },
+  {
+    category: "Case Study",
+    icon: FileCheck,
+    title: "How Nixon Peabody Reduced Review Time by 70%",
+    description: "Real-world results from implementing Venio's AI-powered review platform.",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+  },
+  {
+    category: "Blog",
+    icon: FileText,
+    title: "ECA Best Practices for Cost-Effective Discovery",
+    description: "Strategies for early case assessment that reduce costs and improve outcomes.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+  }
+];
+
+const categoryColors = {
+  Blog: "bg-blue-500/10 text-blue-500 border-blue-500/20",
+  Guide: "bg-green-500/10 text-green-500 border-green-500/20",
+  Webinar: "bg-purple-500/10 text-purple-500 border-purple-500/20",
+  "Case Study": "bg-orange-500/10 text-orange-500 border-orange-500/20"
+};
+
+export const ResourcesCarousel = () => {
+  return (
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Resources for Law Firms
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Explore blogs, guides, and industry insights tailored for eDiscovery and legal teams
+          </p>
+        </div>
+
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {resources.map((resource, index) => {
+              const Icon = resource.icon;
+              return (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <Card className="group h-full overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 border-border/50 hover:border-primary/50">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={resource.image}
+                        alt={resource.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                      <Badge 
+                        className={`absolute bottom-4 left-4 ${categoryColors[resource.category as keyof typeof categoryColors]}`}
+                        variant="outline"
+                      >
+                        <Icon className="h-3 w-3 mr-1" />
+                        {resource.category}
+                      </Badge>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                        {resource.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>{resource.description}</CardDescription>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
+      </div>
+    </section>
+  );
+};
