@@ -89,9 +89,9 @@ const CaseStudiesSection = () => {
                   {/* Hover glow wrapper */}
                   <div className="relative group">
                     {/* Animated glow on hover */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent via-primary to-accent rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"></div>
+                    <div className="absolute -inset-2 bg-gradient-to-r from-accent via-primary to-accent rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-all duration-700 group-hover:blur-3xl"></div>
                     
-                    <Card className="relative overflow-hidden border-0 shadow-2xl rounded-3xl group-hover:shadow-[0_30px_70px_-10px_rgba(0,0,0,0.3)] transition-all duration-500 group-hover:scale-[1.02]">
+                    <Card className="relative overflow-hidden border-0 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 group-hover:scale-[1.03] transform-gpu will-change-transform">
                       <div className="grid md:grid-cols-2 aspect-[2/1]">
                         {/* Left Side - Image with Overlay */}
                         <div className="relative overflow-hidden">
