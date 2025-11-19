@@ -56,18 +56,18 @@ const categoryColors = {
 
 export const ResourcesCarousel = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-background via-background/95 to-muted/30">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+    <section className="py-20 bg-gradient-to-b from-background via-background/95 to-muted/30">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
             Resources for Law Firms
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             Explore blogs, guides, and industry insights tailored for eDiscovery and legal teams
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto px-16 relative">
+        <div className="max-w-5xl mx-auto px-12 relative">
           <Carousel
             opts={{
               align: "start",
