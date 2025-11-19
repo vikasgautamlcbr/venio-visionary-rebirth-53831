@@ -126,8 +126,8 @@ export const AnnaChat = () => {
             <AvatarImage src={annaAvatar} alt="Anna" />
             <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
           </Avatar>
-          <div className="bg-background/90 backdrop-blur-sm rounded-lg px-4 py-2 border border-border/30 shadow-sm">
-            <p className="text-sm text-muted-foreground">Ask me anything about Venio's legal solutions</p>
+          <div className="bg-[#0097FF] rounded-lg px-4 py-2 shadow-sm">
+            <p className="text-sm text-white">Ask me anything about Venio's legal solutions</p>
           </div>
         </div>
 
