@@ -86,14 +86,12 @@ const CaseStudiesSection = () => {
             <CarouselContent>
               {caseStudies.map((study, index) => (
                 <CarouselItem key={index}>
-                  {/* Hover glow wrapper with zoom effect */}
-                  <div className="relative group transition-transform duration-500 hover:scale-[1.03] transform-gpu will-change-transform">
+                  <div className="relative p-2">
                     {/* Animated glow on hover */}
-                    <div className="absolute -inset-2 bg-gradient-to-r from-accent via-primary to-accent rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-all duration-700 group-hover:blur-3xl"></div>
+                    <div className="absolute -inset-2 bg-gradient-to-r from-accent via-primary to-accent rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-all duration-700"></div>
                     
-                    <Card className="relative overflow-hidden border-0 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500">
-                      {/* Content wrapper that counter-scales to keep content fixed */}
-                      <div className="grid md:grid-cols-2 aspect-[2/1] transition-transform duration-500 group-hover:scale-[0.9709] origin-center">
+                    <Card className="group relative overflow-hidden border-0 shadow-[0_10px_40px_rgba(0,0,0,0.15)] rounded-3xl transition-all duration-500 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)] hover:scale-[1.03] transform">
+                      <div className="grid md:grid-cols-2 aspect-[2/1]">
                         {/* Left Side - Image with Overlay */}
                         <div className="relative overflow-hidden">
                           <img 
