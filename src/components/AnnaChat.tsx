@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Send, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import annaAvatar from "@/assets/anna-avatar.gif";
@@ -119,14 +120,22 @@ export const AnnaChat = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      {/* Centered Avatar */}
-      <div className="flex justify-center mb-6 animate-fade-in">
-        <Avatar className="h-20 w-20 border-4 border-white/20 shadow-2xl">
-          <AvatarImage src={annaAvatar} alt="Anna" />
-          <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
-        </Avatar>
-      </div>
+    <TooltipProvider>
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Centered Avatar with Tooltip */}
+        <div className="flex justify-center mb-6 animate-fade-in">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Avatar className="h-20 w-20 border-4 border-white/20 shadow-2xl cursor-help">
+                <AvatarImage src={annaAvatar} alt="Anna" />
+                <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
+              </Avatar>
+            </TooltipTrigger>
+            <TooltipContent side="right" className="max-w-xs">
+              <p className="text-sm">Hi! I'm Anna, your AI assistant. I can help you learn about Venio's legal solutions, answer questions about our products, and guide you through how we can support your law firm's needs.</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
 
       {/* Floating Messages Container with Fade Effect */}
       <div className="relative mb-6">
@@ -199,6 +208,7 @@ export const AnnaChat = () => {
           </Button>
         </div>
       </div>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 };
