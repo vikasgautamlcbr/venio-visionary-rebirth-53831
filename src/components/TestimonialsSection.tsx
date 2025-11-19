@@ -19,8 +19,6 @@ import proteusLogo from "@/assets/clients/proteus.webp";
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [nestedApi, setNestedApi] = useState<CarouselApi>();
-  const [nestedCurrent, setNestedCurrent] = useState(0);
 
   const stats = [
     { value: "10x", label: "Faster document review" },
@@ -59,14 +57,6 @@ const TestimonialsSection = () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
-
-  useEffect(() => {
-    if (!nestedApi) return;
-    setNestedCurrent(nestedApi.selectedScrollSnap());
-    nestedApi.on("select", () => {
-      setNestedCurrent(nestedApi.selectedScrollSnap());
-    });
-  }, [nestedApi]);
 
   const clientLogos = [
     { src: amentumLogo, alt: "Amentum" },
@@ -132,72 +122,42 @@ const TestimonialsSection = () => {
                   </div>
                 </CarouselItem>
 
-                {/* Slide 2: Written Testimonials with nested carousel */}
-                <CarouselItem>
-                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px] relative">
-                    <Carousel
-                      setApi={setNestedApi}
-                      opts={{
-                        loop: true,
-                        align: "start",
-                      }}
-                      className="w-full h-full"
-                    >
-                      <CarouselContent>
-                        {testimonials.map((testimonial, idx) => (
-                          <CarouselItem key={idx}>
-                            <div className="grid md:grid-cols-2 gap-12 items-center">
-                              {/* Stats - Left side */}
-                              <div className="space-y-6 max-w-[90%] mx-auto md:mx-0">
-                                {stats.map((stat, index) => (
-                                  <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                                    <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
-                                    <p className="text-white/90 font-body text-sm">{stat.label}</p>
-                                  </div>
-                                ))}
-                              </div>
-
-                              {/* Testimonial Text - Right side */}
-                              <div className="space-y-8">
-                                <div className="text-6xl text-accent/20 font-serif">"</div>
-                                <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4 italic">
-                                  {testimonial.text}
-                                </p>
-                                <div className="flex items-center gap-4">
-                                  <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                                    {testimonial.initials}
-                                  </div>
-                                  <div>
-                                    <p className="font-bold text-primary text-lg">{testimonial.author}</p>
-                                    <p className="text-muted-foreground font-body">{testimonial.role}</p>
-                                    <p className="text-muted-foreground font-body">{testimonial.company}</p>
-                                  </div>
-                                </div>
-                              </div>
+                {/* Slides 2-4: Written Testimonials */}
+                {testimonials.map((testimonial, idx) => (
+                  <CarouselItem key={idx}>
+                    <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px]">
+                      <div className="grid md:grid-cols-2 gap-12 items-center">
+                        {/* Stats - Left side */}
+                        <div className="space-y-6 max-w-[90%] mx-auto md:mx-0">
+                          {stats.map((stat, index) => (
+                            <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
+                              <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
+                              <p className="text-white/90 font-body text-sm">{stat.label}</p>
                             </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
+                          ))}
+                        </div>
 
-                      {/* Nested carousel navigation */}
-                      <button
-                        onClick={() => nestedApi?.scrollPrev()}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
-                        aria-label="Previous testimonial"
-                      >
-                        <ChevronLeft className="h-6 w-6 text-primary" />
-                      </button>
-
-                      <button
-                        onClick={() => nestedApi?.scrollNext()}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
-                        aria-label="Next testimonial"
-                      >
-                        <ChevronRight className="h-6 w-6 text-primary" />
-                      </button>
-                    </Carousel>
-                  </div>
-                </CarouselItem>
+                        {/* Testimonial Text - Right side */}
+                        <div className="space-y-8">
+                          <div className="text-6xl text-accent/20 font-serif">"</div>
+                          <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4 italic">
+                            {testimonial.text}
+                          </p>
+                          <div className="flex items-center gap-4">
+                            <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                              {testimonial.initials}
+                            </div>
+                            <div>
+                              <p className="font-bold text-primary text-lg">{testimonial.author}</p>
+                              <p className="text-muted-foreground font-body">{testimonial.role}</p>
+                              <p className="text-muted-foreground font-body">{testimonial.company}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
               </CarouselContent>
             </Carousel>
 
@@ -220,24 +180,18 @@ const TestimonialsSection = () => {
 
             {/* Dot indicators at bottom */}
             <div className="flex justify-center gap-2 mt-8">
-              <button
-                onClick={() => api?.scrollTo(0)}
-                className={`h-2 rounded-full transition-all ${
-                  current === 0 
-                    ? "w-8 bg-primary" 
-                    : "w-2 bg-primary/30 hover:bg-primary/50"
-                }`}
-                aria-label="Go to slide 1"
-              />
-              <button
-                onClick={() => api?.scrollTo(1)}
-                className={`h-2 rounded-full transition-all ${
-                  current === 1 
-                    ? "w-8 bg-primary" 
-                    : "w-2 bg-primary/30 hover:bg-primary/50"
-                }`}
-                aria-label="Go to slide 2"
-              />
+              {[0, 1, 2, 3].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === current 
+                      ? "w-8 bg-primary" 
+                      : "w-2 bg-primary/30 hover:bg-primary/50"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
