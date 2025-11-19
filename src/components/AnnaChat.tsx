@@ -173,7 +173,7 @@ export const AnnaChat = () => {
 
       {/* Minimal Input */}
       <div className="px-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-        <div className="flex gap-3 items-center bg-background/95 backdrop-blur-sm rounded-full px-6 py-3 border border-border/30 shadow-sm">
+        <div className="flex gap-3 items-center bg-background/95 backdrop-blur-sm rounded-lg px-6 py-3 border border-border/30 shadow-sm">
           <Input
             ref={inputRef}
             value={input}
@@ -188,7 +188,7 @@ export const AnnaChat = () => {
             onClick={sendMessage}
             disabled={isLoading || !input.trim()}
             size="icon"
-            className="shrink-0 rounded-full h-10 w-10"
+            className="shrink-0 h-10 w-10"
             variant="ghost"
           >
             {isLoading ? (
