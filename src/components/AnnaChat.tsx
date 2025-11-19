@@ -14,13 +14,18 @@ interface Message {
 
 const INITIAL_GREETING = "Hi, I'm Anna. Before we dive into how Venio can help you, I'd love to know who I'm speaking with. What's your name?";
 
+const FADE_DISTANCE = 60; // pixels from top where fade starts
+
 export const AnnaChat = () => {
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: INITIAL_GREETING }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [messageOpacities, setMessageOpacities] = useState<number[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const messageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ 
@@ -29,8 +34,37 @@ export const AnnaChat = () => {
     });
   };
 
+  const calculateOpacities = () => {
+    if (!scrollContainerRef.current) return;
+    
+    const containerTop = scrollContainerRef.current.getBoundingClientRect().top;
+    const newOpacities = messageRefs.current.map((ref) => {
+      if (!ref) return 1;
+      
+      const messageTop = ref.getBoundingClientRect().top;
+      const distanceFromTop = messageTop - containerTop;
+      
+      if (distanceFromTop >= FADE_DISTANCE) return 1;
+      if (distanceFromTop <= 0) return 0;
+      
+      return distanceFromTop / FADE_DISTANCE;
+    });
+    
+    setMessageOpacities(newOpacities);
+  };
+
   useEffect(() => {
     scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    calculateOpacities();
+    container.addEventListener('scroll', calculateOpacities);
+    
+    return () => container.removeEventListener('scroll', calculateOpacities);
   }, [messages]);
 
   const sendMessage = async () => {
@@ -88,17 +122,19 @@ export const AnnaChat = () => {
 
       {/* Floating Messages Container with Fade Effect */}
       <div className="relative mb-6">
-        {/* Top Transparency Mask - Matches hero gradient background */}
-        <div className="absolute top-0 left-0 right-0 h-24 z-10 pointer-events-none bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" />
-        
         {/* Scrollable Messages with Custom Scrollbar */}
-        <div className="space-y-6 max-h-[500px] overflow-y-auto px-4 pt-4 scroll-smooth custom-scrollbar pr-2">
+        <div 
+          ref={scrollContainerRef}
+          className="space-y-6 max-h-[500px] overflow-y-auto px-4 pt-4 scroll-smooth custom-scrollbar pr-2"
+        >
           {messages.map((message, index) => (
             <div
               key={index}
+              ref={(el) => (messageRefs.current[index] = el)}
               className={`flex ${
                 message.role === "user" ? "justify-end" : "justify-start"
-              } animate-fade-in`}
+              } animate-fade-in transition-opacity duration-150`}
+              style={{ opacity: messageOpacities[index] ?? 1 }}
             >
             <Card
               className={`max-w-[80%] p-4 ${
