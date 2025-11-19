@@ -87,7 +87,7 @@ export const ResourcesCarousel = () => {
                           alt={resource.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/40 to-accent/10" />
                         <Badge 
                           className={`absolute bottom-4 left-4 ${categoryColors[resource.category as keyof typeof categoryColors]}`}
                           variant="outline"
