@@ -121,7 +121,7 @@ export const AnnaChat = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
         {/* Centered Avatar with Info */}
-        <div className="flex justify-center items-center gap-4 mb-6 animate-fade-in">
+        <div className="flex flex-col items-center gap-3 mb-6 animate-fade-in">
           <Avatar className="h-20 w-20 border-4 border-white/20 shadow-2xl">
             <AvatarImage src={annaAvatar} alt="Anna" />
             <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
