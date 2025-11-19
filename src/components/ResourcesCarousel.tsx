@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, BookOpen, Video, FileCheck } from "lucide-react";
+import { ArrowRight, FileText, BookOpen, Video, FileCheck } from "lucide-react";
 
 const resources = [
   {
@@ -56,10 +56,10 @@ const categoryColors = {
 
 export const ResourcesCarousel = () => {
   return (
-    <section className="py-24 bg-muted/30">
+    <section className="py-24 bg-gradient-to-b from-background via-background/95 to-muted/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
             Resources for Law Firms
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -67,56 +67,63 @@ export const ResourcesCarousel = () => {
           </p>
         </div>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-4">
-            {resources.map((resource, index) => {
-              const Icon = resource.icon;
-              return (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="group h-full overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 border-border/50 hover:border-primary/50">
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={resource.image}
-                        alt={resource.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
-                      <Badge 
-                        className={`absolute bottom-4 left-4 ${categoryColors[resource.category as keyof typeof categoryColors]}`}
-                        variant="outline"
-                      >
-                        <Icon className="h-3 w-3 mr-1" />
-                        {resource.category}
-                      </Badge>
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                        {resource.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription>{resource.description}</CardDescription>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-          
-          {/* Enhanced Navigation Buttons */}
-          <div className="absolute -left-6 top-1/2 -translate-y-1/2">
-            <CarouselPrevious className="w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 transition-all duration-300" />
-          </div>
-          <div className="absolute -right-6 top-1/2 -translate-y-1/2">
-            <CarouselNext className="w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 transition-all duration-300" />
-          </div>
-        </Carousel>
+        <div className="max-w-7xl mx-auto px-16 relative">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {resources.map((resource, index) => {
+                const Icon = resource.icon;
+                return (
+                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Card className="group h-full overflow-hidden border border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(96,165,250,0.2)] transition-all duration-300 hover:scale-105">
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={resource.image}
+                          alt={resource.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                        <Badge 
+                          className={`absolute bottom-4 left-4 ${categoryColors[resource.category as keyof typeof categoryColors]}`}
+                          variant="outline"
+                        >
+                          <Icon className="h-3 w-3 mr-1" />
+                          {resource.category}
+                        </Badge>
+                      </div>
+                      <CardHeader>
+                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                          {resource.title}
+                        </CardTitle>
+                        <CardDescription className="line-clamp-2">
+                          {resource.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <button className="text-primary font-semibold hover:underline text-sm flex items-center gap-1">
+                          Read More <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            
+            {/* Enhanced Navigation Buttons - Outside */}
+            <div className="absolute -left-6 top-1/2 -translate-y-1/2">
+              <CarouselPrevious className="w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 transition-all duration-300" />
+            </div>
+            <div className="absolute -right-6 top-1/2 -translate-y-1/2">
+              <CarouselNext className="w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 transition-all duration-300" />
+            </div>
+          </Carousel>
+        </div>
       </div>
     </section>
   );
