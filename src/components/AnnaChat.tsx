@@ -47,12 +47,17 @@ export const AnnaChat = () => {
     const containerTop = containerRect.top;
     const fadeThreshold = containerTop + FADE_DISTANCE;
     
-    const newOpacities = messageRefs.current.map((ref) => {
+    const newOpacities = messageRefs.current.map((ref, index) => {
       if (!ref) return 1;
       
       const messageRect = ref.getBoundingClientRect();
       const messageTop = messageRect.top;
       const messageBottom = messageRect.bottom;
+      
+      // Always keep first message at full opacity when visible
+      if (index === 0 && messageTop >= containerTop) {
+        return 1;
+      }
       
       // Message is fully visible - no fade
       if (messageTop >= fadeThreshold) {
