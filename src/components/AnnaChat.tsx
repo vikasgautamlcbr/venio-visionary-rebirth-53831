@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Send, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import annaAvatar from "@/assets/anna-avatar.gif";
@@ -120,21 +119,16 @@ export const AnnaChat = () => {
   };
 
   return (
-    <TooltipProvider>
-      <div className="w-full max-w-4xl mx-auto">
-        {/* Centered Avatar with Tooltip */}
-        <div className="flex justify-center mb-6 animate-fade-in">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Avatar className="h-20 w-20 border-4 border-white/20 shadow-2xl cursor-help">
-                <AvatarImage src={annaAvatar} alt="Anna" />
-                <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
-              </Avatar>
-            </TooltipTrigger>
-            <TooltipContent side="right" className="max-w-xs">
-              <p className="text-sm">Hi! I'm Anna, your AI assistant. I can help you learn about Venio's legal solutions, answer questions about our products, and guide you through how we can support your law firm's needs.</p>
-            </TooltipContent>
-          </Tooltip>
+    <div className="w-full max-w-4xl mx-auto">
+        {/* Centered Avatar with Info */}
+        <div className="flex justify-center items-center gap-4 mb-6 animate-fade-in">
+          <Avatar className="h-20 w-20 border-4 border-white/20 shadow-2xl">
+            <AvatarImage src={annaAvatar} alt="Anna" />
+            <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
+          </Avatar>
+          <div className="bg-background/90 backdrop-blur-sm rounded-lg px-4 py-2 border border-border/30 shadow-sm">
+            <p className="text-sm text-muted-foreground">Ask me anything about Venio's legal solutions</p>
+          </div>
         </div>
 
       {/* Floating Messages Container with Fade Effect */}
@@ -208,7 +202,6 @@ export const AnnaChat = () => {
           </Button>
         </div>
       </div>
-      </div>
-    </TooltipProvider>
+    </div>
   );
 };
