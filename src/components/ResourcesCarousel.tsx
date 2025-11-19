@@ -80,7 +80,7 @@ export const ResourcesCarousel = () => {
                 const Icon = resource.icon;
                 return (
                   <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                    <Card className="group h-full overflow-hidden border border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(96,165,250,0.2)] transition-all duration-300 hover:scale-105">
+                    <Card className="group h-full overflow-hidden border border-border/50 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(96,165,250,0.2)] transition-all duration-300">
                       <div className="relative h-48 overflow-hidden">
                         <img
                           src={resource.image}
