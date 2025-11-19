@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft, Play } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import amentumLogo from "@/assets/clients/amentum.webp";
 import arrayLogo from "@/assets/clients/array.webp";
 import cdsLogo from "@/assets/clients/cds.webp";
@@ -11,7 +17,7 @@ import nixonLogo from "@/assets/clients/nixon-peabody.webp";
 import proteusLogo from "@/assets/clients/proteus.webp";
 
 const TestimonialsSection = () => {
-  const [showVideo, setShowVideo] = useState(true);
+  const [api, setApi] = useState<CarouselApi>();
 
   const stats = [
     { value: "10x", label: "Faster document review" },
@@ -51,107 +57,102 @@ const TestimonialsSection = () => {
           </div>
 
           <div className="max-w-7xl mx-auto relative">
-          <div className="flex gap-8 overflow-hidden">
-            {/* Video Testimonial */}
-            <div 
-              className={`transition-all duration-700 ease-in-out ${
-                showVideo ? 'w-full' : 'w-0 opacity-0'
-              }`}
+            <Carousel
+              setApi={setApi}
+              opts={{
+                loop: true,
+                align: "start",
+              }}
+              className="w-full"
             >
-              {showVideo && (
-                <div className="glass rounded-2xl p-8 md:p-12">
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
-                    {/* Left side - Text testimonial */}
-                    <div className="space-y-8">
-                      <div className="text-6xl text-accent/20 font-serif">"</div>
-                      <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamelit, sed do eiusmod tempor
-                      </p>
-                      <div>
-                        <p className="font-bold text-primary text-lg">{testimonial.author}</p>
-                        <p className="text-muted-foreground font-body">{testimonial.role}</p>
-                        <p className="text-muted-foreground font-body">{testimonial.company}</p>
-                      </div>
-                    </div>
-
-                    {/* Right side - Video placeholder */}
-                    <div className="relative aspect-video rounded-2xl overflow-hidden glass-dark">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <button className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
-                          <Play className="w-8 h-8 text-white ml-1" fill="white" />
-                        </button>
-                      </div>
-                      {/* Placeholder for actual video */}
-                      <div className="w-full h-full bg-gradient-to-br from-primary/50 to-secondary/50"></div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Written Testimonials */}
-            <div 
-              className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
-                showVideo ? 'w-0 opacity-0' : 'w-full'
-              }`}
-            >
-              {!showVideo && (
-                <div className="glass rounded-2xl p-8 md:p-12">
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
-                    {/* Stats */}
-                    <div className="space-y-8">
-                      {stats.map((stat, index) => (
-                        <div key={index} className="glass-dark p-6 rounded-xl">
-                          <div className="text-5xl font-bold text-accent mb-2">{stat.value}</div>
-                          <p className="text-white/70 font-body">{stat.label}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Testimonial Text */}
-                    <div className="space-y-8">
-                      <div className="text-6xl text-accent/20 font-serif">"</div>
-                      <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl">
-                          {testimonial.initials}
-                        </div>
+              <CarouselContent>
+                {/* Video Testimonial */}
+                <CarouselItem>
+                  <div className="glass rounded-2xl p-8 md:p-12">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                      {/* Left side - Text testimonial */}
+                      <div className="space-y-8">
+                        <div className="text-6xl text-accent/20 font-serif">"</div>
+                        <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamelit, sed do eiusmod tempor
+                        </p>
                         <div>
                           <p className="font-bold text-primary text-lg">{testimonial.author}</p>
                           <p className="text-muted-foreground font-body">{testimonial.role}</p>
                           <p className="text-muted-foreground font-body">{testimonial.company}</p>
                         </div>
                       </div>
+
+                      {/* Right side - Video placeholder */}
+                      <div className="relative aspect-video rounded-2xl overflow-hidden glass-dark">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <button className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
+                            <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                          </button>
+                        </div>
+                        {/* Placeholder for actual video */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20"></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
+                </CarouselItem>
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-center gap-4 mt-8">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setShowVideo(false)}
-              disabled={!showVideo}
-              className="rounded-full"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setShowVideo(true)}
-              disabled={showVideo}
-              className="rounded-full"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
-          </div>
+                {/* Written Testimonials with Stats */}
+                <CarouselItem>
+                  <div className="glass rounded-2xl p-8 md:p-12">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                      {/* Stats - Reduced width to 50% */}
+                      <div className="space-y-6 max-w-[50%] mx-auto md:mx-0">
+                        {stats.map((stat, index) => (
+                          <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
+                            <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
+                            <p className="text-white/90 font-body text-sm">{stat.label}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Testimonial Text */}
+                      <div className="space-y-8">
+                        <div className="text-6xl text-accent/20 font-serif">"</div>
+                        <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
+                          {testimonial.text}
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl">
+                            {testimonial.initials}
+                          </div>
+                          <div>
+                            <p className="font-bold text-primary text-lg">{testimonial.author}</p>
+                            <p className="text-muted-foreground font-body">{testimonial.role}</p>
+                            <p className="text-muted-foreground font-body">{testimonial.company}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-center gap-4 mt-8">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => api?.scrollPrev()}
+                className="rounded-full"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => api?.scrollNext()}
+                className="rounded-full"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
