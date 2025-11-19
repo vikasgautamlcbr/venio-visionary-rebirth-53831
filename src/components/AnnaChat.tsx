@@ -171,34 +171,33 @@ export const AnnaChat = () => {
         </div>
       </div>
 
-      {/* Floating Input */}
+      {/* Minimal Input */}
       <div className="px-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-        <Card className="p-4 bg-background/90 backdrop-blur-lg border-border/50 shadow-2xl">
-          <div className="flex gap-3">
-            <Input
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Type your message..."
-              disabled={isLoading}
-              className="flex-1 bg-background/50 border-border/50"
-              autoFocus
-            />
-            <Button
-              onClick={sendMessage}
-              disabled={isLoading || !input.trim()}
-              size="icon"
-              className="shrink-0"
-            >
-              {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Send className="h-4 w-4" />
-              )}
-            </Button>
-          </div>
-        </Card>
+        <div className="flex gap-3 items-center bg-background/95 backdrop-blur-sm rounded-full px-6 py-3 border border-border/30 shadow-sm">
+          <Input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Type your message..."
+            disabled={isLoading}
+            className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0"
+            autoFocus
+          />
+          <Button
+            onClick={sendMessage}
+            disabled={isLoading || !input.trim()}
+            size="icon"
+            className="shrink-0 rounded-full h-10 w-10"
+            variant="ghost"
+          >
+            {isLoading ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <Send className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );
