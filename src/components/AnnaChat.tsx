@@ -213,7 +213,7 @@ export const AnnaChat = () => {
             onClick={sendMessage}
             disabled={isLoading || !input.trim()}
             size="icon"
-            className="shrink-0 h-10 w-10 bg-white hover:bg-white/90 backdrop-blur-sm border border-white/30 text-[#0097FF]"
+            className="shrink-0 h-10 w-10 bg-white hover:bg-white border border-white/30 text-[#0097FF] shadow-sm"
             variant="ghost"
           >
             {isLoading ? (
