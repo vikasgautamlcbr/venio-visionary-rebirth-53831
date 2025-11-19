@@ -13,7 +13,7 @@ const LawFirmSolutions = () => {
       
       <main>
         {/* Hero Section with Chatbot */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden gradient-animated">
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden gradient-animated pt-24 pb-32">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             {/* Large Glowing Orbs */}
@@ -27,6 +27,9 @@ const LawFirmSolutions = () => {
             <div className="absolute top-1/3 left-20 w-12 h-12 bg-secondary/20 rounded-full animate-float"></div>
             <div className="absolute bottom-1/3 right-40 w-24 h-24 border-2 border-white/10 rounded-full animate-pulse"></div>
           </div>
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
           <div className="relative z-10 container mx-auto px-6 py-24">
           <div className="text-center mb-12 animate-fade-in">
