@@ -119,15 +119,15 @@ export const AnnaChat = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-6">
         {/* Centered Avatar with Info */}
         <div className="flex flex-col items-center gap-3 mb-6 animate-fade-in">
-          <Avatar className="h-20 w-20 border-4 border-white/20 shadow-2xl">
+          <Avatar className="h-20 w-20 border-4 border-white/30 shadow-2xl backdrop-blur-sm">
             <AvatarImage src={annaAvatar} alt="Anna" />
             <AvatarFallback className="bg-primary/10 text-xl">A</AvatarFallback>
           </Avatar>
-          <div className="bg-[#0097FF] rounded-lg px-4 py-2 shadow-sm">
-            <p className="text-sm text-white">Ask me anything about Venio's legal solutions</p>
+          <div className="bg-[#0097FF]/90 backdrop-blur-md rounded-lg px-4 py-2 shadow-lg border border-white/20">
+            <p className="text-sm text-white font-medium">Ask me anything about Venio's legal solutions</p>
           </div>
         </div>
 
@@ -148,10 +148,10 @@ export const AnnaChat = () => {
               style={{ opacity: messageOpacities[index] ?? 1 }}
             >
             <Card
-              className={`max-w-[80%] p-4 ${
+              className={`max-w-[80%] p-4 backdrop-blur-lg border ${
                 message.role === "user"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-background/90 backdrop-blur-sm border-border/50 shadow-sm"
+                  ? "bg-primary/80 text-primary-foreground shadow-lg border-white/20"
+                  : "bg-white/20 backdrop-blur-md border-white/30 shadow-md"
               }`}
             >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -162,7 +162,7 @@ export const AnnaChat = () => {
           ))}
           {isLoading && (
             <div className="flex justify-start animate-fade-in">
-              <Card className="max-w-[80%] p-4 bg-background/90 backdrop-blur-sm border-border/50 shadow-sm">
+              <Card className="max-w-[80%] p-4 bg-white/20 backdrop-blur-md border-white/30 shadow-md">
                 <div className="flex gap-2 items-center">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   <span className="text-sm text-muted-foreground">Anna is typing...</span>
@@ -176,7 +176,7 @@ export const AnnaChat = () => {
 
       {/* Minimal Input */}
       <div className="px-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-        <div className="flex gap-3 items-center bg-background/95 backdrop-blur-sm rounded-lg px-6 py-3 border border-border/30 shadow-sm">
+        <div className="flex gap-3 items-center bg-white/20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white/30 shadow-lg">
           <Input
             ref={inputRef}
             value={input}
@@ -184,14 +184,14 @@ export const AnnaChat = () => {
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
             disabled={isLoading}
-            className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0"
+            className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0 placeholder:text-white/60"
             autoFocus
           />
           <Button
             onClick={sendMessage}
             disabled={isLoading || !input.trim()}
             size="icon"
-            className="shrink-0 h-10 w-10"
+            className="shrink-0 h-10 w-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30"
             variant="ghost"
           >
             {isLoading ? (
