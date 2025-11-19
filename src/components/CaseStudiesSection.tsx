@@ -1,11 +1,21 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Landmark, Briefcase } from "lucide-react";
+import { ArrowRight, Building2, Landmark, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import amLawFirmBg from "@/assets/case-studies/am-law-firm.jpg";
 import federalAgencyBg from "@/assets/case-studies/federal-agency.jpg";
 import globalBankBg from "@/assets/case-studies/global-bank.jpg";
+import { useState, useEffect } from "react";
 
 const CaseStudiesSection = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
   const caseStudies = [
     {
       icon: Briefcase,
@@ -42,6 +52,16 @@ const CaseStudiesSection = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
   return (
     <section id="case-studies" className="py-12 bg-white">
       <div className="container mx-auto px-4 max-w-[1200px]">
@@ -54,60 +74,106 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <div className="space-y-8">
-          {caseStudies.map((study, index) => (
-            <Card key={index} className="group relative overflow-hidden border-0 shadow-[0_10px_40px_rgba(0,0,0,0.15)] rounded-3xl transition-all duration-500 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)] hover:scale-[1.02] transform">
-              <div className="grid md:grid-cols-2 aspect-[2/1]">
-                {/* Left Side - Image with Overlay */}
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={study.bgImage} 
-                    alt={study.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-accent/85"></div>
-                  
-                  <div className="relative h-full flex flex-col justify-center p-8 md:p-12">
-                    <div className={`w-16 h-16 ${study.bgColor} rounded-2xl flex items-center justify-center mb-6`}>
-                      <study.icon className={`w-8 h-8 ${study.color}`} />
-                    </div>
-                    
-                    <div className="text-white/90 text-sm font-semibold uppercase tracking-wider mb-3">
-                      {study.category}
-                    </div>
-                    
-                    <h3 className="text-white text-3xl md:text-4xl font-bold mb-8">
-                      {study.title}
-                    </h3>
-                    
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                      <div className="text-white text-5xl md:text-6xl font-bold mb-2">
-                        {study.stat}
+        <div className="relative">
+          <Carousel 
+            setApi={setApi}
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {caseStudies.map((study, index) => (
+                <CarouselItem key={index}>
+                  <Card className="group relative overflow-hidden border-0 shadow-[0_10px_40px_rgba(0,0,0,0.15)] rounded-3xl transition-all duration-500 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)] hover:scale-[1.02] transform">
+                    <div className="grid md:grid-cols-2 aspect-[2/1]">
+                      {/* Left Side - Image with Overlay */}
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={study.bgImage} 
+                          alt={study.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-accent/85"></div>
+                        
+                        <div className="relative h-full flex flex-col justify-center p-8 md:p-12">
+                          <div className={`w-16 h-16 ${study.bgColor} rounded-2xl flex items-center justify-center mb-6`}>
+                            <study.icon className={`w-8 h-8 ${study.color}`} />
+                          </div>
+                          
+                          <div className="text-white/90 text-sm font-semibold uppercase tracking-wider mb-3">
+                            {study.category}
+                          </div>
+                          
+                          <h3 className="text-white text-3xl md:text-4xl font-bold mb-8">
+                            {study.title}
+                          </h3>
+                          
+                          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                            <div className="text-white text-5xl md:text-6xl font-bold mb-2">
+                              {study.stat}
+                            </div>
+                            <div className="text-white/90 text-lg font-medium">
+                              {study.statLabel}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-white/90 text-lg font-medium">
-                        {study.statLabel}
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Right Side - Content */}
-                <div className="relative bg-background p-8 md:p-12 flex flex-col justify-center">
-                  <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-body">
-                    {study.description}
-                  </p>
-                  
-                  <Button 
-                    size="lg" 
-                    className="w-fit group/button"
-                  >
-                    Read Full Case Study
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/button:translate-x-1" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
+                      {/* Right Side - Content */}
+                      <div className="relative bg-background p-8 md:p-12 flex flex-col justify-center">
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-body">
+                          {study.description}
+                        </p>
+                        
+                        <Button 
+                          size="lg" 
+                          className="w-fit group/button"
+                        >
+                          Read Full Case Study
+                          <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/button:translate-x-1" />
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={() => api?.scrollPrev()}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
+            aria-label="Previous case study"
+          >
+            <ChevronLeft className="h-6 w-6 text-primary" />
+          </button>
+
+          <button
+            onClick={() => api?.scrollNext()}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
+            aria-label="Next case study"
+          >
+            <ChevronRight className="h-6 w-6 text-primary" />
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
+            {caseStudies.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`h-2 rounded-full transition-all ${
+                  index === current 
+                    ? "w-8 bg-primary" 
+                    : "w-2 bg-primary/30 hover:bg-primary/50"
+                }`}
+                aria-label={`Go to case study ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-12">
