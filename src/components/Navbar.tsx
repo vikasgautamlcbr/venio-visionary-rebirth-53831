@@ -86,6 +86,18 @@ const Navbar = () => {
                             </Link>
                           );
                         }
+                        // Handle special link for Law Firm Solutions
+                        if (item.label === "Solutions" && subItem === "Law Firms") {
+                          return (
+                            <Link
+                              key={subItem}
+                              to="/law-firm-solutions"
+                              className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                            >
+                              {subItem}
+                            </Link>
+                          );
+                        }
                         return (
                           <a
                             key={subItem}
@@ -141,6 +153,19 @@ const Navbar = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Venio Legal Hold
+                      </Link>
+                    );
+                  }
+                  // Handle special link for Law Firm Solutions in mobile menu
+                  if (item.label === "Solutions" && subItem === "Law Firms") {
+                    return (
+                      <Link
+                        key={subItem}
+                        to="/law-firm-solutions"
+                        className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {subItem}
                       </Link>
                     );
                   }
