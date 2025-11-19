@@ -40,6 +40,7 @@ export const AnnaChat = () => {
     
     const containerRect = scrollContainerRef.current.getBoundingClientRect();
     const containerTop = containerRect.top;
+    const fadeThreshold = containerTop + FADE_DISTANCE;
     
     const newOpacities = messageRefs.current.map((ref) => {
       if (!ref) return 1;
@@ -48,24 +49,27 @@ export const AnnaChat = () => {
       const messageTop = messageRect.top;
       const messageBottom = messageRect.bottom;
       
-      // Only fade if message is scrolling out at the top
-      if (messageTop >= containerTop + FADE_DISTANCE) {
-        // Message is fully visible below the fade zone
+      // Message is fully visible - no fade
+      if (messageTop >= fadeThreshold) {
         return 1;
       }
       
+      // Message is completely scrolled out
       if (messageBottom <= containerTop) {
-        // Message is completely scrolled out
         return 0;
       }
       
-      if (messageTop < containerTop + FADE_DISTANCE && messageTop >= containerTop) {
-        // Message is in the fade zone
-        const distanceFromTop = messageTop - containerTop;
-        return distanceFromTop / FADE_DISTANCE;
+      // Message is in the fade zone at the top
+      if (messageTop < fadeThreshold && messageTop >= containerTop) {
+        const distanceIntoFadeZone = messageTop - containerTop;
+        return Math.max(0, Math.min(1, distanceIntoFadeZone / FADE_DISTANCE));
       }
       
-      // Default to full opacity
+      // Message is partially scrolled out
+      if (messageTop < containerTop && messageBottom > containerTop) {
+        return 0.3; // Partial visibility
+      }
+      
       return 1;
     });
     
