@@ -63,10 +63,10 @@ const CaseStudiesSection = () => {
   }, [api]);
 
   return (
-    <section id="case-studies" className="py-12 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+    <section id="case-studies" className="py-24 bg-white">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
             Real Results from Real Customers
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-body">
@@ -74,7 +74,7 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-16 relative">
+        <div className="max-w-6xl mx-auto px-16 relative">
           <Carousel 
             setApi={setApi}
             opts={{

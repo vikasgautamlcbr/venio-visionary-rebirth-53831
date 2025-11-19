@@ -31,8 +31,8 @@ const LawFirmSolutions = () => {
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
-          <div className="relative z-10 container mx-auto px-6 py-24">
-            <div className="text-center mb-12 animate-fade-in">
+          <div className="relative z-10 container mx-auto px-6 py-24 max-w-7xl">
+            <div className="text-center mb-12 animate-fade-in max-w-5xl mx-auto">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
                 How Venio Solves My Problem
               </h1>
@@ -41,7 +41,7 @@ const LawFirmSolutions = () => {
               </p>
             </div>
 
-            <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <div className="animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: "0.2s" }}>
               <AnnaChat />
             </div>
           </div>
