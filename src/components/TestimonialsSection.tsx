@@ -188,7 +188,7 @@ const TestimonialsSection = () => {
 
         {/* Logo Trail - Below scroll indicator */}
         <div className="mt-16 overflow-hidden py-6 border-y border-border/50">
-          <div className="flex gap-16 animate-scroll">
+          <div className="flex gap-24 animate-scroll">
             {/* First set of logos */}
             {[
               { src: amentumLogo, alt: "Amentum" },
