@@ -270,13 +270,6 @@ export const AnnaChat = () => {
       {/* Smart Input Transformation */}
       <div className="px-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
         <div className="relative flex items-center bg-white/20 backdrop-blur-lg rounded-lg px-6 py-3 border border-white/30 shadow-lg transition-all duration-300">
-          {/* Mode Indicator */}
-          {collectionMode !== "chat" && (
-            <div className="absolute -top-8 left-6 bg-[#0097FF] text-white text-xs px-3 py-1 rounded-t-lg font-medium">
-              {collectionMode === "name" ? "📝 Name" : "📧 Email"}
-            </div>
-          )}
-          
           <Input
             ref={inputRef}
             value={input}
