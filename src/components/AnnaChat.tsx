@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Send, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import annaAvatar from "@/assets/anna-avatar.gif";
@@ -13,15 +12,12 @@ interface Message {
   content: string;
 }
 
-interface UserInfo {
-  name: string;
-  email: string;
-}
+const INITIAL_GREETING = "Hi, I'm Anna. Before we dive into how Venio can help you, I'd love to know who I'm speaking with. What's your name?";
 
 export const AnnaChat = () => {
-  const [hasStarted, setHasStarted] = useState(false);
-  const [userInfo, setUserInfo] = useState<UserInfo>({ name: "", email: "" });
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    { role: "assistant", content: INITIAL_GREETING }
+  ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -37,14 +33,6 @@ export const AnnaChat = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleStartChat = () => {
-    if (!userInfo.name.trim() || !userInfo.email.trim()) return;
-    
-    const greeting = `Hi ${userInfo.name}! I'm Anna. I help law firms streamline eDiscovery with the right mix of Venio Review, ECA, Cloud, and Legal Hold. Tell me what challenge you're facing, and I'll guide you to the best solution.`;
-    setMessages([{ role: "assistant", content: greeting }]);
-    setHasStarted(true);
-  };
-
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
@@ -55,10 +43,7 @@ export const AnnaChat = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke("anna-chat", {
-        body: { 
-          messages: [...messages, userMessage],
-          userInfo 
-        },
+        body: { messages: [...messages, userMessage] },
       });
 
       if (error) throw error;
@@ -90,61 +75,6 @@ export const AnnaChat = () => {
       sendMessage();
     }
   };
-
-  if (!hasStarted) {
-    return (
-      <div className="w-full max-w-2xl mx-auto">
-        <div className="flex flex-col items-center space-y-8 animate-fade-in">
-          {/* Centered Avatar */}
-          <Avatar className="h-24 w-24 border-4 border-white/20 shadow-2xl">
-            <AvatarImage src={annaAvatar} alt="Anna" />
-            <AvatarFallback className="bg-primary/10 text-2xl">A</AvatarFallback>
-          </Avatar>
-
-          {/* Welcome Card */}
-          <Card className="w-full p-8 bg-background/80 backdrop-blur-lg border-border/50 shadow-2xl">
-            <h2 className="text-2xl font-bold text-center mb-2 text-foreground">Meet Anna</h2>
-            <p className="text-center text-muted-foreground mb-6">
-              Your AI guide to eDiscovery solutions
-            </p>
-            
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="name" className="text-foreground">Your Name</Label>
-                <Input
-                  id="name"
-                  value={userInfo.name}
-                  onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
-                  placeholder="Enter your name"
-                  className="mt-1.5 bg-background/50 border-border/50"
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="email" className="text-foreground">Your Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={userInfo.email}
-                  onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
-                  placeholder="Enter your email"
-                  className="mt-1.5 bg-background/50 border-border/50"
-                />
-              </div>
-
-              <Button
-                onClick={handleStartChat}
-                disabled={!userInfo.name.trim() || !userInfo.email.trim()}
-                className="w-full"
-              >
-                Start Chat with Anna
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -205,7 +135,7 @@ export const AnnaChat = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder={`Ask Anna about eDiscovery solutions, ${userInfo.name}...`}
+              placeholder="Type your message..."
               disabled={isLoading}
               className="flex-1 bg-background/50 border-border/50"
             />

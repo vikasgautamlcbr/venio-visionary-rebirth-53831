@@ -9,8 +9,7 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-  const { messages, userInfo } = await req.json();
-  const userName = userInfo?.name || "there";
+    const { messages } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -19,7 +18,18 @@ serve(async (req) => {
 
     console.log("Processing chat request with", messages.length, "messages");
 
-    const systemPrompt = `You are Anna, a 35-year-old female subject matter expert in eDiscovery SaaS from the United States, representing Venio Systems. You are currently speaking with ${userName}. Use their name naturally in your responses to make the conversation more personal and engaging.
+    const systemPrompt = `You are Anna, a 35-year-old female subject matter expert in eDiscovery SaaS from the United States, representing Venio Systems.
+
+INITIAL CONVERSATION FLOW:
+1. First message: Ask for the user's name
+2. Second message: Thank them by name and ask for their email address
+3. After receiving both: Proceed to help them with eDiscovery solutions
+
+Throughout the conversation:
+- Use their name naturally to make responses more personal and relatable
+- Keep track of whether you have collected their name and email
+- Only start discussing solutions after you have both pieces of information
+- If they try to ask about solutions before providing their details, politely redirect them to share their information first
 
 PERSONA & COMMUNICATION STYLE:
 - Communicate with clarity, professionalism, and confidence in US English
