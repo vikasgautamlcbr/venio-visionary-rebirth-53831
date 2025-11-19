@@ -207,7 +207,7 @@ const TestimonialsSection = () => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-8 md:h-10 w-auto object-contain opacity-40"
+                  className="h-8 md:h-10 w-auto object-contain"
                 />
               </div>
             ))}
@@ -229,7 +229,7 @@ const TestimonialsSection = () => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-8 md:h-10 w-auto object-contain opacity-40"
+                  className="h-8 md:h-10 w-auto object-contain"
                 />
               </div>
             ))}
