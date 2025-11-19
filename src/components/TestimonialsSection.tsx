@@ -40,13 +40,10 @@ const TestimonialsSection = () => {
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-b from-background to-background/95 relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(96,165,250,0.08),transparent_60%)]" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+      <section className="py-12 bg-gradient-to-b from-white to-muted">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
               Trusted by Leading Legal Teams
               <br />
               Worldwide
@@ -62,25 +59,25 @@ const TestimonialsSection = () => {
               }`}
             >
               {showVideo && (
-                <div className="glass-dark backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                <div className="glass rounded-2xl p-8 md:p-12">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                     {/* Left side - Text testimonial */}
                     <div className="space-y-8">
-                      <div className="text-6xl text-accent/40 font-serif">"</div>
-                      <p className="text-lg text-white/80 font-body leading-relaxed -mt-4">
+                      <div className="text-6xl text-accent/20 font-serif">"</div>
+                      <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamelit, sed do eiusmod tempor
                       </p>
                       <div>
-                        <p className="font-bold text-white text-lg">{testimonial.author}</p>
-                        <p className="text-white/70 font-body">{testimonial.role}</p>
-                        <p className="text-white/70 font-body">{testimonial.company}</p>
+                        <p className="font-bold text-primary text-lg">{testimonial.author}</p>
+                        <p className="text-muted-foreground font-body">{testimonial.role}</p>
+                        <p className="text-muted-foreground font-body">{testimonial.company}</p>
                       </div>
                     </div>
 
                     {/* Right side - Video placeholder */}
-                    <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-white/20 shadow-lg">
+                    <div className="relative aspect-video rounded-2xl overflow-hidden glass-dark">
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <button className="w-20 h-20 rounded-full bg-gradient-to-r from-accent to-secondary flex items-center justify-center hover:scale-110 transition-transform shadow-lg shadow-accent/30">
+                        <button className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
                           <Play className="w-8 h-8 text-white ml-1" fill="white" />
                         </button>
                       </div>
@@ -94,21 +91,40 @@ const TestimonialsSection = () => {
 
             {/* Written Testimonials */}
             <div 
-              className={`transition-all duration-700 ease-in-out ${
+              className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
                 showVideo ? 'w-0 opacity-0' : 'w-full'
               }`}
             >
               {!showVideo && (
-                <div className="glass-dark backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
-                  <div className="grid md:grid-cols-3 gap-8 items-center">
-                    {stats.map((stat, index) => (
-                      <div key={index} className="text-center">
-                        <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent mb-2">
-                          {stat.value}
+                <div className="glass rounded-2xl p-8 md:p-12">
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* Stats */}
+                    <div className="space-y-8">
+                      {stats.map((stat, index) => (
+                        <div key={index} className="glass-dark p-6 rounded-xl">
+                          <div className="text-5xl font-bold text-accent mb-2">{stat.value}</div>
+                          <p className="text-white/70 font-body">{stat.label}</p>
                         </div>
-                        <p className="text-white/70 font-body">{stat.label}</p>
+                      ))}
+                    </div>
+
+                    {/* Testimonial Text */}
+                    <div className="space-y-8">
+                      <div className="text-6xl text-accent/20 font-serif">"</div>
+                      <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
+                        {testimonial.text}
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl">
+                          {testimonial.initials}
+                        </div>
+                        <div>
+                          <p className="font-bold text-primary text-lg">{testimonial.author}</p>
+                          <p className="text-muted-foreground font-body">{testimonial.role}</p>
+                          <p className="text-muted-foreground font-body">{testimonial.company}</p>
+                        </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -120,24 +136,18 @@ const TestimonialsSection = () => {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => setShowVideo(true)}
-              className={`rounded-full glass border border-white/20 hover:border-accent/50 transition-all ${
-                showVideo 
-                  ? 'bg-gradient-to-r from-accent to-secondary text-white border-accent shadow-lg shadow-accent/20' 
-                  : 'text-white/70 hover:text-white'
-              }`}
+              onClick={() => setShowVideo(false)}
+              disabled={!showVideo}
+              className="rounded-full"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
             <Button
               variant="outline"
               size="icon"
-              onClick={() => setShowVideo(false)}
-              className={`rounded-full glass border border-white/20 hover:border-accent/50 transition-all ${
-                !showVideo 
-                  ? 'bg-gradient-to-r from-accent to-secondary text-white border-accent shadow-lg shadow-accent/20' 
-                  : 'text-white/70 hover:text-white'
-              }`}
+              onClick={() => setShowVideo(true)}
+              disabled={showVideo}
+              className="rounded-full"
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
@@ -147,29 +157,26 @@ const TestimonialsSection = () => {
       </section>
 
       {/* Client Logos Section */}
-      <section className="py-16 border-t border-white/10 bg-background/50 overflow-hidden">
+      <section className="py-10 bg-white">
         <div className="container mx-auto px-4">
-          <div className="relative">
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
-            
-            {/* Infinite scrolling logos */}
-            <div className="flex gap-16 animate-slide-left">
-              {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
-                <div 
-                  key={index} 
-                  className="flex-shrink-0 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
-                >
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    className="h-12 w-auto object-contain"
-                    style={{ minWidth: '120px' }}
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="text-center mb-12">
+            <p className="text-lg text-muted-foreground font-body">
+              Trusted by Industry Leaders
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-6xl mx-auto">
+            {clientLogos.map((logo, index) => (
+              <div 
+                key={index} 
+                className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="h-12 md:h-16 w-auto object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>

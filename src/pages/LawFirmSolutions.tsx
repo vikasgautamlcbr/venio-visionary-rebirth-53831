@@ -13,7 +13,7 @@ const LawFirmSolutions = () => {
       
       <main>
         {/* Hero Section with Chatbot */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden gradient-animated pt-24 pb-32">
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden gradient-animated">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             {/* Large Glowing Orbs */}
@@ -27,28 +27,16 @@ const LawFirmSolutions = () => {
             <div className="absolute top-1/3 left-20 w-12 h-12 bg-secondary/20 rounded-full animate-float"></div>
             <div className="absolute bottom-1/3 right-40 w-24 h-24 border-2 border-white/10 rounded-full animate-pulse"></div>
           </div>
-
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
           <div className="relative z-10 container mx-auto px-6 py-24">
-          <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center gap-2 glass-dark px-6 py-3 rounded-full mb-8 pulse-glow">
-              <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-              <span className="text-white/90 text-sm font-medium">AI-Powered Legal Solutions</span>
+            <div className="text-center mb-12 animate-fade-in">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-br from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
+                How Venio Solves My Problem
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                Get tailored solutions for law firm workflows, eDiscovery challenges, and document-heavy cases. Ask your question below and Anna will guide you instantly.
+              </p>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">How Venio Solves </span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-secondary to-accent animate-shimmer">
-                Your Problem
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed font-body">
-              Get tailored solutions for law firm workflows, eDiscovery challenges, and document-heavy cases. Ask your question below and Anna will guide you instantly.
-            </p>
-          </div>
 
             <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <AnnaChat />

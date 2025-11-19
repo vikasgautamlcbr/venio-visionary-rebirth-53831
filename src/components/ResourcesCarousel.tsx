@@ -56,13 +56,10 @@ const categoryColors = {
 
 export const ResourcesCarousel = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-background/95 to-background relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.08),transparent_50%)]" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Resources for Law Firms
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -82,16 +79,16 @@ export const ResourcesCarousel = () => {
               const Icon = resource.icon;
               return (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="group h-full overflow-hidden glass-dark backdrop-blur-xl border border-white/10 hover:shadow-[0_20px_50px_rgba(96,165,250,0.3)] transition-all duration-300 hover:scale-105 hover:border-accent/30">
+                  <Card className="group h-full overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 border-border/50 hover:border-primary/50">
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={resource.image}
                         alt={resource.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
                       <Badge 
-                        className="absolute bottom-4 left-4 glass border border-white/20 text-accent backdrop-blur-md shadow-lg"
+                        className={`absolute bottom-4 left-4 ${categoryColors[resource.category as keyof typeof categoryColors]}`}
                         variant="outline"
                       >
                         <Icon className="h-3 w-3 mr-1" />
@@ -99,12 +96,12 @@ export const ResourcesCarousel = () => {
                       </Badge>
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-lg text-white group-hover:text-accent transition-colors">
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
                         {resource.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className="text-white/70">{resource.description}</CardDescription>
+                      <CardDescription>{resource.description}</CardDescription>
                     </CardContent>
                   </Card>
                 </CarouselItem>
