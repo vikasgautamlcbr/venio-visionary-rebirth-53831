@@ -7,6 +7,14 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import amentumLogo from "@/assets/clients/amentum.webp";
+import arrayLogo from "@/assets/clients/array.webp";
+import cdsLogo from "@/assets/clients/cds.webp";
+import consilioLogo from "@/assets/clients/consilio.webp";
+import eparioLogo from "@/assets/clients/epario.webp";
+import haugLogo from "@/assets/clients/haug-partners.webp";
+import nixonLogo from "@/assets/clients/nixon-peabody.webp";
+import proteusLogo from "@/assets/clients/proteus.webp";
 
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -175,6 +183,56 @@ const TestimonialsSection = () => {
                 />
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Logo Trail - Below scroll indicator */}
+        <div className="mt-16 overflow-hidden py-6 border-y border-border/50">
+          <div className="flex gap-16 animate-scroll">
+            {/* First set of logos */}
+            {[
+              { src: amentumLogo, alt: "Amentum" },
+              { src: arrayLogo, alt: "Array" },
+              { src: cdsLogo, alt: "CDS" },
+              { src: consilioLogo, alt: "Consilio" },
+              { src: eparioLogo, alt: "Epario" },
+              { src: haugLogo, alt: "Haug Partners" },
+              { src: nixonLogo, alt: "Nixon Peabody" },
+              { src: proteusLogo, alt: "Proteus" }
+            ].map((logo, index) => (
+              <div 
+                key={`first-${index}`} 
+                className="flex-shrink-0"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="h-8 md:h-10 w-auto object-contain opacity-40"
+                />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {[
+              { src: amentumLogo, alt: "Amentum" },
+              { src: arrayLogo, alt: "Array" },
+              { src: cdsLogo, alt: "CDS" },
+              { src: consilioLogo, alt: "Consilio" },
+              { src: eparioLogo, alt: "Epario" },
+              { src: haugLogo, alt: "Haug Partners" },
+              { src: nixonLogo, alt: "Nixon Peabody" },
+              { src: proteusLogo, alt: "Proteus" }
+            ].map((logo, index) => (
+              <div 
+                key={`second-${index}`} 
+                className="flex-shrink-0"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="h-8 md:h-10 w-auto object-contain opacity-40"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
