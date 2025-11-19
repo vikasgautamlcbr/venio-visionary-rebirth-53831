@@ -74,24 +74,27 @@ export const AnnaChat = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="flex flex-col h-[600px] glass-dark rounded-3xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-xl">
-        {/* Chat Header */}
-        <div className="px-6 py-4 border-b border-white/10 bg-gradient-to-r from-primary/20 to-accent/20">
-          <div className="flex items-center gap-3">
-            <Avatar className="h-10 w-10 border-2 border-accent/50 shadow-lg ring-2 ring-accent/20">
-              <AvatarImage src={annaAvatar} alt="Anna" />
-              <AvatarFallback className="bg-primary/10">A</AvatarFallback>
-            </Avatar>
-            <div>
-              <h3 className="font-semibold text-white">Anna</h3>
-              <p className="text-xs text-white/60">Your AI Legal Assistant</p>
-            </div>
-          </div>
+    <div className="w-full max-w-5xl mx-auto relative">
+      {/* Floating Avatar */}
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-20">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-accent to-secondary rounded-full blur-xl opacity-60 animate-pulse"></div>
+          <Avatar className="relative h-24 w-24 border-4 border-white/20 shadow-2xl ring-4 ring-accent/30 backdrop-blur-sm">
+            <AvatarImage src={annaAvatar} alt="Anna" className="object-cover" />
+            <AvatarFallback className="bg-gradient-to-br from-accent to-secondary text-white text-2xl">A</AvatarFallback>
+          </Avatar>
         </div>
+      </div>
 
+      {/* Anna Title */}
+      <div className="text-center mb-6 pt-12">
+        <h3 className="text-2xl font-bold text-white mb-1">Anna</h3>
+        <p className="text-white/70 text-sm">Your AI Legal Assistant</p>
+      </div>
+
+      <div className="flex flex-col h-[600px] glass-dark rounded-3xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-xl">
         {/* Chat messages */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 pt-8">
           {messages.map((message, index) => (
             <div
               key={index}
