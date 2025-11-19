@@ -75,7 +75,14 @@ const CaseStudiesSection = () => {
         </div>
 
         <div className="relative">
-          <Carousel setApi={setApi} className="w-full">
+          <Carousel 
+            setApi={setApi} 
+            className="w-full"
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+          >
             <CarouselContent>
               {caseStudies.map((study, index) => (
                 <CarouselItem key={index}>
