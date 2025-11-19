@@ -64,7 +64,7 @@ const CaseStudiesSection = () => {
 
   return (
     <section id="case-studies" className="py-12 bg-white">
-      <div className="container mx-auto px-4 max-w-[1200px]">
+      <div className="container mx-auto px-6">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Real Results from Real Customers
