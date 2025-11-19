@@ -151,7 +151,7 @@ export const AnnaChat = () => {
               className={`max-w-[80%] p-4 backdrop-blur-lg border ${
                 message.role === "user"
                   ? "bg-primary/80 text-primary-foreground shadow-lg border-white/20"
-                  : "bg-white/20 backdrop-blur-md border-white/30 shadow-md"
+                  : "bg-white/20 backdrop-blur-md border-white/30 shadow-md text-white"
               }`}
             >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -162,10 +162,10 @@ export const AnnaChat = () => {
           ))}
           {isLoading && (
             <div className="flex justify-start animate-fade-in">
-              <Card className="max-w-[80%] p-4 bg-white/20 backdrop-blur-md border-white/30 shadow-md">
+              <Card className="max-w-[80%] p-4 bg-white/20 backdrop-blur-md border-white/30 shadow-md text-white">
                 <div className="flex gap-2 items-center">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="text-sm text-muted-foreground">Anna is typing...</span>
+                  <span className="text-sm">Anna is typing...</span>
                 </div>
               </Card>
             </div>
