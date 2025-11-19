@@ -158,11 +158,11 @@ export const AnnaChat = () => {
 
       {/* Floating Messages Container with Fade Effect */}
       <div className="relative mb-6">
-        {/* Top Fade Effect */}
-        <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background/80 to-transparent z-10 pointer-events-none" />
+        {/* Top Fade Effect - Pure Transparency Mask */}
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/20 via-black/10 to-transparent z-10 pointer-events-none" />
         
-        {/* Scrollable Messages */}
-        <div className="space-y-6 max-h-[500px] overflow-y-auto px-4 pt-4 scroll-smooth">
+        {/* Scrollable Messages with Custom Scrollbar */}
+        <div className="space-y-6 max-h-[500px] overflow-y-auto px-4 pt-4 scroll-smooth custom-scrollbar pr-2">
           {messages.map((message, index) => (
             <div
               key={index}
