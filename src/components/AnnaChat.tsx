@@ -27,7 +27,10 @@ export const AnnaChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ 
+      behavior: "smooth",
+      block: "end"
+    });
   };
 
   useEffect(() => {
@@ -153,39 +156,45 @@ export const AnnaChat = () => {
         </Avatar>
       </div>
 
-      {/* Floating Messages */}
-      <div className="space-y-6 mb-6 max-h-[500px] overflow-y-auto px-4">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              message.role === "user" ? "justify-end" : "justify-start"
-            } animate-fade-in`}
-          >
-            <Card
-              className={`max-w-[80%] p-4 shadow-lg ${
-                message.role === "user"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-background/90 backdrop-blur-sm border-border/50"
-              }`}
+      {/* Floating Messages Container with Fade Effect */}
+      <div className="relative mb-6">
+        {/* Top Fade Effect */}
+        <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background/80 to-transparent z-10 pointer-events-none" />
+        
+        {/* Scrollable Messages */}
+        <div className="space-y-6 max-h-[500px] overflow-y-auto px-4 pt-4 scroll-smooth">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`flex ${
+                message.role === "user" ? "justify-end" : "justify-start"
+              } animate-fade-in`}
             >
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                {message.content}
-              </p>
-            </Card>
-          </div>
-        ))}
-        {isLoading && (
-          <div className="flex justify-start animate-fade-in">
-            <Card className="max-w-[80%] p-4 bg-background/90 backdrop-blur-sm border-border/50 shadow-lg">
-              <div className="flex gap-2 items-center">
-                <Loader2 className="h-4 w-4 animate-spin" />
-                <span className="text-sm text-muted-foreground">Anna is typing...</span>
-              </div>
-            </Card>
-          </div>
-        )}
-        <div ref={messagesEndRef} />
+              <Card
+                className={`max-w-[80%] p-4 shadow-lg ${
+                  message.role === "user"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background/90 backdrop-blur-sm border-border/50"
+                }`}
+              >
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {message.content}
+                </p>
+              </Card>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex justify-start animate-fade-in">
+              <Card className="max-w-[80%] p-4 bg-background/90 backdrop-blur-sm border-border/50 shadow-lg">
+                <div className="flex gap-2 items-center">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span className="text-sm text-muted-foreground">Anna is typing...</span>
+                </div>
+              </Card>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
       {/* Floating Input */}
