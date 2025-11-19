@@ -1,3 +1,25 @@
+/**
+ * DataPointsSection Component
+ * 
+ * STYLE NAME: "Venio Glass Glow Cards" or "Gradient Glow Metrics"
+ * 
+ * This component showcases key metrics using the "Venio Glass Glow Cards" design pattern:
+ * - Glassmorphic cards with backdrop blur (glass effect)
+ * - Gradient backgrounds with radial overlays
+ * - Hover effects with glowing borders and shadows
+ * - Gradient text for values (from primary to accent)
+ * - Icon badges with subtle borders
+ * - Scale transform on hover
+ * - Primary-to-accent color scheme throughout
+ * 
+ * To reuse this style on other pages:
+ * 1. Copy the card structure with glass effects
+ * 2. Use gradient text: bg-gradient-to-br from-primary via-primary to-accent bg-clip-text text-transparent
+ * 3. Add hover glow: hover:shadow-[0_0_40px_rgba(96,165,250,0.3)]
+ * 4. Include backdrop blur: backdrop-blur-sm
+ * 5. Use primary/accent gradient overlays
+ */
+
 import { TrendingUp, DollarSign, Clock, Shield } from "lucide-react";
 
 const dataPoints = [
