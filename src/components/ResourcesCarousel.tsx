@@ -108,8 +108,14 @@ export const ResourcesCarousel = () => {
               );
             })}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
+          
+          {/* Enhanced Navigation Buttons */}
+          <div className="absolute -left-6 top-1/2 -translate-y-1/2">
+            <CarouselPrevious className="w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 transition-all duration-300" />
+          </div>
+          <div className="absolute -right-6 top-1/2 -translate-y-1/2">
+            <CarouselNext className="w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 transition-all duration-300" />
+          </div>
         </Carousel>
       </div>
     </section>
