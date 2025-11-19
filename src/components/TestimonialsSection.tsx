@@ -157,26 +157,47 @@ const TestimonialsSection = () => {
       </section>
 
       {/* Client Logos Section */}
-      <section className="py-10 bg-white">
+      <section className="py-10 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <p className="text-lg text-muted-foreground font-body">
               Trusted by Industry Leaders
             </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-6xl mx-auto">
-            {clientLogos.map((logo, index) => (
-              <div 
-                key={index} 
-                className="opacity-100 transition-all duration-300"
-              >
-                <img 
-                  src={logo.src} 
-                  alt={logo.alt} 
-                  className="h-12 md:h-16 w-auto object-contain brightness-0"
-                />
-              </div>
-            ))}
+          <div className="relative">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+            
+            {/* Scrolling container */}
+            <div className="flex gap-16 animate-scroll">
+              {/* First set of logos */}
+              {clientLogos.map((logo, index) => (
+                <div 
+                  key={`first-${index}`} 
+                  className="flex-shrink-0"
+                >
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="h-12 md:h-16 w-auto object-contain brightness-0"
+                  />
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {clientLogos.map((logo, index) => (
+                <div 
+                  key={`second-${index}`} 
+                  className="flex-shrink-0"
+                >
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="h-12 md:h-16 w-auto object-contain brightness-0"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
