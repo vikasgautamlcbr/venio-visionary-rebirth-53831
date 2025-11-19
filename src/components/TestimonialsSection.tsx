@@ -168,12 +168,12 @@ const TestimonialsSection = () => {
             {clientLogos.map((logo, index) => (
               <div 
                 key={index} 
-                className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                className="opacity-100 transition-all duration-300"
               >
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-12 md:h-16 w-auto object-contain"
+                  className="h-12 md:h-16 w-auto object-contain brightness-0"
                 />
               </div>
             ))}
