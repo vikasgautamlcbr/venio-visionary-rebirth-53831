@@ -74,7 +74,7 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <div className="relative">
+        <div className="max-w-7xl mx-auto px-16 relative">
           <Carousel 
             setApi={setApi}
             opts={{
@@ -140,24 +140,24 @@ const CaseStudiesSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
+
+            {/* Enhanced Navigation Buttons - Outside */}
+            <button
+              onClick={() => api?.scrollPrev()}
+              className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-10"
+              aria-label="Previous case study"
+            >
+              <ChevronLeft className="h-6 w-6 text-primary" />
+            </button>
+
+            <button
+              onClick={() => api?.scrollNext()}
+              className="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-10"
+              aria-label="Next case study"
+            >
+              <ChevronRight className="h-6 w-6 text-primary" />
+            </button>
           </Carousel>
-
-          {/* Enhanced Navigation Buttons */}
-          <button
-            onClick={() => api?.scrollPrev()}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-10"
-            aria-label="Previous case study"
-          >
-            <ChevronLeft className="h-6 w-6 text-primary" />
-          </button>
-
-          <button
-            onClick={() => api?.scrollNext()}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-10"
-            aria-label="Next case study"
-          >
-            <ChevronRight className="h-6 w-6 text-primary" />
-          </button>
 
           {/* Enhanced Dot Indicators */}
           <div className="flex justify-center gap-2 mt-8">

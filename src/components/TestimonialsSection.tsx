@@ -81,7 +81,7 @@ const TestimonialsSection = () => {
             </h2>
           </div>
 
-          <div className="max-w-7xl mx-auto relative">
+          <div className="max-w-7xl mx-auto px-16 relative">
             <Carousel
               setApi={setApi}
               opts={{
@@ -93,7 +93,7 @@ const TestimonialsSection = () => {
               <CarouselContent>
                 {/* Slide 1: Video Testimonial */}
                 <CarouselItem>
-                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.15)] transition-shadow duration-500">
+                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px]">
                     <div className="grid md:grid-cols-2 gap-12 items-center h-full">
                       {/* Left side - Text testimonial */}
                       <div className="space-y-8">
@@ -125,7 +125,7 @@ const TestimonialsSection = () => {
                 {/* Slides 2-4: Written Testimonials */}
                 {testimonials.map((testimonial, idx) => (
                   <CarouselItem key={idx}>
-                    <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.15)] transition-shadow duration-500">
+                    <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px]">
                       <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Stats - Left side */}
                         <div className="space-y-6 max-w-[90%] mx-auto md:mx-0">
@@ -159,24 +159,24 @@ const TestimonialsSection = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
+
+              {/* Enhanced Navigation Buttons - Outside */}
+              <button
+                onClick={() => api?.scrollPrev()}
+                className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-20"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="h-6 w-6 text-primary" />
+              </button>
+
+              <button
+                onClick={() => api?.scrollNext()}
+                className="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-20"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="h-6 w-6 text-primary" />
+              </button>
             </Carousel>
-
-            {/* Enhanced Navigation Buttons */}
-            <button
-              onClick={() => api?.scrollPrev()}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-20"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-6 w-6 text-primary" />
-            </button>
-
-            <button
-              onClick={() => api?.scrollNext()}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 hover:scale-110 flex items-center justify-center transition-all duration-300 z-20"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-6 w-6 text-primary" />
-            </button>
 
             {/* Enhanced Dot indicators at bottom */}
             <div className="flex justify-center gap-2 mt-8">
