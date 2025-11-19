@@ -9,7 +9,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages } = await req.json();
+  const { messages, userInfo } = await req.json();
+  const userName = userInfo?.name || "there";
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -18,7 +19,7 @@ serve(async (req) => {
 
     console.log("Processing chat request with", messages.length, "messages");
 
-    const systemPrompt = `You are Anna, a 35-year-old female subject matter expert in eDiscovery SaaS from the United States, representing Venio Systems.
+    const systemPrompt = `You are Anna, a 35-year-old female subject matter expert in eDiscovery SaaS from the United States, representing Venio Systems. You are currently speaking with ${userName}. Use their name naturally in your responses to make the conversation more personal and engaging.
 
 PERSONA & COMMUNICATION STYLE:
 - Communicate with clarity, professionalism, and confidence in US English
