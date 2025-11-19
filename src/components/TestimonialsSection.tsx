@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft, Play } from "lucide-react";
 import {
@@ -18,6 +18,9 @@ import proteusLogo from "@/assets/clients/proteus.webp";
 
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [nestedApi, setNestedApi] = useState<CarouselApi>();
+  const [nestedCurrent, setNestedCurrent] = useState(0);
 
   const stats = [
     { value: "10x", label: "Faster document review" },
@@ -25,13 +28,45 @@ const TestimonialsSection = () => {
     { value: "99.9%", label: "Uptime guarantee" }
   ];
 
-  const testimonial = {
-    text: "Venio transformed our eDiscovery process completely. The AI-powered automation reduced our review time from weeks to days, while maintaining accuracy. The on-premises deployment gave us total control over sensitive data, which was crucial for our compliance requirements. We've achieved significant cost savings and our team couldn't be happier with the intuitive interface.",
-    author: "Sarah Mitchell",
-    role: "Director of Legal Operations",
-    company: "Nixon Peabody LLP",
-    initials: "SM"
-  };
+  const testimonials = [
+    {
+      text: "Venio transformed our eDiscovery process completely. The AI-powered automation reduced our review time from weeks to days, while maintaining accuracy. The on-premises deployment gave us total control over sensitive data, which was crucial for our compliance requirements.",
+      author: "Sarah Mitchell",
+      role: "Director of Legal Operations",
+      company: "Nixon Peabody LLP",
+      initials: "SM"
+    },
+    {
+      text: "In my experience, law firms and their clients avoid some of the most damaging discovery mistakes by managing the legal hold process effectively. This is true for individual cases and across matters. Leveraging technology to automate a well-thought-through workflow helps bring consistency and discipline to the hold process in addition to gains in productivity. That is why I like Venio's focus on its new integrated Legal Hold module.",
+      author: "John Anderson",
+      role: "Chief Legal Officer",
+      company: "Global Corp",
+      initials: "JA"
+    },
+    {
+      text: "The platform's intuitive interface and powerful features have revolutionized how we handle document review. We've seen incredible improvements in efficiency and cost savings across all our cases.",
+      author: "Emily Chen",
+      role: "Managing Partner",
+      company: "Tech Legal Associates",
+      initials: "EC"
+    }
+  ];
+
+  useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  useEffect(() => {
+    if (!nestedApi) return;
+    setNestedCurrent(nestedApi.selectedScrollSnap());
+    nestedApi.on("select", () => {
+      setNestedCurrent(nestedApi.selectedScrollSnap());
+    });
+  }, [nestedApi]);
 
   const clientLogos = [
     { src: amentumLogo, alt: "Amentum" },
@@ -66,10 +101,10 @@ const TestimonialsSection = () => {
               className="w-full"
             >
               <CarouselContent>
-                {/* Video Testimonial */}
+                {/* Slide 1: Video Testimonial */}
                 <CarouselItem>
-                  <div className="glass rounded-2xl p-8 md:p-12">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px]">
+                    <div className="grid md:grid-cols-2 gap-12 items-center h-full">
                       {/* Left side - Text testimonial */}
                       <div className="space-y-8">
                         <div className="text-6xl text-accent/20 font-serif">"</div>
@@ -77,9 +112,9 @@ const TestimonialsSection = () => {
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamelit, sed do eiusmod tempor
                         </p>
                         <div>
-                          <p className="font-bold text-primary text-lg">{testimonial.author}</p>
-                          <p className="text-muted-foreground font-body">{testimonial.role}</p>
-                          <p className="text-muted-foreground font-body">{testimonial.company}</p>
+                          <p className="font-bold text-primary text-lg">{testimonials[0].author}</p>
+                          <p className="text-muted-foreground font-body">{testimonials[0].role}</p>
+                          <p className="text-muted-foreground font-body">{testimonials[0].company}</p>
                         </div>
                       </div>
 
@@ -97,61 +132,112 @@ const TestimonialsSection = () => {
                   </div>
                 </CarouselItem>
 
-                {/* Written Testimonials with Stats */}
+                {/* Slide 2: Written Testimonials with nested carousel */}
                 <CarouselItem>
-                  <div className="glass rounded-2xl p-8 md:p-12">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                      {/* Stats - Reduced width to 50% */}
-                      <div className="space-y-6 max-w-[50%] mx-auto md:mx-0">
-                        {stats.map((stat, index) => (
-                          <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                            <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
-                            <p className="text-white/90 font-body text-sm">{stat.label}</p>
-                          </div>
-                        ))}
-                      </div>
+                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px] relative">
+                    <Carousel
+                      setApi={setNestedApi}
+                      opts={{
+                        loop: true,
+                        align: "start",
+                      }}
+                      className="w-full h-full"
+                    >
+                      <CarouselContent>
+                        {testimonials.map((testimonial, idx) => (
+                          <CarouselItem key={idx}>
+                            <div className="grid md:grid-cols-2 gap-12 items-center">
+                              {/* Stats - Left side */}
+                              <div className="space-y-6 max-w-[90%] mx-auto md:mx-0">
+                                {stats.map((stat, index) => (
+                                  <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
+                                    <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
+                                    <p className="text-white/90 font-body text-sm">{stat.label}</p>
+                                  </div>
+                                ))}
+                              </div>
 
-                      {/* Testimonial Text */}
-                      <div className="space-y-8">
-                        <div className="text-6xl text-accent/20 font-serif">"</div>
-                        <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
-                          {testimonial.text}
-                        </p>
-                        <div className="flex items-center gap-4">
-                          <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl">
-                            {testimonial.initials}
-                          </div>
-                          <div>
-                            <p className="font-bold text-primary text-lg">{testimonial.author}</p>
-                            <p className="text-muted-foreground font-body">{testimonial.role}</p>
-                            <p className="text-muted-foreground font-body">{testimonial.company}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                              {/* Testimonial Text - Right side */}
+                              <div className="space-y-8">
+                                <div className="text-6xl text-accent/20 font-serif">"</div>
+                                <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4 italic">
+                                  {testimonial.text}
+                                </p>
+                                <div className="flex items-center gap-4">
+                                  <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                                    {testimonial.initials}
+                                  </div>
+                                  <div>
+                                    <p className="font-bold text-primary text-lg">{testimonial.author}</p>
+                                    <p className="text-muted-foreground font-body">{testimonial.role}</p>
+                                    <p className="text-muted-foreground font-body">{testimonial.company}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+
+                      {/* Nested carousel navigation */}
+                      <button
+                        onClick={() => nestedApi?.scrollPrev()}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
+                        aria-label="Previous testimonial"
+                      >
+                        <ChevronLeft className="h-6 w-6 text-primary" />
+                      </button>
+
+                      <button
+                        onClick={() => nestedApi?.scrollNext()}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
+                        aria-label="Next testimonial"
+                      >
+                        <ChevronRight className="h-6 w-6 text-primary" />
+                      </button>
+                    </Carousel>
                   </div>
                 </CarouselItem>
               </CarouselContent>
             </Carousel>
 
-            {/* Navigation Buttons */}
-            <div className="flex justify-center gap-4 mt-8">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => api?.scrollPrev()}
-                className="rounded-full"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => api?.scrollNext()}
-                className="rounded-full"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </Button>
+            {/* Main carousel navigation - positioned over slides */}
+            <button
+              onClick={() => api?.scrollPrev()}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-20"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-6 w-6 text-primary" />
+            </button>
+
+            <button
+              onClick={() => api?.scrollNext()}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center hover:bg-gray-50 transition-colors z-20"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-6 w-6 text-primary" />
+            </button>
+
+            {/* Dot indicators at bottom */}
+            <div className="flex justify-center gap-2 mt-8">
+              <button
+                onClick={() => api?.scrollTo(0)}
+                className={`h-2 rounded-full transition-all ${
+                  current === 0 
+                    ? "w-8 bg-primary" 
+                    : "w-2 bg-primary/30 hover:bg-primary/50"
+                }`}
+                aria-label="Go to slide 1"
+              />
+              <button
+                onClick={() => api?.scrollTo(1)}
+                className={`h-2 rounded-full transition-all ${
+                  current === 1 
+                    ? "w-8 bg-primary" 
+                    : "w-2 bg-primary/30 hover:bg-primary/50"
+                }`}
+                aria-label="Go to slide 2"
+              />
             </div>
           </div>
         </div>
