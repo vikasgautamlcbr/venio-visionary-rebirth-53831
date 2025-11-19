@@ -100,13 +100,13 @@ export const AnnaChat = () => {
                 message.role === "user" ? "justify-end" : "justify-start"
               } animate-fade-in`}
             >
-              <Card
-                className={`max-w-[80%] p-4 shadow-lg ${
-                  message.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-background/90 backdrop-blur-sm border-border/50"
-                }`}
-              >
+            <Card
+              className={`max-w-[80%] p-4 ${
+                message.role === "user"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-background/90 backdrop-blur-sm border-border/50 shadow-sm"
+              }`}
+            >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">
                   {message.content}
                 </p>
@@ -115,7 +115,7 @@ export const AnnaChat = () => {
           ))}
           {isLoading && (
             <div className="flex justify-start animate-fade-in">
-              <Card className="max-w-[80%] p-4 bg-background/90 backdrop-blur-sm border-border/50 shadow-lg">
+              <Card className="max-w-[80%] p-4 bg-background/90 backdrop-blur-sm border-border/50 shadow-sm">
                 <div className="flex gap-2 items-center">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   <span className="text-sm text-muted-foreground">Anna is typing...</span>
