@@ -147,21 +147,29 @@ const TestimonialsSection = () => {
       </section>
 
       {/* Client Logos Section */}
-      <section className="py-16 border-t border-white/10 bg-background/50">
+      <section className="py-16 border-t border-white/10 bg-background/50 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-6xl mx-auto">
-            {clientLogos.map((logo, index) => (
-              <div 
-                key={index} 
-                className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
-              >
-                <img 
-                  src={logo.src} 
-                  alt={logo.alt} 
-                  className="h-12 md:h-16 w-auto object-contain"
-                />
-              </div>
-            ))}
+          <div className="relative">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
+            
+            {/* Infinite scrolling logos */}
+            <div className="flex gap-16 animate-slide-left">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
+                <div 
+                  key={index} 
+                  className="flex-shrink-0 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                >
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="h-12 w-auto object-contain"
+                    style={{ minWidth: '120px' }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
