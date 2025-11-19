@@ -88,8 +88,8 @@ export const AnnaChat = () => {
 
       {/* Floating Messages Container with Fade Effect */}
       <div className="relative mb-6">
-        {/* Top Transparency Mask - Fades messages as they scroll out */}
-        <div className="absolute top-0 left-0 right-0 h-20 z-10 pointer-events-none bg-gradient-to-b from-primary to-transparent" />
+        {/* Top Transparency Mask - Matches hero gradient background */}
+        <div className="absolute top-0 left-0 right-0 h-24 z-10 pointer-events-none bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" />
         
         {/* Scrollable Messages with Custom Scrollbar */}
         <div className="space-y-6 max-h-[500px] overflow-y-auto px-4 pt-4 scroll-smooth custom-scrollbar pr-2">
