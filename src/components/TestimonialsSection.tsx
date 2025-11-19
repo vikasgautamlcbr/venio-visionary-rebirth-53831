@@ -187,7 +187,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Logo Trail - Below scroll indicator */}
-        <div className="mt-16 overflow-hidden py-6 border-y border-border/50">
+        <div className="mt-16 overflow-hidden py-6">
           <div className="flex gap-24 animate-scroll">
             {/* First set of logos */}
             {[
