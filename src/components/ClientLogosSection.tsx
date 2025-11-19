@@ -23,9 +23,9 @@ const ClientLogosSection = () => {
     <section className="py-10 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="text-lg text-muted-foreground font-body">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
             Trusted by Industry Leaders
-          </p>
+          </h2>
         </div>
         <div className="flex gap-16 animate-scroll">
           {/* First set of logos */}
