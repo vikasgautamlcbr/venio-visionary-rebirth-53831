@@ -38,17 +38,35 @@ export const AnnaChat = () => {
   const calculateOpacities = () => {
     if (!scrollContainerRef.current) return;
     
-    const containerTop = scrollContainerRef.current.getBoundingClientRect().top;
+    const containerRect = scrollContainerRef.current.getBoundingClientRect();
+    const containerTop = containerRect.top;
+    
     const newOpacities = messageRefs.current.map((ref) => {
       if (!ref) return 1;
       
-      const messageTop = ref.getBoundingClientRect().top;
-      const distanceFromTop = messageTop - containerTop;
+      const messageRect = ref.getBoundingClientRect();
+      const messageTop = messageRect.top;
+      const messageBottom = messageRect.bottom;
       
-      if (distanceFromTop >= FADE_DISTANCE) return 1;
-      if (distanceFromTop <= 0) return 0;
+      // Only fade if message is scrolling out at the top
+      if (messageTop >= containerTop + FADE_DISTANCE) {
+        // Message is fully visible below the fade zone
+        return 1;
+      }
       
-      return distanceFromTop / FADE_DISTANCE;
+      if (messageBottom <= containerTop) {
+        // Message is completely scrolled out
+        return 0;
+      }
+      
+      if (messageTop < containerTop + FADE_DISTANCE && messageTop >= containerTop) {
+        // Message is in the fade zone
+        const distanceFromTop = messageTop - containerTop;
+        return distanceFromTop / FADE_DISTANCE;
+      }
+      
+      // Default to full opacity
+      return 1;
     });
     
     setMessageOpacities(newOpacities);
