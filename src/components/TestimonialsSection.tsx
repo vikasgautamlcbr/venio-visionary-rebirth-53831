@@ -187,9 +187,9 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Logo Trail - Below scroll indicator */}
+        {/* TEMPORARILY HIDDEN - Can be restored later
         <div className="mt-16 overflow-hidden py-6">
           <div className="flex gap-24 animate-scroll">
-            {/* First set of logos */}
             {[
               { src: amentumLogo, alt: "Amentum" },
               { src: arrayLogo, alt: "Array" },
@@ -211,7 +211,6 @@ const TestimonialsSection = () => {
                 />
               </div>
             ))}
-            {/* Duplicate set for seamless loop */}
             {[
               { src: amentumLogo, alt: "Amentum" },
               { src: arrayLogo, alt: "Array" },
@@ -235,6 +234,7 @@ const TestimonialsSection = () => {
             ))}
           </div>
         </div>
+        */}
       </section>
     </>
   );
