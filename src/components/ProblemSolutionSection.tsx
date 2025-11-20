@@ -134,24 +134,6 @@ const ProblemSolutionSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Stats Bar */}
-        <div className="mt-12 glass rounded-2xl p-8 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">70%</div>
-              <div className="text-sm text-muted-foreground">Faster Review Time</div>
-            </div>
-            <div className="space-y-2 border-x border-border/50">
-              <div className="text-4xl font-bold text-primary">60%</div>
-              <div className="text-sm text-muted-foreground">Cost Reduction</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">99.9%</div>
-              <div className="text-sm text-muted-foreground">Accuracy Rate</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
