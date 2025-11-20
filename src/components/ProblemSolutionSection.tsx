@@ -61,10 +61,10 @@ const solutions = [
 
 export default function ProblemSolutionSection() {
   return (
-    <section className="relative py-20 overflow-hidden bg-background">
+    <section className="relative py-16 overflow-hidden bg-background">
       <div className="container relative mx-auto px-6">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+        <div className="max-w-3xl mx-auto text-center mb-10 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
             Transform Your Workflow
           </h2>
@@ -158,7 +158,7 @@ export default function ProblemSolutionSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-14 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+        <div className="text-center mt-10 animate-fade-in" style={{ animationDelay: '0.5s' }}>
           <Button size="lg" variant="secondary" className="group shadow-lg hover:shadow-xl transition-shadow">
             Talk to an Expert
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
