@@ -1,32 +1,11 @@
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Check, TrendingDown, DollarSign, Users, Database, Clock } from "lucide-react";
+import ROICalculator from "@/components/ROICalculator";
 
 const Pricing = () => {
-  const [dataVolume, setDataVolume] = useState(100);
-  const [users, setUsers] = useState(10);
-  const [months, setMonths] = useState(12);
-
-  // Pricing calculations (per GB per month)
-  const venioPricePerGB = 0.50;
-  const relativityPricePerGB = 2.50;
-  const everlawPricePerGB = 2.00;
-  const nuixPricePerGB = 2.25;
-
-  const venioTotal = dataVolume * venioPricePerGB * months;
-  const relativityTotal = dataVolume * relativityPricePerGB * months;
-  const everlawTotal = dataVolume * everlawPricePerGB * months;
-  const nuixTotal = dataVolume * nuixPricePerGB * months;
-
-  const savingsVsRelativity = ((relativityTotal - venioTotal) / relativityTotal * 100).toFixed(0);
-  const savingsVsEverlaw = ((everlawTotal - venioTotal) / everlawTotal * 100).toFixed(0);
-  const savingsVsNuix = ((nuixTotal - venioTotal) / nuixTotal * 100).toFixed(0);
-
   const benefits = [
     {
       icon: DollarSign,
@@ -102,7 +81,7 @@ const Pricing = () => {
 
       {/* Savings Calculator */}
       <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Calculate Your Savings</h2>
             <p className="text-muted-foreground text-lg">
@@ -110,91 +89,13 @@ const Pricing = () => {
             </p>
           </div>
 
-          <Card className="glass p-8">
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div>
-                <Label htmlFor="dataVolume" className="text-base mb-2 block">
-                  Data Volume (GB)
-                </Label>
-                <Input
-                  id="dataVolume"
-                  type="number"
-                  value={dataVolume}
-                  onChange={(e) => setDataVolume(Number(e.target.value))}
-                  min="1"
-                  className="text-lg"
-                />
-              </div>
-              <div>
-                <Label htmlFor="users" className="text-base mb-2 block">
-                  Number of Users
-                </Label>
-                <Input
-                  id="users"
-                  type="number"
-                  value={users}
-                  onChange={(e) => setUsers(Number(e.target.value))}
-                  min="1"
-                  className="text-lg"
-                />
-              </div>
-              <div>
-                <Label htmlFor="months" className="text-base mb-2 block">
-                  Contract Length (Months)
-                </Label>
-                <Input
-                  id="months"
-                  type="number"
-                  value={months}
-                  onChange={(e) => setMonths(Number(e.target.value))}
-                  min="1"
-                  className="text-lg"
-                />
-              </div>
-            </div>
+          <ROICalculator />
 
-            <div className="bg-primary/5 rounded-lg p-6 mb-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-lg font-semibold">Your Venio Cost</span>
-                <span className="text-3xl font-bold text-primary">
-                  ${venioTotal.toLocaleString()}
-                </span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Based on ${venioPricePerGB}/GB/month • {dataVolume} GB • {months} months
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                <div>
-                  <span className="font-semibold">vs. Relativity</span>
-                  <span className="text-sm text-muted-foreground ml-2">(${relativityTotal.toLocaleString()})</span>
-                </div>
-                <span className="text-green-600 font-bold">Save {savingsVsRelativity}%</span>
-              </div>
-              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                <div>
-                  <span className="font-semibold">vs. Everlaw</span>
-                  <span className="text-sm text-muted-foreground ml-2">(${everlawTotal.toLocaleString()})</span>
-                </div>
-                <span className="text-green-600 font-bold">Save {savingsVsEverlaw}%</span>
-              </div>
-              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                <div>
-                  <span className="font-semibold">vs. Nuix</span>
-                  <span className="text-sm text-muted-foreground ml-2">(${nuixTotal.toLocaleString()})</span>
-                </div>
-                <span className="text-green-600 font-bold">Save {savingsVsNuix}%</span>
-              </div>
-            </div>
-
-            <div className="text-center mt-8">
-              <Button size="lg" className="px-8">
-                Get Started Today
-              </Button>
-            </div>
-          </Card>
+          <div className="text-center mt-8">
+            <Button size="lg" className="px-8">
+              Get Started Today
+            </Button>
+          </div>
         </div>
       </section>
 
