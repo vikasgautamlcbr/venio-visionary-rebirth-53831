@@ -68,19 +68,29 @@ const LawFirmSolutions = () => {
               </Button>
 
               {/* Client Logo Carousel */}
-              <div className="mt-16 pt-8 border-t border-white/20">
-                <p className="text-white/70 text-sm mb-8 font-body">Trusted by leading organizations</p>
-                <div className="relative overflow-hidden">
-                  <div className="flex animate-scroll-left gap-10 items-center">
-                    {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
-                      <div 
-                        key={index} 
-                        className="flex-shrink-0 w-24 h-12 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300"
+              <div className="mt-16 pt-8">
+                <p className="text-white/70 text-sm mb-8 font-body text-center">Trusted by leading organizations</p>
+                
+                <div className="relative overflow-hidden py-6 border-y border-white/10">
+                  {/* Animated Background Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
+                  
+                  {/* Fade Edges */}
+                  <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-primary via-primary/50 to-transparent z-10 pointer-events-none"></div>
+                  <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-primary via-primary/50 to-transparent z-10 pointer-events-none"></div>
+                  
+                  {/* Logo Carousel */}
+                  <div className="flex gap-20 animate-slide-left">
+                    {[...clientLogos, ...clientLogos].map((logo, index) => (
+                      <div
+                        key={index}
+                        className="flex-shrink-0 flex items-center justify-center group cursor-pointer"
                       >
                         <img 
                           src={logo.src} 
                           alt={logo.name} 
-                          className="max-w-full max-h-full object-contain brightness-0 invert"
+                          className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-500 group-hover:scale-110 brightness-0 invert"
+                          style={{ minWidth: '160px', maxWidth: '220px' }}
                         />
                       </div>
                     ))}
