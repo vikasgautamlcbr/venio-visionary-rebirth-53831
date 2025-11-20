@@ -54,14 +54,14 @@ const solutions = [
 
 export default function ProblemSolutionSection() {
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-16 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background"></div>
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]"></div>
 
       <div className="container relative mx-auto px-6">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-20 animate-fade-in">
+        <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
             Transform Your Workflow
           </h2>
@@ -80,7 +80,7 @@ export default function ProblemSolutionSection() {
                 className="group relative animate-fade-in"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className="relative glass rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 overflow-hidden">
+                <div className="relative glass rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-500 overflow-hidden">
                   {/* Gradient accent */}
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient}`}></div>
                   
@@ -90,7 +90,7 @@ export default function ProblemSolutionSection() {
                   </div>
 
                   {/* Before/After Layout */}
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     {/* Before */}
                     <div className="relative">
                       <div className="flex items-start gap-4">
@@ -162,7 +162,7 @@ export default function ProblemSolutionSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+        <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <Button size="lg" className="group">
             Talk to an Expert
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
