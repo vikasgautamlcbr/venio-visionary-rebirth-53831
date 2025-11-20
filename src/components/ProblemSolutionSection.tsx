@@ -62,7 +62,7 @@ export default function ProblemSolutionSection() {
       <div className="container relative mx-auto px-6">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
             Transform Your Workflow
           </h2>
           <p className="text-xl text-muted-foreground">
