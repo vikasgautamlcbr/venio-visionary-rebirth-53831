@@ -35,7 +35,7 @@ const LawFirmSolutions = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden gradient-animated pb-32">
+        <section className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-24 pb-36">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
@@ -50,8 +50,8 @@ const LawFirmSolutions = () => {
 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
-          <div className="relative z-10 container mx-auto px-6 pt-12 max-w-5xl">
-            <div className="text-center animate-fade-in">
+          <div className="relative z-10 container mx-auto px-6 max-w-5xl flex-1 flex items-center">
+            <div className="text-center animate-fade-in w-full">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Transform Your Law Firm's eDiscovery Process
               </h1>
@@ -70,7 +70,7 @@ const LawFirmSolutions = () => {
           </div>
 
           {/* Client Logo Carousel - Full Width */}
-          <div className="absolute bottom-8 left-0 right-0 w-full z-10">
+          <div className="relative z-10 w-full">
             <p className="text-white/70 text-sm mb-6 font-body text-center">Trusted by leading organizations</p>
             <div className="overflow-hidden py-6">
               <div className="flex gap-24 animate-scroll">
