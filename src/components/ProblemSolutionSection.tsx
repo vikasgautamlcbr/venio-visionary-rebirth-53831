@@ -79,9 +79,9 @@ export default function ProblemSolutionSection() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Split Layout */}
-                <div className={`grid md:grid-cols-2 gap-8 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
+                <div className={`flex flex-col md:flex-row ${!isEven ? 'md:flex-row-reverse' : ''} gap-8 items-center`}>
                   {/* Problem Side */}
-                  <div className={`relative ${!isEven ? 'md:order-2' : ''}`}>
+                  <div className="flex-1">
                     <div className="space-y-4">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         <Icon className="h-3 w-3" />
@@ -97,7 +97,7 @@ export default function ProblemSolutionSection() {
                   </div>
 
                   {/* Divider with Arrow */}
-                  <div className={`hidden md:flex items-center justify-center ${!isEven ? 'md:order-1' : ''}`}>
+                  <div className="hidden md:flex items-center justify-center flex-shrink-0">
                     <div className="relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary to-primary/20 blur-xl opacity-50"></div>
                       <div className="relative bg-primary/10 rounded-full p-4 border border-primary/20">
@@ -107,7 +107,7 @@ export default function ProblemSolutionSection() {
                   </div>
 
                   {/* Solution Side */}
-                  <div className={`relative ${!isEven ? 'md:order-3' : ''}`}>
+                  <div className="flex-1">
                     <div className="space-y-4 p-6 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium uppercase tracking-wider">
                         <Icon className="h-3 w-3" />
