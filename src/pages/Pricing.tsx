@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Check, TrendingDown, DollarSign, Users, Database, Clock } from "lucide-react";
 import ROICalculator from "@/components/ROICalculator";
 
@@ -44,36 +44,64 @@ const Pricing = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden gradient-animated pt-32 pb-20">
+        {/* Dynamic Animated Background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-32 right-10 w-[500px] h-[500px] bg-accent/25 rounded-full blur-3xl float-delayed"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+          
+          <div className="absolute top-40 right-20 w-20 h-20 border-2 border-white/20 rounded-lg animate-spin-slow"></div>
+          <div className="absolute bottom-40 left-32 w-16 h-16 border-2 border-accent/30 rotate-45 animate-bounce-slow"></div>
+          <div className="absolute top-1/3 left-20 w-12 h-12 bg-secondary/20 rounded-full animate-float"></div>
+          <div className="absolute bottom-1/3 right-40 w-24 h-24 border-2 border-white/10 rounded-full animate-pulse"></div>
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
+        
+        <div className="container mx-auto text-center relative z-10 px-6">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Get Quote in Seconds
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
             Transparent, flexible pricing that scales with your needs. No hidden fees, no surprises.
           </p>
+          <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg">
+            Request a Quote
+          </Button>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto">
+      <section className="py-24 relative overflow-hidden">
+        {/* Venio branded gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.15),transparent_50%)]" />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <h2 className="text-4xl font-bold text-center mb-4">Why Choose Venio Pricing</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Experience cost-effective eDiscovery with transparent pricing and unlimited flexibility
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {benefits.map((benefit, idx) => (
-              <Card key={idx} className="glass hover:shadow-lg transition-all">
-                <CardHeader>
-                  <benefit.icon className="w-12 h-12 text-primary mb-4" />
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{benefit.description}</CardDescription>
-                </CardContent>
-              </Card>
+              <div
+                key={idx}
+                className="group relative p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_40px_rgba(96,165,250,0.3)] hover:scale-105"
+              >
+                {/* Venio glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-accent/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300" />
+                
+                <div className="relative">
+                  <div className="inline-flex p-4 rounded-xl bg-primary/10 border border-primary/20 mb-6 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
+                    <benefit.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-2 text-foreground">{benefit.title}</h3>
+                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -119,7 +147,6 @@ const Pricing = () => {
                       <th className="text-center p-6 font-semibold">Price per GB/Month</th>
                       <th className="text-center p-6 font-semibold">User Fees</th>
                       <th className="text-center p-6 font-semibold">Processing Fees</th>
-                      <th className="text-center p-6 font-semibold">Total Cost (100GB)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -128,28 +155,24 @@ const Pricing = () => {
                       <td className="p-6 text-center font-bold text-primary">$0.50</td>
                       <td className="p-6 text-center text-green-600">Unlimited</td>
                       <td className="p-6 text-center text-green-600">Included</td>
-                      <td className="p-6 text-center font-bold text-primary">$50/mo</td>
                     </tr>
                     <tr className="border-b border-border">
                       <td className="p-6">Relativity</td>
                       <td className="p-6 text-center">$2.50</td>
                       <td className="p-6 text-center text-muted-foreground">$50-100/user</td>
                       <td className="p-6 text-center text-muted-foreground">$0.15/GB</td>
-                      <td className="p-6 text-center font-semibold">$250/mo</td>
                     </tr>
                     <tr className="border-b border-border">
                       <td className="p-6">Everlaw</td>
                       <td className="p-6 text-center">$2.00</td>
                       <td className="p-6 text-center text-muted-foreground">$75/user</td>
                       <td className="p-6 text-center text-muted-foreground">$0.10/GB</td>
-                      <td className="p-6 text-center font-semibold">$200/mo</td>
                     </tr>
                     <tr>
                       <td className="p-6">Nuix</td>
                       <td className="p-6 text-center">$2.25</td>
                       <td className="p-6 text-center text-muted-foreground">$60-90/user</td>
                       <td className="p-6 text-center text-muted-foreground">$0.12/GB</td>
-                      <td className="p-6 text-center font-semibold">$225/mo</td>
                     </tr>
                   </tbody>
                 </table>
