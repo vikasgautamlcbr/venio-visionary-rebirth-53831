@@ -50,7 +50,7 @@ const LawFirmSolutions = () => {
 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
-          <div className="relative z-10 container mx-auto px-6 py-20 max-w-5xl">
+          <div className="relative z-10 container mx-auto px-6 pt-12 max-w-5xl">
             <div className="text-center animate-fade-in">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Transform Your Law Firm's eDiscovery Process
