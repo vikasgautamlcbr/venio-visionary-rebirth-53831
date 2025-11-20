@@ -16,8 +16,14 @@ import nixonPeabody from "@/assets/clients/nixon-peabody.webp";
 import proteus from "@/assets/clients/proteus.webp";
 import cds from "@/assets/clients/cds.webp";
 import epario from "@/assets/clients/epario.webp";
+import { useEffect } from "react";
 
 const LawFirmSolutions = () => {
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const clientLogos = [
     { name: "Amentum", src: amentum },
     { name: "Consilio", src: consilio },
