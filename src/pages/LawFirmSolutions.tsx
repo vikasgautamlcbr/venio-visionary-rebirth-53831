@@ -35,7 +35,7 @@ const LawFirmSolutions = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-24 pb-36">
+        <section className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-32 pb-36">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
