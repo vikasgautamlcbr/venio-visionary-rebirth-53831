@@ -66,7 +66,7 @@ const Pricing = () => {
           <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
             Transparent, flexible pricing that scales with your needs. No hidden fees, no surprises.
           </p>
-          <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg">
+          <Button size="lg" className="bg-accent hover:bg-accent/90 text-white px-8 py-6 text-lg">
             Request a Quote
           </Button>
         </div>
@@ -120,7 +120,7 @@ const Pricing = () => {
           <ROICalculator />
 
           <div className="text-center mt-8">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8">
+            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white px-8">
               Get Started Today
             </Button>
           </div>
