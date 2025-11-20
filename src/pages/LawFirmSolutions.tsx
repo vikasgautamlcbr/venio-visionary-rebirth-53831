@@ -8,8 +8,27 @@ import { ResourcesCarousel } from "@/components/ResourcesCarousel";
 import ProblemSolutionSection from "@/components/ProblemSolutionSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import amentum from "@/assets/clients/amentum.webp";
+import consilio from "@/assets/clients/consilio.webp";
+import array from "@/assets/clients/array.webp";
+import haugPartners from "@/assets/clients/haug-partners.webp";
+import nixonPeabody from "@/assets/clients/nixon-peabody.webp";
+import proteus from "@/assets/clients/proteus.webp";
+import cds from "@/assets/clients/cds.webp";
+import epario from "@/assets/clients/epario.webp";
 
 const LawFirmSolutions = () => {
+  const clientLogos = [
+    { name: "Amentum", src: amentum },
+    { name: "Consilio", src: consilio },
+    { name: "Array", src: array },
+    { name: "Haug Partners", src: haugPartners },
+    { name: "Nixon Peabody", src: nixonPeabody },
+    { name: "Proteus", src: proteus },
+    { name: "CDS", src: cds },
+    { name: "Epario", src: epario },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -47,6 +66,27 @@ const LawFirmSolutions = () => {
                 Talk to an Expert
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
+
+              {/* Client Logo Carousel */}
+              <div className="mt-16 pt-8 border-t border-white/20">
+                <p className="text-white/70 text-sm mb-8 font-body">Trusted by leading organizations</p>
+                <div className="relative overflow-hidden">
+                  <div className="flex animate-scroll-left gap-12 items-center">
+                    {[...clientLogos, ...clientLogos].map((logo, index) => (
+                      <div 
+                        key={index} 
+                        className="flex-shrink-0 w-32 h-16 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300"
+                      >
+                        <img 
+                          src={logo.src} 
+                          alt={logo.name} 
+                          className="max-w-full max-h-full object-contain brightness-0 invert"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
