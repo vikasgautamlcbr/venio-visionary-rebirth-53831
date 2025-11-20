@@ -5,6 +5,9 @@ import { DataPointsSection } from "@/components/DataPointsSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { ResourcesCarousel } from "@/components/ResourcesCarousel";
+import ProblemSolutionSection from "@/components/ProblemSolutionSection";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const LawFirmSolutions = () => {
   return (
@@ -12,36 +15,58 @@ const LawFirmSolutions = () => {
       <Navbar />
       
       <main>
-        {/* Hero Section with Chatbot */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden gradient-animated">
+        {/* Hero Section */}
+        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden gradient-animated">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
-            {/* Large Glowing Orbs */}
             <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
             <div className="absolute bottom-32 right-10 w-[500px] h-[500px] bg-accent/25 rounded-full blur-3xl float-delayed"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
             
-            {/* Floating Geometric Shapes */}
             <div className="absolute top-40 right-20 w-20 h-20 border-2 border-white/20 rounded-lg animate-spin-slow"></div>
             <div className="absolute bottom-40 left-32 w-16 h-16 border-2 border-accent/30 rotate-45 animate-bounce-slow"></div>
             <div className="absolute top-1/3 left-20 w-12 h-12 bg-secondary/20 rounded-full animate-float"></div>
             <div className="absolute bottom-1/3 right-40 w-24 h-24 border-2 border-white/10 rounded-full animate-pulse"></div>
           </div>
 
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
           
-          <div className="relative z-10 container mx-auto px-6 py-20 max-w-6xl">
-            <div className="text-center mb-10 animate-fade-in max-w-4xl mx-auto">
+          <div className="relative z-10 container mx-auto px-6 py-20 max-w-5xl">
+            <div className="text-center animate-fade-in">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-                How Venio Solves My Problem
+                Transform Your Law Firm's eDiscovery Process
               </h1>
-              <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-                Get tailored solutions for law firm workflows, eDiscovery challenges, and document-heavy cases. Ask your question below and Anna will guide you instantly.
+              <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10">
+                Cut costs by 60%, accelerate review by 70%, and deliver exceptional results with Venio's AI-powered eDiscovery platform designed for modern law firms.
+              </p>
+
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 glow-accent-hover group"
+              >
+                Talk to an Expert
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Problem and Solution Section */}
+        <ProblemSolutionSection />
+
+        {/* AI Chatbot Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
+                Ask Anna: Your eDiscovery Assistant
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Get instant answers about how Venio can solve your specific challenges. Anna is here to help.
               </p>
             </div>
 
-            <div className="animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.2s" }}>
+            <div className="max-w-4xl mx-auto">
               <AnnaChat />
             </div>
           </div>
