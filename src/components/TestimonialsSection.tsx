@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft, Play } from "lucide-react";
 import {
@@ -19,6 +19,10 @@ import proteusLogo from "@/assets/clients/proteus.webp";
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [api2, setApi2] = useState<CarouselApi>();
+  const [current2, setCurrent2] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const autoplayRef = useRef<NodeJS.Timeout>();
 
   const stats = [
     { value: "10x", label: "Faster document review" },
@@ -57,6 +61,29 @@ const TestimonialsSection = () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
+
+  useEffect(() => {
+    if (!api2) return;
+    setCurrent2(api2.selectedScrollSnap());
+    api2.on("select", () => {
+      setCurrent2(api2.selectedScrollSnap());
+    });
+  }, [api2]);
+
+  // Auto-advance carousel every 5 seconds
+  useEffect(() => {
+    if (!api2 || isHovering) return;
+    
+    autoplayRef.current = setInterval(() => {
+      api2.scrollNext();
+    }, 5000);
+
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, [api2, isHovering]);
 
 
   return (
@@ -278,28 +305,61 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Testimonial Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="glass rounded-xl p-8 hover:shadow-lg transition-shadow">
-                <div className="flex flex-col h-full">
-                  <div className="text-5xl text-accent/20 font-serif leading-none mb-4">"</div>
-                  <p className="text-base text-muted-foreground font-body leading-relaxed mb-6 flex-grow">
-                    {testimonial.text}
-                  </p>
-                  <div className="flex items-center gap-4 pt-6 border-t border-border/50">
-                    <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                      {testimonial.initials}
+          {/* Testimonial Carousel */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            <Carousel
+              setApi={setApi2}
+              opts={{
+                loop: true,
+                align: "start",
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, idx) => (
+                  <CarouselItem key={idx} className="md:basis-1/2">
+                    <div className="glass rounded-xl p-8 hover:shadow-lg transition-shadow h-full">
+                      <div className="flex flex-col h-full">
+                        <div className="text-5xl text-accent/20 font-serif leading-none mb-4">"</div>
+                        <p className="text-base text-muted-foreground font-body leading-relaxed mb-6 flex-grow">
+                          {testimonial.text}
+                        </p>
+                        <div className="flex items-center gap-4 pt-6 border-t border-border/50">
+                          <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                            {testimonial.initials}
+                          </div>
+                          <div>
+                            <p className="font-bold text-primary text-base">{testimonial.author}</p>
+                            <p className="text-muted-foreground font-body text-sm">{testimonial.role}</p>
+                            <p className="text-muted-foreground font-body text-sm">{testimonial.company}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-bold text-primary text-base">{testimonial.author}</p>
-                      <p className="text-muted-foreground font-body text-sm">{testimonial.role}</p>
-                      <p className="text-muted-foreground font-body text-sm">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => api2?.scrollTo(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === current2 
+                      ? "w-8 bg-primary" 
+                      : "w-2 bg-primary/30 hover:bg-primary/50"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
