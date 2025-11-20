@@ -61,23 +61,23 @@ const solutions = [
 
 export default function ProblemSolutionSection() {
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-background to-muted/20">
+    <section className="relative py-16 overflow-hidden bg-background">
       <div className="container relative mx-auto px-6">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+        <div className="max-w-3xl mx-auto text-center mb-10 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
             Transform Your Workflow
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             See how leading law firms overcome their biggest challenges
           </p>
         </div>
 
         {/* Solutions Slider */}
-        <div className="max-w-7xl mx-auto relative px-16 md:px-20">
+        <div className="max-w-6xl mx-auto relative px-16 md:px-20">
           <Carousel
             opts={{
-              align: "center",
+              align: "start",
               loop: true,
             }}
             className="w-full"
@@ -88,59 +88,56 @@ export default function ProblemSolutionSection() {
                 
                 return (
                   <CarouselItem key={index} className="pl-4">
-                    <div className="py-8 px-2">
+                    <div className="py-6 px-2">
                       {/* Unified Card with Before/After */}
-                      <div className="rounded-3xl border border-border/50 bg-card shadow-2xl overflow-hidden hover:shadow-accent/10 hover:shadow-2xl transition-all duration-300">
-                        <div className="flex flex-col md:flex-row min-h-[420px]">
+                      <div className="rounded-2xl border-2 border-border/50 bg-card shadow-xl overflow-hidden">
+                        <div className="flex flex-col md:flex-row">
                           {/* Problem Side - Left (40%) */}
-                          <div className="md:flex-[4] p-8 md:p-10 bg-gradient-to-br from-muted/40 to-muted/20 border-r-0 md:border-r-2 border-b-2 md:border-b-0 border-border/30">
-                            <div className="space-y-5 h-full flex flex-col">
-                              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/80 text-muted-foreground text-xs font-bold uppercase tracking-widest w-fit shadow-sm">
-                                <Icon className="h-4 w-4" />
+                          <div className="md:flex-[4] p-6 md:p-8 bg-muted/30 border-r-0 md:border-r border-b md:border-b-0 border-border/50">
+                            <div className="space-y-3 h-full flex flex-col">
+                              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider w-fit">
+                                <Icon className="h-3.5 w-3.5" />
                                 Before
                               </div>
-                              <h3 className="text-2xl md:text-3xl font-bold text-foreground/85 leading-tight">
+                              <h3 className="text-xl md:text-2xl font-bold text-foreground/80">
                                 {item.problem}
                               </h3>
-                              <p className="text-muted-foreground leading-relaxed text-base flex-grow">
+                              <p className="text-muted-foreground leading-relaxed text-sm md:text-base flex-grow">
                                 {item.problemDetail}
                               </p>
                             </div>
                           </div>
 
                           {/* Solution Side - Right (60%) */}
-                          <div className="md:flex-[6] p-8 md:p-10 bg-gradient-to-br from-accent/8 via-accent/12 to-accent/5 relative overflow-hidden">
-                            {/* Subtle decorative element */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                            
-                            <div className="space-y-5 h-full flex flex-col relative z-10">
-                              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest w-fit shadow-sm border border-accent/20">
-                                <Icon className="h-4 w-4" />
+                          <div className="md:flex-[6] p-6 md:p-8 bg-gradient-to-br from-accent/5 via-accent/10 to-transparent">
+                            <div className="space-y-3 h-full flex flex-col">
+                              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-semibold uppercase tracking-wider w-fit">
+                                <Icon className="h-3.5 w-3.5" />
                                 After
                               </div>
-                              <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+                              <h3 className="text-xl md:text-2xl font-bold text-foreground">
                                 {item.solution}
                               </h3>
-                              <p className="text-muted-foreground leading-relaxed text-base flex-grow">
+                              <p className="text-muted-foreground leading-relaxed text-sm md:text-base flex-grow">
                                 {item.solutionDetail}
                               </p>
                               
                               {/* Impact Stats */}
-                              <div className="grid grid-cols-2 gap-6 pt-6 mt-auto border-t-2 border-accent/15">
-                                <div className="space-y-1">
-                                  <div className="text-4xl md:text-5xl font-bold text-accent leading-none">
+                              <div className="flex gap-4 md:gap-6 pt-4 mt-auto border-t border-accent/20">
+                                <div className="flex-1">
+                                  <div className="text-2xl md:text-3xl font-bold text-accent">
                                     {item.impact}
                                   </div>
-                                  <div className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
+                                  <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
                                     {item.impactLabel}
                                   </div>
                                 </div>
                                 {item.stat && (
-                                  <div className="space-y-1">
-                                    <div className="text-3xl md:text-4xl font-bold text-accent leading-none">
+                                  <div className="flex-1">
+                                    <div className="text-2xl md:text-3xl font-bold text-accent">
                                       {item.stat}
                                     </div>
-                                    <div className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
+                                    <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
                                       {item.statLabel}
                                     </div>
                                   </div>
@@ -155,14 +152,14 @@ export default function ProblemSolutionSection() {
                 );
               })}
             </CarouselContent>
-            <CarouselPrevious className="-left-12 md:-left-16 h-12 w-12 border-2" />
-            <CarouselNext className="-right-12 md:-right-16 h-12 w-12 border-2" />
+            <CarouselPrevious className="-left-12 md:-left-16" />
+            <CarouselNext className="-right-12 md:-right-16" />
           </Carousel>
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          <Button size="lg" variant="secondary" className="group shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-base px-10 py-6 h-auto">
+        <div className="text-center mt-10 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          <Button size="lg" variant="secondary" className="group shadow-lg hover:shadow-xl transition-shadow">
             Talk to an Expert
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
