@@ -74,7 +74,7 @@ export default function ProblemSolutionSection() {
         </div>
 
         {/* Solutions Slider */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto relative">
           <Carousel
             opts={{
               align: "start",
@@ -109,12 +109,7 @@ export default function ProblemSolutionSection() {
 
                         {/* Divider with Arrow */}
                         <div className="flex items-center justify-center flex-shrink-0 my-4 md:my-0">
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-accent/20 blur-xl opacity-60 rounded-full"></div>
-                            <div className="relative bg-accent/10 rounded-full p-3 md:p-4 border-2 border-accent/30">
-                              <ArrowRight className="h-5 w-5 md:h-6 md:w-6 text-accent md:rotate-0 rotate-90" />
-                            </div>
-                          </div>
+                          <ArrowRight className="h-8 w-8 md:h-10 md:w-10 text-accent md:rotate-0 rotate-90" strokeWidth={2.5} />
                         </div>
 
                         {/* Solution Side - Right */}
@@ -160,8 +155,8 @@ export default function ProblemSolutionSection() {
                 );
               })}
             </CarouselContent>
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
+            <CarouselPrevious className="-left-12 md:-left-16" />
+            <CarouselNext className="-right-12 md:-right-16" />
           </Carousel>
         </div>
 
