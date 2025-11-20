@@ -60,7 +60,7 @@ const VenioLegalHold = () => {
       <ScrollProgressIndicator sections={sections} />
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden gradient-animated py-24">
+      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden gradient-animated pt-32 pb-24">
         {/* Dynamic Animated Background */}
         <div className="absolute inset-0">
           {/* Large Glowing Orbs */}

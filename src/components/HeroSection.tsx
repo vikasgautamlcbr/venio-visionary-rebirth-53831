@@ -33,7 +33,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-start overflow-hidden gradient-animated pt-24 pb-32">
+    <section className="relative min-h-[90vh] flex flex-col items-center justify-start overflow-hidden gradient-animated pt-32 pb-32">
       {/* Dynamic Animated Background */}
       <div className="absolute inset-0">
         {/* Large Glowing Orbs */}
