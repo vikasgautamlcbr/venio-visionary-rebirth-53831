@@ -4,25 +4,39 @@ const ProblemSolutionSection = () => {
       problem: "Manual Review Takes Weeks",
       solution: "AI Completes in Hours",
       impact: "70% Faster",
-      gradient: "from-violet-500 to-purple-600"
+      gradient: "from-violet-500 to-purple-600",
+      size: "large", // Takes more space
+      description: "Transform weeks of tedious document review into hours of intelligent analysis"
     },
     {
-      problem: "Unpredictable Budget Overruns",
-      solution: "Fixed Cost Certainty",
+      problem: "Unpredictable Costs",
+      solution: "Fixed Pricing",
       impact: "60% Savings",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      size: "small"
     },
     {
-      problem: "Missed Critical Deadlines",
+      problem: "Missed Deadlines",
       solution: "Automated Delivery",
       impact: "100% On-Time",
-      gradient: "from-emerald-500 to-teal-600"
+      gradient: "from-emerald-500 to-teal-600",
+      size: "small"
     },
     {
-      problem: "Can't Scale Operations",
+      problem: "Can't Scale",
       solution: "Infinite Capacity",
       impact: "Unlimited Scale",
-      gradient: "from-orange-500 to-red-500"
+      gradient: "from-orange-500 to-red-500",
+      size: "medium",
+      description: "Scale from hundreds to millions of documents seamlessly"
+    },
+    {
+      problem: "Complex Workflows",
+      solution: "One-Click Automation",
+      impact: "5x Efficiency",
+      gradient: "from-pink-500 to-rose-600",
+      size: "medium",
+      description: "Simplify multi-step processes into single automated workflows"
     }
   ];
 
@@ -56,52 +70,64 @@ const ProblemSolutionSection = () => {
           </p>
         </div>
 
-        {/* Solutions Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(200px,auto)]">
           {solutions.map((item, index) => (
             <div
               key={index}
-              className="group relative animate-fade-in"
+              className={`group relative animate-fade-in ${
+                item.size === 'large' 
+                  ? 'lg:col-span-2 lg:row-span-2' 
+                  : item.size === 'medium'
+                  ? 'lg:col-span-2'
+                  : 'lg:col-span-1'
+              }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Card */}
-              <div className="relative h-full glass rounded-3xl p-8 border border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden">
+              <div className="relative h-full glass rounded-3xl p-6 lg:p-8 border border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden group-hover:scale-[1.02]">
                 {/* Gradient accent on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
                 
                 {/* Content */}
-                <div className="relative z-10 space-y-6">
+                <div className={`relative z-10 h-full flex flex-col ${item.size === 'large' ? 'justify-between' : 'justify-center'}`}>
                   {/* Problem */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-semibold text-destructive uppercase tracking-wider">
-                      <div className="w-8 h-px bg-destructive/50"></div>
+                      <div className="w-6 h-px bg-destructive/50"></div>
                       <span>Challenge</span>
                     </div>
-                    <h3 className="text-xl font-bold text-muted-foreground">
+                    <h3 className={`font-bold text-muted-foreground ${item.size === 'large' ? 'text-2xl' : 'text-lg'}`}>
                       {item.problem}
                     </h3>
                   </div>
 
                   {/* Divider with animated dot */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 my-4">
                     <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
-                    <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${item.gradient} group-hover:scale-125 transition-transform duration-300`}></div>
+                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.gradient} group-hover:scale-150 transition-transform duration-300`}></div>
                     <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
                   </div>
 
                   {/* Solution */}
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider">
-                      <div className="w-8 h-px bg-primary/50"></div>
+                      <div className="w-6 h-px bg-primary/50"></div>
                       <span>Solution</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground">
+                    <h3 className={`font-bold text-foreground ${item.size === 'large' ? 'text-3xl' : 'text-xl'}`}>
                       {item.solution}
                     </h3>
                     
+                    {item.description && item.size !== 'small' && (
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
+                    
                     {/* Impact badge */}
-                    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${item.gradient} text-white text-sm font-bold shadow-lg`}>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-bold shadow-lg`}>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                       {item.impact}
@@ -109,15 +135,15 @@ const ProblemSolutionSection = () => {
                   </div>
                 </div>
 
-                {/* Hover effect border */}
-                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl`}></div>
+                {/* Hover effect border glow */}
+                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10 blur-2xl`}></div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-20 text-center animate-fade-in" style={{ animationDelay: "0.5s" }}>
+        <div className="mt-20 text-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
           <div className="inline-flex flex-col items-center gap-4 p-8 rounded-3xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20">
             <p className="text-lg text-muted-foreground">
               Ready to transform your eDiscovery process?
