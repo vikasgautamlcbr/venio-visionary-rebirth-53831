@@ -61,9 +61,11 @@ const TestimonialsSection = () => {
 
   return (
     <>
+      {/* Version 1: Carousel Design */}
       <section className="py-20 bg-gradient-to-b from-white to-muted">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-12 max-w-3xl mx-auto">
+            <p className="text-sm font-semibold text-accent mb-2">VERSION 1</p>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
               Trusted by Leading Legal Teams
               <br />
@@ -83,26 +85,26 @@ const TestimonialsSection = () => {
               <CarouselContent>
                 {/* Slide 1: Video Testimonial */}
                 <CarouselItem>
-                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px]">
-                    <div className="grid md:grid-cols-2 gap-12 items-center h-full">
-                      {/* Left side - Text testimonial */}
-                      <div className="space-y-8">
-                        <div className="text-6xl text-accent/20 font-serif">"</div>
-                        <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4">
+                  <div className="glass rounded-2xl p-8 md:p-12 min-h-[450px]">
+                    <div className="grid md:grid-cols-5 gap-8 items-center h-full">
+                      {/* Left side - Text testimonial (2 cols) */}
+                      <div className="md:col-span-2 space-y-6">
+                        <div className="text-5xl text-accent/20 font-serif">"</div>
+                        <p className="text-base text-muted-foreground font-body leading-relaxed -mt-4">
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamelit, sed do eiusmod tempor
                         </p>
                         <div>
                           <p className="font-bold text-primary text-lg">{testimonials[0].author}</p>
-                          <p className="text-muted-foreground font-body">{testimonials[0].role}</p>
-                          <p className="text-muted-foreground font-body">{testimonials[0].company}</p>
+                          <p className="text-muted-foreground font-body text-sm">{testimonials[0].role}</p>
+                          <p className="text-muted-foreground font-body text-sm">{testimonials[0].company}</p>
                         </div>
                       </div>
 
-                      {/* Right side - Video placeholder */}
-                      <div className="relative aspect-video rounded-2xl overflow-hidden glass-dark">
+                      {/* Right side - Video placeholder (3 cols) */}
+                      <div className="md:col-span-3 relative aspect-video rounded-xl overflow-hidden glass-dark">
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <button className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
-                            <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                          <button className="w-16 h-16 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
+                            <Play className="w-6 h-6 text-white ml-1" fill="white" />
                           </button>
                         </div>
                         {/* Placeholder for actual video */}
@@ -115,32 +117,32 @@ const TestimonialsSection = () => {
                 {/* Slides 2-4: Written Testimonials */}
                 {testimonials.map((testimonial, idx) => (
                   <CarouselItem key={idx}>
-                    <div className="glass rounded-2xl p-8 md:p-12 min-h-[500px]">
-                      <div className="grid md:grid-cols-2 gap-12 items-center">
-                        {/* Stats - Left side */}
-                        <div className="space-y-6 max-w-[90%] mx-auto md:mx-0">
+                    <div className="glass rounded-2xl p-8 md:p-12 min-h-[450px]">
+                      <div className="grid md:grid-cols-5 gap-8 items-center">
+                        {/* Stats - Left side (2 cols) */}
+                        <div className="md:col-span-2 space-y-4">
                           {stats.map((stat, index) => (
-                            <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                              <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
-                              <p className="text-white/90 font-body text-sm">{stat.label}</p>
+                            <div key={index} className="bg-gradient-to-br from-primary/90 to-accent/80 p-5 rounded-xl border border-white/20 backdrop-blur-sm">
+                              <div className="text-4xl font-bold text-white mb-1">{stat.value}</div>
+                              <p className="text-white/90 font-body text-xs">{stat.label}</p>
                             </div>
                           ))}
                         </div>
 
-                        {/* Testimonial Text - Right side */}
-                        <div className="space-y-8">
-                          <div className="text-6xl text-accent/20 font-serif">"</div>
-                          <p className="text-lg text-muted-foreground font-body leading-relaxed -mt-4 italic">
+                        {/* Testimonial Text - Right side (3 cols) */}
+                        <div className="md:col-span-3 space-y-6">
+                          <div className="text-5xl text-accent/20 font-serif">"</div>
+                          <p className="text-base text-muted-foreground font-body leading-relaxed -mt-4 italic">
                             {testimonial.text}
                           </p>
-                          <div className="flex items-center gap-4">
-                            <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                          <div className="flex items-center gap-3">
+                            <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                               {testimonial.initials}
                             </div>
                             <div>
-                              <p className="font-bold text-primary text-lg">{testimonial.author}</p>
-                              <p className="text-muted-foreground font-body">{testimonial.role}</p>
-                              <p className="text-muted-foreground font-body">{testimonial.company}</p>
+                              <p className="font-bold text-primary text-base">{testimonial.author}</p>
+                              <p className="text-muted-foreground font-body text-sm">{testimonial.role}</p>
+                              <p className="text-muted-foreground font-body text-sm">{testimonial.company}</p>
                             </div>
                           </div>
                         </div>
@@ -235,6 +237,82 @@ const TestimonialsSection = () => {
           </div>
         </div>
         */}
+      </section>
+
+      {/* Version 2: Modern Grid Design */}
+      <section className="py-20 bg-gradient-to-b from-muted to-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-12 max-w-3xl mx-auto">
+            <p className="text-sm font-semibold text-accent mb-2">VERSION 2</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-muted-foreground">Real feedback from legal professionals transforming their workflows</p>
+          </div>
+
+          {/* Featured Testimonial with Video */}
+          <div className="glass rounded-2xl p-8 md:p-12 mb-8">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+              {/* Video - Left 2/3 */}
+              <div className="md:col-span-2 relative aspect-video rounded-xl overflow-hidden glass-dark">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
+                    <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                  </button>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20"></div>
+              </div>
+
+              {/* Quote - Right 1/3 */}
+              <div className="space-y-4">
+                <div className="text-5xl text-accent/20 font-serif leading-none">"</div>
+                <p className="text-sm text-muted-foreground font-body leading-relaxed -mt-2">
+                  Venio transformed our eDiscovery process completely. The AI-powered automation is incredible.
+                </p>
+                <div className="pt-2">
+                  <p className="font-bold text-primary">{testimonials[0].author}</p>
+                  <p className="text-muted-foreground font-body text-sm">{testimonials[0].role}</p>
+                  <p className="text-muted-foreground font-body text-sm">{testimonials[0].company}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="glass rounded-xl p-6 text-center hover:scale-105 transition-transform">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                  {stat.value}
+                </div>
+                <p className="text-muted-foreground font-body text-sm">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonial Cards Grid */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, idx) => (
+              <div key={idx} className="glass rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div className="flex flex-col h-full">
+                  <div className="text-4xl text-accent/20 font-serif leading-none mb-3">"</div>
+                  <p className="text-sm text-muted-foreground font-body leading-relaxed mb-4 flex-grow line-clamp-6">
+                    {testimonial.text}
+                  </p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-border/50">
+                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold flex-shrink-0">
+                      {testimonial.initials}
+                    </div>
+                    <div>
+                      <p className="font-bold text-primary text-sm">{testimonial.author}</p>
+                      <p className="text-muted-foreground font-body text-xs">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </>
   );
