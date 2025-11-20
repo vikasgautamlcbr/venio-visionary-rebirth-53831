@@ -54,107 +54,100 @@ const solutions = [
 
 export default function ProblemSolutionSection() {
   return (
-    <section className="relative py-16 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background"></div>
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]"></div>
-
+    <section className="relative py-24 overflow-hidden bg-background">
       <div className="container relative mx-auto px-6">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
+        <div className="max-w-3xl mx-auto text-center mb-20 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             Transform Your Workflow
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             See how leading law firms overcome their biggest challenges
           </p>
         </div>
 
         {/* Solutions Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto space-y-16">
           {solutions.map((item, index) => {
             const Icon = item.icon;
+            const isEven = index % 2 === 0;
+            
             return (
               <div
                 key={index}
                 className="group relative animate-fade-in"
-                style={{ animationDelay: `${index * 0.15}s` }}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative glass rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-500 overflow-hidden">
-                  {/* Gradient accent */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient}`}></div>
-                  
-                  {/* Icon */}
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${item.gradient} mb-6`}>
-                    <Icon className="h-6 w-6 text-white" />
-                  </div>
-
-                  {/* Before/After Layout */}
-                  <div className="space-y-4">
-                    {/* Before */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-20 text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                          Before
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-foreground mb-2">
-                            {item.problem}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            {item.problemDetail}
-                          </p>
-                        </div>
+                {/* Split Layout */}
+                <div className={`grid md:grid-cols-2 gap-8 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
+                  {/* Problem Side */}
+                  <div className={`relative ${!isEven ? 'md:order-2' : ''}`}>
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 text-muted-foreground text-xs font-medium uppercase tracking-wider">
+                        <Icon className="h-3 w-3" />
+                        Before
                       </div>
-                    </div>
-
-                    {/* Arrow Transition */}
-                    <div className="flex items-center gap-4 py-2">
-                      <div className="flex-shrink-0 w-20 flex justify-center">
-                        <ArrowRight className={`h-6 w-6 text-primary animate-pulse bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`} />
-                      </div>
-                      <div className="flex-1 h-px bg-gradient-to-r from-border via-primary/20 to-border"></div>
-                    </div>
-
-                    {/* After */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-20 text-sm font-semibold text-primary uppercase tracking-wider">
-                          After
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-foreground mb-2">
-                            {item.solution}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            {item.solutionDetail}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Impact Stats */}
-                    <div className="flex items-center gap-6 pt-4 mt-6 border-t border-border/50">
-                      <div className="flex-1">
-                        <div className={`text-3xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
-                          {item.impact}
-                        </div>
-                        <div className="text-sm text-muted-foreground mt-1">
-                          {item.impactLabel}
-                        </div>
-                      </div>
-                      {item.stat && (
-                        <div className="flex-1 text-right">
-                          <div className="text-2xl font-bold text-foreground">
-                            {item.stat}
-                          </div>
-                          <div className="text-sm text-muted-foreground mt-1">
-                            {item.statLabel}
-                          </div>
-                        </div>
-                      )}
+                      <h3 className="text-2xl font-bold text-foreground/70">
+                        {item.problem}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.problemDetail}
+                      </p>
                     </div>
                   </div>
+
+                  {/* Divider with Arrow */}
+                  <div className={`hidden md:flex items-center justify-center ${!isEven ? 'md:order-1' : ''}`}>
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary to-primary/20 blur-xl opacity-50"></div>
+                      <div className="relative bg-primary/10 rounded-full p-4 border border-primary/20">
+                        <ArrowRight className={`h-6 w-6 text-primary ${!isEven ? 'rotate-180' : ''}`} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Solution Side */}
+                  <div className={`relative ${!isEven ? 'md:order-3' : ''}`}>
+                    <div className="space-y-4 p-6 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium uppercase tracking-wider">
+                        <Icon className="h-3 w-3" />
+                        After
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground">
+                        {item.solution}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.solutionDetail}
+                      </p>
+                      
+                      {/* Impact Stats */}
+                      <div className="flex gap-6 pt-4 mt-4 border-t border-border/50">
+                        <div>
+                          <div className="text-3xl font-bold text-primary">
+                            {item.impact}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
+                            {item.impactLabel}
+                          </div>
+                        </div>
+                        {item.stat && (
+                          <div>
+                            <div className="text-2xl font-bold text-foreground">
+                              {item.stat}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
+                              {item.statLabel}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Arrow */}
+                <div className="flex md:hidden justify-center my-4">
+                  <ArrowRight className="h-6 w-6 text-primary rotate-90" />
                 </div>
               </div>
             );
@@ -162,7 +155,7 @@ export default function ProblemSolutionSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+        <div className="text-center mt-16 animate-fade-in" style={{ animationDelay: '0.5s' }}>
           <Button size="lg" className="group">
             Talk to an Expert
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
