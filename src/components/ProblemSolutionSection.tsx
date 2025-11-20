@@ -123,9 +123,9 @@ export default function ProblemSolutionSection() {
                               </p>
                               
                               {/* Impact Stats */}
-                              <div className="flex gap-6 pt-4 mt-auto border-t border-accent/20">
-                                <div>
-                                  <div className="text-3xl md:text-4xl font-bold text-accent">
+                              <div className="flex gap-4 md:gap-6 pt-4 mt-auto border-t border-accent/20">
+                                <div className="flex-1">
+                                  <div className="text-2xl md:text-3xl font-bold text-accent">
                                     {item.impact}
                                   </div>
                                   <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
@@ -133,8 +133,8 @@ export default function ProblemSolutionSection() {
                                   </div>
                                 </div>
                                 {item.stat && (
-                                  <div>
-                                    <div className="text-xl md:text-2xl font-bold text-foreground">
+                                  <div className="flex-1">
+                                    <div className="text-2xl md:text-3xl font-bold text-accent">
                                       {item.stat}
                                     </div>
                                     <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
