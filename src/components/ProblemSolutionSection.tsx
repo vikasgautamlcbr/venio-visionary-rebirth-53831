@@ -80,22 +80,22 @@ const ProblemSolutionSection = () => {
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(240px,auto)]">
+        {/* Bento Grid - 2 Rows Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 grid-rows-2">
           {solutions.map((item, index) => (
             <div
               key={index}
               className={`group relative animate-fade-in ${
                 item.size === 'large' 
-                  ? 'lg:col-span-2 lg:row-span-2' 
+                  ? 'md:col-span-2 md:row-span-2' 
                   : item.size === 'medium'
-                  ? 'lg:col-span-2'
-                  : 'lg:col-span-1'
+                  ? 'md:col-span-2 md:row-span-1'
+                  : 'md:col-span-1 md:row-span-1'
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Card */}
-              <div className="relative h-full glass rounded-3xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl">
+              <div className="relative h-full min-h-[280px] glass rounded-3xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl">
                 {/* Gradient background overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500`}></div>
                 
