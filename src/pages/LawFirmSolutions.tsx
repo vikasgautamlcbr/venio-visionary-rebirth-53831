@@ -71,11 +71,11 @@ const LawFirmSolutions = () => {
               <div className="mt-16 pt-8 border-t border-white/20">
                 <p className="text-white/70 text-sm mb-8 font-body">Trusted by leading organizations</p>
                 <div className="relative overflow-hidden">
-                  <div className="flex animate-scroll-left gap-12 items-center">
-                    {[...clientLogos, ...clientLogos].map((logo, index) => (
+                  <div className="flex animate-scroll-left gap-10 items-center">
+                    {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
                       <div 
                         key={index} 
-                        className="flex-shrink-0 w-32 h-16 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300"
+                        className="flex-shrink-0 w-24 h-12 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300"
                       >
                         <img 
                           src={logo.src} 
