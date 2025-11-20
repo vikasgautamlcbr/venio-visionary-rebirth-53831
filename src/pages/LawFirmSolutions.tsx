@@ -68,29 +68,53 @@ const LawFirmSolutions = () => {
               </Button>
 
               {/* Client Logo Carousel */}
-              <div className="absolute left-0 right-0 mt-16 pt-8">
+              <div className="mt-16 overflow-hidden py-6">
                 <p className="text-white/70 text-sm mb-8 font-body text-center">Trusted by leading organizations</p>
-                
-                <div className="relative overflow-hidden py-6 border-y border-white/10">
-                  {/* Animated Background Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
-                  
-                  {/* Logo Carousel */}
-                  <div className="flex gap-20 animate-slide-left">
-                    {[...clientLogos, ...clientLogos].map((logo, index) => (
-                      <div
-                        key={index}
-                        className="flex-shrink-0 flex items-center justify-center group cursor-pointer"
-                      >
-                        <img 
-                          src={logo.src} 
-                          alt={logo.name} 
-                          className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-500 group-hover:scale-110 brightness-0 invert"
-                          style={{ minWidth: '160px', maxWidth: '220px' }}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                <div className="flex gap-24 animate-scroll">
+                  {/* First set of logos */}
+                  {[
+                    { src: amentum, name: "Amentum" },
+                    { src: array, name: "Array" },
+                    { src: cds, name: "CDS" },
+                    { src: consilio, name: "Consilio" },
+                    { src: epario, name: "Epario" },
+                    { src: haugPartners, name: "Haug Partners" },
+                    { src: nixonPeabody, name: "Nixon Peabody" },
+                    { src: proteus, name: "Proteus" }
+                  ].map((logo, index) => (
+                    <div 
+                      key={`first-${index}`} 
+                      className="flex-shrink-0"
+                    >
+                      <img 
+                        src={logo.src} 
+                        alt={logo.name} 
+                        className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                      />
+                    </div>
+                  ))}
+                  {/* Duplicate set for seamless loop */}
+                  {[
+                    { src: amentum, name: "Amentum" },
+                    { src: array, name: "Array" },
+                    { src: cds, name: "CDS" },
+                    { src: consilio, name: "Consilio" },
+                    { src: epario, name: "Epario" },
+                    { src: haugPartners, name: "Haug Partners" },
+                    { src: nixonPeabody, name: "Nixon Peabody" },
+                    { src: proteus, name: "Proteus" }
+                  ].map((logo, index) => (
+                    <div 
+                      key={`second-${index}`} 
+                      className="flex-shrink-0"
+                    >
+                      <img 
+                        src={logo.src} 
+                        alt={logo.name} 
+                        className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
