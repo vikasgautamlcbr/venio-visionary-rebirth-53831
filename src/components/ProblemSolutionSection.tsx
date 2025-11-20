@@ -89,63 +89,60 @@ export default function ProblemSolutionSection() {
                 return (
                   <CarouselItem key={index} className="pl-4">
                     <div className="py-6 px-2">
-                      {/* Split Layout - Always Problem Left, Solution Right */}
-                      <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-stretch">
-                        {/* Problem Side - Left */}
-                        <div className="flex-1 flex flex-col justify-center">
-                          <div className="space-y-3 p-5 md:p-7 rounded-xl border border-border/50 bg-muted/30 h-full">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider">
-                              <Icon className="h-3.5 w-3.5" />
-                              Before
-                            </div>
-                            <h3 className="text-xl md:text-2xl font-bold text-foreground/80">
-                              {item.problem}
-                            </h3>
-                            <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                              {item.problemDetail}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Divider with Arrow */}
-                        <div className="flex items-center justify-center flex-shrink-0 my-3 md:my-0">
-                          <ArrowRight className="h-7 w-7 md:h-9 md:w-9 text-accent md:rotate-0 rotate-90" strokeWidth={2.5} />
-                        </div>
-
-                        {/* Solution Side - Right */}
-                        <div className="flex-1 flex flex-col justify-center">
-                          <div className="space-y-3 p-5 md:p-7 rounded-xl border-2 border-accent/20 bg-gradient-to-br from-accent/5 via-accent/10 to-transparent shadow-lg h-full">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-semibold uppercase tracking-wider">
-                              <Icon className="h-3.5 w-3.5" />
-                              After
-                            </div>
-                            <h3 className="text-xl md:text-2xl font-bold text-foreground">
-                              {item.solution}
-                            </h3>
-                            <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                              {item.solutionDetail}
-                            </p>
-                            
-                            {/* Impact Stats */}
-                            <div className="flex gap-6 pt-4 mt-4 border-t border-accent/20">
-                              <div>
-                                <div className="text-3xl md:text-4xl font-bold text-accent">
-                                  {item.impact}
-                                </div>
-                                <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
-                                  {item.impactLabel}
-                                </div>
+                      {/* Unified Card with Before/After */}
+                      <div className="rounded-2xl border-2 border-border/50 bg-card shadow-xl overflow-hidden">
+                        <div className="flex flex-col md:flex-row">
+                          {/* Problem Side - Left */}
+                          <div className="flex-1 p-6 md:p-8 bg-muted/30 border-r-0 md:border-r border-b md:border-b-0 border-border/50">
+                            <div className="space-y-3 h-full flex flex-col">
+                              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider w-fit">
+                                <Icon className="h-3.5 w-3.5" />
+                                Before
                               </div>
-                              {item.stat && (
+                              <h3 className="text-xl md:text-2xl font-bold text-foreground/80">
+                                {item.problem}
+                              </h3>
+                              <p className="text-muted-foreground leading-relaxed text-sm md:text-base flex-grow">
+                                {item.problemDetail}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Solution Side - Right */}
+                          <div className="flex-1 p-6 md:p-8 bg-gradient-to-br from-accent/5 via-accent/10 to-transparent">
+                            <div className="space-y-3 h-full flex flex-col">
+                              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-semibold uppercase tracking-wider w-fit">
+                                <Icon className="h-3.5 w-3.5" />
+                                After
+                              </div>
+                              <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                                {item.solution}
+                              </h3>
+                              <p className="text-muted-foreground leading-relaxed text-sm md:text-base flex-grow">
+                                {item.solutionDetail}
+                              </p>
+                              
+                              {/* Impact Stats */}
+                              <div className="flex gap-6 pt-4 mt-auto border-t border-accent/20">
                                 <div>
-                                  <div className="text-xl md:text-2xl font-bold text-foreground">
-                                    {item.stat}
+                                  <div className="text-3xl md:text-4xl font-bold text-accent">
+                                    {item.impact}
                                   </div>
                                   <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
-                                    {item.statLabel}
+                                    {item.impactLabel}
                                   </div>
                                 </div>
-                              )}
+                                {item.stat && (
+                                  <div>
+                                    <div className="text-xl md:text-2xl font-bold text-foreground">
+                                      {item.stat}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-medium">
+                                      {item.statLabel}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
