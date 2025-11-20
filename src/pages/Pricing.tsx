@@ -120,7 +120,7 @@ const Pricing = () => {
           <ROICalculator />
 
           <div className="text-center mt-8">
-            <Button size="lg" className="px-8">
+            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8">
               Get Started Today
             </Button>
           </div>
