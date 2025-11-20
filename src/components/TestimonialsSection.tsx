@@ -278,34 +278,23 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="glass rounded-xl p-6 text-center hover:scale-105 transition-transform">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
-                  {stat.value}
-                </div>
-                <p className="text-muted-foreground font-body text-sm">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-
           {/* Testimonial Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="glass rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <div key={idx} className="glass rounded-xl p-8 hover:shadow-lg transition-shadow">
                 <div className="flex flex-col h-full">
-                  <div className="text-4xl text-accent/20 font-serif leading-none mb-3">"</div>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed mb-4 flex-grow line-clamp-6">
+                  <div className="text-5xl text-accent/20 font-serif leading-none mb-4">"</div>
+                  <p className="text-base text-muted-foreground font-body leading-relaxed mb-6 flex-grow">
                     {testimonial.text}
                   </p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-border/50">
-                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold flex-shrink-0">
+                  <div className="flex items-center gap-4 pt-6 border-t border-border/50">
+                    <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                       {testimonial.initials}
                     </div>
                     <div>
-                      <p className="font-bold text-primary text-sm">{testimonial.author}</p>
-                      <p className="text-muted-foreground font-body text-xs">{testimonial.role}</p>
+                      <p className="font-bold text-primary text-base">{testimonial.author}</p>
+                      <p className="text-muted-foreground font-body text-sm">{testimonial.role}</p>
+                      <p className="text-muted-foreground font-body text-sm">{testimonial.company}</p>
                     </div>
                   </div>
                 </div>
