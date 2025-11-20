@@ -9,7 +9,7 @@ const solutions = [
     solutionDetail: "Instant document classification and review",
     impact: "85%",
     impactLabel: "Time Saved",
-    gradient: "from-red-500 via-orange-500 to-yellow-500",
+    gradient: "from-primary via-primary/80 to-accent",
     icon: Clock,
     stat: "200+",
     statLabel: "Hours saved monthly"
@@ -21,7 +21,7 @@ const solutions = [
     solutionDetail: "Single source of truth for all case data",
     impact: "90%",
     impactLabel: "Faster Access",
-    gradient: "from-blue-500 via-cyan-500 to-teal-500",
+    gradient: "from-accent via-accent/80 to-primary",
     icon: TrendingUp,
     stat: "3x",
     statLabel: "Faster retrieval"
@@ -33,7 +33,7 @@ const solutions = [
     solutionDetail: "In-house automation reduces external spend",
     impact: "60%",
     impactLabel: "Cost Reduction",
-    gradient: "from-purple-500 via-pink-500 to-rose-500",
+    gradient: "from-primary/90 via-accent/70 to-primary/90",
     icon: DollarSign,
     stat: "$500K+",
     statLabel: "Annual savings"
@@ -45,7 +45,7 @@ const solutions = [
     solutionDetail: "Automated compliance checks and alerts",
     impact: "95%",
     impactLabel: "Error Reduction",
-    gradient: "from-emerald-500 via-green-500 to-lime-500",
+    gradient: "from-accent via-primary/70 to-accent/80",
     icon: Shield,
     stat: "99.9%",
     statLabel: "Accuracy rate"
