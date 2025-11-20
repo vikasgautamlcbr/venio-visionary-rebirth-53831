@@ -92,8 +92,8 @@ export default function ProblemSolutionSection() {
                       {/* Unified Card with Before/After */}
                       <div className="rounded-2xl border-2 border-border/50 bg-card shadow-xl overflow-hidden">
                         <div className="flex flex-col md:flex-row">
-                          {/* Problem Side - Left */}
-                          <div className="flex-1 p-6 md:p-8 bg-muted/30 border-r-0 md:border-r border-b md:border-b-0 border-border/50">
+                          {/* Problem Side - Left (40%) */}
+                          <div className="md:flex-[4] p-6 md:p-8 bg-muted/30 border-r-0 md:border-r border-b md:border-b-0 border-border/50">
                             <div className="space-y-3 h-full flex flex-col">
                               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold uppercase tracking-wider w-fit">
                                 <Icon className="h-3.5 w-3.5" />
@@ -108,8 +108,8 @@ export default function ProblemSolutionSection() {
                             </div>
                           </div>
 
-                          {/* Solution Side - Right */}
-                          <div className="flex-1 p-6 md:p-8 bg-gradient-to-br from-accent/5 via-accent/10 to-transparent">
+                          {/* Solution Side - Right (60%) */}
+                          <div className="md:flex-[6] p-6 md:p-8 bg-gradient-to-br from-accent/5 via-accent/10 to-transparent">
                             <div className="space-y-3 h-full flex flex-col">
                               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-semibold uppercase tracking-wider w-fit">
                                 <Icon className="h-3.5 w-3.5" />
