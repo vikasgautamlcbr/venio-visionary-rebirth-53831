@@ -321,7 +321,7 @@ const TestimonialsSection = () => {
             >
               <CarouselContent>
                 {testimonials.map((testimonial, idx) => (
-                  <CarouselItem key={idx} className="md:basis-1/2">
+                  <CarouselItem key={idx}>
                     <div className="glass rounded-xl p-8 hover:shadow-lg transition-shadow h-full">
                       <div className="flex flex-col h-full">
                         <div className="text-5xl text-accent/20 font-serif leading-none mb-4">"</div>
