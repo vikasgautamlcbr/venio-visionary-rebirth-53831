@@ -65,10 +65,19 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item) => (
               <div key={item.label} className="group relative flex-shrink-0">
-                <button className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap">
-                  {item.label}
-                  {item.hasDropdown && <ChevronDown size={16} className="opacity-70" />}
-                </button>
+                {item.label === "Pricing" ? (
+                  <Link 
+                    to="/pricing"
+                    className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap">
+                    {item.label}
+                    {item.hasDropdown && <ChevronDown size={16} className="opacity-70" />}
+                  </button>
+                )}
                 {/* Dropdown */}
                 {item.hasDropdown && item.items && (
                   <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
@@ -138,10 +147,20 @@ const Navbar = () => {
           <div className="lg:hidden mt-4 glass-navbar rounded-xl p-4">
             {navItems.map((item) => (
               <div key={item.label} className="mb-4">
-                <div className="font-semibold text-white mb-2 flex items-center gap-1">
-                  {item.label}
-                  {item.hasDropdown && <ChevronDown size={16} />}
-                </div>
+                {item.label === "Pricing" ? (
+                  <Link
+                    to="/pricing"
+                    className="font-semibold text-white mb-2 flex items-center gap-1 block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <div className="font-semibold text-white mb-2 flex items-center gap-1">
+                    {item.label}
+                    {item.hasDropdown && <ChevronDown size={16} />}
+                  </div>
+                )}
                 {item.hasDropdown && item.items && item.items.map((subItem) => {
                   // Handle special link for Venio Legal Hold in mobile menu
                   if (item.label === "Products" && subItem === "Venio Review") {
