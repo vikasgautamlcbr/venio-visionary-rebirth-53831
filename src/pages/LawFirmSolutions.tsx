@@ -66,56 +66,58 @@ const LawFirmSolutions = () => {
                 Talk to an Expert
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
+            </div>
+          </div>
 
-              {/* Client Logo Carousel */}
-              <div className="mt-16 overflow-hidden py-6">
-                <p className="text-white/70 text-sm mb-8 font-body text-center">Trusted by leading organizations</p>
-                <div className="flex gap-24 animate-scroll">
-                  {/* First set of logos */}
-                  {[
-                    { src: amentum, name: "Amentum" },
-                    { src: array, name: "Array" },
-                    { src: cds, name: "CDS" },
-                    { src: consilio, name: "Consilio" },
-                    { src: epario, name: "Epario" },
-                    { src: haugPartners, name: "Haug Partners" },
-                    { src: nixonPeabody, name: "Nixon Peabody" },
-                    { src: proteus, name: "Proteus" }
-                  ].map((logo, index) => (
-                    <div 
-                      key={`first-${index}`} 
-                      className="flex-shrink-0"
-                    >
-                      <img 
-                        src={logo.src} 
-                        alt={logo.name} 
-                        className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
-                      />
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless loop */}
-                  {[
-                    { src: amentum, name: "Amentum" },
-                    { src: array, name: "Array" },
-                    { src: cds, name: "CDS" },
-                    { src: consilio, name: "Consilio" },
-                    { src: epario, name: "Epario" },
-                    { src: haugPartners, name: "Haug Partners" },
-                    { src: nixonPeabody, name: "Nixon Peabody" },
-                    { src: proteus, name: "Proteus" }
-                  ].map((logo, index) => (
-                    <div 
-                      key={`second-${index}`} 
-                      className="flex-shrink-0"
-                    >
-                      <img 
-                        src={logo.src} 
-                        alt={logo.name} 
-                        className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
-                      />
-                    </div>
-                  ))}
-                </div>
+          {/* Client Logo Carousel - Full Width */}
+          <div className="absolute bottom-20 left-0 right-0 w-full">
+            <p className="text-white/70 text-sm mb-8 font-body text-center">Trusted by leading organizations</p>
+            <div className="overflow-hidden py-6">
+              <div className="flex gap-24 animate-scroll">
+                {/* First set of logos */}
+                {[
+                  { src: amentum, name: "Amentum" },
+                  { src: array, name: "Array" },
+                  { src: cds, name: "CDS" },
+                  { src: consilio, name: "Consilio" },
+                  { src: epario, name: "Epario" },
+                  { src: haugPartners, name: "Haug Partners" },
+                  { src: nixonPeabody, name: "Nixon Peabody" },
+                  { src: proteus, name: "Proteus" }
+                ].map((logo, index) => (
+                  <div 
+                    key={`first-${index}`} 
+                    className="flex-shrink-0"
+                  >
+                    <img 
+                      src={logo.src} 
+                      alt={logo.name} 
+                      className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                    />
+                  </div>
+                ))}
+                {/* Duplicate set for seamless loop */}
+                {[
+                  { src: amentum, name: "Amentum" },
+                  { src: array, name: "Array" },
+                  { src: cds, name: "CDS" },
+                  { src: consilio, name: "Consilio" },
+                  { src: epario, name: "Epario" },
+                  { src: haugPartners, name: "Haug Partners" },
+                  { src: nixonPeabody, name: "Nixon Peabody" },
+                  { src: proteus, name: "Proteus" }
+                ].map((logo, index) => (
+                  <div 
+                    key={`second-${index}`} 
+                    className="flex-shrink-0"
+                  >
+                    <img 
+                      src={logo.src} 
+                      alt={logo.name} 
+                      className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
