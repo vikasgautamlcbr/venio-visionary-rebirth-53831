@@ -70,7 +70,7 @@ const LawFirmSolutions = () => {
           </div>
 
           {/* Client Logo Carousel - Full Width */}
-          <div className="relative z-10 w-full">
+          <div className="relative z-10 w-full mt-16">
             <p className="text-white/70 text-sm mb-6 font-body text-center">Trusted by leading organizations</p>
             <div className="overflow-hidden py-6">
               <div className="flex gap-24 animate-scroll">
