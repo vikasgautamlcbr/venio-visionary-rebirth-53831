@@ -1,13 +1,70 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Shield, Zap, Brain, Globe } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const HeroSection = () => {
-  const features = [
-    "End-to-End Platform",
-    "AI-Powered Review", 
-    "Hybrid Deployment",
-    "Cull Data Early"
+  const [activeTab, setActiveTab] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const tabs = [
+    {
+      icon: Shield,
+      title: "End-to-End Platform",
+      videoUrl: "/videos/venio-one.mp4"
+    },
+    {
+      icon: Brain,
+      title: "AI-Powered Review",
+      videoUrl: "/videos/venio-ai-review.mp4"
+    },
+    {
+      icon: Zap,
+      title: "Hybrid Deployment",
+      videoUrl: "/videos/venio-legal-hold.mp4"
+    },
+    {
+      icon: Globe,
+      title: "Cull Data Early",
+      videoUrl: "/videos/venio-eca.mp4"
+    }
   ];
+
+  const handleVideoEnd = () => {
+    setProgress(0);
+    setActiveTab((prev) => (prev + 1) % tabs.length);
+  };
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    setProgress(0);
+  };
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(err => console.log("Video autoplay prevented:", err));
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    const updateProgress = () => {
+      if (videoRef.current) {
+        const percent = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+        setProgress(percent);
+      }
+    };
+
+    const video = videoRef.current;
+    video.addEventListener('timeupdate', updateProgress);
+
+    return () => {
+      video.removeEventListener('timeupdate', updateProgress);
+    };
+  }, [activeTab]);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-24 pb-0">
@@ -87,29 +144,56 @@ const HeroSection = () => {
               No steep learning curve. Full flexibility, your way.
             </p>
 
-            {/* Feature Pills */}
+            {/* Feature Pills as Tabs */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white/90 text-sm font-medium"
-                >
-                  {feature}
-                </div>
-              ))}
+              {tabs.map((tab, index) => {
+                const isActive = activeTab === index;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className={`px-5 py-2.5 backdrop-blur-sm rounded-full border text-sm font-medium transition-all duration-300 relative overflow-hidden ${
+                      isActive
+                        ? "bg-white/20 border-white/40 text-white"
+                        : "bg-white/10 border-white/20 text-white/90 hover:bg-white/15 hover:border-white/30"
+                    }`}
+                  >
+                    {/* Progress bar */}
+                    {isActive && (
+                      <div 
+                        className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-100"
+                        style={{ width: `${progress}%` }}
+                      />
+                    )}
+                    {tab.title}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Dashboard Screenshot */}
+            {/* Dashboard/Video Section */}
             <div className="relative max-w-6xl mx-auto px-4 pb-8">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-white">
-                {/* Placeholder for dashboard image */}
-                <div className="aspect-[16/10] bg-gradient-to-br from-gray-50 to-gray-100">
-                  <img 
-                    src="/placeholder.svg" 
-                    alt="Venio Dashboard" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="aspect-[16/10]"
+                  >
+                    <video
+                      ref={videoRef}
+                      src={tabs[activeTab].videoUrl}
+                      className="w-full h-full object-cover"
+                      onEnded={handleVideoEnd}
+                      playsInline
+                      muted
+                      autoPlay
+                    />
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
