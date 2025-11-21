@@ -128,7 +128,7 @@ const Navbar = () => {
                               <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
                               {category.title}
                             </h3>
-                            <div className="space-y-0.5">
+                            <div className="space-y-1">
                               {category.items.map((subItem) => {
                                 const isActive = isActiveDropdownItem(item.label, subItem);
                                 // Handle special link for Law Firm Solutions
@@ -137,7 +137,7 @@ const Navbar = () => {
                                     <Link
                                       key={subItem}
                                       to="/law-firm-solutions"
-                                      className={`group/item relative flex items-center gap-2 px-3 py-2.5 text-sm rounded-lg transition-all duration-200 ${
+                                      className={`group/item relative flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-all duration-200 ${
                                         isActive
                                           ? 'text-white bg-white/15 font-medium'
                                           : 'text-white/90 hover:text-white hover:bg-white/10'
@@ -152,7 +152,7 @@ const Navbar = () => {
                                   <a
                                     key={subItem}
                                     href="#"
-                                    className="group/item relative flex items-center gap-2 px-3 py-2.5 text-sm text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+                                    className="group/item relative flex items-center gap-3 px-3 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
                                   >
                                     <ChevronRight size={14} className="opacity-0 group-hover/item:opacity-100 transition-opacity" />
                                     <span>{subItem}</span>
@@ -179,13 +179,13 @@ const Navbar = () => {
                             <Link
                               key={subItem}
                               to="/venio-legal-hold"
-                              className={`group/item relative flex items-center gap-2 px-4 py-2.5 text-sm transition-all duration-200 ${
+                              className={`group/item relative flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 ${
                                 isActive
                                   ? 'text-white bg-white/15 font-medium'
                                   : 'text-white/90 hover:text-white hover:bg-white/10'
                               }`}
                             >
-                              <div className="w-1 h-1 rounded-full bg-accent/60 group-hover/item:bg-accent transition-colors"></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent/60 group-hover/item:bg-accent transition-colors"></div>
                               <span>Venio Legal Hold</span>
                             </Link>
                           );
@@ -194,9 +194,9 @@ const Navbar = () => {
                           <a
                             key={subItem}
                             href="#"
-                            className="group/item relative flex items-center gap-2 px-4 py-2.5 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
+                            className="group/item relative flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
                           >
-                            <div className="w-1 h-1 rounded-full bg-white/40 group-hover/item:bg-accent transition-colors"></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/item:bg-accent transition-colors"></div>
                             <span>{subItem}</span>
                           </a>
                         );
@@ -267,14 +267,14 @@ const Navbar = () => {
                               <Link
                                 key={subItem}
                                 to="/law-firm-solutions"
-                                className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition-all ${
+                                className={`flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-all ${
                                   isActive
                                     ? 'text-white bg-white/15 font-medium'
                                     : 'text-white/90 hover:text-accent hover:bg-white/10'
                                 }`}
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
-                                <div className="w-1 h-1 rounded-full bg-accent/60"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-accent/60"></div>
                                 {subItem}
                               </Link>
                             );
@@ -283,9 +283,9 @@ const Navbar = () => {
                             <a
                               key={subItem}
                               href="#"
-                              className="flex items-center gap-2 px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
+                              className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
                             >
-                              <div className="w-1 h-1 rounded-full bg-white/40"></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
                               {subItem}
                             </a>
                           );
@@ -304,14 +304,14 @@ const Navbar = () => {
                       <Link
                         key={subItem}
                         to="/venio-legal-hold"
-                        className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition-all ${
+                        className={`flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-all ${
                           isActive
                             ? 'text-white bg-white/15 font-medium'
                             : 'text-white/90 hover:text-accent hover:bg-white/10'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <div className="w-1 h-1 rounded-full bg-accent/60"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent/60"></div>
                         Venio Legal Hold
                       </Link>
                     );
@@ -320,9 +320,9 @@ const Navbar = () => {
                     <a
                       key={subItem}
                       href="#"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
                     >
-                      <div className="w-1 h-1 rounded-full bg-white/40"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
                       {subItem}
                     </a>
                   );
