@@ -79,21 +79,6 @@ const FAQSection = () => {
               </div>
             ))}
           </div>
-
-          <div className="mt-12 text-center glass rounded-3xl p-8 md:p-12 border-2 border-secondary/20">
-            <div className="bg-gradient-to-br from-secondary/10 to-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <MessageCircle className="h-8 w-8 text-accent" />
-            </div>
-            <h3 className="text-2xl font-bold text-primary mb-3">
-              Still have questions?
-            </h3>
-            <p className="text-muted-foreground font-body mb-6 max-w-md mx-auto">
-              Our team is here to help you find the perfect eDiscovery solution for your needs
-            </p>
-            <Button size="lg" className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white shadow-lg">
-              Contact Our Team
-            </Button>
-          </div>
         </div>
       </div>
     </section>
