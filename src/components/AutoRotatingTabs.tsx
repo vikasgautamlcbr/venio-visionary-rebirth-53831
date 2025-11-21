@@ -56,10 +56,10 @@ const AutoRotatingTabs = () => {
   }, [activeTab]);
 
   return (
-    <section className="py-24 relative -mt-20 mb-20 z-20">
+    <section className="py-20 relative z-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto glass rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-white/20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl mx-auto glass rounded-3xl p-6 md:p-10 shadow-2xl border-2 border-white/20">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             {/* Left: Tabs */}
             <div className="space-y-2">
               {tabs.map((tab, index) => {
@@ -73,7 +73,7 @@ const AutoRotatingTabs = () => {
                       setActiveTab(index);
                       setProgress(0);
                     }}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative overflow-hidden group ${
+                    className={`w-full text-left p-5 rounded-xl transition-all duration-300 relative overflow-hidden group ${
                       isActive
                         ? "bg-gradient-to-r from-secondary/20 to-accent/20"
                         : "hover:bg-white/5"
@@ -86,16 +86,16 @@ const AutoRotatingTabs = () => {
                       />
                     )}
                     
-                    <div className="flex items-start gap-4">
-                      <div className={`p-3 rounded-lg transition-all duration-300 ${
+                    <div className="flex items-start gap-3">
+                      <div className={`p-2.5 rounded-lg transition-all duration-300 flex-shrink-0 ${
                         isActive
                           ? "bg-gradient-to-br from-secondary to-accent"
                           : "bg-white/10 group-hover:bg-white/20"
                       }`}>
-                        <Icon className={`h-6 w-6 ${isActive ? "text-white" : "text-muted-foreground"}`} />
+                        <Icon className={`h-5 w-5 ${isActive ? "text-white" : "text-muted-foreground"}`} />
                       </div>
                       <div className="flex-1">
-                        <h3 className={`text-lg font-bold mb-2 transition-colors ${
+                        <h3 className={`text-base md:text-lg font-bold mb-1.5 transition-colors ${
                           isActive ? "text-primary" : "text-muted-foreground group-hover:text-primary"
                         }`}>
                           {tab.title}
