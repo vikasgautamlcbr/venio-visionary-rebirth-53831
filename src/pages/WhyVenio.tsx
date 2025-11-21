@@ -527,14 +527,14 @@ const WhyVenio = () => {
               <div className="absolute left-8 top-20 h-[calc(100%-280px)] w-1 bg-gradient-to-b from-accent via-secondary to-primary rounded-full hidden md:block"></div>
               
               <div className="space-y-8">
-                {/* Step 1: Legal Hold */}
+                {/* Step 1: Data Collection */}
                 <div className="relative group">
                   <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
                     <div className="grid md:grid-cols-12 gap-8 items-center">
                       {/* Number Badge */}
                       <div className="md:col-span-1">
                         <div className="relative">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
                             1
                           </div>
                           <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
@@ -544,16 +544,16 @@ const WhyVenio = () => {
                       {/* Content */}
                       <div className="md:col-span-7">
                         <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
-                          <Shield className="h-7 w-7 text-accent" />
-                          Legal Hold Automation
+                          <Database className="h-7 w-7 text-accent" />
+                          Secure Data Ingestion
                         </h3>
                         <p className="text-muted-foreground mb-4 leading-relaxed">
-                          Trigger custodian notifications, track acknowledgments, and preserve data from day one—with full audit trails for defensibility.
+                          Collect from O365, Google Workspace, Slack, file shares, and forensic sources. Native format preservation with chain-of-custody maintained.
                         </p>
                         <div className="flex gap-2 flex-wrap">
-                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Auto-notifications</span>
-                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Audit logs</span>
-                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Compliance tracking</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Multi-source</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Encrypted transfer</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Format preservation</span>
                         </div>
                       </div>
                       
@@ -561,97 +561,59 @@ const WhyVenio = () => {
                       <div className="md:col-span-4">
                         <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
                           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                          <Shield className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
+                          <Database className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Step 2: Data Collection */}
+                {/* Step 2: Early Case Assessment */}
                 <div className="relative group">
-                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
                     <div className="grid md:grid-cols-12 gap-8 items-center">
                       <div className="md:col-span-1">
                         <div className="relative">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-secondary/70 flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
                             2
                           </div>
-                          <div className="absolute inset-0 bg-secondary/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                          <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
                         </div>
                       </div>
                       
                       <div className="md:col-span-7">
                         <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
-                          <Database className="h-7 w-7 text-secondary" />
-                          Secure Data Ingestion
-                        </h3>
-                        <p className="text-muted-foreground mb-4 leading-relaxed">
-                          Collect from O365, Google Workspace, Slack, file shares, and forensic sources. Native format preservation with chain-of-custody maintained.
-                        </p>
-                        <div className="flex gap-2 flex-wrap">
-                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Multi-source</span>
-                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Encrypted transfer</span>
-                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Format preservation</span>
-                        </div>
-                      </div>
-                      
-                      <div className="md:col-span-4">
-                        <div className="aspect-video bg-gradient-to-br from-secondary/20 to-accent/10 rounded-2xl border-2 border-secondary/20 flex items-center justify-center relative overflow-hidden group-hover:border-secondary/40 transition-all">
-                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                          <Database className="h-20 w-20 text-secondary/40 relative z-10 group-hover:scale-110 transition-transform" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 3: Early Case Assessment */}
-                <div className="relative group">
-                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-primary/30 transition-all duration-500 hover:shadow-2xl">
-                    <div className="grid md:grid-cols-12 gap-8 items-center">
-                      <div className="md:col-span-1">
-                        <div className="relative">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
-                            3
-                          </div>
-                          <div className="absolute inset-0 bg-primary/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
-                        </div>
-                      </div>
-                      
-                      <div className="md:col-span-7">
-                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
-                          <Zap className="h-7 w-7 text-primary" />
+                          <Zap className="h-7 w-7 text-accent" />
                           Early Case Assessment
                         </h3>
                         <p className="text-muted-foreground mb-4 leading-relaxed">
                           Rapid sampling, culling, and analytics to reduce data volume by up to 90% before review. Understand your case early and make informed decisions.
                         </p>
                         <div className="flex gap-2 flex-wrap">
-                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">Fast analytics</span>
-                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">90% reduction</span>
-                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">Visual insights</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Fast analytics</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">90% reduction</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Visual insights</span>
                         </div>
                       </div>
                       
                       <div className="md:col-span-4">
-                        <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/10 rounded-2xl border-2 border-primary/20 flex items-center justify-center relative overflow-hidden group-hover:border-primary/40 transition-all">
+                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
                           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                          <Zap className="h-20 w-20 text-primary/40 relative z-10 group-hover:scale-110 transition-transform" />
+                          <Zap className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Step 4: AI-Powered Review */}
+                {/* Step 3: AI-Powered Review */}
                 <div className="relative group">
                   <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
                     <div className="grid md:grid-cols-12 gap-8 items-center">
                       <div className="md:col-span-1">
                         <div className="relative">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-secondary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
-                            4
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            3
                           </div>
                           <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
                         </div>
@@ -673,7 +635,7 @@ const WhyVenio = () => {
                       </div>
                       
                       <div className="md:col-span-4">
-                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-secondary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
+                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
                           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                           <Brain className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
                         </div>
@@ -682,38 +644,76 @@ const WhyVenio = () => {
                   </div>
                 </div>
 
-                {/* Step 5: Production & Export */}
+                {/* Step 4: Production & Export */}
                 <div className="relative group">
-                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
                     <div className="grid md:grid-cols-12 gap-8 items-center">
                       <div className="md:col-span-1">
                         <div className="relative">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
-                            5
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            4
                           </div>
-                          <div className="absolute inset-0 bg-secondary/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                          <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
                         </div>
                       </div>
                       
                       <div className="md:col-span-7">
                         <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
-                          <FileCheck className="h-7 w-7 text-secondary" />
+                          <FileCheck className="h-7 w-7 text-accent" />
                           Production & Export
                         </h3>
                         <p className="text-muted-foreground mb-4 leading-relaxed">
-                          Generate native load files, apply redactions, perform QC checks, and export with full defensibility. Ready for opposing counsel or court.
+                          Generate productions in multiple formats (TIFF, native, PDF). Full metadata, privilege logs, and audit reports. Court-ready deliverables.
                         </p>
                         <div className="flex gap-2 flex-wrap">
-                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Load files</span>
-                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Redaction tools</span>
-                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Defensible export</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Multi-format</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Privilege logs</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Court-ready</span>
                         </div>
                       </div>
                       
                       <div className="md:col-span-4">
-                        <div className="aspect-video bg-gradient-to-br from-secondary/20 to-primary/10 rounded-2xl border-2 border-secondary/20 flex items-center justify-center relative overflow-hidden group-hover:border-secondary/40 transition-all">
+                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
                           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                          <FileCheck className="h-20 w-20 text-secondary/40 relative z-10 group-hover:scale-110 transition-transform" />
+                          <FileCheck className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 5: Legal Hold Automation */}
+                <div className="relative group">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
+                    <div className="grid md:grid-cols-12 gap-8 items-center">
+                      <div className="md:col-span-1">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            5
+                          </div>
+                          <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-7">
+                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
+                          <Shield className="h-7 w-7 text-accent" />
+                          Legal Hold Automation
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          Trigger custodian notifications, track acknowledgments, and preserve data from day one—with full audit trails for defensibility.
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Auto-notifications</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Audit logs</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Compliance tracking</span>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-4">
+                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
+                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                          <Shield className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
                         </div>
                       </div>
                     </div>
