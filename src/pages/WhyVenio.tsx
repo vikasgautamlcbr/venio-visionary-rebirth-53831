@@ -91,7 +91,7 @@ const WhyVenio = () => {
 
               <Button
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 glow-accent-hover group"
+                className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
               >
                 Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -725,7 +725,7 @@ const WhyVenio = () => {
               <div className="mt-12 text-center">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-accent to-secondary text-white hover:opacity-90 shadow-lg"
+                  className="bg-gradient-to-r from-accent to-secondary text-white hover:opacity-90 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
                   onClick={() => setDemoDialogOpen(true)}
                 >
                   See the Platform in Action
@@ -1009,11 +1009,14 @@ const WhyVenio = () => {
               Book a personalized demo and see how Venio saves time and cost while improving defensibility.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 group">
+              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group">
                 Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 border-white text-lg px-8 py-6">
+              <Button 
+                size="lg" 
+                className="bg-transparent text-white border-2 border-white hover:bg-primary hover:border-transparent text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
+              >
                 Request Pricing
               </Button>
             </div>
