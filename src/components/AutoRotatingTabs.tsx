@@ -9,8 +9,8 @@ const AutoRotatingTabs = () => {
   const tabs = [
     {
       icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-grade security with SOC 2 Type II certification and end-to-end encryption",
+      title: "End-to-End Platform",
+      description: "Complete eDiscovery workflow from collection to production in one unified platform",
       videoPlaceholder: "/placeholder.svg"
     },
     {
@@ -20,15 +20,15 @@ const AutoRotatingTabs = () => {
       videoPlaceholder: "/placeholder.svg"
     },
     {
-      icon: Zap,
-      title: "Lightning Fast Processing",
-      description: "Process terabytes of data in hours, not weeks, with our optimized infrastructure",
+      icon: Globe,
+      title: "Hybrid Deployment",
+      description: "Deploy anywhere with cloud, on-premises, or hybrid options to meet your needs",
       videoPlaceholder: "/placeholder.svg"
     },
     {
-      icon: Globe,
-      title: "Global Deployment",
-      description: "Deploy anywhere with cloud, on-premises, or hybrid options to meet your needs",
+      icon: Zap,
+      title: "Cull Data Early",
+      description: "Reduce data volumes by up to 80% with early case assessment and smart filtering",
       videoPlaceholder: "/placeholder.svg"
     }
   ];
