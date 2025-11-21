@@ -12,25 +12,25 @@ const AutoRotatingTabs = () => {
       icon: Shield,
       title: "End-to-End Platform",
       description: "Complete eDiscovery workflow from legal hold to production in one unified platform",
-      videoUrl: "/videos/end-to-end.mp4" // Replace with actual video URL
+      videoUrl: "/videos/venio-one.mp4"
     },
     {
       icon: Brain,
       title: "AI-Powered Review",
       description: "Reduce review time by 70% with intelligent document analysis and predictive coding",
-      videoUrl: "/videos/ai-powered.mp4" // Replace with actual video URL
+      videoUrl: "/videos/venio-ai-review.mp4"
     },
     {
       icon: Zap,
       title: "Hybrid Deployment",
       description: "Deploy anywhere with cloud, on-premises, or hybrid options to meet your needs",
-      videoUrl: "/videos/hybrid-deployment.mp4" // Replace with actual video URL
+      videoUrl: "/videos/venio-legal-hold.mp4"
     },
     {
       icon: Globe,
       title: "Cull Data Early",
       description: "Reduce data volumes early with intelligent filtering and deduplication",
-      videoUrl: "/videos/cull-data.mp4" // Replace with actual video URL
+      videoUrl: "/videos/venio-eca.mp4"
     }
   ];
 
