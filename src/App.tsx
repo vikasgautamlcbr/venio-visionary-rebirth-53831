@@ -9,6 +9,7 @@ import VenioLegalHold from "./pages/VenioLegalHold";
 import LawFirmSolutions from "./pages/LawFirmSolutions";
 import Pricing from "./pages/Pricing";
 import Resources from "./pages/Resources";
+import WhyVenio from "./pages/WhyVenio";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/law-firm-solutions" element={<LawFirmSolutions />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/why-venio" element={<WhyVenio />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
