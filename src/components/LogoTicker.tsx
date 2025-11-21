@@ -38,14 +38,8 @@ const LogoTicker = () => {
   }, []);
 
   return (
-    <section className="py-12 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-            Trusted by Leading Legal Teams Worldwide
-          </p>
-        </div>
-        
+    <section className="py-8 bg-background relative overflow-hidden -mt-6">
+      <div className="container mx-auto px-4">        
         <div ref={scrollerRef} className="scroller relative overflow-hidden">
           <div className="scroller-inner flex gap-12 animate-scroll">
             {logos.map((logo, index) => (
