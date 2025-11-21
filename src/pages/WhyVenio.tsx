@@ -33,6 +33,7 @@ import {
 import { useEffect, useState } from "react";
 import { DownloadFormDialog } from "@/components/DemoGateDialog";
 import { CalculatorDialog } from "@/components/CalculatorDialog";
+import { StorylaneDemoDialog } from "@/components/StorylaneDemoDialog";
 import amentum from "@/assets/clients/amentum.webp";
 import consilio from "@/assets/clients/consilio.webp";
 import array from "@/assets/clients/array.webp";
@@ -45,6 +46,7 @@ import epario from "@/assets/clients/epario.webp";
 const WhyVenio = () => {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false);
   const [calculatorDialogOpen, setCalculatorDialogOpen] = useState(false);
+  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
   const [selectedResource, setSelectedResource] = useState("");
 
   // Scroll to top on page load
@@ -521,8 +523,8 @@ const WhyVenio = () => {
 
             {/* Vertical Workflow Timeline */}
             <div className="max-w-5xl mx-auto relative">
-              {/* Vertical connecting line */}
-              <div className="absolute left-8 top-20 bottom-20 w-1 bg-gradient-to-b from-accent via-secondary to-primary rounded-full hidden md:block"></div>
+              {/* Vertical connecting line - stops before last card */}
+              <div className="absolute left-8 top-20 h-[calc(100%-280px)] w-1 bg-gradient-to-b from-accent via-secondary to-primary rounded-full hidden md:block"></div>
               
               <div className="space-y-8">
                 {/* Step 1: Legal Hold */}
@@ -721,7 +723,11 @@ const WhyVenio = () => {
 
               {/* Bottom CTA */}
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-gradient-to-r from-accent to-secondary text-white hover:opacity-90 shadow-lg">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-accent to-secondary text-white hover:opacity-90 shadow-lg"
+                  onClick={() => setDemoDialogOpen(true)}
+                >
                   See the Platform in Action
                   <Play className="ml-2 h-5 w-5" />
                 </Button>
@@ -821,12 +827,12 @@ const WhyVenio = () => {
 
               {/* Smaller Cards */}
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <FileCheck className="h-6 w-6 text-blue-600" />
                   </div>
                   <h3 className="font-bold mb-2">Venio ECA Brief</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Early Case Assessment features and benefits</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">Early Case Assessment features and benefits</p>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -840,12 +846,12 @@ const WhyVenio = () => {
               </Card>
 
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <Shield className="h-6 w-6 text-amber-600" />
                   </div>
                   <h3 className="font-bold mb-2">Venio Legal Hold Product Brief</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Complete legal hold management capabilities</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">Complete legal hold management capabilities</p>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -859,12 +865,12 @@ const WhyVenio = () => {
               </Card>
 
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <Brain className="h-6 w-6 text-green-600" />
                   </div>
                   <h3 className="font-bold mb-2">Review Overview</h3>
-                  <p className="text-sm text-muted-foreground mb-4">AI-powered review capabilities and workflows</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">AI-powered review capabilities and workflows</p>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -878,12 +884,12 @@ const WhyVenio = () => {
               </Card>
 
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <DollarSign className="h-6 w-6 text-purple-600" />
                   </div>
                   <h3 className="font-bold mb-2">Savings Calculator</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Calculate your potential cost savings</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">Calculate your potential cost savings with Venio</p>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -897,12 +903,12 @@ const WhyVenio = () => {
               </Card>
 
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <Shield className="h-6 w-6 text-red-600" />
                   </div>
                   <h3 className="font-bold mb-2">Security Whitepaper</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Compliance and security architecture</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">Compliance and security architecture</p>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -1027,6 +1033,10 @@ const WhyVenio = () => {
       <CalculatorDialog
         open={calculatorDialogOpen}
         onOpenChange={setCalculatorDialogOpen}
+      />
+      <StorylaneDemoDialog
+        open={demoDialogOpen}
+        onOpenChange={setDemoDialogOpen}
       />
     </div>
   );
