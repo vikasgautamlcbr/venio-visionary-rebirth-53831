@@ -283,7 +283,7 @@ const WhyVenio = () => {
                 onClick={() => handleDownloadClick("Venio Comparison Sheet")}
               >
                 Download the Venio Comparison Sheet
-                <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
+                <Download className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
