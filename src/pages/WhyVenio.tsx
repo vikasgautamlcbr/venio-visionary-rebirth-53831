@@ -792,33 +792,33 @@ const WhyVenio = () => {
 
             {/* Bento Grid Layout */}
             <div className="grid md:grid-cols-3 gap-6">
-              {/* Featured Large Card */}
+              {/* Featured Large Card - Savings Calculator */}
               <div className="md:col-span-2 md:row-span-2">
                 <Card className="glass hover:shadow-2xl transition-all duration-300 cursor-pointer h-full group overflow-hidden border-2 border-accent/20">
                   <CardContent className="p-0 h-full flex flex-col">
-                    <div className="relative h-64 bg-gradient-to-br from-accent/20 via-primary/10 to-accent/20 overflow-hidden">
+                    <div className="relative h-64 bg-gradient-to-br from-purple-500/20 via-accent/10 to-purple-500/20 overflow-hidden">
                       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-32 h-32 rounded-2xl bg-white shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <Download className="h-16 w-16 text-accent" />
+                          <DollarSign className="h-16 w-16 text-purple-600" />
                         </div>
                       </div>
                     </div>
                     <div className="p-8 flex-1 flex flex-col">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 mb-4 w-fit">
                         <Sparkles className="h-3 w-3 text-accent" />
-                        <span className="text-xs font-medium text-accent">Featured</span>
+                        <span className="text-xs font-medium text-accent">Featured Tool</span>
                       </div>
-                      <h3 className="text-2xl font-bold mb-3">Complete Comparison Sheet</h3>
+                      <h3 className="text-2xl font-bold mb-3">Venio Savings Calculator</h3>
                       <p className="text-muted-foreground mb-6 flex-1">
-                        Comprehensive guide comparing Venio against legacy tools and point solutions. Includes feature matrix, pricing analysis, and ROI calculator.
+                        Discover exactly how much you can save with Venio's eDiscovery platform. Get instant calculations based on your case volume and data size. See your potential annual savings in real-time.
                       </p>
                       <Button 
                         className="w-full group"
-                        onClick={() => handleDownloadClick("Complete Comparison Sheet")}
+                        onClick={() => setCalculatorDialogOpen(true)}
                       >
-                        Download Full Sheet
-                        <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                        Launch Calculator
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
                   </CardContent>
@@ -826,6 +826,24 @@ const WhyVenio = () => {
               </div>
 
               {/* Smaller Cards */}
+              <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Download className="h-6 w-6 text-accent" />
+                  </div>
+                  <h3 className="font-bold mb-2">Comparison Sheet</h3>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">Feature matrix and pricing comparison guide</p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => handleDownloadClick("Complete Comparison Sheet")}
+                  >
+                    <Download className="mr-2 h-3 w-3" />
+                    Download PDF
+                  </Button>
+                </CardContent>
+              </Card>
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
                 <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -885,30 +903,11 @@ const WhyVenio = () => {
 
               <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
                 <CardContent className="p-6 flex flex-col h-full">
-                  <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <DollarSign className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <h3 className="font-bold mb-2">Savings Calculator</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-1">Calculate your potential cost savings with Venio</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full"
-                    onClick={() => setCalculatorDialogOpen(true)}
-                  >
-                    <ArrowRight className="mr-2 h-3 w-3" />
-                    Launch Tool
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <CardContent className="p-6 flex flex-col h-full">
                   <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <Shield className="h-6 w-6 text-red-600" />
                   </div>
                   <h3 className="font-bold mb-2">Security Whitepaper</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-1">Compliance and security architecture</p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">Compliance and security architecture details</p>
                   <Button 
                     variant="outline" 
                     size="sm" 
