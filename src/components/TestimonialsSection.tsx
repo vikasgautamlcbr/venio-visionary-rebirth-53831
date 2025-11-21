@@ -241,7 +241,8 @@ const TestimonialsSection = () => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-12 w-auto object-contain grayscale brightness-0"
+                  style={{ height: '36px' }}
+                  className="w-auto object-contain grayscale brightness-0"
                 />
               </div>
             ))}
