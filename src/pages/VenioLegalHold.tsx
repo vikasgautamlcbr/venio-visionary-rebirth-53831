@@ -319,7 +319,7 @@ const VenioLegalHold = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <button className="btn px-8 py-4 text-lg group flex-1 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <button className="btn px-8 py-4 text-lg group flex-1 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <Download className="mr-2 h-5 w-5" />
                     Download Now
                   </button>
