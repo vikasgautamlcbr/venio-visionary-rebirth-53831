@@ -279,11 +279,11 @@ const WhyVenio = () => {
             <div className="text-center mt-8">
               <Button 
                 variant="outline" 
-                className="group"
+                className="group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 onClick={() => handleDownloadClick("Venio Comparison Sheet")}
               >
                 Download the Venio Comparison Sheet
-                <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
               </Button>
             </div>
           </div>
