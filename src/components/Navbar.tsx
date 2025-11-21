@@ -25,21 +25,36 @@ const Navbar = () => {
     {
       label: "Solutions",
       hasDropdown: true,
-      items: ["Law Firms", "Legal Service Providers", "Corporations", "Government"],
-    },
-    {
-      label: "Use Cases",
-      hasDropdown: true,
-      items: ["Document Review", "Contract Analysis", "Legal Research", "Compliance"],
+      hasMegaMenu: true,
+      categories: [
+        {
+          title: "By Roles",
+          items: ["Law Firms", "Legal Service Providers", "Corporations", "Government"],
+        },
+        {
+          title: "By Industry",
+          items: ["Financial Services", "Healthcare", "Technology", "Energy"],
+        },
+        {
+          title: "By Use Cases",
+          items: ["Document Review", "Contract Analysis", "Legal Research", "Compliance"],
+        },
+      ],
     },
     {
       label: "Pricing",
       hasDropdown: false,
+      link: "/pricing",
     },
     {
       label: "Resources",
       hasDropdown: false,
       link: "/resources",
+    },
+    {
+      label: "Partner",
+      hasDropdown: false,
+      link: "#",
     },
     {
       label: "Why Venio",
@@ -67,23 +82,9 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item) => (
               <div key={item.label} className="group relative flex-shrink-0">
-                {item.label === "Pricing" ? (
+                {item.link && !item.hasDropdown ? (
                   <Link 
-                    to="/pricing"
-                    className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
-                  >
-                    {item.label}
-                  </Link>
-                ) : item.label === "Resources" ? (
-                  <Link 
-                    to="/resources"
-                    className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
-                  >
-                    {item.label}
-                  </Link>
-                ) : item.label === "Why Venio" ? (
-                  <Link 
-                    to="/why-venio"
+                    to={item.link}
                     className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
                   >
                     {item.label}
@@ -94,8 +95,51 @@ const Navbar = () => {
                     {item.hasDropdown && <ChevronDown size={16} className="opacity-70" />}
                   </button>
                 )}
-                {/* Dropdown */}
-                {item.hasDropdown && item.items && (
+                
+                {/* Mega Menu for Solutions */}
+                {item.hasDropdown && item.hasMegaMenu && item.categories && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <div className="glass-navbar rounded-xl shadow-2xl p-6 min-w-[600px]">
+                      <div className="grid grid-cols-3 gap-6">
+                        {item.categories.map((category) => (
+                          <div key={category.title}>
+                            <h3 className="text-accent font-semibold text-sm mb-3 uppercase tracking-wide">
+                              {category.title}
+                            </h3>
+                            <div className="space-y-1">
+                              {category.items.map((subItem) => {
+                                // Handle special link for Law Firm Solutions
+                                if (subItem === "Law Firms") {
+                                  return (
+                                    <Link
+                                      key={subItem}
+                                      to="/law-firm-solutions"
+                                      className="block px-3 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                                    >
+                                      {subItem}
+                                    </Link>
+                                  );
+                                }
+                                return (
+                                  <a
+                                    key={subItem}
+                                    href="#"
+                                    className="block px-3 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                                  >
+                                    {subItem}
+                                  </a>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Regular Dropdown */}
+                {item.hasDropdown && !item.hasMegaMenu && item.items && (
                   <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <div className="glass-navbar rounded-xl shadow-2xl p-4 min-w-[220px]">
                       {item.items.map((subItem) => {
@@ -108,18 +152,6 @@ const Navbar = () => {
                               className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
                             >
                               Venio Legal Hold
-                            </Link>
-                          );
-                        }
-                        // Handle special link for Law Firm Solutions
-                        if (item.label === "Solutions" && subItem === "Law Firms") {
-                          return (
-                            <Link
-                              key={subItem}
-                              to="/law-firm-solutions"
-                              className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
-                            >
-                              {subItem}
                             </Link>
                           );
                         }
@@ -163,25 +195,9 @@ const Navbar = () => {
           <div className="lg:hidden mt-4 glass-navbar rounded-xl p-4">
             {navItems.map((item) => (
               <div key={item.label} className="mb-4">
-                {item.label === "Pricing" ? (
+                {item.link && !item.hasDropdown ? (
                   <Link
-                    to="/pricing"
-                    className="font-semibold text-white mb-2 flex items-center gap-1 block"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ) : item.label === "Resources" ? (
-                  <Link
-                    to="/resources"
-                    className="font-semibold text-white mb-2 flex items-center gap-1 block"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ) : item.label === "Why Venio" ? (
-                  <Link
-                    to="/why-venio"
+                    to={item.link}
                     className="font-semibold text-white mb-2 flex items-center gap-1 block"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -193,7 +209,45 @@ const Navbar = () => {
                     {item.hasDropdown && <ChevronDown size={16} />}
                   </div>
                 )}
-                {item.hasDropdown && item.items && item.items.map((subItem) => {
+                
+                {/* Mega Menu for Solutions in Mobile */}
+                {item.hasDropdown && item.hasMegaMenu && item.categories && (
+                  <div className="ml-2 mt-2 space-y-3">
+                    {item.categories.map((category) => (
+                      <div key={category.title}>
+                        <div className="text-accent text-xs font-semibold mb-1 uppercase tracking-wide">
+                          {category.title}
+                        </div>
+                        {category.items.map((subItem) => {
+                          if (subItem === "Law Firms") {
+                            return (
+                              <Link
+                                key={subItem}
+                                to="/law-firm-solutions"
+                                className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {subItem}
+                              </Link>
+                            );
+                          }
+                          return (
+                            <a
+                              key={subItem}
+                              href="#"
+                              className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                            >
+                              {subItem}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Regular Dropdown in Mobile */}
+                {item.hasDropdown && !item.hasMegaMenu && item.items && item.items.map((subItem) => {
                   // Handle special link for Venio Legal Hold in mobile menu
                   if (item.label === "Products" && subItem === "Venio Review") {
                     return (
@@ -204,19 +258,6 @@ const Navbar = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Venio Legal Hold
-                      </Link>
-                    );
-                  }
-                  // Handle special link for Law Firm Solutions in mobile menu
-                  if (item.label === "Solutions" && subItem === "Law Firms") {
-                    return (
-                      <Link
-                        key={subItem}
-                        to="/law-firm-solutions"
-                        className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {subItem}
                       </Link>
                     );
                   }
