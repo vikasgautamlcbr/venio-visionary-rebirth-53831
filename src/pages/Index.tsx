@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import AutoRotatingTabs from "@/components/AutoRotatingTabs";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import LogoTicker from "@/components/LogoTicker";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
@@ -14,7 +13,6 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <AutoRotatingTabs />
         <TestimonialsSection />
         <LogoTicker />
         {/* Experience Venio in Action - to be added */}
