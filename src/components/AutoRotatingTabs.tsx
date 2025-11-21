@@ -1,58 +1,72 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, Zap, Brain, Globe } from "lucide-react";
 
 const AutoRotatingTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [progress, setProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const tabs = [
     {
       icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-grade security with SOC 2 Type II certification and end-to-end encryption",
-      videoPlaceholder: "/placeholder.svg"
+      title: "End-to-End Platform",
+      description: "Complete eDiscovery workflow from legal hold to production in one unified platform",
+      videoUrl: "/videos/end-to-end.mp4" // Replace with actual video URL
     },
     {
       icon: Brain,
       title: "AI-Powered Review",
       description: "Reduce review time by 70% with intelligent document analysis and predictive coding",
-      videoPlaceholder: "/placeholder.svg"
+      videoUrl: "/videos/ai-powered.mp4" // Replace with actual video URL
     },
     {
       icon: Zap,
-      title: "Lightning Fast Processing",
-      description: "Process terabytes of data in hours, not weeks, with our optimized infrastructure",
-      videoPlaceholder: "/placeholder.svg"
+      title: "Hybrid Deployment",
+      description: "Deploy anywhere with cloud, on-premises, or hybrid options to meet your needs",
+      videoUrl: "/videos/hybrid-deployment.mp4" // Replace with actual video URL
     },
     {
       icon: Globe,
-      title: "Global Deployment",
-      description: "Deploy anywhere with cloud, on-premises, or hybrid options to meet your needs",
-      videoPlaceholder: "/placeholder.svg"
+      title: "Cull Data Early",
+      description: "Reduce data volumes early with intelligent filtering and deduplication",
+      videoUrl: "/videos/cull-data.mp4" // Replace with actual video URL
     }
   ];
 
-  const DURATION = 5000; // 5 seconds per tab
+  const handleVideoEnd = () => {
+    setProgress(0);
+    setActiveTab((prev) => (prev + 1) % tabs.length);
+  };
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    setProgress(0);
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(0);
-      setActiveTab((prev) => (prev + 1) % tabs.length);
-    }, DURATION);
-
-    return () => clearInterval(interval);
-  }, [tabs.length]);
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(err => console.log("Video autoplay prevented:", err));
+    }
+  }, [activeTab]);
 
   useEffect(() => {
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 0;
-        return prev + (100 / (DURATION / 50));
-      });
-    }, 50);
+    if (!videoRef.current) return;
 
-    return () => clearInterval(progressInterval);
+    const updateProgress = () => {
+      if (videoRef.current) {
+        const percent = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+        setProgress(percent);
+      }
+    };
+
+    const video = videoRef.current;
+    video.addEventListener('timeupdate', updateProgress);
+
+    return () => {
+      video.removeEventListener('timeupdate', updateProgress);
+    };
   }, [activeTab]);
 
   return (
@@ -69,10 +83,7 @@ const AutoRotatingTabs = () => {
                 return (
                   <button
                     key={index}
-                    onClick={() => {
-                      setActiveTab(index);
-                      setProgress(0);
-                    }}
+                    onClick={() => handleTabClick(index)}
                     className={`w-full text-left p-5 rounded-xl transition-all duration-300 relative overflow-hidden group ${
                       isActive
                         ? "bg-gradient-to-r from-secondary/20 to-accent/20"
@@ -119,7 +130,7 @@ const AutoRotatingTabs = () => {
               })}
             </div>
 
-            {/* Right: Video Placeholder */}
+            {/* Right: Video */}
             <div className="relative">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -128,12 +139,16 @@ const AutoRotatingTabs = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="aspect-video rounded-2xl bg-gradient-to-br from-secondary/20 to-accent/20 border-2 border-white/20 flex items-center justify-center overflow-hidden"
+                  className="aspect-video rounded-2xl bg-gradient-to-br from-secondary/20 to-accent/20 border-2 border-white/20 overflow-hidden"
                 >
-                  <img
-                    src={tabs[activeTab].videoPlaceholder}
-                    alt={tabs[activeTab].title}
+                  <video
+                    ref={videoRef}
+                    src={tabs[activeTab].videoUrl}
                     className="w-full h-full object-cover"
+                    onEnded={handleVideoEnd}
+                    playsInline
+                    muted
+                    autoPlay
                   />
                 </motion.div>
               </AnimatePresence>
