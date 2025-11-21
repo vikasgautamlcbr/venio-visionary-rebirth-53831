@@ -136,8 +136,7 @@ const WhyVenio = () => {
                     <img 
                       src={logo.src} 
                       alt={logo.name} 
-                      className="w-auto object-contain brightness-0 invert"
-                      style={{ height: '27px' }}
+                      className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
                     />
                   </div>
                 ))}
@@ -159,8 +158,7 @@ const WhyVenio = () => {
                     <img 
                       src={logo.src} 
                       alt={logo.name} 
-                      className="w-auto object-contain brightness-0 invert"
-                      style={{ height: '27px' }}
+                      className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
                     />
                   </div>
                 ))}
