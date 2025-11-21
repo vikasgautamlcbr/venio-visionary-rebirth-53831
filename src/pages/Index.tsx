@@ -1,11 +1,10 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ProductsSection from "@/components/ProductsSection";
+import AutoRotatingTabs from "@/components/AutoRotatingTabs";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import FeaturesSection from "@/components/FeaturesSection";
+import LogoTicker from "@/components/LogoTicker";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import SecuritySection from "@/components/SecuritySection";
-import CTABanner from "@/components/CTABanner";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 
@@ -15,12 +14,13 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <ProductsSection />
+        <AutoRotatingTabs />
         <TestimonialsSection />
-        <FeaturesSection />
+        <LogoTicker />
+        {/* Experience Venio in Action - to be added */}
         <CaseStudiesSection />
         <SecuritySection />
-        <CTABanner />
+        {/* What Challenges section - to be added */}
         <FAQSection />
       </main>
       <Footer />
