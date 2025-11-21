@@ -10,23 +10,34 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden gradient-animated pt-24 pb-0">
-      {/* Dynamic Animated Background */}
+    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-24 pb-0">
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 gradient-animated"></div>
+
+      {/* Dynamic Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Large Glowing Orbs */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-32 right-10 w-[500px] h-[500px] bg-accent/25 rounded-full blur-3xl float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 rounded-full blur-[80px]" style={{ background: 'hsla(202, 100%, 50%, 0.3)' }}>
+          <div className="w-full h-full animate-float"></div>
+        </div>
+        <div className="absolute bottom-32 right-10 w-[500px] h-[500px] rounded-full blur-[80px]" style={{ background: 'hsla(145, 53%, 51%, 0.25)' }}>
+          <div className="w-full h-full float-delayed"></div>
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[80px]" style={{ background: 'hsla(217, 72%, 15%, 0.2)' }}>
+          <div className="w-full h-full animate-pulse"></div>
+        </div>
         
         {/* Floating Geometric Shapes */}
-        <div className="absolute top-40 right-20 w-20 h-20 border-2 border-white/20 rounded-lg animate-spin-slow"></div>
-        <div className="absolute bottom-40 left-32 w-16 h-16 border-2 border-accent/30 rotate-45 animate-bounce-slow"></div>
-        <div className="absolute top-1/3 left-20 w-12 h-12 bg-secondary/20 rounded-full animate-float"></div>
-        <div className="absolute bottom-1/3 right-40 w-24 h-24 border-2 border-white/10 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-20 h-20 border-2 rounded-lg animate-spin-slow" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}></div>
+        <div className="absolute bottom-40 left-32 w-16 h-16 border-2 rotate-45 animate-bounce-slow" style={{ borderColor: 'rgba(61, 196, 126, 0.3)' }}></div>
+        <div className="absolute top-1/3 left-20 w-12 h-12 rounded-full animate-float" style={{ background: 'hsla(202, 100%, 50%, 0.2)' }}></div>
+        <div className="absolute bottom-1/3 right-40 w-24 h-24 border-2 rounded-full animate-pulse" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}></div>
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-transparent"></div>
+      {/* Gradient Overlay - ends at middle of video placeholder */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="h-[85%] bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
+      </div>
 
       <div className="container mx-auto px-4 relative z-10 pt-12">
         <div className="max-w-5xl mx-auto text-center">
