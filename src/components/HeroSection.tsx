@@ -39,6 +39,9 @@ const HeroSection = () => {
         <div className="h-[85%] bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
       </div>
 
+      {/* White background for bottom section */}
+      <div className="absolute inset-x-0 bottom-0 h-[35%] bg-white pointer-events-none"></div>
+
       <div className="container mx-auto px-4 relative z-10 pt-12">
         <div className="max-w-5xl mx-auto text-center">
           {/* Hero Content */}
