@@ -69,6 +69,17 @@ const Navbar = () => {
     return location.pathname === link;
   };
 
+  const isActiveDropdownItem = (itemLabel: string, subItem: string) => {
+    // Check for specific page mappings
+    if (itemLabel === "Products" && subItem === "Venio Review" && location.pathname === "/venio-legal-hold") {
+      return true;
+    }
+    if (itemLabel === "Solutions" && subItem === "Law Firms" && location.pathname === "/law-firm-solutions") {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <nav
       className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 ease-out ${
@@ -113,18 +124,23 @@ const Navbar = () => {
                       <div className="grid grid-cols-3 gap-6">
                         {item.categories.map((category) => (
                           <div key={category.title}>
-                            <h3 className="text-accent font-semibold text-sm mb-3 uppercase tracking-wide">
+                            <h3 className="text-accent font-semibold text-xs mb-3 uppercase tracking-wider px-3">
                               {category.title}
                             </h3>
                             <div className="space-y-1">
                               {category.items.map((subItem) => {
+                                const isActive = isActiveDropdownItem(item.label, subItem);
                                 // Handle special link for Law Firm Solutions
                                 if (subItem === "Law Firms") {
                                   return (
                                     <Link
                                       key={subItem}
                                       to="/law-firm-solutions"
-                                      className="block px-3 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                                      className={`relative block px-3 py-2.5 text-sm rounded-lg transition-all duration-200 ${
+                                        isActive
+                                          ? 'text-white bg-accent/20 font-medium border-l-2 border-accent'
+                                          : 'text-white/90 hover:text-white hover:bg-white/10 hover:translate-x-1'
+                                      }`}
                                     >
                                       {subItem}
                                     </Link>
@@ -134,7 +150,7 @@ const Navbar = () => {
                                   <a
                                     key={subItem}
                                     href="#"
-                                    className="block px-3 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                                    className="relative block px-3 py-2.5 text-sm text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 hover:translate-x-1"
                                   >
                                     {subItem}
                                   </a>
@@ -151,15 +167,20 @@ const Navbar = () => {
                 {/* Regular Dropdown */}
                 {item.hasDropdown && !item.hasMegaMenu && item.items && (
                   <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                    <div className="rounded-xl shadow-2xl p-4 min-w-[220px] bg-[rgb(11,28,63)] border border-white/30" style={{ backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
+                    <div className="rounded-xl shadow-2xl p-3 min-w-[240px] bg-[rgb(11,28,63)] border border-white/30" style={{ backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
                       {item.items.map((subItem) => {
+                        const isActive = isActiveDropdownItem(item.label, subItem);
                         // Handle special link for Venio Legal Hold
                         if (item.label === "Products" && subItem === "Venio Review") {
                           return (
                             <Link
                               key={subItem}
                               to="/venio-legal-hold"
-                              className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                              className={`relative block px-4 py-2.5 text-sm rounded-lg transition-all duration-200 ${
+                                isActive
+                                  ? 'text-white bg-accent/20 font-medium border-l-2 border-accent'
+                                  : 'text-white/90 hover:text-white hover:bg-white/10 hover:translate-x-1'
+                              }`}
                             >
                               Venio Legal Hold
                             </Link>
@@ -169,7 +190,7 @@ const Navbar = () => {
                           <a
                             key={subItem}
                             href="#"
-                            className="block px-4 py-2 text-sm text-white hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                            className="relative block px-4 py-2.5 text-sm text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 hover:translate-x-1"
                           >
                             {subItem}
                           </a>
@@ -229,16 +250,21 @@ const Navbar = () => {
                   <div className="ml-2 mt-2 space-y-3">
                     {item.categories.map((category) => (
                       <div key={category.title}>
-                        <div className="text-accent text-xs font-semibold mb-1 uppercase tracking-wide">
+                        <div className="text-accent text-xs font-semibold mb-1 uppercase tracking-wider px-2">
                           {category.title}
                         </div>
                         {category.items.map((subItem) => {
+                          const isActive = isActiveDropdownItem(item.label, subItem);
                           if (subItem === "Law Firms") {
                             return (
                               <Link
                                 key={subItem}
                                 to="/law-firm-solutions"
-                                className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                                className={`block px-4 py-2 text-sm rounded-lg transition-all ${
+                                  isActive
+                                    ? 'text-white bg-accent/20 font-medium border-l-2 border-accent'
+                                    : 'text-white/90 hover:text-accent hover:bg-white/10'
+                                }`}
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
                                 {subItem}
@@ -249,7 +275,7 @@ const Navbar = () => {
                             <a
                               key={subItem}
                               href="#"
-                              className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                              className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
                             >
                               {subItem}
                             </a>
@@ -262,13 +288,18 @@ const Navbar = () => {
                 
                 {/* Regular Dropdown in Mobile */}
                 {item.hasDropdown && !item.hasMegaMenu && item.items && item.items.map((subItem) => {
+                  const isActive = isActiveDropdownItem(item.label, subItem);
                   // Handle special link for Venio Legal Hold in mobile menu
                   if (item.label === "Products" && subItem === "Venio Review") {
                     return (
                       <Link
                         key={subItem}
                         to="/venio-legal-hold"
-                        className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                        className={`block px-4 py-2 text-sm rounded-lg transition-all ${
+                          isActive
+                            ? 'text-white bg-accent/20 font-medium border-l-2 border-accent ml-2'
+                            : 'text-white/90 hover:text-accent hover:bg-white/10'
+                        }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Venio Legal Hold
@@ -279,7 +310,7 @@ const Navbar = () => {
                     <a
                       key={subItem}
                       href="#"
-                      className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-md transition-colors"
+                      className="block px-4 py-2 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
                     >
                       {subItem}
                     </a>
