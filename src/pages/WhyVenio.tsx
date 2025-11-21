@@ -494,157 +494,222 @@ const WhyVenio = () => {
           </div>
         </section>
 
-        {/* Platform Capabilities Section */}
+        {/* Platform Capabilities Section - Interactive Workflow Journey */}
         <section className="py-20 px-6 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Platform capabilities</h2>
+              <h2 className="text-4xl font-bold mb-4">Your eDiscovery Journey</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Experience the complete eDiscovery workflow with interactive demonstrations
+                Follow the complete workflow from legal hold to production—all in one unified platform
               </p>
             </div>
 
-            <div className="space-y-8">
-              {/* Feature 1: Unified Workflow - Text Left, Video Right */}
-              <div className="glass rounded-3xl p-8 md:p-12 border-2 border-muted-foreground/10 hover:border-accent/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                  <div>
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                        <Workflow className="w-7 h-7 text-blue-600" />
+            {/* Vertical Workflow Timeline */}
+            <div className="max-w-5xl mx-auto relative">
+              {/* Vertical connecting line */}
+              <div className="absolute left-8 top-20 bottom-20 w-1 bg-gradient-to-b from-accent via-secondary to-primary rounded-full hidden md:block"></div>
+              
+              <div className="space-y-8">
+                {/* Step 1: Legal Hold */}
+                <div className="relative group">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
+                    <div className="grid md:grid-cols-12 gap-8 items-center">
+                      {/* Number Badge */}
+                      <div className="md:col-span-1">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            1
+                          </div>
+                          <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                        </div>
                       </div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-primary">
-                        Unified Workflow
-                      </h3>
+                      
+                      {/* Content */}
+                      <div className="md:col-span-7">
+                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
+                          <Shield className="h-7 w-7 text-accent" />
+                          Legal Hold Automation
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          Trigger custodian notifications, track acknowledgments, and preserve data from day one—with full audit trails for defensibility.
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Auto-notifications</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Audit logs</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Compliance tracking</span>
+                        </div>
+                      </div>
+                      
+                      {/* Visual Element */}
+                      <div className="md:col-span-4">
+                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
+                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                          <Shield className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-lg text-muted-foreground font-body leading-relaxed">
-                      Legal Hold automation, secure ingestion, built-in ECA, review, and production—all in one seamless platform.
-                    </p>
                   </div>
-                  
-                  <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center overflow-hidden group">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-                    <div className="relative z-10 text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="h-8 w-8 text-accent" />
+                </div>
+
+                {/* Step 2: Data Collection */}
+                <div className="relative group">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl">
+                    <div className="grid md:grid-cols-12 gap-8 items-center">
+                      <div className="md:col-span-1">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-secondary/70 flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            2
+                          </div>
+                          <div className="absolute inset-0 bg-secondary/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                        </div>
                       </div>
-                      <p className="text-sm text-muted-foreground font-mono">Workflow Demo Video</p>
+                      
+                      <div className="md:col-span-7">
+                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
+                          <Database className="h-7 w-7 text-secondary" />
+                          Secure Data Ingestion
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          Collect from O365, Google Workspace, Slack, file shares, and forensic sources. Native format preservation with chain-of-custody maintained.
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Multi-source</span>
+                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Encrypted transfer</span>
+                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Format preservation</span>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-4">
+                        <div className="aspect-video bg-gradient-to-br from-secondary/20 to-accent/10 rounded-2xl border-2 border-secondary/20 flex items-center justify-center relative overflow-hidden group-hover:border-secondary/40 transition-all">
+                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                          <Database className="h-20 w-20 text-secondary/40 relative z-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3: Early Case Assessment */}
+                <div className="relative group">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-primary/30 transition-all duration-500 hover:shadow-2xl">
+                    <div className="grid md:grid-cols-12 gap-8 items-center">
+                      <div className="md:col-span-1">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            3
+                          </div>
+                          <div className="absolute inset-0 bg-primary/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-7">
+                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
+                          <Zap className="h-7 w-7 text-primary" />
+                          Early Case Assessment
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          Rapid sampling, culling, and analytics to reduce data volume by up to 90% before review. Understand your case early and make informed decisions.
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">Fast analytics</span>
+                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">90% reduction</span>
+                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">Visual insights</span>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-4">
+                        <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/10 rounded-2xl border-2 border-primary/20 flex items-center justify-center relative overflow-hidden group-hover:border-primary/40 transition-all">
+                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                          <Zap className="h-20 w-20 text-primary/40 relative z-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 4: AI-Powered Review */}
+                <div className="relative group">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-accent/30 transition-all duration-500 hover:shadow-2xl">
+                    <div className="grid md:grid-cols-12 gap-8 items-center">
+                      <div className="md:col-span-1">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-secondary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            4
+                          </div>
+                          <div className="absolute inset-0 bg-accent/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-7">
+                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
+                          <Brain className="h-7 w-7 text-accent" />
+                          AI-Powered Review
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          Continuous Active Learning (CAL), predictive coding, email threading, near-duplicate detection. Reduce manual review by 70% while improving accuracy.
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">CAL/TAR</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">Predictive coding</span>
+                          <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">70% faster</span>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-4">
+                        <div className="aspect-video bg-gradient-to-br from-accent/20 to-secondary/10 rounded-2xl border-2 border-accent/20 flex items-center justify-center relative overflow-hidden group-hover:border-accent/40 transition-all">
+                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                          <Brain className="h-20 w-20 text-accent/40 relative z-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 5: Production & Export */}
+                <div className="relative group">
+                  <div className="glass rounded-3xl p-8 md:p-10 border-2 border-transparent hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl">
+                    <div className="grid md:grid-cols-12 gap-8 items-center">
+                      <div className="md:col-span-1">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            5
+                          </div>
+                          <div className="absolute inset-0 bg-secondary/30 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-7">
+                        <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-3">
+                          <FileCheck className="h-7 w-7 text-secondary" />
+                          Production & Export
+                        </h3>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          Generate native load files, apply redactions, perform QC checks, and export with full defensibility. Ready for opposing counsel or court.
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Load files</span>
+                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Redaction tools</span>
+                          <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium">Defensible export</span>
+                        </div>
+                      </div>
+                      
+                      <div className="md:col-span-4">
+                        <div className="aspect-video bg-gradient-to-br from-secondary/20 to-primary/10 rounded-2xl border-2 border-secondary/20 flex items-center justify-center relative overflow-hidden group-hover:border-secondary/40 transition-all">
+                          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                          <FileCheck className="h-20 w-20 text-secondary/40 relative z-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Feature 2 & 3: Two Cards Side by Side */}
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Card 1: AI & Review */}
-                <div className="glass rounded-3xl p-8 border-2 border-muted-foreground/10 hover:border-secondary/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
-                  <div className="relative aspect-video bg-gradient-to-br from-secondary/10 to-primary/10 rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center mb-8 overflow-hidden group">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-                    <div className="relative z-10 text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="h-8 w-8 text-secondary" />
-                      </div>
-                      <p className="text-sm text-muted-foreground font-mono">AI Review Demo</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                      <Brain className="w-7 h-7 text-blue-600" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-primary">
-                      AI & Review
-                    </h3>
-                  </div>
-                  <p className="text-lg text-muted-foreground font-body leading-relaxed">
-                    Continuous Active Learning (CAL), predictive prioritization, near-duplicate clustering.
-                  </p>
-                </div>
-
-                {/* Card 2: Early Case Assessment */}
-                <div className="glass rounded-3xl p-8 border-2 border-muted-foreground/10 hover:border-accent/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
-                  <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-secondary/10 rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center mb-8 overflow-hidden group">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-                    <div className="relative z-10 text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="h-8 w-8 text-accent" />
-                      </div>
-                      <p className="text-sm text-muted-foreground font-mono">ECA Demo</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center flex-shrink-0">
-                      <Zap className="w-7 h-7 text-green-600" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-primary">
-                      Early Case Assessment
-                    </h3>
-                  </div>
-                  <p className="text-lg text-muted-foreground font-body leading-relaxed">
-                    Sampling, custodian prioritization, fast analytics, and exportable reports.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 4: Production - Video Left, Text Right */}
-              <div className="glass rounded-3xl p-8 md:p-12 border-2 border-muted-foreground/10 hover:border-secondary/30 transition-all duration-300 glow-on-hover hover:shadow-xl group">
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                  <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl border-2 border-muted-foreground/20 flex items-center justify-center overflow-hidden group">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-                    <div className="relative z-10 text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="h-8 w-8 text-secondary" />
-                      </div>
-                      <p className="text-sm text-muted-foreground font-mono">Production Demo</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center flex-shrink-0">
-                        <FileCheck className="w-7 h-7 text-green-600" />
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-primary">
-                        Production & Export
-                      </h3>
-                    </div>
-                    <p className="text-lg text-muted-foreground font-body leading-relaxed">
-                      Native load-file generation, redaction tools, QC, and defensible export processes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Features Row */}
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card className="glass hover:shadow-xl transition-all duration-300 border-2 border-muted-foreground/10 hover:border-accent/30">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
-                        <Shield className="h-6 w-6 text-red-600" />
-                      </div>
-                      <h3 className="text-xl font-bold">Security & Compliance</h3>
-                    </div>
-                    <p className="text-muted-foreground">
-                      Encryption, RBAC, immutable logs, SOC/ISO controls.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="glass hover:shadow-xl transition-all duration-300 border-2 border-muted-foreground/10 hover:border-accent/30">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                        <Database className="h-6 w-6 text-blue-600" />
-                      </div>
-                      <h3 className="text-xl font-bold">Integrations</h3>
-                    </div>
-                    <p className="text-muted-foreground">
-                      O365, Google Workspace, Slack, Teams, cloud storage, forensic exports.
-                    </p>
-                  </CardContent>
-                </Card>
+              {/* Bottom CTA */}
+              <div className="mt-12 text-center">
+                <Button size="lg" className="bg-gradient-to-r from-accent to-secondary text-white hover:opacity-90 shadow-lg">
+                  See the Platform in Action
+                  <Play className="ml-2 h-5 w-5" />
+                </Button>
               </div>
             </div>
           </div>
@@ -660,31 +725,27 @@ const WhyVenio = () => {
               </p>
             </div>
 
-            <div className="glass rounded-2xl p-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-                {[
-                  { name: "Microsoft 365", icon: "M365" },
-                  { name: "Google Workspace", icon: "GWS" },
-                  { name: "Slack", icon: "SLACK" },
-                  { name: "Microsoft Teams", icon: "TEAMS" },
-                  { name: "AWS", icon: "AWS" },
-                  { name: "Azure", icon: "AZURE" },
-                  { name: "Box", icon: "BOX" },
-                  { name: "Dropbox", icon: "DBXPX" },
-                ].map((integration, index) => (
-                  <div
-                    key={index}
-                    className="group w-full aspect-square rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-border/50 hover:border-primary/50 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                  >
-                    <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-2 rounded-lg bg-white shadow-md flex items-center justify-center text-xs font-bold text-primary group-hover:shadow-xl transition-shadow">
-                        {integration.icon}
-                      </div>
-                      <p className="text-xs font-medium text-muted-foreground">{integration.name}</p>
-                    </div>
+            <div className="flex items-center justify-center gap-12 flex-wrap px-8">
+              {[
+                { name: "Microsoft 365", icon: "M365" },
+                { name: "Google Workspace", icon: "GWS" },
+                { name: "Slack", icon: "SLACK" },
+                { name: "Microsoft Teams", icon: "TEAMS" },
+                { name: "AWS", icon: "AWS" },
+                { name: "Azure", icon: "AZURE" },
+                { name: "Box", icon: "BOX" },
+                { name: "Dropbox", icon: "DBXPX" },
+              ].map((integration, index) => (
+                <div
+                  key={index}
+                  className="group transition-all duration-300 hover:scale-110"
+                  title={integration.name}
+                >
+                  <div className="w-16 h-16 rounded-lg bg-white shadow-md flex items-center justify-center text-xs font-bold text-primary group-hover:shadow-xl transition-shadow">
+                    {integration.icon}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -695,17 +756,8 @@ const WhyVenio = () => {
         {/* Case Studies Section */}
         <CaseStudiesSection />
 
-        {/* Testimonials Section - Version 1 from TestimonialsSection */}
-        <section className="py-20 bg-gradient-to-b from-white to-muted">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-12 max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Trusted by Leading Legal Teams Worldwide
-              </h2>
-            </div>
-            <TestimonialsSection />
-          </div>
-        </section>
+        {/* Testimonials Section */}
+        <TestimonialsSection />
 
         {/* Resources Section - Bento Card Layout */}
         <section className="py-20 px-6 bg-muted/30">
