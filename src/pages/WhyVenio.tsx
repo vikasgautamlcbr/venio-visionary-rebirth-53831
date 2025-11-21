@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import SecuritySection from "@/components/SecuritySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
 import {
   Accordion,
   AccordionContent,
@@ -43,6 +44,18 @@ import proteus from "@/assets/clients/proteus.webp";
 import cds from "@/assets/clients/cds.webp";
 import epario from "@/assets/clients/epario.webp";
 
+const sections = [
+  { id: "hero", label: "Overview" },
+  { id: "problem", label: "Problem" },
+  { id: "comparison", label: "Comparison" },
+  { id: "pillars", label: "Pillars" },
+  { id: "journey", label: "Journey" },
+  { id: "security", label: "Security" },
+  { id: "case-studies", label: "Case Studies" },
+  { id: "resources", label: "Resources" },
+  { id: "faq", label: "FAQ" },
+];
+
 const WhyVenio = () => {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false);
   const [calculatorDialogOpen, setCalculatorDialogOpen] = useState(false);
@@ -62,10 +75,11 @@ const WhyVenio = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <ScrollProgressIndicator sections={sections} />
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-32 pb-36">
+        <section id="hero" className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-32 pb-36">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
@@ -154,7 +168,7 @@ const WhyVenio = () => {
         </section>
 
         {/* Section 1 - The Problem */}
-        <section className="py-20 bg-muted/30">
+        <section id="problem" className="py-20 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">
@@ -200,7 +214,7 @@ const WhyVenio = () => {
         </section>
 
         {/* Comparison Table Section */}
-        <section className="py-20 px-6">
+        <section id="comparison" className="py-20 px-6">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Venio vs others — at a glance</h2>
@@ -290,7 +304,7 @@ const WhyVenio = () => {
         </section>
 
         {/* The 6 Pillars Section - Bento Grid */}
-        <section className="py-20 px-6 bg-muted/30">
+        <section id="pillars" className="py-20 px-6 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">The pillars of Venio Advantage</h2>
@@ -512,7 +526,7 @@ const WhyVenio = () => {
         </section>
 
         {/* Platform Capabilities Section - Interactive Workflow Journey */}
-        <section className="py-20 px-6 bg-muted/30">
+        <section id="journey" className="py-20 px-6 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Your eDiscovery Journey with Venio</h2>
@@ -772,16 +786,20 @@ const WhyVenio = () => {
         </section>
 
         {/* Security Section */}
-        <SecuritySection />
+        <div id="security">
+          <SecuritySection />
+        </div>
 
         {/* Case Studies Section */}
-        <CaseStudiesSection />
+        <div id="case-studies">
+          <CaseStudiesSection />
+        </div>
 
         {/* Testimonials Section */}
         <TestimonialsSection />
 
         {/* Resources Section - Bento Card Layout */}
-        <section className="py-20 px-6 bg-muted/30">
+        <section id="resources" className="py-20 px-6 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Resources & comparison kit</h2>
@@ -924,7 +942,7 @@ const WhyVenio = () => {
         </section>
 
         {/* FAQ Section with Original Questions */}
-        <section className="py-12 bg-gradient-to-b from-white via-muted/50 to-white relative overflow-hidden">
+        <section id="faq" className="py-12 bg-gradient-to-b from-white via-muted/50 to-white relative overflow-hidden">
           {/* Decorative Elements */}
           <div className="absolute top-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
