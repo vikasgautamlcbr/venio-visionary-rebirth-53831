@@ -214,10 +214,6 @@ const TestimonialsSection = () => {
 
         {/* Logo Ticker - Below scroll indicator */}
         <div className="mt-16 relative overflow-hidden py-8">
-          {/* Gradient overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-          
           <div className="logo-ticker-inner flex gap-16 animate-logo-scroll">
             {[
               { src: amentumLogo, alt: "Amentum" },
@@ -245,7 +241,7 @@ const TestimonialsSection = () => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-12 w-auto object-contain opacity-70"
+                  className="h-12 w-auto object-contain grayscale brightness-0"
                 />
               </div>
             ))}
