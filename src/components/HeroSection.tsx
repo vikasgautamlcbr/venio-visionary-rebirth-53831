@@ -108,8 +108,6 @@ const HeroSection = () => {
                   />
                 </div>
               </div>
-              {/* Glow effect under image */}
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-accent/30 rounded-full blur-3xl"></div>
             </div>
           </div>
         </div>
