@@ -7,14 +7,14 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import amentumLogo from "@/assets/clients/amentum.webp";
-import arrayLogo from "@/assets/clients/array.webp";
-import cdsLogo from "@/assets/clients/cds.webp";
-import consilioLogo from "@/assets/clients/consilio.webp";
-import eparioLogo from "@/assets/clients/epario.webp";
-import haugLogo from "@/assets/clients/haug-partners.webp";
-import nixonLogo from "@/assets/clients/nixon-peabody.webp";
-import proteusLogo from "@/assets/clients/proteus.webp";
+import amentumLogo from "@/assets/clients/amentum-new.webp";
+import arrayLogo from "@/assets/clients/array-new.webp";
+import cdsLogo from "@/assets/clients/cds-new.webp";
+import consilioLogo from "@/assets/clients/consilio-new.webp";
+import eparioLogo from "@/assets/clients/epario-new.webp";
+import haugLogo from "@/assets/clients/haug-partners-new.webp";
+import nixonLogo from "@/assets/clients/nixon-peabody-new.webp";
+import proteusLogo from "@/assets/clients/proteus-new.webp";
 
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -212,11 +212,23 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Logo Trail - Below scroll indicator */}
-        {/* TEMPORARILY HIDDEN - Can be restored later
-        <div className="mt-16 overflow-hidden py-6">
-          <div className="flex gap-24 animate-scroll">
+        {/* Logo Ticker - Below scroll indicator */}
+        <div className="mt-16 relative overflow-hidden py-8">
+          {/* Gradient overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          
+          <div className="logo-ticker-inner flex gap-16 animate-logo-scroll">
             {[
+              { src: amentumLogo, alt: "Amentum" },
+              { src: arrayLogo, alt: "Array" },
+              { src: cdsLogo, alt: "CDS" },
+              { src: consilioLogo, alt: "Consilio" },
+              { src: eparioLogo, alt: "Epario" },
+              { src: haugLogo, alt: "Haug Partners" },
+              { src: nixonLogo, alt: "Nixon Peabody" },
+              { src: proteusLogo, alt: "Proteus" },
+              // Duplicate for seamless loop
               { src: amentumLogo, alt: "Amentum" },
               { src: arrayLogo, alt: "Array" },
               { src: cdsLogo, alt: "CDS" },
@@ -227,40 +239,33 @@ const TestimonialsSection = () => {
               { src: proteusLogo, alt: "Proteus" }
             ].map((logo, index) => (
               <div 
-                key={`first-${index}`} 
-                className="flex-shrink-0"
+                key={index} 
+                className="flex-shrink-0 flex items-center justify-center min-w-[180px] transition-transform duration-200 hover:scale-110"
               >
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-8 md:h-10 w-auto object-contain"
-                />
-              </div>
-            ))}
-            {[
-              { src: amentumLogo, alt: "Amentum" },
-              { src: arrayLogo, alt: "Array" },
-              { src: cdsLogo, alt: "CDS" },
-              { src: consilioLogo, alt: "Consilio" },
-              { src: eparioLogo, alt: "Epario" },
-              { src: haugLogo, alt: "Haug Partners" },
-              { src: nixonLogo, alt: "Nixon Peabody" },
-              { src: proteusLogo, alt: "Proteus" }
-            ].map((logo, index) => (
-              <div 
-                key={`second-${index}`} 
-                className="flex-shrink-0"
-              >
-                <img 
-                  src={logo.src} 
-                  alt={logo.alt} 
-                  className="h-8 md:h-10 w-auto object-contain"
+                  className="h-12 w-auto object-contain opacity-70"
                 />
               </div>
             ))}
           </div>
         </div>
-        */}
+
+        <style>{`
+          @keyframes logo-scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+
+          .animate-logo-scroll {
+            animation: logo-scroll 30s linear infinite;
+          }
+        `}</style>
       </section>
     </>
   );

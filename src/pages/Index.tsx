@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import LogoTicker from "@/components/LogoTicker";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import SecuritySection from "@/components/SecuritySection";
 import FAQSection from "@/components/FAQSection";
@@ -14,7 +13,6 @@ const Index = () => {
       <main>
         <HeroSection />
         <TestimonialsSection />
-        <LogoTicker />
         {/* Experience Venio in Action - to be added */}
         <CaseStudiesSection />
         <SecuritySection />
