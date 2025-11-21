@@ -44,6 +44,7 @@ const Navbar = () => {
     {
       label: "Why Venio",
       hasDropdown: false,
+      link: "/why-venio",
     },
   ];
 
@@ -76,6 +77,13 @@ const Navbar = () => {
                 ) : item.label === "Resources" ? (
                   <Link 
                     to="/resources"
+                    className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
+                  >
+                    {item.label}
+                  </Link>
+                ) : item.label === "Why Venio" ? (
+                  <Link 
+                    to="/why-venio"
                     className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
                   >
                     {item.label}
@@ -166,6 +174,14 @@ const Navbar = () => {
                 ) : item.label === "Resources" ? (
                   <Link
                     to="/resources"
+                    className="font-semibold text-white mb-2 flex items-center gap-1 block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : item.label === "Why Venio" ? (
+                  <Link
+                    to="/why-venio"
                     className="font-semibold text-white mb-2 flex items-center gap-1 block"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
