@@ -88,15 +88,12 @@ const TestimonialsSection = () => {
 
   return (
     <>
-      {/* Version 1: Carousel Design */}
+      {/* Carousel Design */}
       <section className="py-20 bg-gradient-to-b from-white to-muted">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-12 max-w-3xl mx-auto">
-            <p className="text-sm font-semibold text-accent mb-2">VERSION 1</p>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Trusted by Leading Legal Teams
-              <br />
-              Worldwide
+              Trusted by Leading Legal Teams Worldwide
             </h2>
           </div>
 
@@ -264,104 +261,6 @@ const TestimonialsSection = () => {
           </div>
         </div>
         */}
-      </section>
-
-      {/* Version 2: Modern Grid Design */}
-      <section className="py-20 bg-gradient-to-b from-muted to-white">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-12 max-w-3xl mx-auto">
-            <p className="text-sm font-semibold text-accent mb-2">VERSION 2</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-muted-foreground">Real feedback from legal professionals transforming their workflows</p>
-          </div>
-
-          {/* Featured Testimonial with Video */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8">
-            <div className="grid md:grid-cols-3 gap-8 items-center">
-              {/* Video - Left 2/3 */}
-              <div className="md:col-span-2 relative aspect-video rounded-xl overflow-hidden glass-dark">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform glow-accent-hover">
-                    <Play className="w-8 h-8 text-white ml-1" fill="white" />
-                  </button>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20"></div>
-              </div>
-
-              {/* Quote - Right 1/3 */}
-              <div className="space-y-4">
-                <div className="text-5xl text-accent/20 font-serif leading-none">"</div>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed -mt-2">
-                  Venio transformed our eDiscovery process completely. The AI-powered automation is incredible.
-                </p>
-                <div className="pt-2">
-                  <p className="font-bold text-primary">{testimonials[0].author}</p>
-                  <p className="text-muted-foreground font-body text-sm">{testimonials[0].role}</p>
-                  <p className="text-muted-foreground font-body text-sm">{testimonials[0].company}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Testimonial Carousel */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            <Carousel
-              setApi={setApi2}
-              opts={{
-                loop: true,
-                align: "start",
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {testimonials.map((testimonial, idx) => (
-                  <CarouselItem key={idx}>
-                    <div className="glass rounded-xl p-8 hover:shadow-lg transition-shadow h-full">
-                      <div className="flex flex-col h-full">
-                        <div className="text-5xl text-accent/20 font-serif leading-none mb-4">"</div>
-                        <p className="text-base text-muted-foreground font-body leading-relaxed mb-6 flex-grow">
-                          {testimonial.text}
-                        </p>
-                        <div className="flex items-center gap-4 pt-6 border-t border-border/50">
-                          <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                            {testimonial.initials}
-                          </div>
-                          <div>
-                            <p className="font-bold text-primary text-base">{testimonial.author}</p>
-                            <p className="text-muted-foreground font-body text-sm">{testimonial.role}</p>
-                            <p className="text-muted-foreground font-body text-sm">{testimonial.company}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-
-            {/* Dot indicators */}
-            <div className="flex justify-center gap-2 mt-6">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => api2?.scrollTo(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === current2 
-                      ? "w-8 bg-primary" 
-                      : "w-2 bg-primary/30 hover:bg-primary/50"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
     </>
   );
