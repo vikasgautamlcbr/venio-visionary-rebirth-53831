@@ -280,9 +280,9 @@ const WhyVenio = () => {
               <Button 
                 variant="outline" 
                 className="group"
-                onClick={() => handleDownloadClick("Venio Comparison Kit")}
+                onClick={() => handleDownloadClick("Venio Comparison Sheet")}
               >
-                Download the Venio Comparison Kit
+                Download the Venio Comparison Sheet
                 <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
               </Button>
             </div>
@@ -809,15 +809,15 @@ const WhyVenio = () => {
                         <Sparkles className="h-3 w-3 text-accent" />
                         <span className="text-xs font-medium text-accent">Featured</span>
                       </div>
-                      <h3 className="text-2xl font-bold mb-3">Complete Comparison Kit</h3>
+                      <h3 className="text-2xl font-bold mb-3">Complete Comparison Sheet</h3>
                       <p className="text-muted-foreground mb-6 flex-1">
                         Comprehensive guide comparing Venio against legacy tools and point solutions. Includes feature matrix, pricing analysis, and ROI calculator.
                       </p>
                       <Button 
                         className="w-full group"
-                        onClick={() => handleDownloadClick("Complete Comparison Kit")}
+                        onClick={() => handleDownloadClick("Complete Comparison Sheet")}
                       >
-                        Download Full Kit
+                        Download Full Sheet
                         <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
                       </Button>
                     </div>
