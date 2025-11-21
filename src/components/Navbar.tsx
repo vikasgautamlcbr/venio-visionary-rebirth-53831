@@ -138,7 +138,7 @@ const Navbar = () => {
                                       to="/law-firm-solutions"
                                       className={`relative block px-3 py-2.5 text-sm rounded-lg transition-all duration-200 ${
                                         isActive
-                                          ? 'text-white bg-accent/20 font-medium border-l-2 border-accent'
+                                          ? 'text-white bg-white/15 font-medium'
                                           : 'text-white/90 hover:text-white hover:bg-white/10 hover:translate-x-1'
                                       }`}
                                     >
@@ -178,7 +178,7 @@ const Navbar = () => {
                               to="/venio-legal-hold"
                               className={`relative block px-4 py-2.5 text-sm rounded-lg transition-all duration-200 ${
                                 isActive
-                                  ? 'text-white bg-accent/20 font-medium border-l-2 border-accent'
+                                  ? 'text-white bg-white/15 font-medium'
                                   : 'text-white/90 hover:text-white hover:bg-white/10 hover:translate-x-1'
                               }`}
                             >
@@ -262,7 +262,7 @@ const Navbar = () => {
                                 to="/law-firm-solutions"
                                 className={`block px-4 py-2 text-sm rounded-lg transition-all ${
                                   isActive
-                                    ? 'text-white bg-accent/20 font-medium border-l-2 border-accent'
+                                    ? 'text-white bg-white/15 font-medium'
                                     : 'text-white/90 hover:text-accent hover:bg-white/10'
                                 }`}
                                 onClick={() => setIsMobileMenuOpen(false)}
@@ -297,7 +297,7 @@ const Navbar = () => {
                         to="/venio-legal-hold"
                         className={`block px-4 py-2 text-sm rounded-lg transition-all ${
                           isActive
-                            ? 'text-white bg-accent/20 font-medium border-l-2 border-accent ml-2'
+                            ? 'text-white bg-white/15 font-medium'
                             : 'text-white/90 hover:text-accent hover:bg-white/10'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
