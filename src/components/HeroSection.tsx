@@ -53,11 +53,18 @@ const HeroSection = () => {
 
             {/* Enhanced CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-10 py-6 shadow-lg group">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-white text-lg px-10 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
+              >
                 Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 text-lg px-10 py-6">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-white/40 bg-transparent text-white hover:bg-white/10 hover:border-white/60 text-lg px-10 py-6 transition-all duration-300"
+              >
                 Take a Product Tour
               </Button>
             </div>
