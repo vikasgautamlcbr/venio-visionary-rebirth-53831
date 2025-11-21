@@ -79,7 +79,7 @@ const HeroSection = () => {
             </div>
 
             {/* Dashboard Screenshot */}
-            <div className="relative max-w-6xl mx-auto px-4 pb-20">
+            <div className="relative max-w-6xl mx-auto px-4 pb-8">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-white">
                 {/* Placeholder for dashboard image */}
                 <div className="aspect-[16/10] bg-gradient-to-br from-gray-50 to-gray-100">
@@ -94,17 +94,6 @@ const HeroSection = () => {
               <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-accent/30 rounded-full blur-3xl"></div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Trusted by text */}
-      <div className="relative z-10 w-full bg-gradient-to-b from-transparent via-white/50 to-white pt-16 pb-12">
-        <div className="text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary">
-            Trusted by Leading Legal Teams
-            <br />
-            <span className="text-foreground">Worldwide</span>
-          </h2>
         </div>
       </div>
     </section>
