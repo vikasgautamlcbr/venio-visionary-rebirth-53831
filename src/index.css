@@ -28,6 +28,9 @@ All colors MUST be HSL.
 
     --accent: 145 53% 51%;
     --accent-foreground: 0 0% 100%;
+    
+    --venio-green: 145 52% 50%;
+    --venio-green-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -231,11 +234,16 @@ All colors MUST be HSL.
   
   .float-delayed {
     animation: float-delayed 8s ease-in-out infinite;
+    animation-delay: 2s;
   }
   
   @keyframes float-delayed {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px) rotate(5deg); }
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-20px) rotate(5deg); 
+    }
   }
   
   /* Pulse Glow Animation */
