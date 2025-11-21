@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight, Download } from "lucide-react";
 
 interface DemoGateDialogProps {
   isOpen: boolean;
@@ -135,6 +135,68 @@ export const DemoGateDialog = ({ isOpen, onClose, onSuccess }: DemoGateDialogPro
               )}
             </Button>
           </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+interface DownloadFormDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  resourceTitle: string;
+}
+
+export const DownloadFormDialog = ({ open, onOpenChange, resourceTitle }: DownloadFormDialogProps) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the form data to your backend
+    console.log("Form submitted:", { name, email, resource: resourceTitle });
+    // Simulate download
+    alert(`Thank you! Your download of "${resourceTitle}" will begin shortly.`);
+    onOpenChange(false);
+    setName("");
+    setEmail("");
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[500px]">
+        <DialogHeader>
+          <DialogTitle className="text-2xl">Download {resourceTitle}</DialogTitle>
+          <DialogDescription>
+            Please provide your information to access this resource.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+          <div className="space-y-2">
+            <Label htmlFor="download-name">Full Name *</Label>
+            <Input
+              id="download-name"
+              placeholder="John Doe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="download-email">Work Email *</Label>
+            <Input
+              id="download-email"
+              type="email"
+              placeholder="john@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <Button type="submit" className="w-full" size="lg">
+            <Download className="mr-2 h-4 w-4" />
+            Download Now
+          </Button>
         </form>
       </DialogContent>
     </Dialog>

@@ -30,7 +30,9 @@ import {
   Clock,
   TrendingUp
 } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { DownloadFormDialog } from "@/components/DemoGateDialog";
+import { CalculatorDialog } from "@/components/CalculatorDialog";
 import amentum from "@/assets/clients/amentum.webp";
 import consilio from "@/assets/clients/consilio.webp";
 import array from "@/assets/clients/array.webp";
@@ -41,10 +43,19 @@ import cds from "@/assets/clients/cds.webp";
 import epario from "@/assets/clients/epario.webp";
 
 const WhyVenio = () => {
+  const [downloadDialogOpen, setDownloadDialogOpen] = useState(false);
+  const [calculatorDialogOpen, setCalculatorDialogOpen] = useState(false);
+  const [selectedResource, setSelectedResource] = useState("");
+
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleDownloadClick = (resourceTitle: string) => {
+    setSelectedResource(resourceTitle);
+    setDownloadDialogOpen(true);
+  };
 
   return (
     <div className="min-h-screen">
@@ -264,7 +275,11 @@ const WhyVenio = () => {
             </div>
 
             <div className="text-center mt-8">
-              <Button variant="outline" className="group">
+              <Button 
+                variant="outline" 
+                className="group"
+                onClick={() => handleDownloadClick("Venio Comparison Kit")}
+              >
                 Download the Venio Comparison Kit
                 <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
               </Button>
@@ -283,7 +298,7 @@ const WhyVenio = () => {
             <div className="grid md:grid-cols-3 gap-6">
               {/* Large Card - Unified End-to-End (2x2) */}
               <div className="md:col-span-2 md:row-span-2">
-                <Card className="glass hover:shadow-2xl transition-all duration-300 h-full group overflow-hidden border-2 border-accent/20">
+                <Card className="glass hover:shadow-2xl transition-all duration-300 h-full group overflow-hidden rounded-2xl">
                   <CardContent className="p-0 h-full flex flex-col">
                     <div className="relative h-80 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 overflow-hidden">
                       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
@@ -303,9 +318,9 @@ const WhyVenio = () => {
               </div>
 
               {/* Small Cards */}
-              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+              <Card className="glass hover:shadow-xl transition-all duration-300 group rounded-2xl">
                 <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-accent/15 to-primary/10 flex items-center justify-center overflow-hidden">
+                  <div className="relative aspect-video bg-gradient-to-br from-accent/15 to-primary/10 flex items-center justify-center overflow-hidden rounded-t-2xl">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                     <Brain className="h-16 w-16 text-accent/40 group-hover:scale-110 transition-transform" />
                     <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">ai-acceleration.gif</div>
@@ -317,9 +332,9 @@ const WhyVenio = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+              <Card className="glass hover:shadow-xl transition-all duration-300 group rounded-2xl">
                 <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-blue-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                  <div className="relative aspect-video bg-gradient-to-br from-blue-500/15 to-accent/10 flex items-center justify-center overflow-hidden rounded-t-2xl">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                     <Cloud className="h-16 w-16 text-blue-500/40 group-hover:scale-110 transition-transform" />
                     <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">flexible-deployment.gif</div>
@@ -331,9 +346,9 @@ const WhyVenio = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+              <Card className="glass hover:shadow-xl transition-all duration-300 group rounded-2xl">
                 <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-green-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                  <div className="relative aspect-video bg-gradient-to-br from-green-500/15 to-accent/10 flex items-center justify-center overflow-hidden rounded-t-2xl">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                     <DollarSign className="h-16 w-16 text-green-500/40 group-hover:scale-110 transition-transform" />
                     <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">cost-control.gif</div>
@@ -345,9 +360,9 @@ const WhyVenio = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+              <Card className="glass hover:shadow-xl transition-all duration-300 group rounded-2xl">
                 <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-purple-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                  <div className="relative aspect-video bg-gradient-to-br from-purple-500/15 to-accent/10 flex items-center justify-center overflow-hidden rounded-t-2xl">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                     <FileCheck className="h-16 w-16 text-purple-500/40 group-hover:scale-110 transition-transform" />
                     <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">audit-trails.gif</div>
@@ -359,9 +374,9 @@ const WhyVenio = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+              <Card className="glass hover:shadow-xl transition-all duration-300 group rounded-2xl">
                 <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-orange-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                  <div className="relative aspect-video bg-gradient-to-br from-orange-500/15 to-accent/10 flex items-center justify-center overflow-hidden rounded-t-2xl">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                     <Database className="h-16 w-16 text-orange-500/40 group-hover:scale-110 transition-transform" />
                     <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">data-coverage.gif</div>
@@ -498,7 +513,7 @@ const WhyVenio = () => {
         <section className="py-20 px-6 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Your eDiscovery Journey</h2>
+              <h2 className="text-4xl font-bold mb-4">Your eDiscovery Journey with Venio</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Follow the complete workflow from legal hold to production—all in one unified platform
               </p>
@@ -792,7 +807,10 @@ const WhyVenio = () => {
                       <p className="text-muted-foreground mb-6 flex-1">
                         Comprehensive guide comparing Venio against legacy tools and point solutions. Includes feature matrix, pricing analysis, and ROI calculator.
                       </p>
-                      <Button className="w-full group">
+                      <Button 
+                        className="w-full group"
+                        onClick={() => handleDownloadClick("Complete Comparison Kit")}
+                      >
                         Download Full Kit
                         <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
                       </Button>
@@ -809,7 +827,31 @@ const WhyVenio = () => {
                   </div>
                   <h3 className="font-bold mb-2">Venio ECA Brief</h3>
                   <p className="text-sm text-muted-foreground mb-4">Early Case Assessment features and benefits</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => handleDownloadClick("Venio ECA Brief")}
+                  >
+                    <Download className="mr-2 h-3 w-3" />
+                    Download PDF
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="glass hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Shield className="h-6 w-6 text-amber-600" />
+                  </div>
+                  <h3 className="font-bold mb-2">Venio Legal Hold Product Brief</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Complete legal hold management capabilities</p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => handleDownloadClick("Venio Legal Hold Product Brief")}
+                  >
                     <Download className="mr-2 h-3 w-3" />
                     Download PDF
                   </Button>
@@ -823,7 +865,12 @@ const WhyVenio = () => {
                   </div>
                   <h3 className="font-bold mb-2">Review Overview</h3>
                   <p className="text-sm text-muted-foreground mb-4">AI-powered review capabilities and workflows</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => handleDownloadClick("Review Overview")}
+                  >
                     <Download className="mr-2 h-3 w-3" />
                     Download PDF
                   </Button>
@@ -835,9 +882,14 @@ const WhyVenio = () => {
                   <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <DollarSign className="h-6 w-6 text-purple-600" />
                   </div>
-                  <h3 className="font-bold mb-2">ROI Calculator</h3>
+                  <h3 className="font-bold mb-2">Savings Calculator</h3>
                   <p className="text-sm text-muted-foreground mb-4">Calculate your potential cost savings</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => setCalculatorDialogOpen(true)}
+                  >
                     <ArrowRight className="mr-2 h-3 w-3" />
                     Launch Tool
                   </Button>
@@ -851,7 +903,12 @@ const WhyVenio = () => {
                   </div>
                   <h3 className="font-bold mb-2">Security Whitepaper</h3>
                   <p className="text-sm text-muted-foreground mb-4">Compliance and security architecture</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => handleDownloadClick("Security Whitepaper")}
+                  >
                     <Download className="mr-2 h-3 w-3" />
                     Download PDF
                   </Button>
@@ -960,6 +1017,17 @@ const WhyVenio = () => {
       </main>
 
       <Footer />
+
+      {/* Dialogs */}
+      <DownloadFormDialog
+        open={downloadDialogOpen}
+        onOpenChange={setDownloadDialogOpen}
+        resourceTitle={selectedResource}
+      />
+      <CalculatorDialog
+        open={calculatorDialogOpen}
+        onOpenChange={setCalculatorDialogOpen}
+      />
     </div>
   );
 };
