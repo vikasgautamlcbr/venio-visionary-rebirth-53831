@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import venioLogo from "@/assets/venio-logo.svg";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +64,11 @@ const Navbar = () => {
     },
   ];
 
+  const isActiveRoute = (link?: string) => {
+    if (!link) return false;
+    return location.pathname === link;
+  };
+
   return (
     <nav
       className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 ease-out ${
@@ -85,7 +91,11 @@ const Navbar = () => {
                 {item.link && !item.hasDropdown ? (
                   <Link 
                     to={item.link}
-                    className="text-white hover:text-accent transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap"
+                    className={`transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap ${
+                      isActiveRoute(item.link) 
+                        ? 'text-accent font-semibold' 
+                        : 'text-white hover:text-accent'
+                    }`}
                   >
                     {item.label}
                   </Link>
@@ -198,7 +208,11 @@ const Navbar = () => {
                 {item.link && !item.hasDropdown ? (
                   <Link
                     to={item.link}
-                    className="font-semibold text-white mb-2 flex items-center gap-1 block"
+                    className={`mb-2 flex items-center gap-1 block ${
+                      isActiveRoute(item.link)
+                        ? 'text-accent font-bold'
+                        : 'text-white font-semibold'
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
