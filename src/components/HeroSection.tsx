@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const HeroSection = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [videoProgress, setVideoProgress] = useState<number[]>([0, 0, 0, 0]);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const tabs = [
@@ -32,13 +32,19 @@ const HeroSection = () => {
   ];
 
   const handleVideoEnd = () => {
-    setProgress(0);
+    // Mark current video as complete
+    setVideoProgress(prev => {
+      const updated = [...prev];
+      updated[activeTab] = 100;
+      return updated;
+    });
+    
+    // Move to next tab
     setActiveTab((prev) => (prev + 1) % tabs.length);
   };
 
   const handleTabClick = (index: number) => {
     setActiveTab(index);
-    setProgress(0);
   };
 
   useEffect(() => {
@@ -54,7 +60,11 @@ const HeroSection = () => {
     const updateProgress = () => {
       if (videoRef.current) {
         const percent = (videoRef.current.currentTime / videoRef.current.duration) * 100;
-        setProgress(percent);
+        setVideoProgress(prev => {
+          const updated = [...prev];
+          updated[activeTab] = percent;
+          return updated;
+        });
       }
     };
 
@@ -148,6 +158,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
               {tabs.map((tab, index) => {
                 const isActive = activeTab === index;
+                const progress = videoProgress[index];
                 return (
                   <button
                     key={index}
@@ -158,13 +169,11 @@ const HeroSection = () => {
                         : "bg-black/40 text-white/70 hover:text-white/90"
                     }`}
                   >
-                    {/* Progress bar */}
-                    {isActive && (
-                      <div 
-                        className="absolute bottom-0 left-0 h-1 bg-accent transition-all duration-100"
-                        style={{ width: `${progress}%` }}
-                      />
-                    )}
+                    {/* Progress bar - shown for all tabs */}
+                    <div 
+                      className="absolute bottom-0 left-0 h-1 bg-accent transition-all duration-100"
+                      style={{ width: `${progress}%` }}
+                    />
                     {tab.title}
                   </button>
                 );
