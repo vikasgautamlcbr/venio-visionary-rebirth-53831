@@ -50,7 +50,8 @@ const LogoTicker = () => {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-12 w-auto object-contain"
+                  className="w-auto object-contain"
+                  style={{ height: '33px' }}
                 />
               </div>
             ))}
