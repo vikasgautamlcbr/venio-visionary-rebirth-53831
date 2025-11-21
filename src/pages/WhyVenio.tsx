@@ -3,7 +3,14 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
-import FAQSection from "@/components/FAQSection";
+import SecuritySection from "@/components/SecuritySection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { 
   CheckCircle, 
   X, 
@@ -20,7 +27,8 @@ import {
   Brain,
   Workflow,
   Users,
-  Clock
+  Clock,
+  TrendingUp
 } from "lucide-react";
 import { useEffect } from "react";
 import amentum from "@/assets/clients/amentum.webp";
@@ -264,105 +272,156 @@ const WhyVenio = () => {
           </div>
         </section>
 
-        {/* The 6 Pillars Section */}
+        {/* The 6 Pillars Section - Bento Grid */}
         <section className="py-20 px-6 bg-muted/30">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">The pillars of Venio Advantage</h2>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Shield,
-                  title: "Unified End-to-End",
-                  description: "One platform handling Legal Hold → Ingestion → ECA → Review → Production — fewer transfers, less risk.",
-                  imagePlaceholder: "unified-workflow.gif"
-                },
-                {
-                  icon: Brain,
-                  title: "AI-Powered Acceleration",
-                  description: "CAL/TAR, prioritization, clustering, and auto-tagging reduce reviewer workload and speed insights.",
-                  imagePlaceholder: "ai-acceleration.gif"
-                },
-                {
-                  icon: Cloud,
-                  title: "Flexible Deployment",
-                  description: "Cloud, hybrid, or on-prem—choose what fits your security, governance, and budget model.",
-                  imagePlaceholder: "flexible-deployment.gif"
-                },
-                {
-                  icon: DollarSign,
-                  title: "Radical Cost Control",
-                  description: "Early culling and optimized hosting deliver predictable total cost of ownership.",
-                  imagePlaceholder: "cost-control.gif"
-                },
-                {
-                  icon: FileCheck,
-                  title: "Defensible Process & Auditability",
-                  description: "Full, immutable audit trails, custodial tracking, and production QC built in.",
-                  imagePlaceholder: "audit-trails.gif"
-                },
-                {
-                  icon: Database,
-                  title: "Modern Data Coverage",
-                  description: "Native ingestion and handling for email, cloud apps, chats, multimedia, and mobile sources.",
-                  imagePlaceholder: "data-coverage.gif"
-                }
-              ].map((pillar, index) => (
-                <Card key={index} className="glass hover:shadow-xl transition-all duration-300 group overflow-hidden">
-                  <CardContent className="p-0">
-                    {/* Image/GIF Placeholder */}
-                    <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center overflow-hidden">
-                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                      <div className="relative z-10 text-center p-6">
-                        <pillar.icon className="h-12 w-12 text-accent mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                        <p className="text-xs text-muted-foreground font-mono">{pillar.imagePlaceholder}</p>
+            {/* Bento Grid Layout */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Large Card - Unified End-to-End (2x2) */}
+              <div className="md:col-span-2 md:row-span-2">
+                <Card className="glass hover:shadow-2xl transition-all duration-300 h-full group overflow-hidden border-2 border-accent/20">
+                  <CardContent className="p-0 h-full flex flex-col">
+                    <div className="relative h-80 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 overflow-hidden">
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Shield className="h-32 w-32 text-accent/30 group-hover:scale-110 transition-transform" />
                       </div>
+                      <div className="absolute bottom-4 right-4 text-xs text-muted-foreground/50 font-mono">unified-workflow.gif</div>
                     </div>
-                    
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-3">{pillar.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed text-sm">{pillar.description}</p>
+                    <div className="p-8 flex-1 flex flex-col">
+                      <h3 className="text-3xl font-bold mb-4">Unified End-to-End</h3>
+                      <p className="text-muted-foreground leading-relaxed flex-1">
+                        One platform handling Legal Hold → Ingestion → ECA → Review → Production — fewer transfers, less risk. Complete workflow integration eliminates data silos and reduces compliance vulnerabilities.
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
-              ))}
+              </div>
+
+              {/* Small Cards */}
+              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-accent/15 to-primary/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <Brain className="h-16 w-16 text-accent/40 group-hover:scale-110 transition-transform" />
+                    <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">ai-acceleration.gif</div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">AI-Powered Acceleration</h3>
+                    <p className="text-sm text-muted-foreground">CAL/TAR, prioritization, clustering, and auto-tagging reduce reviewer workload.</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-blue-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <Cloud className="h-16 w-16 text-blue-500/40 group-hover:scale-110 transition-transform" />
+                    <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">flexible-deployment.gif</div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Flexible Deployment</h3>
+                    <p className="text-sm text-muted-foreground">Cloud, hybrid, or on-prem—choose what fits your security and governance model.</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-green-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <DollarSign className="h-16 w-16 text-green-500/40 group-hover:scale-110 transition-transform" />
+                    <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">cost-control.gif</div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Radical Cost Control</h3>
+                    <p className="text-sm text-muted-foreground">Early culling and optimized hosting deliver predictable total cost of ownership.</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-purple-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <FileCheck className="h-16 w-16 text-purple-500/40 group-hover:scale-110 transition-transform" />
+                    <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">audit-trails.gif</div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Defensible Process</h3>
+                    <p className="text-sm text-muted-foreground">Full, immutable audit trails, custodial tracking, and production QC built in.</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-orange-500/15 to-accent/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <Database className="h-16 w-16 text-orange-500/40 group-hover:scale-110 transition-transform" />
+                    <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">data-coverage.gif</div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Modern Data Coverage</h3>
+                    <p className="text-sm text-muted-foreground">Native ingestion for email, cloud apps, chats, multimedia, and mobile sources.</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
 
-        {/* Metrics Section */}
-        <section className="py-20 px-6">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
+        {/* Metrics Section - Using DataPointsSection Style */}
+        <section className="py-24 relative overflow-hidden">
+          {/* Venio branded gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.15),transparent_50%)]" />
+          
+          <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
               <h2 className="text-4xl font-bold mb-4">Real results teams see with Venio</h2>
               <p className="text-lg text-muted-foreground">Measurable improvements you can expect</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { value: "Up to 90%", label: "Data reduction before review", icon: Database },
-                { value: "70%", label: "Faster time to launch holds and begin review", icon: Clock },
-                { value: "40%", label: "Higher custodian response and compliance rates", icon: Users },
-                { value: "64%", label: "Common discovery failures avoidable", icon: Shield }
+                { value: "Up to 90%", label: "Data reduction before review", description: "AI-powered culling dramatically reduces review volume", icon: Database },
+                { value: "70%", label: "Faster time to launch", description: "Accelerated holds and review workflows", icon: Clock },
+                { value: "40%", label: "Higher compliance rates", description: "Improved custodian response and cooperation", icon: Users },
+                { value: "64%", label: "Failures avoidable", description: "Common discovery mistakes prevented", icon: Shield }
               ].map((metric, index) => (
-                <Card key={index} className="glass text-center hover:shadow-xl transition-all duration-300 border-border/50">
-                  <CardContent className="p-8 space-y-4">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center">
-                      <metric.icon className="h-8 w-8 text-secondary" />
+                <div
+                  key={index}
+                  className="group relative p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_40px_rgba(96,165,250,0.3)] hover:scale-105"
+                >
+                  {/* Venio glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-accent/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300" />
+                  
+                  <div className="relative">
+                    <div className="inline-flex p-4 rounded-xl bg-primary/10 border border-primary/20 mb-6 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
+                      <metric.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <div className="text-5xl font-bold text-secondary">{metric.value}</div>
-                    <p className="text-sm text-muted-foreground font-medium">{metric.label}</p>
-                  </CardContent>
-                </Card>
+                    
+                    <h3 className="text-5xl font-bold mb-2 bg-gradient-to-br from-primary via-primary to-accent bg-clip-text text-transparent">
+                      {metric.value}
+                    </h3>
+                    
+                    <p className="text-lg font-semibold mb-2 text-foreground">{metric.label}</p>
+                    <p className="text-sm text-muted-foreground">{metric.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Common Gaps Section */}
+        {/* Common Gaps Section - Table Format */}
         <section className="py-20 px-6 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
@@ -372,53 +431,63 @@ const WhyVenio = () => {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Problems */}
-              <div className="space-y-6">
-                <div className="glass-dark rounded-2xl p-8 border-2 border-red-500/20">
-                  <h3 className="text-2xl font-bold mb-6 text-red-400 flex items-center gap-3">
-                    <X className="h-6 w-6" />
-                    Other Tools
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      "Cloud-only lock-in with no deployment flexibility",
-                      "Expensive add-ons required for basic ECA functionality",
-                      "Unpredictable per-GB pricing and hidden fees",
-                      "Limited automation requiring manual processes",
-                      "Fragmented workflows across multiple tools"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-red-500/5">
-                        <X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Solutions */}
-              <div className="space-y-6">
-                <div className="glass rounded-2xl p-8 border-2 border-accent/30 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl"></div>
-                  <h3 className="text-2xl font-bold mb-6 text-accent flex items-center gap-3 relative z-10">
-                    <CheckCircle className="h-6 w-6" />
-                    Venio Advantage
-                  </h3>
-                  <div className="space-y-4 relative z-10">
-                    {[
-                      "Flexible deployment: cloud, hybrid, or on-premises",
-                      "Built-in ECA with no additional licensing fees",
-                      "Transparent, predictable pricing model",
-                      "Scriptable automation and AI-powered workflows",
-                      "Complete end-to-end platform integration"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors">
-                        <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                        <span className="text-sm font-medium">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+            <div className="overflow-x-auto">
+              <div className="inline-block min-w-full align-middle">
+                <div className="overflow-hidden glass rounded-2xl border border-border/50">
+                  <table className="min-w-full divide-y divide-border/50">
+                    <thead>
+                      <tr className="bg-muted/30">
+                        <th className="text-left p-6 font-semibold text-foreground">Challenge</th>
+                        <th className="text-center p-6 font-semibold text-foreground">Other Tools</th>
+                        <th className="text-center p-6 font-semibold bg-accent/10 text-accent border-x-2 border-accent/30">Venio Advantage</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/50">
+                      {[
+                        { 
+                          challenge: "Deployment Options", 
+                          others: "Cloud-only lock-in", 
+                          venio: "Cloud, hybrid, or on-premises" 
+                        },
+                        { 
+                          challenge: "ECA Functionality", 
+                          others: "Expensive add-ons required", 
+                          venio: "Built-in, no additional fees" 
+                        },
+                        { 
+                          challenge: "Pricing Model", 
+                          others: "Unpredictable per-GB pricing", 
+                          venio: "Transparent, predictable costs" 
+                        },
+                        { 
+                          challenge: "Automation", 
+                          others: "Limited, manual processes", 
+                          venio: "Scriptable, AI-powered workflows" 
+                        },
+                        { 
+                          challenge: "Workflow Integration", 
+                          others: "Fragmented across tools", 
+                          venio: "Complete end-to-end platform" 
+                        },
+                      ].map((row, index) => (
+                        <tr key={index} className="hover:bg-muted/20 transition-colors">
+                          <td className="p-6 font-medium text-foreground">{row.challenge}</td>
+                          <td className="p-6 text-center">
+                            <div className="flex items-center justify-center gap-2">
+                              <X className="h-5 w-5 text-red-500 flex-shrink-0" />
+                              <span className="text-sm text-muted-foreground">{row.others}</span>
+                            </div>
+                          </td>
+                          <td className="p-6 text-center bg-accent/5 border-x-2 border-accent/20">
+                            <div className="flex items-center justify-center gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
+                              <span className="text-sm font-semibold text-accent">{row.venio}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -581,55 +650,60 @@ const WhyVenio = () => {
           </div>
         </section>
 
+        {/* Integrations Section */}
+        <section className="py-20 px-6 bg-muted/30">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">Seamless Integrations</h2>
+              <p className="text-lg text-muted-foreground">
+                Connect with the tools and platforms your team already uses
+              </p>
+            </div>
+
+            <div className="glass rounded-2xl p-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+                {[
+                  { name: "Microsoft 365", icon: "M365" },
+                  { name: "Google Workspace", icon: "GWS" },
+                  { name: "Slack", icon: "SLACK" },
+                  { name: "Microsoft Teams", icon: "TEAMS" },
+                  { name: "AWS", icon: "AWS" },
+                  { name: "Azure", icon: "AZURE" },
+                  { name: "Box", icon: "BOX" },
+                  { name: "Dropbox", icon: "DBXPX" },
+                ].map((integration, index) => (
+                  <div
+                    key={index}
+                    className="group w-full aspect-square rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-border/50 hover:border-primary/50 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  >
+                    <div className="text-center">
+                      <div className="w-16 h-16 mx-auto mb-2 rounded-lg bg-white shadow-md flex items-center justify-center text-xs font-bold text-primary group-hover:shadow-xl transition-shadow">
+                        {integration.icon}
+                      </div>
+                      <p className="text-xs font-medium text-muted-foreground">{integration.name}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Security Section */}
+        <SecuritySection />
+
         {/* Case Studies Section */}
         <CaseStudiesSection />
 
-        {/* Testimonials Section - Using VenioLegalHold style */}
-        <section className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
-          <div className="container mx-auto max-w-7xl">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading font-bold mb-4">Customers say it best</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Hear from organizations that transformed their eDiscovery with Venio
-              </p>
+        {/* Testimonials Section - Version 1 from TestimonialsSection */}
+        <section className="py-20 bg-gradient-to-b from-white to-muted">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+                Trusted by Leading Legal Teams Worldwide
+              </h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  quote: "Venio cut our data sent to review by over 75%, saving months of work.",
-                  author: "Senior eDiscovery Manager",
-                  company: "Global Bank",
-                  metric: "75%",
-                  metricLabel: "Data reduction"
-                },
-                {
-                  quote: "Unified platform, clearer audits, faster response times.",
-                  author: "Litigation Partner",
-                  company: "AmLaw 100 firm",
-                  metric: "70%",
-                  metricLabel: "Faster response"
-                }
-              ].map((testimonial, index) => (
-                <Card key={index} className="glass hover:shadow-xl transition-all duration-300 border-border/50">
-                  <CardContent className="p-8 space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                        <Sparkles className="h-8 w-8 text-accent" />
-                      </div>
-                      <div>
-                        <div className="text-3xl font-bold text-accent mb-1">{testimonial.metric}</div>
-                        <p className="text-sm text-muted-foreground">{testimonial.metricLabel}</p>
-                      </div>
-                    </div>
-                    <p className="text-lg italic leading-relaxed">"{testimonial.quote}"</p>
-                    <div className="pt-4 border-t border-border/50">
-                      <p className="font-semibold">{testimonial.author}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <TestimonialsSection />
           </div>
         </section>
 
@@ -735,8 +809,78 @@ const WhyVenio = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <FAQSection />
+        {/* FAQ Section with Original Questions */}
+        <section className="py-12 bg-gradient-to-b from-white via-muted/50 to-white relative overflow-hidden">
+          {/* Decorative Elements */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary/20 to-accent/20 px-6 py-3 rounded-full mb-6">
+                  <Sparkles className="h-5 w-5 text-accent" />
+                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">FAQ</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xl text-muted-foreground font-body">
+                  Everything you need to know about Venio's eDiscovery platform
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    question: "What is eDiscovery Software?",
+                    answer: "eDiscovery (electronic discovery) software helps legal teams identify, collect, process, review, and produce electronically stored information (ESI) for litigation, investigations, or compliance. Venio's AI-powered platform automates this process, reducing time and costs."
+                  },
+                  {
+                    question: "How does AI Improve eDiscovery?",
+                    answer: "AI accelerates document review through predictive coding, email threading, and near-duplicate detection. Venio's AI reduces manual effort by 70% and improves accuracy in identifying relevant evidence."
+                  },
+                  {
+                    question: "Is Venio's Platform Secure for Sensitive Legal Data?",
+                    answer: "Yes. Venio is SOC 2 Type II certified, GDPR-compliant, and offers encryption at rest/in transit. Choose cloud, on-premises, or hybrid deployment to meet your security needs."
+                  },
+                  {
+                    question: "What's the Difference Between Cloud and On-premises eDiscovery?",
+                    answer: "Cloud: Fast deployment, scalable, and accessible anywhere.\nOn-Premises: Full data control for highly regulated industries.\nVenio offers both, plus hybrid options."
+                  },
+                  {
+                    question: "How Quickly Can I Start Using Venio?",
+                    answer: "Venio's platform can be set up in minutes. Either cloud, on-premises, or hybrid, our team will assist you with deployment. Schedule a demo today."
+                  }
+                ].map((faq, index) => (
+                  <div
+                    key={index}
+                    className="glass rounded-2xl px-6 md:px-8 border-2 border-transparent hover:border-secondary/30 transition-all duration-300 group hover:shadow-lg overflow-hidden relative"
+                  >
+                    {/* Gradient background on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <Accordion type="single" collapsible className="relative z-10">
+                      <AccordionItem value={`item-${index}`} className="border-0">
+                        <AccordionTrigger className="text-left text-lg font-bold text-primary hover:text-primary/80 py-6 hover:no-underline">
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-secondary to-accent text-white w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-1 text-sm font-bold">
+                              {index + 1}
+                            </div>
+                            <span className="pr-4">{faq.question}</span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground font-body leading-relaxed pb-6 pl-12 whitespace-pre-line">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Final CTA */}
         <section className="py-20 px-6 relative overflow-hidden">
