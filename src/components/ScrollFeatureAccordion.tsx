@@ -90,10 +90,7 @@ export const ScrollFeatureAccordion = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
-  const scrollAccumulatorRef = useRef<number>(0);
-  const isScrollingFeaturesRef = useRef<boolean>(false);
 
   // Match heights
   useEffect(() => {
@@ -116,72 +113,10 @@ export const ScrollFeatureAccordion = () => {
     };
   }, [activeIndex]);
 
-  // Sticky scroll interaction
-  useEffect(() => {
-    const SCROLL_THRESHOLD = 600; // 6x more scrolling needed (typical scroll is ~100)
-    
-    const handleWheel = (e: WheelEvent) => {
-      if (!sectionRef.current) return;
-
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      
-      // Check if section is in viewport and can stick
-      const isInViewport = rect.top <= 0 && rect.bottom >= window.innerHeight;
-      
-      if (isInViewport) {
-        // Section should stick and handle scroll
-        isScrollingFeaturesRef.current = true;
-        
-        // Can we still scroll through features?
-        const canScrollDown = activeIndex < features.length - 1;
-        const canScrollUp = activeIndex > 0;
-        const isScrollingDown = e.deltaY > 0;
-        
-        if ((isScrollingDown && canScrollDown) || (!isScrollingDown && canScrollUp)) {
-          e.preventDefault();
-          
-          // Accumulate scroll
-          scrollAccumulatorRef.current += e.deltaY;
-          
-          // Check if we've scrolled enough to change feature
-          if (Math.abs(scrollAccumulatorRef.current) >= SCROLL_THRESHOLD) {
-            if (scrollAccumulatorRef.current > 0 && canScrollDown) {
-              setActiveIndex(activeIndex + 1);
-              scrollAccumulatorRef.current = 0;
-            } else if (scrollAccumulatorRef.current < 0 && canScrollUp) {
-              setActiveIndex(activeIndex - 1);
-              scrollAccumulatorRef.current = 0;
-            }
-          }
-        } else {
-          // At the end/start of features, allow normal scroll to exit
-          isScrollingFeaturesRef.current = false;
-          scrollAccumulatorRef.current = 0;
-        }
-      } else {
-        // Section not in sticky position, allow normal scroll
-        isScrollingFeaturesRef.current = false;
-        scrollAccumulatorRef.current = 0;
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [activeIndex]);
-
   return (
-    <section id="features" ref={sectionRef} className="relative py-24 px-6 bg-gradient-to-b from-background to-muted/30" style={{ height: `${features.length * 100}vh` }}>
-      <div className="container mx-auto max-w-7xl sticky top-20 h-screen">
-        <div 
-          className={cn(
-            "text-center mb-16 animate-fade-in transition-all duration-500"
-          )}
-        >
-
+    <section id="features" className="relative py-24 px-6 bg-gradient-to-b from-background to-muted/30">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center mb-16 animate-fade-in transition-all duration-500">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             Complete Legal Hold Platform
           </h2>
