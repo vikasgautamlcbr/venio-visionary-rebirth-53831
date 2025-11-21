@@ -91,10 +91,10 @@ const Navbar = () => {
                 {item.link && !item.hasDropdown ? (
                   <Link 
                     to={item.link}
-                    className={`transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap ${
+                    className={`relative transition-colors font-medium text-sm flex items-center gap-1 whitespace-nowrap text-white hover:text-accent ${
                       isActiveRoute(item.link) 
-                        ? 'text-accent font-semibold' 
-                        : 'text-white hover:text-accent'
+                        ? 'after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-accent after:animate-in after:slide-in-from-left' 
+                        : ''
                     }`}
                   >
                     {item.label}
@@ -208,10 +208,10 @@ const Navbar = () => {
                 {item.link && !item.hasDropdown ? (
                   <Link
                     to={item.link}
-                    className={`mb-2 flex items-center gap-1 block ${
+                    className={`relative mb-2 flex items-center gap-1 block font-semibold text-white ${
                       isActiveRoute(item.link)
-                        ? 'text-accent font-bold'
-                        : 'text-white font-semibold'
+                        ? 'after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent'
+                        : ''
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
