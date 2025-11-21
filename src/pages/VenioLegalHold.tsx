@@ -124,30 +124,47 @@ const VenioLegalHold = () => {
       <BenefitsSection />
 
       {/* Data Points Section */}
-      <section id="data" className="py-24 px-6 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold mb-4">Measurable Impact</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section id="data" className="py-24 relative overflow-hidden">
+        {/* Venio branded gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.15),transparent_50%)]" />
+        
+        <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+          <div className="text-center mb-12 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4">Measurable Impact</h2>
+            <p className="text-lg text-muted-foreground">
               See how Venio Legal Hold transforms legal operations with proven results
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { value: "70%", label: "Shorter hold cycles", icon: Clock },
-              { value: "40%", label: "Higher custodian response rate", icon: Users },
-              { value: "100%", label: "Defensible audit tracking", icon: Shield },
-              { value: "64%", label: "Of discovery failures avoidable", icon: CheckCircle },
+              { value: "70%", label: "Shorter hold cycles", description: "Complete holds faster with automation", icon: Clock },
+              { value: "40%", label: "Higher custodian response rate", description: "Improved engagement and tracking", icon: Users },
+              { value: "100%", label: "Defensible audit tracking", description: "Complete chain of custody records", icon: Shield },
+              { value: "64%", label: "Of discovery failures avoidable", description: "Prevent common mistakes proactively", icon: CheckCircle },
             ].map((stat, index) => (
-              <Card key={index} className="glass text-center hover:shadow-xl transition-all duration-300 border-border/50">
-                <CardContent className="p-8 space-y-4">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center">
-                    <stat.icon className="h-8 w-8 text-secondary" />
+              <div
+                key={index}
+                className="group relative p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_40px_rgba(96,165,250,0.3)] hover:scale-105"
+              >
+                {/* Venio glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-accent/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300" />
+                
+                <div className="relative">
+                  <div className="inline-flex p-4 rounded-xl bg-primary/10 border border-primary/20 mb-6 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
+                    <stat.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <div className="text-5xl font-bold text-secondary">{stat.value}</div>
-                  <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
-                </CardContent>
-              </Card>
+                  
+                  <h3 className="text-5xl font-bold mb-2 bg-gradient-to-br from-primary via-primary to-accent bg-clip-text text-transparent">
+                    {stat.value}
+                  </h3>
+                  
+                  <p className="text-lg font-semibold mb-2 text-foreground">{stat.label}</p>
+                  <p className="text-sm text-muted-foreground">{stat.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -302,11 +319,11 @@ const VenioLegalHold = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <button className="btn px-8 py-4 text-lg group flex-1 bg-[#0b1c3f] hover:bg-[#0b1c3f]/90 text-white">
-                    <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
+                  <button className="btn px-8 py-4 text-lg group flex-1 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <Download className="mr-2 h-5 w-5" />
                     Download Now
                   </button>
-                  <button className="btn btn-primary px-8 py-4 text-lg group flex-1">
+                  <button className="btn btn-primary px-8 py-4 text-lg group flex-1 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105">
                     Book a Demo
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </button>

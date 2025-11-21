@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { useEffect, useRef, useState } from "react";
-import { Sparkles, Shield, Zap } from "lucide-react";
+import { Sparkles, Shield, Zap, Clock, Users, FileCheck } from "lucide-react";
 
 const benefits = [
   {
@@ -18,63 +17,81 @@ const benefits = [
     title: "Speed & Visibility",
     description: "Launch holds in minutes, not hours. Monitor custodian responses in real time, get instant visibility into status updates, and keep your entire legal hold process moving without bottlenecks.",
   },
+  {
+    icon: Clock,
+    title: "Rapid Deployment",
+    description: "Get up and running quickly with intuitive setup. Integrate with existing systems and workflows without lengthy implementation timelines.",
+  },
+  {
+    icon: Users,
+    title: "Collaboration Tools",
+    description: "Enable seamless coordination across legal teams, IT, and custodians with centralized communication and task management features.",
+  },
+  {
+    icon: FileCheck,
+    title: "Comprehensive Reporting",
+    description: "Generate detailed reports for stakeholders, auditors, and court proceedings with just a few clicks.",
+  },
 ];
 
 export const BenefitsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
+  const FirstBenefitIcon = benefits[0].icon;
+  
   return (
-    <section ref={sectionRef} className="py-24 px-6 bg-gradient-to-b from-background via-muted/20 to-background">
+    <section className="py-20 px-6 bg-muted/30">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 sticky top-24 z-10 bg-background/80 backdrop-blur-sm py-6">
-          <h2 className="text-4xl font-heading font-bold mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">
             Why Teams Choose Venio Legal Hold
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Built for modern legal teams who need speed, accuracy, and defensibility
+          </p>
         </div>
 
-        {/* Stacking Cards */}
-        <div className="max-w-5xl mx-auto space-y-6">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="sticky"
-              style={{ 
-                top: `${120 + (index * 24)}px`,
-                zIndex: index + 1
-              }}
-            >
-              <Card className="glass shadow-2xl border-border/50 overflow-hidden w-full aspect-[3/2] bg-background">
-                <CardContent className="p-0 h-full bg-background">
-                  <div className="grid md:grid-cols-2 gap-0 h-full">
-                    {/* Text Content */}
-                    <div className="p-10 flex flex-col justify-center space-y-4">
-                      <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-2">
-                        <benefit.icon className="h-7 w-7 text-secondary" />
-                      </div>
-                      <h3 className="text-2xl font-heading font-bold">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </div>
+        {/* Bento Grid Layout */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* Large Card - First benefit (2x2) */}
+          <div className="md:col-span-2 md:row-span-2">
+            <Card className="glass hover:shadow-2xl transition-all duration-300 h-full group overflow-hidden rounded-2xl">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="relative h-80 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 overflow-hidden">
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <FirstBenefitIcon className="h-32 w-32 text-accent/30 group-hover:scale-110 transition-transform" />
+                  </div>
+                  <div className="absolute bottom-4 right-4 text-xs text-muted-foreground/50 font-mono">automation.gif</div>
+                </div>
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-3xl font-bold mb-4">{benefits[0].title}</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">
+                    {benefits[0].description}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-                    {/* Image Placeholder */}
-                    <div className="relative h-full bg-gradient-to-br from-secondary/10 to-accent/10 flex items-center justify-center">
-                      <div className="text-center text-muted-foreground/50">
-                        <benefit.icon className="h-16 w-16 mx-auto mb-2" />
-                        <p className="text-sm">Image Placeholder</p>
-                      </div>
-                    </div>
+          {/* Small Cards */}
+          {benefits.slice(1).map((benefit, index) => {
+            const BenefitIcon = benefit.icon;
+            return (
+              <Card key={index} className="glass hover:shadow-xl transition-all duration-300 group rounded-2xl">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-accent/15 to-primary/10 flex items-center justify-center overflow-hidden rounded-t-2xl">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <BenefitIcon className="h-16 w-16 text-accent/40 group-hover:scale-110 transition-transform" />
+                    <div className="absolute bottom-2 right-2 text-xs text-muted-foreground/50 font-mono">{benefit.title.toLowerCase().replace(/\s/g, '-')}.gif</div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        
-        {/* Extra space to allow scrolling */}
-        <div className="h-96"></div>
       </div>
     </section>
   );
