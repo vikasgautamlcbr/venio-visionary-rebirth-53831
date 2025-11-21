@@ -25,7 +25,7 @@ const CTABanner = () => {
           <div className="flex justify-center">
             <Button
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 glow-accent-hover group"
+              className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
             >
               Book a Demo Today
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
