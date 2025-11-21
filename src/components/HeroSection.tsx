@@ -183,26 +183,18 @@ const HeroSection = () => {
             {/* Dashboard/Video Section */}
             <div className="relative max-w-6xl mx-auto px-4 pb-8">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-white">
-                <AnimatePresence mode="wait">
-                  <motion.div
+                <div className="aspect-[16/10] bg-black">
+                  <video
                     key={activeTab}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="aspect-[16/10]"
-                  >
-                    <video
-                      ref={videoRef}
-                      src={tabs[activeTab].videoUrl}
-                      className="w-full h-full object-cover"
-                      onEnded={handleVideoEnd}
-                      playsInline
-                      muted
-                      autoPlay
-                    />
-                  </motion.div>
-                </AnimatePresence>
+                    ref={videoRef}
+                    src={tabs[activeTab].videoUrl}
+                    className="w-full h-full object-cover"
+                    onEnded={handleVideoEnd}
+                    playsInline
+                    muted
+                    autoPlay
+                  />
+                </div>
               </div>
             </div>
           </div>
