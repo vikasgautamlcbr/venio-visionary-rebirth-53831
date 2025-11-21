@@ -99,7 +99,7 @@ const Navbar = () => {
                 {/* Mega Menu for Solutions */}
                 {item.hasDropdown && item.hasMegaMenu && item.categories && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                    <div className="rounded-xl shadow-2xl p-6 min-w-[600px] bg-[rgba(25,42,86,0.95)] backdrop-blur-xl border border-white/20">
+                    <div className="rounded-xl shadow-2xl p-6 min-w-[600px] bg-[rgba(25,42,86,0.75)] backdrop-blur-2xl border border-white/20" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
                       <div className="grid grid-cols-3 gap-6">
                         {item.categories.map((category) => (
                           <div key={category.title}>
@@ -141,7 +141,7 @@ const Navbar = () => {
                 {/* Regular Dropdown */}
                 {item.hasDropdown && !item.hasMegaMenu && item.items && (
                   <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                    <div className="rounded-xl shadow-2xl p-4 min-w-[220px] bg-[rgba(25,42,86,0.95)] backdrop-blur-xl border border-white/20">
+                    <div className="rounded-xl shadow-2xl p-4 min-w-[220px] bg-[rgba(25,42,86,0.75)] backdrop-blur-2xl border border-white/20" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
                       {item.items.map((subItem) => {
                         // Handle special link for Venio Legal Hold
                         if (item.label === "Products" && subItem === "Venio Review") {
