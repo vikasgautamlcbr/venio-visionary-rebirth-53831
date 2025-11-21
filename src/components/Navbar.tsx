@@ -119,15 +119,16 @@ const Navbar = () => {
                 
                 {/* Mega Menu for Solutions */}
                 {item.hasDropdown && item.hasMegaMenu && item.categories && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="rounded-lg shadow-xl p-6 min-w-[600px] bg-[rgb(11,28,63)]/95 border border-white/20" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
-                      <div className="grid grid-cols-3 gap-8">
-                        {item.categories.map((category) => (
-                          <div key={category.title}>
-                            <h3 className="text-accent/90 font-semibold text-[10px] mb-3 uppercase tracking-widest">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="rounded-xl shadow-2xl p-6 min-w-[600px] bg-[rgb(11,28,63)] border border-white/30" style={{ backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
+                      <div className="grid grid-cols-3 gap-0 divide-x divide-white/10">
+                        {item.categories.map((category, idx) => (
+                          <div key={category.title} className={idx !== 0 ? "pl-6" : "pr-6"}>
+                            <h3 className="text-accent font-semibold text-xs mb-4 uppercase tracking-wider px-3 flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
                               {category.title}
                             </h3>
-                            <div className="space-y-0.5">
+                            <div className="space-y-1">
                               {category.items.map((subItem) => {
                                 const isActive = isActiveDropdownItem(item.label, subItem);
                                 // Handle special link for Law Firm Solutions
@@ -136,13 +137,14 @@ const Navbar = () => {
                                     <Link
                                       key={subItem}
                                       to="/law-firm-solutions"
-                                      className={`block px-3 py-2 text-sm rounded-md transition-all duration-150 ${
+                                      className={`group/item relative flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-all duration-200 ${
                                         isActive
-                                          ? 'text-white bg-white/10 font-medium'
-                                          : 'text-white/80 hover:text-white hover:bg-white/5'
+                                          ? 'text-white bg-white/15 font-medium'
+                                          : 'text-white/90 hover:text-white hover:bg-white/10'
                                       }`}
                                     >
-                                      {subItem}
+                                      <ChevronRight size={14} className="opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                                      <span>{subItem}</span>
                                     </Link>
                                   );
                                 }
@@ -150,9 +152,10 @@ const Navbar = () => {
                                   <a
                                     key={subItem}
                                     href="#"
-                                    className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-md transition-all duration-150"
+                                    className="group/item relative flex items-center gap-3 px-3 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
                                   >
-                                    {subItem}
+                                    <ChevronRight size={14} className="opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                                    <span>{subItem}</span>
                                   </a>
                                 );
                               })}
@@ -166,9 +169,9 @@ const Navbar = () => {
                 
                 {/* Regular Dropdown */}
                 {item.hasDropdown && !item.hasMegaMenu && item.items && (
-                  <div className="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="rounded-lg shadow-xl py-1 min-w-[200px] bg-[rgb(11,28,63)]/95 border border-white/20" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
-                      {item.items.map((subItem) => {
+                  <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="rounded-xl shadow-2xl py-2 min-w-[240px] bg-[rgb(11,28,63)] border border-white/30" style={{ backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
+                      {item.items.map((subItem, idx) => {
                         const isActive = isActiveDropdownItem(item.label, subItem);
                         // Handle special link for Venio Legal Hold
                         if (item.label === "Products" && subItem === "Venio Review") {
@@ -176,13 +179,14 @@ const Navbar = () => {
                             <Link
                               key={subItem}
                               to="/venio-legal-hold"
-                              className={`block px-4 py-2.5 text-sm transition-all duration-150 ${
+                              className={`group/item relative flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 ${
                                 isActive
-                                  ? 'text-white bg-white/10 font-medium'
-                                  : 'text-white/80 hover:text-white hover:bg-white/5'
+                                  ? 'text-white bg-white/15 font-medium'
+                                  : 'text-white/90 hover:text-white hover:bg-white/10'
                               }`}
                             >
-                              Venio Legal Hold
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent/60 group-hover/item:bg-accent transition-colors"></div>
+                              <span>Venio Legal Hold</span>
                             </Link>
                           );
                         }
@@ -190,9 +194,10 @@ const Navbar = () => {
                           <a
                             key={subItem}
                             href="#"
-                            className="block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition-all duration-150"
+                            className="group/item relative flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
                           >
-                            {subItem}
+                            <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/item:bg-accent transition-colors"></div>
+                            <span>{subItem}</span>
                           </a>
                         );
                       })}
@@ -251,7 +256,8 @@ const Navbar = () => {
                     {item.categories.map((category, idx) => (
                       <div key={category.title}>
                         {idx > 0 && <div className="border-t border-white/10 my-3"></div>}
-                        <div className="text-accent/90 text-[10px] font-semibold mb-2 uppercase tracking-widest px-2">
+                        <div className="text-accent text-xs font-semibold mb-2 uppercase tracking-wider px-2 flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
                           {category.title}
                         </div>
                         {category.items.map((subItem) => {
@@ -261,13 +267,14 @@ const Navbar = () => {
                               <Link
                                 key={subItem}
                                 to="/law-firm-solutions"
-                                className={`block px-4 py-2.5 text-sm rounded-md transition-all ${
+                                className={`flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-all ${
                                   isActive
-                                    ? 'text-white bg-white/10 font-medium'
-                                    : 'text-white/80 hover:text-white hover:bg-white/5'
+                                    ? 'text-white bg-white/15 font-medium'
+                                    : 'text-white/90 hover:text-accent hover:bg-white/10'
                                 }`}
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
+                                <div className="w-1.5 h-1.5 rounded-full bg-accent/60"></div>
                                 {subItem}
                               </Link>
                             );
@@ -276,8 +283,9 @@ const Navbar = () => {
                             <a
                               key={subItem}
                               href="#"
-                              className="block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                              className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
                             >
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
                               {subItem}
                             </a>
                           );
@@ -296,13 +304,14 @@ const Navbar = () => {
                       <Link
                         key={subItem}
                         to="/venio-legal-hold"
-                        className={`block px-4 py-2.5 text-sm rounded-md transition-all ${
+                        className={`flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-all ${
                           isActive
-                            ? 'text-white bg-white/10 font-medium'
-                            : 'text-white/80 hover:text-white hover:bg-white/5'
+                            ? 'text-white bg-white/15 font-medium'
+                            : 'text-white/90 hover:text-accent hover:bg-white/10'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent/60"></div>
                         Venio Legal Hold
                       </Link>
                     );
@@ -311,8 +320,9 @@ const Navbar = () => {
                     <a
                       key={subItem}
                       href="#"
-                      className="block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
                     >
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
                       {subItem}
                     </a>
                   );
