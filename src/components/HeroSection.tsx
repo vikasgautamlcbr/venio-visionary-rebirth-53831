@@ -145,23 +145,23 @@ const HeroSection = () => {
             </p>
 
             {/* Feature Pills as Tabs */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
               {tabs.map((tab, index) => {
                 const isActive = activeTab === index;
                 return (
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`px-5 py-2.5 backdrop-blur-sm rounded-full border text-sm font-medium transition-all duration-300 relative overflow-hidden ${
+                    className={`px-5 py-2.5 backdrop-blur-sm rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden ${
                       isActive
-                        ? "bg-white/20 border-white/40 text-white"
-                        : "bg-white/10 border-white/20 text-white/90 hover:bg-white/15 hover:border-white/30"
+                        ? "bg-black/40 text-white"
+                        : "bg-black/40 text-white/70 hover:text-white/90"
                     }`}
                   >
                     {/* Progress bar */}
                     {isActive && (
                       <div 
-                        className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-100"
+                        className="absolute bottom-0 left-0 h-1 bg-accent transition-all duration-100"
                         style={{ width: `${progress}%` }}
                       />
                     )}
