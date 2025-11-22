@@ -103,15 +103,20 @@ const ChatbotWidget = () => {
             </div>
 
             {/* Right Side - Product Demo */}
-            <div className="flex-1 rounded-lg overflow-hidden max-md:hidden flex">
-              <iframe
-                loading="lazy"
-                src="https://app.storylane.io/demo/pjaaebjnr9nb?embed=inline"
-                name="sl-embed"
-                allow="fullscreen"
-                allowFullScreen
-                className="w-full h-full border-none rounded-lg"
-              />
+            <div className="w-3/4 rounded-lg overflow-hidden max-md:hidden">
+              <div className="w-full h-full">
+                <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+                <div className="relative pb-[calc(49.65%+25px)] w-full h-0">
+                  <iframe
+                    loading="lazy"
+                    src="https://app.storylane.io/demo/pjaaebjnr9nb?embed=inline"
+                    name="sl-embed"
+                    allow="fullscreen"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full border border-border/35 shadow-lg rounded-lg"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
