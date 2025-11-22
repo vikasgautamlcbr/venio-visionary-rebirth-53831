@@ -10,6 +10,7 @@ import LawFirmSolutions from "./pages/LawFirmSolutions";
 import Pricing from "./pages/Pricing";
 import Resources from "./pages/Resources";
 import WhyVenio from "./pages/WhyVenio";
+import ChatbotWidget from "./components/ChatbotWidget";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ChatbotWidget />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
