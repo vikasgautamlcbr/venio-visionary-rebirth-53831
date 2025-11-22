@@ -155,7 +155,7 @@ const HeroSection = () => {
             </p>
 
             {/* Feature Pills as Tabs */}
-            <div className="grid grid-cols-4 gap-0 mb-2 mx-auto" style={{ width: '90%', maxWidth: '1296px' }}>
+            <div className="grid grid-cols-4 gap-2 mb-2 mx-auto" style={{ width: '90%', maxWidth: '1296px' }}>
               {tabs.map((tab, index) => {
                 const isActive = activeTab === index;
                 const progress = videoProgress[index];
