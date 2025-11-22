@@ -163,7 +163,7 @@ const HeroSection = () => {
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`px-5 py-2.5 backdrop-blur-sm rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden ${
+                    className={`px-5 py-2.5 backdrop-blur-sm rounded-t-lg text-sm font-medium transition-all duration-300 relative overflow-hidden ${
                       isActive
                         ? "bg-black/40 text-white"
                         : "bg-black/40 text-white/70 hover:text-white/90"
@@ -171,7 +171,7 @@ const HeroSection = () => {
                   >
                     {/* Progress bar - shown for all tabs */}
                     <div 
-                      className="absolute bottom-0 left-0 h-1 bg-accent transition-all duration-100"
+                      className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-100"
                       style={{ width: `${progress}%` }}
                     />
                     {tab.title}
