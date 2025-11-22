@@ -2,11 +2,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Shield, Zap, Brain, Globe } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import BookDemoDialog from "./BookDemoDialog";
 
 const HeroSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [videoProgress, setVideoProgress] = useState<number[]>([0, 0, 0, 0]);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
 
   const tabs = [
     {
@@ -137,6 +139,7 @@ const HeroSection = () => {
               <Button 
                 size="lg" 
                 className="bg-accent hover:bg-accent/90 text-white text-lg px-10 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
+                onClick={() => setIsDemoDialogOpen(true)}
               >
                 Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -205,6 +208,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      <BookDemoDialog open={isDemoDialogOpen} onOpenChange={setIsDemoDialogOpen} />
     </section>
   );
 };

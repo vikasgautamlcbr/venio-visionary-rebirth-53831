@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
+import BookDemoDialog from "./BookDemoDialog";
 
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
   const [showOverlay, setShowOverlay] = useState(true);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const ChatbotWidget = () => {
   };
 
   const handleBookDemo = () => {
-    window.open('https://www.veniosystems.com/request-a-demo/', '_blank');
+    setIsDemoDialogOpen(true);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -121,6 +123,8 @@ const ChatbotWidget = () => {
           </div>
         </div>
       )}
+
+      <BookDemoDialog open={isDemoDialogOpen} onOpenChange={setIsDemoDialogOpen} />
     </>
   );
 };

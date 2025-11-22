@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import venioLogo from "@/assets/venio-logo.svg";
+import BookDemoDialog from "./BookDemoDialog";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -212,6 +214,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center flex-shrink-0">
             <Button 
               className="bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 whitespace-nowrap"
+              onClick={() => setIsDemoDialogOpen(true)}
             >
               Book a Demo
             </Button>
@@ -330,13 +333,21 @@ const Navbar = () => {
               </div>
             ))}
             <div className="mt-4">
-              <Button className="w-full bg-accent hover:bg-accent/90 text-white font-semibold">
+              <Button 
+                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold"
+                onClick={() => {
+                  setIsDemoDialogOpen(true);
+                  setIsMobileMenuOpen(false);
+                }}
+              >
                 Book a Demo
               </Button>
             </div>
           </div>
         )}
       </div>
+
+      <BookDemoDialog open={isDemoDialogOpen} onOpenChange={setIsDemoDialogOpen} />
     </nav>
   );
 };

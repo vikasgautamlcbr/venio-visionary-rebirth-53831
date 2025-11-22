@@ -35,6 +35,7 @@ import { useEffect, useState } from "react";
 import { DownloadFormDialog } from "@/components/DemoGateDialog";
 import { CalculatorDialog } from "@/components/CalculatorDialog";
 import { StorylaneDemoDialog } from "@/components/StorylaneDemoDialog";
+import BookDemoDialog from "@/components/BookDemoDialog";
 import amentum from "@/assets/clients/amentum.webp";
 import consilio from "@/assets/clients/consilio.webp";
 import array from "@/assets/clients/array.webp";
@@ -60,6 +61,7 @@ const WhyVenio = () => {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false);
   const [calculatorDialogOpen, setCalculatorDialogOpen] = useState(false);
   const [demoDialogOpen, setDemoDialogOpen] = useState(false);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   const [selectedResource, setSelectedResource] = useState("");
 
   // Scroll to top on page load
@@ -106,6 +108,7 @@ const WhyVenio = () => {
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
+                onClick={() => setIsDemoDialogOpen(true)}
               >
                 Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -1027,7 +1030,11 @@ const WhyVenio = () => {
               Book a personalized demo and see how Venio saves time and cost while improving defensibility.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
+                onClick={() => setIsDemoDialogOpen(true)}
+              >
                 Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -1057,6 +1064,10 @@ const WhyVenio = () => {
       <StorylaneDemoDialog
         open={demoDialogOpen}
         onOpenChange={setDemoDialogOpen}
+      />
+      <BookDemoDialog 
+        open={isDemoDialogOpen} 
+        onOpenChange={setIsDemoDialogOpen} 
       />
     </div>
   );
