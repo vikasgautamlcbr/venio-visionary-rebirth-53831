@@ -165,7 +165,7 @@ const HeroSection = () => {
                     onClick={() => handleTabClick(index)}
                     className={`px-5 py-2.5 backdrop-blur-sm rounded-t-lg text-sm transition-all duration-300 relative overflow-hidden ${
                       isActive
-                        ? "bg-accent text-white font-bold"
+                        ? "bg-primary text-white font-bold"
                         : "bg-primary/60 text-white/70 hover:text-white/90 font-medium"
                     }`}
                   >
