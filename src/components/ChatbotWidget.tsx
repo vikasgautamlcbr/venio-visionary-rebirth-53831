@@ -43,7 +43,7 @@ const ChatbotWidget = () => {
           className="fixed inset-0 z-[10000] bg-black/50 flex items-center justify-center"
           onClick={handleBackdropClick}
         >
-          <div className="bg-white rounded-lg w-[95vw] max-w-[1200px] h-[90vh] flex gap-6 p-6 relative">
+          <div className="bg-white rounded-lg w-[95vw] max-w-[1200px] max-h-[90vh] flex gap-6 p-6 relative overflow-hidden">
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 bg-transparent border-none cursor-pointer text-2xl text-muted-foreground hover:text-foreground z-10"
@@ -103,10 +103,10 @@ const ChatbotWidget = () => {
             </div>
 
             {/* Right Side - Product Demo */}
-            <div className="w-3/4 rounded-lg overflow-hidden max-md:hidden">
-              <div className="w-full h-full">
+            <div className="w-3/4 rounded-lg overflow-hidden max-md:hidden flex items-center">
+              <div className="w-full">
                 <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
-                <div className="relative pb-[calc(49.65%+25px)] w-full h-0">
+                <div className="relative pb-[calc(56.25%+25px)] w-full h-0">
                   <iframe
                     loading="lazy"
                     src="https://app.storylane.io/demo/pjaaebjnr9nb?embed=inline"
