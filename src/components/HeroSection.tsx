@@ -166,7 +166,7 @@ const HeroSection = () => {
                     className={`px-5 py-2.5 backdrop-blur-sm rounded-t-lg text-sm transition-all duration-300 relative overflow-hidden ${
                       isActive
                         ? "bg-accent text-white font-bold"
-                        : "bg-black/40 text-white/70 hover:text-white/90 font-medium"
+                        : "bg-primary/60 text-white/70 hover:text-white/90 font-medium"
                     }`}
                   >
                     {/* Progress bar - shown only for active tab */}
