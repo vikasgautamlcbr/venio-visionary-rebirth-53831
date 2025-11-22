@@ -145,6 +145,9 @@ const HeroSection = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-white/40 bg-transparent text-white hover:bg-white/10 hover:border-white/60 text-lg px-10 py-6 shadow-lg hover:shadow-white/30 transition-all duration-300 hover:scale-105"
+                onClick={() => {
+                  document.getElementById('interactive-demos')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Take a Product Tour
               </Button>
