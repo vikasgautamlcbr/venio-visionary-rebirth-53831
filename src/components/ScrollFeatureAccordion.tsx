@@ -154,7 +154,7 @@ export const ScrollFeatureAccordion = () => {
                       "transition-all duration-500",
                       isActive ? "p-8" : "p-6"
                     )}>
-                      <div className="flex items-start gap-4">
+                      <div className="flex items-center gap-4">
                         <div
                           className={cn(
                             "rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-700",
