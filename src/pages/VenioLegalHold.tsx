@@ -23,6 +23,7 @@ import {
 import CTABanner from "@/components/CTABanner";
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { DemoGateDialog } from "@/components/DemoGateDialog";
+import BookDemoDialog from "@/components/BookDemoDialog";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import { useState } from "react";
 
@@ -38,6 +39,7 @@ const sections = [
 const VenioLegalHold = () => {
   const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   const [isDemoUnlocked, setIsDemoUnlocked] = useState(false);
+  const [isBookDemoDialogOpen, setIsBookDemoDialogOpen] = useState(false);
 
   const handleDemoAccess = () => {
     if (!isDemoUnlocked) {
@@ -323,7 +325,10 @@ const VenioLegalHold = () => {
                     <Download className="mr-2 h-5 w-5" />
                     Download Now
                   </button>
-                  <button className="btn btn-primary px-8 py-4 text-lg group flex-1 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105">
+                  <button 
+                    className="btn btn-primary px-8 py-4 text-lg group flex-1 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
+                    onClick={() => setIsBookDemoDialogOpen(true)}
+                  >
                     Book a Demo
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -346,6 +351,11 @@ const VenioLegalHold = () => {
         isOpen={isDemoDialogOpen}
         onClose={() => setIsDemoDialogOpen(false)}
         onSuccess={handleDemoSuccess}
+      />
+      
+      <BookDemoDialog 
+        open={isBookDemoDialogOpen} 
+        onOpenChange={setIsBookDemoDialogOpen} 
       />
     </div>
   );

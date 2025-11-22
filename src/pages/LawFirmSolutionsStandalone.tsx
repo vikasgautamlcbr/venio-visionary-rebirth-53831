@@ -14,6 +14,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { supabase } from "@/integrations/supabase/client";
+import BookDemoDialog from "@/components/BookDemoDialog";
 
 // Assets
 import venioLogo from "@/assets/venio-logo.svg";
@@ -348,6 +349,7 @@ const CarouselNext = ({ className, variant = "outline", size = "icon", ...props 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -471,6 +473,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center flex-shrink-0">
             <Button 
               className="bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 whitespace-nowrap"
+              onClick={() => setIsDemoDialogOpen(true)}
             >
               Book a Demo
             </Button>
@@ -548,13 +551,21 @@ const Navbar = () => {
               </div>
             ))}
             <div className="mt-4">
-              <Button className="w-full bg-accent hover:bg-accent/90 text-white font-semibold">
+              <Button 
+                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold"
+                onClick={() => {
+                  setIsDemoDialogOpen(true);
+                  setIsMobileMenuOpen(false);
+                }}
+              >
                 Book a Demo
               </Button>
             </div>
           </div>
         )}
       </div>
+
+      <BookDemoDialog open={isDemoDialogOpen} onOpenChange={setIsDemoDialogOpen} />
     </nav>
   );
 };
