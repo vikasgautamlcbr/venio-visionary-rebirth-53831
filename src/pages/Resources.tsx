@@ -75,13 +75,14 @@ const Resources = () => {
   };
 
   const getBentoSpan = (index: number) => {
+    // More compact bento pattern with less blank space
     const pattern = [
-      "md:col-span-2 md:row-span-2", // Large
-      "md:col-span-1 md:row-span-1", // Small
-      "md:col-span-1 md:row-span-1", // Small
-      "md:col-span-1 md:row-span-2", // Tall
       "md:col-span-2 md:row-span-1", // Wide
-      "md:col-span-1 md:row-span-1", // Small
+      "md:col-span-1 md:row-span-1", // Regular
+      "md:col-span-1 md:row-span-1", // Regular
+      "md:col-span-1 md:row-span-1", // Regular
+      "md:col-span-2 md:row-span-1", // Wide
+      "md:col-span-1 md:row-span-1", // Regular
     ];
     return pattern[index % pattern.length];
   };
@@ -113,6 +114,46 @@ const Resources = () => {
   const resources = [
     {
       id: 1,
+      title: "What Is FRCP Rule 33? A Reference Guide",
+      description: "The U.S. federal court system is highly regulated and uniform across all states. Understanding FRCP Rule 33 for interrogatories in modern litigation.",
+      type: "blog",
+      topic: "legal-news",
+      icon: Lightbulb,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "https://www.veniosystems.com/blog/what-is-frcp-rule-33-a-reference-guide/"
+    },
+    {
+      id: 2,
+      title: "Why Premium eDiscovery Pricing Doesn't Guarantee Better Results",
+      description: "Many legal teams still believe premium eDiscovery software pricing equals superior performance. Learn why that's not always the case.",
+      type: "blog",
+      topic: "ediscovery-systems",
+      icon: Lightbulb,
+      date: "Thursday, 10 October, 2024",
+      fileUrl: "https://www.veniosystems.com/blog/why-premium-ediscovery-software-pricing-doesnt-guarantee-better-results/"
+    },
+    {
+      id: 3,
+      title: "Understanding ESI Protocol: The Definitive Checklist",
+      description: "In modern litigation, the battle is won or lost before discovery even begins. Master ESI protocol formulation with this comprehensive guide.",
+      type: "blog",
+      topic: "legal-news",
+      icon: Lightbulb,
+      date: "Wednesday, 09 October, 2024",
+      fileUrl: "https://www.veniosystems.com/blog/understanding-formulating-esi-protocol-checklist/"
+    },
+    {
+      id: 4,
+      title: "What is ESI? The Ultimate Guide to ESI in Modern eDiscovery",
+      description: "Electronically Stored Information (ESI) isn't just data; it's the digital battlefield of modern litigation. Learn everything about ESI.",
+      type: "blog",
+      topic: "legal-news",
+      icon: Lightbulb,
+      date: "Tuesday, 08 October, 2024",
+      fileUrl: "https://www.veniosystems.com/blog/what-is-esi-legal-hold-guide/"
+    },
+    {
+      id: 5,
       title: "Petabyte-Scale eDiscovery: Fortune 100 Financial Services",
       description: "How a global bank processed 120+TB of data with full PII protection, achieving 72% data reduction and 2.1× review efficiency for a major regulatory investigation.",
       type: "case-study",
@@ -122,7 +163,7 @@ const Resources = () => {
       fileUrl: "/resources/Case_Study-Fortune_100_Financial_Services.pdf"
     },
     {
-      id: 2,
+      id: 6,
       title: "Weekly Productions, Zero Rejections: AmLaw 50 Success",
       description: "Discover how an AmLaw 50 firm achieved flawless weekly production cycles with zero rejections using Venio's defensible workflows.",
       type: "case-study",
@@ -132,7 +173,17 @@ const Resources = () => {
       fileUrl: "/resources/Case_Study-AmLaw_50_Success_Story.pdf"
     },
     {
-      id: 3,
+      id: 7,
+      title: "Fortune 100 Bank Cuts eDiscovery Costs with Venio",
+      description: "When eDiscovery scales into the hundreds of terabytes, every inefficiency carries a cost. See how this bank transformed their process.",
+      type: "blog",
+      topic: "review",
+      icon: Lightbulb,
+      date: "Friday, 04 October, 2024",
+      fileUrl: "https://www.veniosystems.com/blog/fortune-100-bank-cuts-ediscovery-costs-with-venio/"
+    },
+    {
+      id: 8,
       title: "Audit-Ready Federal Workflows: Agency Success Story",
       description: "How Venio created defensible pipelines for a federal agency, reducing operator hours by 35% and achieving 100% audit trail compliance.",
       type: "case-study",
@@ -142,7 +193,17 @@ const Resources = () => {
       fileUrl: "/resources/Case_Study-Federal_Agency_Workflows.pdf"
     },
     {
-      id: 4,
+      id: 9,
+      title: "Understanding eDiscovery Software Costs",
+      description: "eDiscovery can be one of the priciest components of any legal case. Learn tips for smarter spending and cost control.",
+      type: "blog",
+      topic: "ediscovery-systems",
+      icon: Lightbulb,
+      date: "Monday, 30 September, 2024",
+      fileUrl: "https://www.veniosystems.com/blog/understanding-ediscovery-software-costs/"
+    },
+    {
+      id: 10,
       title: "Venio Review Product Brief",
       description: "The Complete Review Platform for Modern Legal Teams. Discover how Venio Review delivers fast, intuitive, and reliable document review at scale.",
       type: "product-brief",
@@ -152,7 +213,7 @@ const Resources = () => {
       fileUrl: "/resources/Product_Brief-Venio_Review.pdf"
     },
     {
-      id: 5,
+      id: 11,
       title: "Venio ECA Product Brief",
       description: "Reduce risk and make your discovery 10x faster with Venio ECA. Cut data volume sent to external partners by up to 90%.",
       type: "product-brief",
@@ -162,7 +223,7 @@ const Resources = () => {
       fileUrl: "/resources/Product_Brief-Venio_ECA.pdf"
     },
     {
-      id: 6,
+      id: 12,
       title: "Venio Legal Hold Product Brief",
       description: "Modernizing Legal Hold for a Connected, Data-Driven World. Built for reliability and designed for defensibility.",
       type: "product-brief",
@@ -172,7 +233,7 @@ const Resources = () => {
       fileUrl: "/resources/Product_Brief-Venio_Legal_Hold.pdf"
     },
     {
-      id: 7,
+      id: 13,
       title: "Venio vs Others: Platform Comparison",
       description: "Key eDiscovery capabilities comparison between Venio, Relativity, NUIX, and Everlaw. See how Venio simplifies eDiscovery and accelerates results.",
       type: "infographic",
@@ -182,7 +243,7 @@ const Resources = () => {
       fileUrl: "/resources/Venio_vs_Others_comparison_sheet.pdf"
     },
     {
-      id: 8,
+      id: 14,
       title: "10-Point Checklist for Document Review",
       description: "Where law firms lose the most in document review. Use this checklist to uncover quick wins and build a court-ready process.",
       type: "how-to-guide",
@@ -192,7 +253,7 @@ const Resources = () => {
       fileUrl: "/resources/10_points_checklist_for_Doc_Review.pdf"
     },
     {
-      id: 9,
+      id: 15,
       title: "See How Venio Speeds Up Case Prep",
       description: "Discover how Venio empowers attorneys with lightning-fast search, AI-powered review, and organized workflows for faster case preparation.",
       type: "brochure",
@@ -202,7 +263,7 @@ const Resources = () => {
       fileUrl: "/resources/See_How_Venio_Speeds_Up_Case_Prep.pdf"
     },
     {
-      id: 10,
+      id: 16,
       title: "Take Control of Every Case: Collection to Review",
       description: "How Venio helps litigation support teams manage collection, processing, review, and production seamlessly on a unified platform.",
       type: "brochure",
@@ -301,11 +362,11 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Resources Grid - Bento Layout */}
+      {/* Resources Grid - Compact Bento Layout */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-7xl">
           {filteredResources.length > 0 ? (
-            <div className="grid md:grid-cols-3 auto-rows-[280px] gap-6">
+            <div className="grid md:grid-cols-3 auto-rows-[200px] gap-4">
               {filteredResources.map((resource, index) => {
                 const colors = typeColors[resource.type] || typeColors["blog"];
                 return (
@@ -325,41 +386,40 @@ const Resources = () => {
                         getBentoSpan(index)
                       )}
                     >
-                    <CardHeader className="h-full flex flex-col">
-                      <div className="flex items-start justify-between mb-4">
+                    <CardHeader className="h-full flex flex-col p-5">
+                      <div className="flex items-start justify-between mb-3">
                         <div className={cn(
-                          "inline-flex p-3 rounded-xl border-2 transition-all",
+                          "inline-flex p-2 rounded-lg border transition-all",
                           colors.bg,
                           colors.border
                         )}>
-                          <resource.icon className={cn("h-6 w-6", colors.text)} />
+                          <resource.icon className={cn("h-5 w-5", colors.text)} />
                         </div>
                         <span className={cn(
-                          "text-xs font-medium px-3 py-1 rounded-full border",
+                          "text-xs font-medium px-2 py-1 rounded-full border",
                           colors.badge
                         )}>
                           {getTypeLabel(resource.type)}
                         </span>
                       </div>
                       <CardTitle className={cn(
-                        "text-xl mb-2 transition-colors",
+                        "text-lg mb-2 line-clamp-2 transition-colors leading-tight",
                         "group-hover:" + colors.text
                       )}>
                         {resource.title}
                       </CardTitle>
-                      <CardDescription className="text-sm flex-grow">
+                      <CardDescription className="text-xs flex-grow line-clamp-3">
                         {resource.description}
                       </CardDescription>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground mt-4 pt-4 border-t">
-                        <span className="font-medium">{resource.date}</span>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground mt-3 pt-3 border-t">
                         <span className={cn(
                           "font-semibold group-hover:underline",
                           colors.text
                         )}>
-                          View Resource →
+                          View →
                         </span>
                       </div>
-                      </CardHeader>
+                    </CardHeader>
                     </Card>
                   </a>
                 );
