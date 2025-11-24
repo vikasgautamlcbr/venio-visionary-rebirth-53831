@@ -407,124 +407,204 @@ const Resources = () => {
           </div>
           
           {filteredResources.length > 0 ? (
-            <Masonry
-              breakpointCols={masonryBreakpoints}
-              className="flex -ml-5 w-auto masonry-grid"
-              columnClassName="pl-5 bg-clip-padding masonry-column"
-            >
-              {filteredResources.map((resource, index) => {
-                const colors = typeColors[resource.type] || typeColors["blog"];
-                const heightClass = resource.type === "case-study" ? "" : getBentoSpan(index);
-                const isCaseStudy = resource.type === "case-study";
-                return (
-                  <a
-                    key={resource.id}
-                    href={resource.fileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn(
-                      "block mb-5",
-                      isCaseStudy && "col-span-full"
-                    )}
-                  >
-                    <Card 
-                      className={cn(
-                        "group hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden",
-                        "border-2",
-                        colors.bg,
-                        colors.border,
-                        isCaseStudy ? "min-h-[400px] md:min-h-[450px]" : heightClass
-                      )}
-                    >
-                      {resource.imageUrl && (
-                        <div className={cn(
-                          "relative w-full overflow-hidden",
-                          isCaseStudy ? "h-64 md:h-72" : "h-40"
-                        )}>
-                          <img 
-                            src={resource.imageUrl} 
-                            alt={resource.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className={cn(
-                            "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
-                          )} />
-                          <div className="absolute top-3 right-3">
-                            <span className={cn(
-                              "text-xs font-medium px-2.5 py-1 rounded-full border backdrop-blur-sm bg-white/90",
-                              colors.badge
-                            )}>
-                              {getTypeLabel(resource.type)}
-                            </span>
+            <>
+              {/* Case Study Cards - Full Width */}
+              {filteredResources.filter(r => r.type === "case-study").length > 0 && (
+                <div className="mb-12 space-y-6">
+                  {filteredResources.filter(r => r.type === "case-study").map((resource) => {
+                    const colors = typeColors[resource.type];
+                    return (
+                      <a
+                        key={resource.id}
+                        href={resource.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Card 
+                          className={cn(
+                            "group hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden",
+                            "border-2",
+                            colors.bg,
+                            colors.border,
+                            "min-h-[320px] md:min-h-[380px]"
+                          )}
+                        >
+                          <div className="grid md:grid-cols-2 gap-0 h-full">
+                            {resource.imageUrl && (
+                              <div className="relative w-full h-64 md:h-full overflow-hidden">
+                                <img 
+                                  src={resource.imageUrl} 
+                                  alt={resource.title}
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/60 to-transparent" />
+                              </div>
+                            )}
+                            <CardHeader className="flex flex-col justify-center p-8 md:p-10">
+                              <div className="flex items-start justify-between mb-4">
+                                <div className={cn(
+                                  "inline-flex p-3 rounded-xl border-2 transition-all",
+                                  colors.bg,
+                                  colors.border,
+                                  "group-hover:scale-110 group-hover:rotate-3"
+                                )}>
+                                  <resource.icon className={cn("h-6 w-6", colors.text)} />
+                                </div>
+                                <span className={cn(
+                                  "text-xs font-medium px-3 py-1.5 rounded-full border",
+                                  colors.badge
+                                )}>
+                                  {getTypeLabel(resource.type)}
+                                </span>
+                              </div>
+                              <CardTitle className={cn(
+                                "text-2xl md:text-3xl mb-4 transition-colors leading-tight font-bold",
+                                "group-hover:" + colors.text
+                              )}>
+                                {resource.title}
+                              </CardTitle>
+                              <CardDescription className="text-base leading-relaxed mb-6">
+                                {resource.description}
+                              </CardDescription>
+                              <div className="flex items-center justify-between text-sm pt-4 border-t">
+                                <span className="text-muted-foreground">
+                                  {resource.date}
+                                </span>
+                                <span className={cn(
+                                  "font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-2 text-base",
+                                  colors.text
+                                )}>
+                                  View Case Study
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </span>
+                              </div>
+                            </CardHeader>
                           </div>
-                        </div>
-                      )}
-                      <CardHeader className={cn(
-                        "flex flex-col",
-                        resource.imageUrl ? "p-4" : "h-full p-5"
-                      )}>
-                        {!resource.imageUrl && (
-                          <div className="flex items-start justify-between mb-3">
-                            <div className={cn(
-                              "inline-flex p-2.5 rounded-xl border-2 transition-all",
-                              colors.bg,
-                              colors.border,
-                              "group-hover:scale-110 group-hover:rotate-3"
-                            )}>
-                              <resource.icon className={cn("h-5 w-5", colors.text)} />
+                        </Card>
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+              
+              {/* Other Resources - Masonry Layout */}
+              {filteredResources.filter(r => r.type !== "case-study").length > 0 && (
+                <Masonry
+                  breakpointCols={masonryBreakpoints}
+                  className="flex -ml-5 w-auto"
+                  columnClassName="pl-5 bg-clip-padding"
+                >
+                  {filteredResources.filter(r => r.type !== "case-study").map((resource, index) => {
+                    const colors = typeColors[resource.type] || typeColors["blog"];
+                    const heightClass = getBentoSpan(index);
+                    return (
+                      <a
+                        key={resource.id}
+                        href={resource.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block mb-5"
+                      >
+                        <Card 
+                          className={cn(
+                            "group hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden",
+                            "border-2",
+                            colors.bg,
+                            colors.border,
+                            heightClass
+                          )}
+                        >
+                          {resource.imageUrl && (
+                            <div className="relative w-full h-40 overflow-hidden">
+                              <img 
+                                src={resource.imageUrl} 
+                                alt={resource.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
+                              <div className={cn(
+                                "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                              )} />
+                              <div className="absolute top-3 right-3">
+                                <span className={cn(
+                                  "text-xs font-medium px-2.5 py-1 rounded-full border backdrop-blur-sm bg-white/90",
+                                  colors.badge
+                                )}>
+                                  {getTypeLabel(resource.type)}
+                                </span>
+                              </div>
                             </div>
-                            <span className={cn(
-                              "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
-                              colors.badge
-                            )}>
-                              {getTypeLabel(resource.type)}
-                            </span>
-                          </div>
-                        )}
-                        {resource.imageUrl && (
-                          <div className="flex items-center gap-2 mb-3">
-                            <div className={cn(
-                              "inline-flex p-2 rounded-lg border transition-all",
-                              colors.bg,
-                              colors.border,
-                              "group-hover:scale-110"
-                            )}>
-                              <resource.icon className={cn("h-4 w-4", colors.text)} />
-                            </div>
-                          </div>
-                        )}
-                        <CardTitle className={cn(
-                          "text-base mb-2 line-clamp-2 transition-colors leading-tight font-semibold",
-                          "group-hover:" + colors.text
-                        )}>
-                          {resource.title}
-                        </CardTitle>
-                        <CardDescription className={cn(
-                          "text-xs leading-relaxed",
-                          resource.imageUrl ? "line-clamp-3" : "flex-grow line-clamp-5"
-                        )}>
-                          {resource.description}
-                        </CardDescription>
-                        <div className="flex items-center justify-between text-xs mt-3 pt-3 border-t">
-                          <span className="text-muted-foreground">
-                            {resource.date}
-                          </span>
-                          <span className={cn(
-                            "font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
-                            colors.text
+                          )}
+                          <CardHeader className={cn(
+                            "flex flex-col",
+                            resource.imageUrl ? "p-4" : "h-full p-5"
                           )}>
-                            View
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </span>
-                        </div>
-                      </CardHeader>
-                    </Card>
-                  </a>
-                );
-              })}
-            </Masonry>
+                            {!resource.imageUrl && (
+                              <div className="flex items-start justify-between mb-3">
+                                <div className={cn(
+                                  "inline-flex p-2.5 rounded-xl border-2 transition-all",
+                                  colors.bg,
+                                  colors.border,
+                                  "group-hover:scale-110 group-hover:rotate-3"
+                                )}>
+                                  <resource.icon className={cn("h-5 w-5", colors.text)} />
+                                </div>
+                                <span className={cn(
+                                  "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
+                                  colors.badge
+                                )}>
+                                  {getTypeLabel(resource.type)}
+                                </span>
+                              </div>
+                            )}
+                            {resource.imageUrl && (
+                              <div className="flex items-center gap-2 mb-3">
+                                <div className={cn(
+                                  "inline-flex p-2 rounded-lg border transition-all",
+                                  colors.bg,
+                                  colors.border,
+                                  "group-hover:scale-110"
+                                )}>
+                                  <resource.icon className={cn("h-4 w-4", colors.text)} />
+                                </div>
+                              </div>
+                            )}
+                            <CardTitle className={cn(
+                              "text-base mb-2 line-clamp-2 transition-colors leading-tight font-semibold",
+                              "group-hover:" + colors.text
+                            )}>
+                              {resource.title}
+                            </CardTitle>
+                            <CardDescription className={cn(
+                              "text-xs leading-relaxed",
+                              resource.imageUrl ? "line-clamp-3" : "flex-grow line-clamp-5"
+                            )}>
+                              {resource.description}
+                            </CardDescription>
+                            <div className="flex items-center justify-between text-xs mt-3 pt-3 border-t">
+                              <span className="text-muted-foreground">
+                                {resource.date}
+                              </span>
+                              <span className={cn(
+                                "font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
+                                colors.text
+                              )}>
+                                View
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </span>
+                            </div>
+                          </CardHeader>
+                        </Card>
+                      </a>
+                    );
+                  })}
+                </Masonry>
+              )}
+            </>
           ) : (
             <div className="text-center py-20">
               <div className="inline-flex p-6 rounded-full bg-muted mb-6">
