@@ -449,7 +449,8 @@ const Resources = () => {
                           <div className="absolute top-3 right-3">
                             <span className={cn(
                               "text-xs font-medium px-2.5 py-1 rounded-full border backdrop-blur-md bg-white shadow-lg",
-                              colors.badge
+                              colors.text,
+                              colors.border.replace('hover:', '')
                             )}>
                               {getTypeLabel(resource.type)}
                             </span>
