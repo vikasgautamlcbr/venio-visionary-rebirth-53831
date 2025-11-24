@@ -113,111 +113,73 @@ const Resources = () => {
   const resources = [
     {
       id: 1,
-      title: "Global Bank Reduces Review Time by 70%",
-      description: "Learn how a Fortune 500 financial institution transformed their eDiscovery process with Venio's AI-powered platform.",
-      type: "case-study",
+      title: "Venio Review Product Brief",
+      description: "The Complete Review Platform for Modern Legal Teams. Discover how Venio Review delivers fast, intuitive, and reliable document review at scale.",
+      type: "product-brief",
       topic: "review",
-      icon: TrendingUp,
-      date: "Monday, 15 March, 2024"
+      icon: FileCheck,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Product_Brief-Venio_Review.pdf"
     },
     {
       id: 2,
-      title: "The Complete Guide to Cloud EDiscovery",
-      description: "A comprehensive white paper exploring the benefits, challenges, and best practices for cloud-based eDiscovery solutions.",
-      type: "white-paper",
-      topic: "cloud-ediscovery",
-      icon: FileText,
-      date: "Thursday, 08 February, 2024"
+      title: "Venio ECA Product Brief",
+      description: "Reduce risk and make your discovery 10x faster with Venio ECA. Cut data volume sent to external partners by up to 90%.",
+      type: "product-brief",
+      topic: "eca",
+      icon: FileCheck,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Product_Brief-Venio_ECA.pdf"
     },
     {
       id: 3,
-      title: "Implementing Legal Hold: Best Practices",
-      description: "Step-by-step guide to implementing an effective legal hold process in your organization.",
-      type: "how-to-guide",
+      title: "Venio Legal Hold Product Brief",
+      description: "Modernizing Legal Hold for a Connected, Data-Driven World. Built for reliability and designed for defensibility.",
+      type: "product-brief",
       topic: "legal-hold",
-      icon: BookMarked,
-      date: "Wednesday, 17 January, 2024"
+      icon: FileCheck,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Product_Brief-Venio_Legal_Hold.pdf"
     },
     {
       id: 4,
-      title: "AI in Document Review: 2024 Trends",
-      description: "Explore the latest trends and innovations in AI-powered document review technology.",
-      type: "blog",
-      topic: "review",
-      icon: Lightbulb,
-      date: "Friday, 22 March, 2024"
+      title: "Venio vs Others: Platform Comparison",
+      description: "Key eDiscovery capabilities comparison between Venio, Relativity, NUIX, and Everlaw. See how Venio simplifies eDiscovery and accelerates results.",
+      type: "infographic",
+      topic: "ediscovery-systems",
+      icon: TrendingUp,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Venio_vs_Others_comparison_sheet.pdf"
     },
     {
       id: 5,
-      title: "Venio Review Platform Demo",
-      description: "Watch a comprehensive demo of Venio's AI-powered review platform and see how it can accelerate your workflows.",
-      type: "video",
+      title: "10-Point Checklist for Document Review",
+      description: "Where law firms lose the most in document review. Use this checklist to uncover quick wins and build a court-ready process.",
+      type: "how-to-guide",
       topic: "review",
-      icon: Video,
-      date: "Tuesday, 13 February, 2024"
+      icon: BookMarked,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/10_points_checklist_for_Doc_Review.pdf"
     },
     {
       id: 6,
-      title: "ECA Strategies for Cost Reduction",
-      description: "Discover proven strategies for using Early Case Assessment to reduce eDiscovery costs by up to 60%.",
-      type: "ebook",
-      topic: "eca",
-      icon: BookOpen,
-      date: "Monday, 29 January, 2024"
-    },
-    {
-      id: 7,
-      title: "Venio One Product Brief",
-      description: "Quick overview of Venio One's features, benefits, and use cases for modern legal teams.",
-      type: "product-brief",
-      topic: "ediscovery-systems",
-      icon: FileCheck,
-      date: "Thursday, 28 March, 2024"
-    },
-    {
-      id: 8,
-      title: "eDiscovery Market Report 2024",
-      description: "Annual report analyzing market trends, growth projections, and technology innovations in eDiscovery.",
-      type: "white-paper",
-      topic: "legal-news",
-      icon: FileText,
-      date: "Saturday, 24 February, 2024"
-    },
-    {
-      id: 9,
-      title: "Venio Announces Partnership with Leading Law Firms",
-      description: "Venio expands its reach with strategic partnerships across AmLaw 200 firms.",
-      type: "press-release",
-      topic: "legal-news",
-      icon: Newspaper,
-      date: "Sunday, 10 March, 2024"
-    },
-    {
-      id: 10,
-      title: "Cloud EDiscovery Platform Comparison",
-      description: "Visual comparison of leading cloud eDiscovery platforms showing key features and pricing.",
-      type: "infographic",
-      topic: "cloud-ediscovery",
-      icon: TrendingUp,
-      date: "Friday, 19 January, 2024"
-    },
-    {
-      id: 11,
-      title: "Venio Platform Overview Brochure",
-      description: "Comprehensive brochure covering all Venio products and services for legal professionals.",
+      title: "See How Venio Speeds Up Case Prep",
+      description: "Discover how Venio empowers attorneys with lightning-fast search, AI-powered review, and organized workflows for faster case preparation.",
       type: "brochure",
       topic: "ediscovery-systems",
       icon: Download,
-      date: "Wednesday, 21 February, 2024"
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/See_How_Venio_Speeds_Up_Case_Prep.pdf"
     },
     {
-      id: 12,
-      title: "Legal Hold Automation: ROI Calculator",
-      description: "Interactive guide showing how to calculate ROI when automating your legal hold process.",
-      type: "how-to-guide",
-      topic: "legal-hold",
-      icon: BookMarked,
-      date: "Saturday, 30 March, 2024"
+      id: 7,
+      title: "Take Control of Every Case: Collection to Review",
+      description: "How Venio helps litigation support teams manage collection, processing, review, and production seamlessly on a unified platform.",
+      type: "brochure",
+      topic: "ediscovery-systems",
+      icon: Download,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Take_Control_of_Every_Case_From_Collection_to_Review.pdf"
     },
   ];
 
@@ -317,16 +279,22 @@ const Resources = () => {
               {filteredResources.map((resource, index) => {
                 const colors = typeColors[resource.type] || typeColors["blog"];
                 return (
-                  <Card 
-                    key={resource.id} 
-                    className={cn(
-                      "group hover:shadow-xl transition-all duration-300 cursor-pointer",
-                      "border-2",
-                      colors.bg,
-                      colors.border,
-                      getBentoSpan(index)
-                    )}
+                  <a
+                    href={resource.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
                   >
+                    <Card 
+                      key={resource.id} 
+                      className={cn(
+                        "group hover:shadow-xl transition-all duration-300 cursor-pointer h-full",
+                        "border-2",
+                        colors.bg,
+                        colors.border,
+                        getBentoSpan(index)
+                      )}
+                    >
                     <CardHeader className="h-full flex flex-col">
                       <div className="flex items-start justify-between mb-4">
                         <div className={cn(
@@ -361,8 +329,9 @@ const Resources = () => {
                           View Resource →
                         </span>
                       </div>
-                    </CardHeader>
-                  </Card>
+                      </CardHeader>
+                    </Card>
+                  </a>
                 );
               })}
             </div>
