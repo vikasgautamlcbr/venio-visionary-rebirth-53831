@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb } from "lucide-react";
+import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Resources = () => {
@@ -120,7 +120,8 @@ const Resources = () => {
       topic: "legal-news",
       icon: Lightbulb,
       date: "Monday, 18 November, 2024",
-      fileUrl: "https://www.veniosystems.com/blog/what-is-frcp-rule-33-a-reference-guide/"
+      fileUrl: "https://www.veniosystems.com/blog/what-is-frcp-rule-33-a-reference-guide/",
+      featured: false
     },
     {
       id: 2,
@@ -130,7 +131,8 @@ const Resources = () => {
       topic: "ediscovery-systems",
       icon: Lightbulb,
       date: "Thursday, 10 October, 2024",
-      fileUrl: "https://www.veniosystems.com/blog/why-premium-ediscovery-software-pricing-doesnt-guarantee-better-results/"
+      fileUrl: "https://www.veniosystems.com/blog/why-premium-ediscovery-software-pricing-doesnt-guarantee-better-results/",
+      featured: false
     },
     {
       id: 3,
@@ -140,7 +142,8 @@ const Resources = () => {
       topic: "legal-news",
       icon: Lightbulb,
       date: "Wednesday, 09 October, 2024",
-      fileUrl: "https://www.veniosystems.com/blog/understanding-formulating-esi-protocol-checklist/"
+      fileUrl: "https://www.veniosystems.com/blog/understanding-formulating-esi-protocol-checklist/",
+      featured: false
     },
     {
       id: 4,
@@ -150,7 +153,8 @@ const Resources = () => {
       topic: "legal-news",
       icon: Lightbulb,
       date: "Tuesday, 08 October, 2024",
-      fileUrl: "https://www.veniosystems.com/blog/what-is-esi-legal-hold-guide/"
+      fileUrl: "https://www.veniosystems.com/blog/what-is-esi-legal-hold-guide/",
+      featured: false
     },
     {
       id: 5,
@@ -160,7 +164,8 @@ const Resources = () => {
       topic: "ediscovery-systems",
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Case_Study-Fortune_100_Financial_Services.pdf"
+      fileUrl: "/resources/Case_Study-Fortune_100_Financial_Services.pdf",
+      featured: true
     },
     {
       id: 6,
@@ -170,7 +175,8 @@ const Resources = () => {
       topic: "review",
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Case_Study-AmLaw_50_Success_Story.pdf"
+      fileUrl: "/resources/Case_Study-AmLaw_50_Success_Story.pdf",
+      featured: true
     },
     {
       id: 7,
@@ -180,7 +186,8 @@ const Resources = () => {
       topic: "review",
       icon: Lightbulb,
       date: "Friday, 04 October, 2024",
-      fileUrl: "https://www.veniosystems.com/blog/fortune-100-bank-cuts-ediscovery-costs-with-venio/"
+      fileUrl: "https://www.veniosystems.com/blog/fortune-100-bank-cuts-ediscovery-costs-with-venio/",
+      featured: false
     },
     {
       id: 8,
@@ -190,7 +197,8 @@ const Resources = () => {
       topic: "legal-news",
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Case_Study-Federal_Agency_Workflows.pdf"
+      fileUrl: "/resources/Case_Study-Federal_Agency_Workflows.pdf",
+      featured: true
     },
     {
       id: 9,
@@ -200,7 +208,8 @@ const Resources = () => {
       topic: "ediscovery-systems",
       icon: Lightbulb,
       date: "Monday, 30 September, 2024",
-      fileUrl: "https://www.veniosystems.com/blog/understanding-ediscovery-software-costs/"
+      fileUrl: "https://www.veniosystems.com/blog/understanding-ediscovery-software-costs/",
+      featured: false
     },
     {
       id: 10,
@@ -210,7 +219,8 @@ const Resources = () => {
       topic: "review",
       icon: FileCheck,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Product_Brief-Venio_Review.pdf"
+      fileUrl: "/resources/Product_Brief-Venio_Review.pdf",
+      featured: true
     },
     {
       id: 11,
@@ -220,7 +230,8 @@ const Resources = () => {
       topic: "eca",
       icon: FileCheck,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Product_Brief-Venio_ECA.pdf"
+      fileUrl: "/resources/Product_Brief-Venio_ECA.pdf",
+      featured: false
     },
     {
       id: 12,
@@ -230,7 +241,8 @@ const Resources = () => {
       topic: "legal-hold",
       icon: FileCheck,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Product_Brief-Venio_Legal_Hold.pdf"
+      fileUrl: "/resources/Product_Brief-Venio_Legal_Hold.pdf",
+      featured: false
     },
     {
       id: 13,
@@ -240,7 +252,8 @@ const Resources = () => {
       topic: "ediscovery-systems",
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Venio_vs_Others_comparison_sheet.pdf"
+      fileUrl: "/resources/Venio_vs_Others_comparison_sheet.pdf",
+      featured: false
     },
     {
       id: 14,
@@ -250,7 +263,8 @@ const Resources = () => {
       topic: "review",
       icon: BookMarked,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/10_points_checklist_for_Doc_Review.pdf"
+      fileUrl: "/resources/10_points_checklist_for_Doc_Review.pdf",
+      featured: false
     },
     {
       id: 15,
@@ -260,7 +274,8 @@ const Resources = () => {
       topic: "ediscovery-systems",
       icon: Download,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/See_How_Venio_Speeds_Up_Case_Prep.pdf"
+      fileUrl: "/resources/See_How_Venio_Speeds_Up_Case_Prep.pdf",
+      featured: false
     },
     {
       id: 16,
@@ -270,14 +285,17 @@ const Resources = () => {
       topic: "ediscovery-systems",
       icon: Download,
       date: "Monday, 18 November, 2024",
-      fileUrl: "/resources/Take_Control_of_Every_Case_From_Collection_to_Review.pdf"
+      fileUrl: "/resources/Take_Control_of_Every_Case_From_Collection_to_Review.pdf",
+      featured: false
     },
   ];
 
+  const featuredResources = resources.filter(r => r.featured);
+  
   const filteredResources = resources.filter((resource) => {
     const matchesTopic = topicFilter === "all" || resource.topic === topicFilter;
     const matchesType = typeFilter === "all" || resource.type === typeFilter;
-    return matchesTopic && matchesType;
+    return matchesTopic && matchesType && !resource.featured; // Exclude featured from main grid
   });
 
   const getTypeLabel = (type: string) => {
@@ -362,9 +380,99 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Resources Grid - Compact Bento Layout */}
-      <section className="py-20 px-4">
+      {/* Featured Resources Section */}
+      <section className="py-12 px-4 bg-gradient-to-b from-muted/30 to-background">
         <div className="container mx-auto max-w-7xl">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold mb-2">Featured Resources</h2>
+              <p className="text-muted-foreground">Discover our most popular and impactful content</p>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredResources.map((resource, index) => {
+              const colors = typeColors[resource.type] || typeColors["blog"];
+              return (
+                <a
+                  key={resource.id}
+                  href={resource.fileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <Card 
+                    className={cn(
+                      "h-full hover:shadow-2xl transition-all duration-300 cursor-pointer",
+                      "border-2 relative overflow-hidden",
+                      colors.bg,
+                      colors.border
+                    )}
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full transform translate-x-16 -translate-y-16" />
+                    
+                    <CardHeader className="relative z-10 pb-4">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={cn(
+                          "inline-flex p-3 rounded-xl border-2 transition-all",
+                          colors.bg,
+                          colors.border,
+                          "group-hover:scale-110"
+                        )}>
+                          <resource.icon className={cn("h-6 w-6", colors.text)} />
+                        </div>
+                        <span className={cn(
+                          "text-xs font-semibold px-3 py-1.5 rounded-full border inline-flex items-center gap-1",
+                          colors.badge
+                        )}>
+                          <Star className="h-3 w-3 fill-current" />
+                          FEATURED
+                        </span>
+                      </div>
+                      
+                      <CardTitle className={cn(
+                        "text-lg mb-3 line-clamp-2 transition-colors leading-tight",
+                        "group-hover:" + colors.text
+                      )}>
+                        {resource.title}
+                      </CardTitle>
+                      
+                      <CardDescription className="text-sm line-clamp-3 mb-4">
+                        {resource.description}
+                      </CardDescription>
+                      
+                      <div className="flex items-center justify-between pt-4 border-t">
+                        <span className="text-xs text-muted-foreground font-medium">
+                          {getTypeLabel(resource.type)}
+                        </span>
+                        <span className={cn(
+                          "text-sm font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
+                          colors.text
+                        )}>
+                          View
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </span>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Grid - Compact Bento Layout */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold mb-2">All Resources</h2>
+            <p className="text-muted-foreground">Browse our complete collection of resources</p>
+          </div>
+          
           {filteredResources.length > 0 ? (
             <div className="grid md:grid-cols-3 auto-rows-[200px] gap-4">
               {filteredResources.map((resource, index) => {
