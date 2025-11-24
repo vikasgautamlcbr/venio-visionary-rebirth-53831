@@ -84,17 +84,18 @@ const Resources = () => {
   };
 
   const getBentoSpan = (index: number) => {
-    // Return different card heights for masonry layout
+    // Return different card heights for masonry layout - varied sizes for organic flow
     const heights = [
-      "min-h-[280px]", // Tall
-      "min-h-[220px]", // Medium
-      "min-h-[260px]", // Medium-tall
+      "min-h-[320px]", // Extra tall
       "min-h-[200px]", // Short
+      "min-h-[280px]", // Tall
+      "min-h-[220px]", // Medium-short
+      "min-h-[350px]", // Very tall
       "min-h-[240px]", // Medium
-      "min-h-[280px]", // Tall
-      "min-h-[220px]", // Medium
-      "min-h-[200px]", // Short
+      "min-h-[190px]", // Extra short
+      "min-h-[300px]", // Tall
       "min-h-[260px]", // Medium-tall
+      "min-h-[210px]", // Short-medium
     ];
     return heights[index % heights.length];
   };
@@ -329,8 +330,8 @@ const Resources = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden gradient-animated pt-32 pb-20">
+      {/* Hero Section with Filters */}
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden gradient-animated pt-32 pb-16">
         {/* Dynamic Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
@@ -349,55 +350,53 @@ const Resources = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Resource Hub
           </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-12">
             Explore case studies, guides, white papers, and more to help you master eDiscovery and stay ahead of industry trends.
           </p>
-        </div>
-      </section>
 
-      {/* Filters Section */}
-      <section className="py-12 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-center">
-            <div className="w-full md:w-auto min-w-[280px]">
-              <label className="block text-sm font-semibold mb-2 text-foreground">
-                Browse by Topic
-              </label>
-              <Select value={topicFilter} onValueChange={setTopicFilter}>
-                <SelectTrigger className="w-full bg-background border-border">
-                  <SelectValue placeholder="All Topics" />
-                </SelectTrigger>
-                <SelectContent className="bg-background border-border z-50">
-                  {topics.map((topic) => (
-                    <SelectItem key={topic.value} value={topic.value}>
-                      {topic.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+          {/* Filters in Hero */}
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-center mb-6">
+              <div className="w-full md:w-auto min-w-[280px]">
+                <label className="block text-sm font-semibold mb-2 text-white/90">
+                  Browse by Topic
+                </label>
+                <Select value={topicFilter} onValueChange={setTopicFilter}>
+                  <SelectTrigger className="w-full bg-white/10 border-white/20 text-white backdrop-blur-sm hover:bg-white/20">
+                    <SelectValue placeholder="All Topics" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border-border z-50">
+                    {topics.map((topic) => (
+                      <SelectItem key={topic.value} value={topic.value}>
+                        {topic.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="w-full md:w-auto min-w-[280px]">
+                <label className="block text-sm font-semibold mb-2 text-white/90">
+                  Browse by Type
+                </label>
+                <Select value={typeFilter} onValueChange={setTypeFilter}>
+                  <SelectTrigger className="w-full bg-white/10 border-white/20 text-white backdrop-blur-sm hover:bg-white/20">
+                    <SelectValue placeholder="All Types" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border-border z-50">
+                    {resourceTypes.map((type) => (
+                      <SelectItem key={type.value} value={type.value}>
+                        {type.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
-            <div className="w-full md:w-auto min-w-[280px]">
-              <label className="block text-sm font-semibold mb-2 text-foreground">
-                Browse by Type
-              </label>
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-full bg-background border-border">
-                  <SelectValue placeholder="All Types" />
-                </SelectTrigger>
-                <SelectContent className="bg-background border-border z-50">
-                  {resourceTypes.map((type) => (
-                    <SelectItem key={type.value} value={type.value}>
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className="text-center text-sm text-white/80">
+              Showing {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'}
             </div>
-          </div>
-
-          <div className="text-center mt-6 text-sm text-muted-foreground">
-            Showing {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'}
           </div>
         </div>
       </section>
@@ -405,7 +404,7 @@ const Resources = () => {
       {/* Resources Grid - Masonry Layout */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-7xl">
-          <div className="mb-8">
+          <div className="mb-8 text-center">
             <h2 className="text-2xl font-bold mb-2">All Resources</h2>
             <p className="text-muted-foreground">Browse our complete collection of resources</p>
           </div>
