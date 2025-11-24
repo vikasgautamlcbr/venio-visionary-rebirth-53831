@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb, Star } from "lucide-react";
+import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Masonry from "react-masonry-css";
 
@@ -314,12 +314,10 @@ const Resources = () => {
     },
   ];
 
-  const featuredResources = resources.filter(r => r.featured);
-  
   const filteredResources = resources.filter((resource) => {
     const matchesTopic = topicFilter === "all" || resource.topic === topicFilter;
     const matchesType = typeFilter === "all" || resource.type === typeFilter;
-    return matchesTopic && matchesType && !resource.featured; // Exclude featured from main grid
+    return matchesTopic && matchesType;
   });
 
   const getTypeLabel = (type: string) => {
@@ -400,91 +398,6 @@ const Resources = () => {
 
           <div className="text-center mt-6 text-sm text-muted-foreground">
             Showing {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Resources Section */}
-      <section className="py-12 px-4 bg-gradient-to-b from-muted/30 to-background">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-3xl font-bold mb-2">Featured Resources</h2>
-              <p className="text-muted-foreground">Discover our most popular and impactful content</p>
-            </div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featuredResources.map((resource, index) => {
-              const colors = typeColors[resource.type] || typeColors["blog"];
-              return (
-                <a
-                  key={resource.id}
-                  href={resource.fileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <Card 
-                    className={cn(
-                      "h-full hover:shadow-2xl transition-all duration-500 cursor-pointer",
-                      "border-2 relative overflow-hidden hover:scale-[1.02]",
-                      colors.bg,
-                      colors.border
-                    )}
-                  >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full transform translate-x-16 -translate-y-16" />
-                    
-                    <CardHeader className="relative z-10 pb-4 h-full flex flex-col">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className={cn(
-                          "inline-flex p-3 rounded-xl border-2 transition-all",
-                          colors.bg,
-                          colors.border,
-                          "group-hover:scale-110 group-hover:rotate-6"
-                        )}>
-                          <resource.icon className={cn("h-6 w-6", colors.text)} />
-                        </div>
-                        <span className={cn(
-                          "text-xs font-bold px-3 py-1.5 rounded-full border inline-flex items-center gap-1",
-                          colors.badge
-                        )}>
-                          <Star className="h-3 w-3 fill-current" />
-                          FEATURED
-                        </span>
-                      </div>
-                      
-                      <CardTitle className={cn(
-                        "text-lg mb-3 line-clamp-2 transition-colors leading-tight font-bold",
-                        "group-hover:" + colors.text
-                      )}>
-                        {resource.title}
-                      </CardTitle>
-                      
-                      <CardDescription className="text-sm line-clamp-3 mb-4 flex-grow">
-                        {resource.description}
-                      </CardDescription>
-                      
-                      <div className="flex items-center justify-between pt-4 border-t mt-auto">
-                        <span className="text-xs text-muted-foreground font-medium">
-                          {getTypeLabel(resource.type)}
-                        </span>
-                        <span className={cn(
-                          "text-sm font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
-                          colors.text
-                        )}>
-                          View
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                </a>
-              );
-            })}
           </div>
         </div>
       </section>
@@ -589,7 +502,10 @@ const Resources = () => {
                         )}>
                           {resource.description}
                         </CardDescription>
-                        <div className="flex items-center justify-end text-xs mt-3 pt-3 border-t">
+                        <div className="flex items-center justify-between text-xs mt-3 pt-3 border-t">
+                          <span className="text-muted-foreground">
+                            {resource.date}
+                          </span>
                           <span className={cn(
                             "font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
                             colors.text
