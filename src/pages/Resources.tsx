@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Masonry from "react-masonry-css";
 
 const Resources = () => {
   const [topicFilter, setTopicFilter] = useState("all");
@@ -75,19 +76,25 @@ const Resources = () => {
   };
 
   const getBentoSpan = (index: number) => {
-    // Dynamic bento pattern with visual variety
-    const patterns = [
-      "md:col-span-2 md:row-span-2", // Large feature
-      "md:col-span-1 md:row-span-1", // Small
-      "md:col-span-1 md:row-span-2", // Tall
-      "md:col-span-2 md:row-span-1", // Wide
-      "md:col-span-1 md:row-span-1", // Small
-      "md:col-span-1 md:row-span-1", // Small
-      "md:col-span-1 md:row-span-2", // Tall
-      "md:col-span-2 md:row-span-1", // Wide
-      "md:col-span-1 md:row-span-1", // Small
+    // Return different card heights for masonry layout
+    const heights = [
+      "min-h-[280px]", // Tall
+      "min-h-[220px]", // Medium
+      "min-h-[260px]", // Medium-tall
+      "min-h-[200px]", // Short
+      "min-h-[240px]", // Medium
+      "min-h-[280px]", // Tall
+      "min-h-[220px]", // Medium
+      "min-h-[200px]", // Short
+      "min-h-[260px]", // Medium-tall
     ];
-    return patterns[index % patterns.length];
+    return heights[index % heights.length];
+  };
+
+  const masonryBreakpoints = {
+    default: 3,
+    1024: 2,
+    768: 1
   };
 
   const resourceTypes = [
@@ -468,7 +475,7 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Resources Grid - Compact Bento Layout */}
+      {/* Resources Grid - Masonry Layout */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-8">
@@ -477,69 +484,74 @@ const Resources = () => {
           </div>
           
           {filteredResources.length > 0 ? (
-            <div className="grid md:grid-cols-3 auto-rows-[180px] gap-5">
+            <Masonry
+              breakpointCols={masonryBreakpoints}
+              className="flex -ml-5 w-auto"
+              columnClassName="pl-5 bg-clip-padding"
+            >
               {filteredResources.map((resource, index) => {
                 const colors = typeColors[resource.type] || typeColors["blog"];
+                const heightClass = getBentoSpan(index);
                 return (
                   <a
+                    key={resource.id}
                     href={resource.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block h-full"
+                    className="block mb-5"
                   >
                     <Card 
-                      key={resource.id} 
                       className={cn(
-                        "group hover:shadow-xl transition-all duration-300 cursor-pointer h-full",
+                        "group hover:shadow-xl transition-all duration-300 cursor-pointer",
                         "border-2",
                         colors.bg,
                         colors.border,
-                        getBentoSpan(index)
+                        heightClass
                       )}
                     >
-                    <CardHeader className="h-full flex flex-col p-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className={cn(
-                          "inline-flex p-2.5 rounded-xl border-2 transition-all",
-                          colors.bg,
-                          colors.border,
-                          "group-hover:scale-110 group-hover:rotate-3"
-                        )}>
-                          <resource.icon className={cn("h-5 w-5", colors.text)} />
+                      <CardHeader className="h-full flex flex-col p-5">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className={cn(
+                            "inline-flex p-2.5 rounded-xl border-2 transition-all",
+                            colors.bg,
+                            colors.border,
+                            "group-hover:scale-110 group-hover:rotate-3"
+                          )}>
+                            <resource.icon className={cn("h-5 w-5", colors.text)} />
+                          </div>
+                          <span className={cn(
+                            "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
+                            colors.badge
+                          )}>
+                            {getTypeLabel(resource.type)}
+                          </span>
                         </div>
-                        <span className={cn(
-                          "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
-                          colors.badge
+                        <CardTitle className={cn(
+                          "text-base mb-2 line-clamp-3 transition-colors leading-tight font-semibold",
+                          "group-hover:" + colors.text
                         )}>
-                          {getTypeLabel(resource.type)}
-                        </span>
-                      </div>
-                      <CardTitle className={cn(
-                        "text-base mb-2 line-clamp-3 transition-colors leading-tight font-semibold",
-                        "group-hover:" + colors.text
-                      )}>
-                        {resource.title}
-                      </CardTitle>
-                      <CardDescription className="text-xs flex-grow line-clamp-4 leading-relaxed">
-                        {resource.description}
-                      </CardDescription>
-                      <div className="flex items-center justify-end text-xs mt-3 pt-3 border-t">
-                        <span className={cn(
-                          "font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
-                          colors.text
-                        )}>
-                          View
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </div>
-                    </CardHeader>
+                          {resource.title}
+                        </CardTitle>
+                        <CardDescription className="text-xs flex-grow line-clamp-5 leading-relaxed">
+                          {resource.description}
+                        </CardDescription>
+                        <div className="flex items-center justify-end text-xs mt-3 pt-3 border-t">
+                          <span className={cn(
+                            "font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
+                            colors.text
+                          )}>
+                            View
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </span>
+                        </div>
+                      </CardHeader>
                     </Card>
                   </a>
                 );
               })}
-            </div>
+            </Masonry>
           ) : (
             <div className="text-center py-20">
               <div className="inline-flex p-6 rounded-full bg-muted mb-6">
