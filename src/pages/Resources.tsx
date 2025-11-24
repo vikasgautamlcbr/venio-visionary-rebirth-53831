@@ -409,8 +409,8 @@ const Resources = () => {
           {filteredResources.length > 0 ? (
             <Masonry
               breakpointCols={masonryBreakpoints}
-              className="flex -ml-5 w-auto"
-              columnClassName="pl-5 bg-clip-padding"
+              className="flex -ml-5 w-auto masonry-grid"
+              columnClassName="pl-5 bg-clip-padding masonry-column"
             >
               {filteredResources.map((resource, index) => {
                 const colors = typeColors[resource.type] || typeColors["blog"];
@@ -422,7 +422,10 @@ const Resources = () => {
                     href={resource.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block mb-5"
+                    className={cn(
+                      "block mb-5",
+                      isCaseStudy && "col-span-full"
+                    )}
                   >
                     <Card 
                       className={cn(
@@ -430,11 +433,14 @@ const Resources = () => {
                         "border-2",
                         colors.bg,
                         colors.border,
-                        isCaseStudy ? "aspect-[2/1]" : heightClass
+                        isCaseStudy ? "min-h-[400px] md:min-h-[450px]" : heightClass
                       )}
                     >
                       {resource.imageUrl && (
-                        <div className="relative w-full h-40 overflow-hidden">
+                        <div className={cn(
+                          "relative w-full overflow-hidden",
+                          isCaseStudy ? "h-64 md:h-72" : "h-40"
+                        )}>
                           <img 
                             src={resource.imageUrl} 
                             alt={resource.title}
