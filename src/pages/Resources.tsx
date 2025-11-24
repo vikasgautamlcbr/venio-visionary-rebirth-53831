@@ -314,12 +314,10 @@ const Resources = () => {
     },
   ];
 
-  const featuredResources = resources.filter(r => r.featured);
-  
   const filteredResources = resources.filter((resource) => {
     const matchesTopic = topicFilter === "all" || resource.topic === topicFilter;
     const matchesType = typeFilter === "all" || resource.type === typeFilter;
-    return matchesTopic && matchesType && !resource.featured; // Exclude featured from main grid
+    return matchesTopic && matchesType;
   });
 
   const getTypeLabel = (type: string) => {
