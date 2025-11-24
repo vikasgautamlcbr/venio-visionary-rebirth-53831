@@ -394,9 +394,6 @@ const Resources = () => {
               </div>
             </div>
 
-            <div className="text-center text-sm text-white/80">
-              Showing {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'}
-            </div>
           </div>
         </div>
       </section>
@@ -417,7 +414,8 @@ const Resources = () => {
             >
               {filteredResources.map((resource, index) => {
                 const colors = typeColors[resource.type] || typeColors["blog"];
-                const heightClass = getBentoSpan(index);
+                const heightClass = resource.type === "case-study" ? "" : getBentoSpan(index);
+                const isCaseStudy = resource.type === "case-study";
                 return (
                   <a
                     key={resource.id}
@@ -432,7 +430,7 @@ const Resources = () => {
                         "border-2",
                         colors.bg,
                         colors.border,
-                        heightClass
+                        isCaseStudy ? "aspect-[2/1]" : heightClass
                       )}
                     >
                       {resource.imageUrl && (
