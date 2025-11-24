@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useSearchParams, Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Search as SearchIcon, FileText } from "lucide-react";
+import { Search as SearchIcon, FileText, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import venioLogo from "@/assets/venio-logo.svg";
 
 // Import resource images
 import fortuneBankImg from "@/assets/resources/fortune-100-bank.jpg";
@@ -18,6 +16,7 @@ import ediscoveryPricingImg from "@/assets/resources/ediscovery-pricing.jpg";
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const [inputValue, setInputValue] = useState(searchParams.get("q") || "");
 
   useEffect(() => {
     if (searchQuery) {
@@ -181,141 +180,128 @@ const Search = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-  };
-
-  const getCategoryColor = (category: string) => {
-    const colors: Record<string, string> = {
-      "Blog": "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30",
-      "Case Study": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
-      "Product Brief": "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/30",
-      "Product": "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30",
-      "Solutions": "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
-      "Pricing": "bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/30",
-      "Resources": "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30",
-      "About": "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/30",
-    };
-    return colors[category] || "bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/30";
+    setSearchQuery(inputValue);
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      
-      {/* Hero Section with Search */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden gradient-animated pt-32 pb-16">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-32 right-10 w-[500px] h-[500px] bg-accent/25 rounded-full blur-3xl float-delayed"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
-        
-        <div className="container mx-auto text-center relative z-10 px-6">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            Search Everything
-          </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-12">
-            Find resources, products, solutions, and more across our entire platform
-          </p>
-
-          {/* Search Input */}
-          <form onSubmit={handleSearch} className="max-w-3xl mx-auto">
-            <div className="relative">
-              <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-white/60" />
-              <Input
-                type="text"
-                placeholder="Search for anything..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-14 bg-white/10 border-white/20 text-white text-lg placeholder:text-white/50 backdrop-blur-md hover:bg-white/20 pl-14 pr-5"
-              />
-            </div>
-          </form>
-
+    <div className="min-h-screen bg-white">
+      {/* Simple Header */}
+      <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-4 flex items-center gap-6">
+          <Link to="/" className="flex items-center">
+            <img src={venioLogo} alt="VENIO" className="h-7 w-auto" />
+          </Link>
+          
+          {/* Search Bar in Header (after initial search) */}
           {searchQuery && (
-            <p className="mt-6 text-white/80">
-              Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'} for "{searchQuery}"
-            </p>
+            <form onSubmit={handleSearch} className="flex-1 max-w-2xl">
+              <div className="relative">
+                <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" strokeWidth={2} />
+                <Input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="w-full h-12 pl-12 pr-4 border-gray-300 rounded-full shadow-sm hover:shadow-md focus:shadow-md transition-shadow"
+                  placeholder="Search Venio"
+                  autoFocus
+                />
+              </div>
+            </form>
           )}
         </div>
-      </section>
+      </header>
 
-      {/* Search Results */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-5xl">
-          {!searchQuery ? (
-            <div className="text-center py-20">
-              <div className="inline-flex p-6 rounded-full bg-muted mb-6">
-                <SearchIcon className="h-12 w-12 text-muted-foreground" />
-              </div>
-              <h3 className="text-2xl font-bold mb-2">Start Searching</h3>
-              <p className="text-muted-foreground">
-                Enter a search term to find resources, products, and pages
+      {/* Main Content */}
+      <main className="container mx-auto px-6">
+        {!searchQuery ? (
+          /* Initial Search View - Google Style */
+          <div className="flex flex-col items-center justify-center min-h-[80vh]">
+            <div className="text-center max-w-2xl w-full">
+              <img src={venioLogo} alt="VENIO" className="h-20 w-auto mx-auto mb-8" />
+              
+              <form onSubmit={handleSearch} className="mb-8">
+                <div className="relative">
+                  <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" strokeWidth={2} />
+                  <Input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    className="w-full h-14 pl-14 pr-5 text-base border-gray-300 rounded-full shadow-sm hover:shadow-md focus:shadow-md transition-shadow"
+                    placeholder="Search Venio"
+                    autoFocus
+                  />
+                </div>
+              </form>
+
+              <p className="text-sm text-gray-500">
+                Search for resources, products, solutions, and more
               </p>
             </div>
-          ) : searchResults.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="inline-flex p-6 rounded-full bg-muted mb-6">
-                <FileText className="h-12 w-12 text-muted-foreground" />
-              </div>
-              <h3 className="text-2xl font-bold mb-2">No results found</h3>
-              <p className="text-muted-foreground">
-                Try adjusting your search terms or browse our resources directly
+          </div>
+        ) : (
+          /* Search Results */
+          <div className="py-8 max-w-3xl">
+            <div className="mb-4">
+              <p className="text-sm text-gray-600">
+                About {searchResults.length.toLocaleString()} {searchResults.length === 1 ? 'result' : 'results'}
               </p>
             </div>
-          ) : (
-            <div className="space-y-4">
-              {searchResults.map((result) => (
-                <a
-                  key={result.id}
-                  href={result.link}
-                  target={result.link.startsWith('http') ? '_blank' : undefined}
-                  rel={result.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="block"
-                >
-                  <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary/30">
-                    <div className="flex gap-4 p-6">
+
+            {searchResults.length === 0 ? (
+              <div className="py-20 text-center">
+                <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                <h3 className="text-xl font-medium text-gray-900 mb-2">No results found</h3>
+                <p className="text-gray-500">
+                  Try different keywords or browse our <Link to="/resources" className="text-primary hover:underline">resources</Link>
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {searchResults.map((result) => (
+                  <a
+                    key={result.id}
+                    href={result.link}
+                    target={result.link.startsWith('http') ? '_blank' : undefined}
+                    rel={result.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="block group"
+                  >
+                    <div className="flex items-start gap-4">
                       {result.imageUrl && (
-                        <div className="flex-shrink-0 w-32 h-32 rounded-lg overflow-hidden">
+                        <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
                           <img 
                             src={result.imageUrl} 
                             alt={result.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-4 mb-2">
-                          <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
-                            {result.title}
-                          </CardTitle>
-                          <span className={cn(
-                            "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap flex-shrink-0",
-                            getCategoryColor(result.category)
-                          )}>
-                            {result.category}
-                          </span>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-sm text-gray-600">{result.category}</span>
+                          {result.type === "page" && (
+                            <ArrowRight className="h-3 w-3 text-gray-400" />
+                          )}
                         </div>
-                        <CardDescription className="line-clamp-2 mb-3">
-                          {result.description}
-                        </CardDescription>
+                        <h3 className="text-xl text-primary group-hover:underline font-normal mb-1 line-clamp-1">
+                          {result.title}
+                        </h3>
                         {result.date && (
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-sm text-gray-500 mb-2">
                             {result.date}
                           </p>
                         )}
+                        <p className="text-sm text-gray-700 line-clamp-2">
+                          {result.description}
+                        </p>
                       </div>
                     </div>
-                  </Card>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      <Footer />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </main>
     </div>
   );
 };
