@@ -113,6 +113,36 @@ const Resources = () => {
   const resources = [
     {
       id: 1,
+      title: "Petabyte-Scale eDiscovery: Fortune 100 Financial Services",
+      description: "How a global bank processed 120+TB of data with full PII protection, achieving 72% data reduction and 2.1× review efficiency for a major regulatory investigation.",
+      type: "case-study",
+      topic: "ediscovery-systems",
+      icon: TrendingUp,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Case_Study-Fortune_100_Financial_Services.pdf"
+    },
+    {
+      id: 2,
+      title: "Weekly Productions, Zero Rejections: AmLaw 50 Success",
+      description: "Discover how an AmLaw 50 firm achieved flawless weekly production cycles with zero rejections using Venio's defensible workflows.",
+      type: "case-study",
+      topic: "review",
+      icon: TrendingUp,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Case_Study-AmLaw_50_Success_Story.pdf"
+    },
+    {
+      id: 3,
+      title: "Audit-Ready Federal Workflows: Agency Success Story",
+      description: "How Venio created defensible pipelines for a federal agency, reducing operator hours by 35% and achieving 100% audit trail compliance.",
+      type: "case-study",
+      topic: "legal-news",
+      icon: TrendingUp,
+      date: "Monday, 18 November, 2024",
+      fileUrl: "/resources/Case_Study-Federal_Agency_Workflows.pdf"
+    },
+    {
+      id: 4,
       title: "Venio Review Product Brief",
       description: "The Complete Review Platform for Modern Legal Teams. Discover how Venio Review delivers fast, intuitive, and reliable document review at scale.",
       type: "product-brief",
@@ -122,7 +152,7 @@ const Resources = () => {
       fileUrl: "/resources/Product_Brief-Venio_Review.pdf"
     },
     {
-      id: 2,
+      id: 5,
       title: "Venio ECA Product Brief",
       description: "Reduce risk and make your discovery 10x faster with Venio ECA. Cut data volume sent to external partners by up to 90%.",
       type: "product-brief",
@@ -132,7 +162,7 @@ const Resources = () => {
       fileUrl: "/resources/Product_Brief-Venio_ECA.pdf"
     },
     {
-      id: 3,
+      id: 6,
       title: "Venio Legal Hold Product Brief",
       description: "Modernizing Legal Hold for a Connected, Data-Driven World. Built for reliability and designed for defensibility.",
       type: "product-brief",
@@ -142,7 +172,7 @@ const Resources = () => {
       fileUrl: "/resources/Product_Brief-Venio_Legal_Hold.pdf"
     },
     {
-      id: 4,
+      id: 7,
       title: "Venio vs Others: Platform Comparison",
       description: "Key eDiscovery capabilities comparison between Venio, Relativity, NUIX, and Everlaw. See how Venio simplifies eDiscovery and accelerates results.",
       type: "infographic",
@@ -152,7 +182,7 @@ const Resources = () => {
       fileUrl: "/resources/Venio_vs_Others_comparison_sheet.pdf"
     },
     {
-      id: 5,
+      id: 8,
       title: "10-Point Checklist for Document Review",
       description: "Where law firms lose the most in document review. Use this checklist to uncover quick wins and build a court-ready process.",
       type: "how-to-guide",
@@ -162,7 +192,7 @@ const Resources = () => {
       fileUrl: "/resources/10_points_checklist_for_Doc_Review.pdf"
     },
     {
-      id: 6,
+      id: 9,
       title: "See How Venio Speeds Up Case Prep",
       description: "Discover how Venio empowers attorneys with lightning-fast search, AI-powered review, and organized workflows for faster case preparation.",
       type: "brochure",
@@ -172,7 +202,7 @@ const Resources = () => {
       fileUrl: "/resources/See_How_Venio_Speeds_Up_Case_Prep.pdf"
     },
     {
-      id: 7,
+      id: 10,
       title: "Take Control of Every Case: Collection to Review",
       description: "How Venio helps litigation support teams manage collection, processing, review, and production seamlessly on a unified platform.",
       type: "brochure",
