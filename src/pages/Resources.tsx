@@ -448,7 +448,7 @@ const Resources = () => {
                           )} />
                           <div className="absolute top-3 right-3">
                             <span className={cn(
-                              "text-xs font-medium px-2.5 py-1 rounded-full border backdrop-blur-sm bg-white/90",
+                              "text-xs font-medium px-2.5 py-1 rounded-full border backdrop-blur-md bg-white shadow-lg",
                               colors.badge
                             )}>
                               {getTypeLabel(resource.type)}
