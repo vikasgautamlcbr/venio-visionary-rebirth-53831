@@ -386,32 +386,4 @@ All colors MUST be HSL.
   .rotate-y-180 {
     transform: rotateY(180deg);
   }
-
-  /* Masonry Layout for Resources */
-  .masonry-grid {
-    display: flex;
-    width: auto;
-  }
-  
-  .masonry-column {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .masonry-column > .col-span-full {
-    width: calc(300% + 40px) !important;
-    max-width: none !important;
-  }
-  
-  @media (max-width: 1024px) {
-    .masonry-column > .col-span-full {
-      width: calc(200% + 20px) !important;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .masonry-column > .col-span-full {
-      width: 100% !important;
-    }
-  }
 }
