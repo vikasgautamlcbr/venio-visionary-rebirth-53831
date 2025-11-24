@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, Search } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import venioLogo from "@/assets/venio-logo.svg";
 import BookDemoDialog from "./BookDemoDialog";
@@ -211,7 +211,14 @@ const Navbar = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            <Link 
+              to="/search"
+              className="text-white hover:text-accent transition-colors p-2 hover:bg-white/10 rounded-lg"
+              aria-label="Search"
+            >
+              <Search size={20} />
+            </Link>
             <Button 
               className="bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 whitespace-nowrap"
               onClick={() => setIsDemoDialogOpen(true)}

@@ -3,7 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Masonry from "react-masonry-css";
 
@@ -18,6 +19,7 @@ import ediscoveryPricingImg from "@/assets/resources/ediscovery-pricing.jpg";
 const Resources = () => {
   const [topicFilter, setTopicFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Color accents for resource types
   const typeColors: Record<string, { bg: string; border: string; text: string; badge: string }> = {
@@ -318,7 +320,10 @@ const Resources = () => {
   const filteredResources = resources.filter((resource) => {
     const matchesTopic = topicFilter === "all" || resource.topic === topicFilter;
     const matchesType = typeFilter === "all" || resource.type === typeFilter;
-    return matchesTopic && matchesType;
+    const matchesSearch = searchQuery === "" || 
+      resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      resource.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesTopic && matchesType && matchesSearch;
   });
 
   const getTypeLabel = (type: string) => {
@@ -355,9 +360,25 @@ const Resources = () => {
           </p>
 
           {/* Filters in Hero */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-center mb-6">
-              <div className="w-full md:w-auto min-w-[280px]">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-end justify-center mb-6">
+              <div className="w-full md:w-auto md:flex-1 max-w-md">
+                <label className="block text-sm font-semibold mb-2 text-white/90">
+                  Search by Title
+                </label>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60" />
+                  <Input
+                    type="text"
+                    placeholder="Search resources..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm hover:bg-white/20 pl-10"
+                  />
+                </div>
+              </div>
+
+              <div className="w-full md:w-auto min-w-[240px]">
                 <label className="block text-sm font-semibold mb-2 text-white/90">
                   Browse by Topic
                 </label>
@@ -375,7 +396,7 @@ const Resources = () => {
                 </Select>
               </div>
 
-              <div className="w-full md:w-auto min-w-[280px]">
+              <div className="w-full md:w-auto min-w-[240px]">
                 <label className="block text-sm font-semibold mb-2 text-white/90">
                   Browse by Type
                 </label>
@@ -393,7 +414,6 @@ const Resources = () => {
                 </Select>
               </div>
             </div>
-
           </div>
         </div>
       </section>
