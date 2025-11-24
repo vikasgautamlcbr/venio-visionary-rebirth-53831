@@ -75,16 +75,19 @@ const Resources = () => {
   };
 
   const getBentoSpan = (index: number) => {
-    // More compact bento pattern with less blank space
-    const pattern = [
+    // Dynamic bento pattern with visual variety
+    const patterns = [
+      "md:col-span-2 md:row-span-2", // Large feature
+      "md:col-span-1 md:row-span-1", // Small
+      "md:col-span-1 md:row-span-2", // Tall
       "md:col-span-2 md:row-span-1", // Wide
-      "md:col-span-1 md:row-span-1", // Regular
-      "md:col-span-1 md:row-span-1", // Regular
-      "md:col-span-1 md:row-span-1", // Regular
+      "md:col-span-1 md:row-span-1", // Small
+      "md:col-span-1 md:row-span-1", // Small
+      "md:col-span-1 md:row-span-2", // Tall
       "md:col-span-2 md:row-span-1", // Wide
-      "md:col-span-1 md:row-span-1", // Regular
+      "md:col-span-1 md:row-span-1", // Small
     ];
-    return pattern[index % pattern.length];
+    return patterns[index % patterns.length];
   };
 
   const resourceTypes = [
@@ -390,7 +393,7 @@ const Resources = () => {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {featuredResources.map((resource, index) => {
               const colors = typeColors[resource.type] || typeColors["blog"];
               return (
@@ -404,26 +407,26 @@ const Resources = () => {
                 >
                   <Card 
                     className={cn(
-                      "h-full hover:shadow-2xl transition-all duration-300 cursor-pointer",
-                      "border-2 relative overflow-hidden",
+                      "h-full hover:shadow-2xl transition-all duration-500 cursor-pointer",
+                      "border-2 relative overflow-hidden hover:scale-[1.02]",
                       colors.bg,
                       colors.border
                     )}
                   >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full transform translate-x-16 -translate-y-16" />
                     
-                    <CardHeader className="relative z-10 pb-4">
+                    <CardHeader className="relative z-10 pb-4 h-full flex flex-col">
                       <div className="flex items-start justify-between mb-4">
                         <div className={cn(
                           "inline-flex p-3 rounded-xl border-2 transition-all",
                           colors.bg,
                           colors.border,
-                          "group-hover:scale-110"
+                          "group-hover:scale-110 group-hover:rotate-6"
                         )}>
                           <resource.icon className={cn("h-6 w-6", colors.text)} />
                         </div>
                         <span className={cn(
-                          "text-xs font-semibold px-3 py-1.5 rounded-full border inline-flex items-center gap-1",
+                          "text-xs font-bold px-3 py-1.5 rounded-full border inline-flex items-center gap-1",
                           colors.badge
                         )}>
                           <Star className="h-3 w-3 fill-current" />
@@ -432,22 +435,22 @@ const Resources = () => {
                       </div>
                       
                       <CardTitle className={cn(
-                        "text-lg mb-3 line-clamp-2 transition-colors leading-tight",
+                        "text-lg mb-3 line-clamp-2 transition-colors leading-tight font-bold",
                         "group-hover:" + colors.text
                       )}>
                         {resource.title}
                       </CardTitle>
                       
-                      <CardDescription className="text-sm line-clamp-3 mb-4">
+                      <CardDescription className="text-sm line-clamp-3 mb-4 flex-grow">
                         {resource.description}
                       </CardDescription>
                       
-                      <div className="flex items-center justify-between pt-4 border-t">
+                      <div className="flex items-center justify-between pt-4 border-t mt-auto">
                         <span className="text-xs text-muted-foreground font-medium">
                           {getTypeLabel(resource.type)}
                         </span>
                         <span className={cn(
-                          "text-sm font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
+                          "text-sm font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
                           colors.text
                         )}>
                           View
@@ -474,7 +477,7 @@ const Resources = () => {
           </div>
           
           {filteredResources.length > 0 ? (
-            <div className="grid md:grid-cols-3 auto-rows-[200px] gap-4">
+            <div className="grid md:grid-cols-3 auto-rows-[180px] gap-5">
               {filteredResources.map((resource, index) => {
                 const colors = typeColors[resource.type] || typeColors["blog"];
                 return (
@@ -494,37 +497,41 @@ const Resources = () => {
                         getBentoSpan(index)
                       )}
                     >
-                    <CardHeader className="h-full flex flex-col p-5">
+                    <CardHeader className="h-full flex flex-col p-4">
                       <div className="flex items-start justify-between mb-3">
                         <div className={cn(
-                          "inline-flex p-2 rounded-lg border transition-all",
+                          "inline-flex p-2.5 rounded-xl border-2 transition-all",
                           colors.bg,
-                          colors.border
+                          colors.border,
+                          "group-hover:scale-110 group-hover:rotate-3"
                         )}>
                           <resource.icon className={cn("h-5 w-5", colors.text)} />
                         </div>
                         <span className={cn(
-                          "text-xs font-medium px-2 py-1 rounded-full border",
+                          "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
                           colors.badge
                         )}>
                           {getTypeLabel(resource.type)}
                         </span>
                       </div>
                       <CardTitle className={cn(
-                        "text-lg mb-2 line-clamp-2 transition-colors leading-tight",
+                        "text-base mb-2 line-clamp-3 transition-colors leading-tight font-semibold",
                         "group-hover:" + colors.text
                       )}>
                         {resource.title}
                       </CardTitle>
-                      <CardDescription className="text-xs flex-grow line-clamp-3">
+                      <CardDescription className="text-xs flex-grow line-clamp-4 leading-relaxed">
                         {resource.description}
                       </CardDescription>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground mt-3 pt-3 border-t">
+                      <div className="flex items-center justify-end text-xs mt-3 pt-3 border-t">
                         <span className={cn(
-                          "font-semibold group-hover:underline",
+                          "font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1",
                           colors.text
                         )}>
-                          View →
+                          View
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
                         </span>
                       </div>
                     </CardHeader>
