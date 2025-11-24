@@ -7,6 +7,14 @@ import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, 
 import { cn } from "@/lib/utils";
 import Masonry from "react-masonry-css";
 
+// Import resource images
+import fortuneBankImg from "@/assets/resources/fortune-100-bank.jpg";
+import amlawSuccessImg from "@/assets/resources/amlaw-50-success.jpg";
+import federalAgencyImg from "@/assets/resources/federal-agency.jpg";
+import venioReviewImg from "@/assets/resources/venio-review-platform.jpg";
+import esiProtocolImg from "@/assets/resources/esi-protocol.jpg";
+import ediscoveryPricingImg from "@/assets/resources/ediscovery-pricing.jpg";
+
 const Resources = () => {
   const [topicFilter, setTopicFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
@@ -142,7 +150,8 @@ const Resources = () => {
       icon: Lightbulb,
       date: "Thursday, 10 October, 2024",
       fileUrl: "https://www.veniosystems.com/blog/why-premium-ediscovery-software-pricing-doesnt-guarantee-better-results/",
-      featured: false
+      featured: false,
+      imageUrl: ediscoveryPricingImg
     },
     {
       id: 3,
@@ -153,7 +162,8 @@ const Resources = () => {
       icon: Lightbulb,
       date: "Wednesday, 09 October, 2024",
       fileUrl: "https://www.veniosystems.com/blog/understanding-formulating-esi-protocol-checklist/",
-      featured: false
+      featured: false,
+      imageUrl: esiProtocolImg
     },
     {
       id: 4,
@@ -175,7 +185,8 @@ const Resources = () => {
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
       fileUrl: "/resources/Case_Study-Fortune_100_Financial_Services.pdf",
-      featured: true
+      featured: true,
+      imageUrl: fortuneBankImg
     },
     {
       id: 6,
@@ -186,7 +197,8 @@ const Resources = () => {
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
       fileUrl: "/resources/Case_Study-AmLaw_50_Success_Story.pdf",
-      featured: true
+      featured: true,
+      imageUrl: amlawSuccessImg
     },
     {
       id: 7,
@@ -208,7 +220,8 @@ const Resources = () => {
       icon: TrendingUp,
       date: "Monday, 18 November, 2024",
       fileUrl: "/resources/Case_Study-Federal_Agency_Workflows.pdf",
-      featured: true
+      featured: true,
+      imageUrl: federalAgencyImg
     },
     {
       id: 9,
@@ -230,7 +243,8 @@ const Resources = () => {
       icon: FileCheck,
       date: "Monday, 18 November, 2024",
       fileUrl: "/resources/Product_Brief-Venio_Review.pdf",
-      featured: true
+      featured: true,
+      imageUrl: venioReviewImg
     },
     {
       id: 11,
@@ -502,37 +516,77 @@ const Resources = () => {
                   >
                     <Card 
                       className={cn(
-                        "group hover:shadow-xl transition-all duration-300 cursor-pointer",
+                        "group hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden",
                         "border-2",
                         colors.bg,
                         colors.border,
                         heightClass
                       )}
                     >
-                      <CardHeader className="h-full flex flex-col p-5">
-                        <div className="flex items-start justify-between mb-3">
+                      {resource.imageUrl && (
+                        <div className="relative w-full h-40 overflow-hidden">
+                          <img 
+                            src={resource.imageUrl} 
+                            alt={resource.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
                           <div className={cn(
-                            "inline-flex p-2.5 rounded-xl border-2 transition-all",
-                            colors.bg,
-                            colors.border,
-                            "group-hover:scale-110 group-hover:rotate-3"
-                          )}>
-                            <resource.icon className={cn("h-5 w-5", colors.text)} />
+                            "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                          )} />
+                          <div className="absolute top-3 right-3">
+                            <span className={cn(
+                              "text-xs font-medium px-2.5 py-1 rounded-full border backdrop-blur-sm bg-white/90",
+                              colors.badge
+                            )}>
+                              {getTypeLabel(resource.type)}
+                            </span>
                           </div>
-                          <span className={cn(
-                            "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
-                            colors.badge
-                          )}>
-                            {getTypeLabel(resource.type)}
-                          </span>
                         </div>
+                      )}
+                      <CardHeader className={cn(
+                        "flex flex-col",
+                        resource.imageUrl ? "p-4" : "h-full p-5"
+                      )}>
+                        {!resource.imageUrl && (
+                          <div className="flex items-start justify-between mb-3">
+                            <div className={cn(
+                              "inline-flex p-2.5 rounded-xl border-2 transition-all",
+                              colors.bg,
+                              colors.border,
+                              "group-hover:scale-110 group-hover:rotate-3"
+                            )}>
+                              <resource.icon className={cn("h-5 w-5", colors.text)} />
+                            </div>
+                            <span className={cn(
+                              "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap",
+                              colors.badge
+                            )}>
+                              {getTypeLabel(resource.type)}
+                            </span>
+                          </div>
+                        )}
+                        {resource.imageUrl && (
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className={cn(
+                              "inline-flex p-2 rounded-lg border transition-all",
+                              colors.bg,
+                              colors.border,
+                              "group-hover:scale-110"
+                            )}>
+                              <resource.icon className={cn("h-4 w-4", colors.text)} />
+                            </div>
+                          </div>
+                        )}
                         <CardTitle className={cn(
-                          "text-base mb-2 line-clamp-3 transition-colors leading-tight font-semibold",
+                          "text-base mb-2 line-clamp-2 transition-colors leading-tight font-semibold",
                           "group-hover:" + colors.text
                         )}>
                           {resource.title}
                         </CardTitle>
-                        <CardDescription className="text-xs flex-grow line-clamp-5 leading-relaxed">
+                        <CardDescription className={cn(
+                          "text-xs leading-relaxed",
+                          resource.imageUrl ? "line-clamp-3" : "flex-grow line-clamp-5"
+                        )}>
                           {resource.description}
                         </CardDescription>
                         <div className="flex items-center justify-end text-xs mt-3 pt-3 border-t">
