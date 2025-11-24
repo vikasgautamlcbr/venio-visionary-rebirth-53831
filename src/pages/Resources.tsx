@@ -4,10 +4,87 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FileText, Video, BookOpen, FileCheck, Download, Newspaper, BookMarked, TrendingUp, Lightbulb } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Resources = () => {
   const [topicFilter, setTopicFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
+
+  // Color accents for resource types
+  const typeColors: Record<string, { bg: string; border: string; text: string; badge: string }> = {
+    "case-study": { 
+      bg: "bg-emerald-500/5", 
+      border: "border-emerald-500/30 hover:border-emerald-500/50", 
+      text: "text-emerald-600 dark:text-emerald-400",
+      badge: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
+    },
+    "blog": { 
+      bg: "bg-blue-500/5", 
+      border: "border-blue-500/30 hover:border-blue-500/50", 
+      text: "text-blue-600 dark:text-blue-400",
+      badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30"
+    },
+    "white-paper": { 
+      bg: "bg-purple-500/5", 
+      border: "border-purple-500/30 hover:border-purple-500/50", 
+      text: "text-purple-600 dark:text-purple-400",
+      badge: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30"
+    },
+    "product-brief": { 
+      bg: "bg-orange-500/5", 
+      border: "border-orange-500/30 hover:border-orange-500/50", 
+      text: "text-orange-600 dark:text-orange-400",
+      badge: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/30"
+    },
+    "ebook": { 
+      bg: "bg-pink-500/5", 
+      border: "border-pink-500/30 hover:border-pink-500/50", 
+      text: "text-pink-600 dark:text-pink-400",
+      badge: "bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/30"
+    },
+    "video": { 
+      bg: "bg-red-500/5", 
+      border: "border-red-500/30 hover:border-red-500/50", 
+      text: "text-red-600 dark:text-red-400",
+      badge: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30"
+    },
+    "brochure": { 
+      bg: "bg-indigo-500/5", 
+      border: "border-indigo-500/30 hover:border-indigo-500/50", 
+      text: "text-indigo-600 dark:text-indigo-400",
+      badge: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/30"
+    },
+    "press-release": { 
+      bg: "bg-cyan-500/5", 
+      border: "border-cyan-500/30 hover:border-cyan-500/50", 
+      text: "text-cyan-600 dark:text-cyan-400",
+      badge: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/30"
+    },
+    "how-to-guide": { 
+      bg: "bg-amber-500/5", 
+      border: "border-amber-500/30 hover:border-amber-500/50", 
+      text: "text-amber-600 dark:text-amber-400",
+      badge: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30"
+    },
+    "infographic": { 
+      bg: "bg-teal-500/5", 
+      border: "border-teal-500/30 hover:border-teal-500/50", 
+      text: "text-teal-600 dark:text-teal-400",
+      badge: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/30"
+    },
+  };
+
+  const getBentoSpan = (index: number) => {
+    const pattern = [
+      "md:col-span-2 md:row-span-2", // Large
+      "md:col-span-1 md:row-span-1", // Small
+      "md:col-span-1 md:row-span-1", // Small
+      "md:col-span-1 md:row-span-2", // Tall
+      "md:col-span-2 md:row-span-1", // Wide
+      "md:col-span-1 md:row-span-1", // Small
+    ];
+    return pattern[index % pattern.length];
+  };
 
   const resourceTypes = [
     { value: "all", label: "All Types" },
@@ -41,7 +118,7 @@ const Resources = () => {
       type: "case-study",
       topic: "review",
       icon: TrendingUp,
-      date: "March 2024"
+      date: "Monday, 15 March, 2024"
     },
     {
       id: 2,
@@ -50,7 +127,7 @@ const Resources = () => {
       type: "white-paper",
       topic: "cloud-ediscovery",
       icon: FileText,
-      date: "February 2024"
+      date: "Thursday, 08 February, 2024"
     },
     {
       id: 3,
@@ -59,7 +136,7 @@ const Resources = () => {
       type: "how-to-guide",
       topic: "legal-hold",
       icon: BookMarked,
-      date: "January 2024"
+      date: "Wednesday, 17 January, 2024"
     },
     {
       id: 4,
@@ -68,7 +145,7 @@ const Resources = () => {
       type: "blog",
       topic: "review",
       icon: Lightbulb,
-      date: "March 2024"
+      date: "Friday, 22 March, 2024"
     },
     {
       id: 5,
@@ -77,7 +154,7 @@ const Resources = () => {
       type: "video",
       topic: "review",
       icon: Video,
-      date: "February 2024"
+      date: "Tuesday, 13 February, 2024"
     },
     {
       id: 6,
@@ -86,7 +163,7 @@ const Resources = () => {
       type: "ebook",
       topic: "eca",
       icon: BookOpen,
-      date: "January 2024"
+      date: "Monday, 29 January, 2024"
     },
     {
       id: 7,
@@ -95,7 +172,7 @@ const Resources = () => {
       type: "product-brief",
       topic: "ediscovery-systems",
       icon: FileCheck,
-      date: "March 2024"
+      date: "Thursday, 28 March, 2024"
     },
     {
       id: 8,
@@ -104,7 +181,7 @@ const Resources = () => {
       type: "white-paper",
       topic: "legal-news",
       icon: FileText,
-      date: "February 2024"
+      date: "Saturday, 24 February, 2024"
     },
     {
       id: 9,
@@ -113,7 +190,7 @@ const Resources = () => {
       type: "press-release",
       topic: "legal-news",
       icon: Newspaper,
-      date: "March 2024"
+      date: "Sunday, 10 March, 2024"
     },
     {
       id: 10,
@@ -122,7 +199,7 @@ const Resources = () => {
       type: "infographic",
       topic: "cloud-ediscovery",
       icon: TrendingUp,
-      date: "January 2024"
+      date: "Friday, 19 January, 2024"
     },
     {
       id: 11,
@@ -131,7 +208,7 @@ const Resources = () => {
       type: "brochure",
       topic: "ediscovery-systems",
       icon: Download,
-      date: "February 2024"
+      date: "Wednesday, 21 February, 2024"
     },
     {
       id: 12,
@@ -140,7 +217,7 @@ const Resources = () => {
       type: "how-to-guide",
       topic: "legal-hold",
       icon: BookMarked,
-      date: "March 2024"
+      date: "Saturday, 30 March, 2024"
     },
   ];
 
@@ -232,42 +309,62 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Resources Grid */}
+      {/* Resources Grid - Bento Layout */}
       <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           {filteredResources.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredResources.map((resource) => (
-                <Card 
-                  key={resource.id} 
-                  className="group hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-border"
-                >
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="inline-flex p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
-                        <resource.icon className="h-6 w-6 text-primary" />
+            <div className="grid md:grid-cols-3 auto-rows-[280px] gap-6">
+              {filteredResources.map((resource, index) => {
+                const colors = typeColors[resource.type] || typeColors["blog"];
+                return (
+                  <Card 
+                    key={resource.id} 
+                    className={cn(
+                      "group hover:shadow-xl transition-all duration-300 cursor-pointer",
+                      "border-2",
+                      colors.bg,
+                      colors.border,
+                      getBentoSpan(index)
+                    )}
+                  >
+                    <CardHeader className="h-full flex flex-col">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={cn(
+                          "inline-flex p-3 rounded-xl border-2 transition-all",
+                          colors.bg,
+                          colors.border
+                        )}>
+                          <resource.icon className={cn("h-6 w-6", colors.text)} />
+                        </div>
+                        <span className={cn(
+                          "text-xs font-medium px-3 py-1 rounded-full border",
+                          colors.badge
+                        )}>
+                          {getTypeLabel(resource.type)}
+                        </span>
                       </div>
-                      <span className="text-xs font-medium px-3 py-1 rounded-full bg-accent/10 text-accent border border-accent/20">
-                        {getTypeLabel(resource.type)}
-                      </span>
-                    </div>
-                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                      {resource.title}
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                      {resource.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
-                      <span>{resource.date}</span>
-                      <span className="text-primary font-semibold group-hover:underline">
-                        View Resource →
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      <CardTitle className={cn(
+                        "text-xl mb-2 transition-colors",
+                        "group-hover:" + colors.text
+                      )}>
+                        {resource.title}
+                      </CardTitle>
+                      <CardDescription className="text-sm flex-grow">
+                        {resource.description}
+                      </CardDescription>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground mt-4 pt-4 border-t">
+                        <span className="font-medium">{resource.date}</span>
+                        <span className={cn(
+                          "font-semibold group-hover:underline",
+                          colors.text
+                        )}>
+                          View Resource →
+                        </span>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-20">
