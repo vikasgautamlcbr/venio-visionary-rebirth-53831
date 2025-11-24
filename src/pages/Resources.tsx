@@ -367,7 +367,7 @@ const Resources = () => {
                   Search by Title
                 </label>
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white/80" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white/80 z-10" />
                   <Input
                     type="text"
                     placeholder="Search resources..."
