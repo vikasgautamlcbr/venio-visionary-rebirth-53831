@@ -101,7 +101,7 @@ const Resources = () => {
   };
 
   const masonryBreakpoints = {
-    default: 2,
+    default: 3,
     1024: 2,
     768: 1
   };
@@ -393,6 +393,10 @@ const Resources = () => {
                 </Select>
               </div>
             </div>
+
+            <div className="text-center text-sm text-white/80">
+              Showing {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'}
+            </div>
           </div>
         </div>
       </section>
@@ -428,14 +432,11 @@ const Resources = () => {
                         "border-2",
                         colors.bg,
                         colors.border,
-                        resource.type === "case-study" ? "min-h-[240px]" : heightClass
+                        heightClass
                       )}
                     >
                       {resource.imageUrl && (
-                        <div className={cn(
-                          "relative w-full overflow-hidden",
-                          resource.type === "case-study" ? "h-32" : "h-40"
-                        )}>
+                        <div className="relative w-full h-40 overflow-hidden">
                           <img 
                             src={resource.imageUrl} 
                             alt={resource.title}
@@ -456,7 +457,7 @@ const Resources = () => {
                       )}
                       <CardHeader className={cn(
                         "flex flex-col",
-                        resource.imageUrl ? (resource.type === "case-study" ? "p-3" : "p-4") : "h-full p-5"
+                        resource.imageUrl ? "p-4" : "h-full p-5"
                       )}>
                         {!resource.imageUrl && (
                           <div className="flex items-start justify-between mb-3">
@@ -489,15 +490,14 @@ const Resources = () => {
                           </div>
                         )}
                         <CardTitle className={cn(
-                          "mb-2 line-clamp-2 transition-colors leading-tight font-semibold",
-                          resource.type === "case-study" ? "text-sm" : "text-base",
+                          "text-base mb-2 line-clamp-2 transition-colors leading-tight font-semibold",
                           "group-hover:" + colors.text
                         )}>
                           {resource.title}
                         </CardTitle>
                         <CardDescription className={cn(
                           "text-xs leading-relaxed",
-                          resource.type === "case-study" ? "line-clamp-2" : (resource.imageUrl ? "line-clamp-3" : "flex-grow line-clamp-5")
+                          resource.imageUrl ? "line-clamp-3" : "flex-grow line-clamp-5"
                         )}>
                           {resource.description}
                         </CardDescription>
