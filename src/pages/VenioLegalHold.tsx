@@ -25,7 +25,7 @@ import { BenefitsSection } from "@/components/BenefitsSection";
 import { DemoGateDialog } from "@/components/DemoGateDialog";
 import BookDemoDialog from "@/components/BookDemoDialog";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const sections = [
   { id: "hero", label: "Overview" },
@@ -40,6 +40,11 @@ const VenioLegalHold = () => {
   const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   const [isDemoUnlocked, setIsDemoUnlocked] = useState(false);
   const [isBookDemoDialogOpen, setIsBookDemoDialogOpen] = useState(false);
+
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleDemoAccess = () => {
     if (!isDemoUnlocked) {
