@@ -8,8 +8,14 @@ import ProblemSolutionSection from "@/components/ProblemSolutionSection";
 import CTABanner from "@/components/CTABanner";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
 
 const Index = () => {
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Navbar />

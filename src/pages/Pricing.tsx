@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Check, TrendingDown, DollarSign, Users, Database, Clock } from "lucide-react";
 import ROICalculator from "@/components/ROICalculator";
 import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
+import { useEffect } from "react";
 
 const sections = [
   { id: "hero", label: "Overview" },
@@ -13,6 +14,11 @@ const sections = [
 ];
 
 const Pricing = () => {
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const benefits = [
     {
       icon: DollarSign,
