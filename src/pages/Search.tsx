@@ -6,6 +6,12 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Input } from "@/components/ui/input";
 import { Search as SearchIcon, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
+
+const sections = [
+  { id: "hero", label: "Search" },
+  { id: "results", label: "Results" },
+];
 
 // Import resource images
 import fortuneBankImg from "@/assets/resources/fortune-100-bank.jpg";
@@ -200,9 +206,10 @@ const Search = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <ScrollProgressIndicator sections={sections} />
       
       {/* Hero Section with Search */}
-      <section className="relative min-h-screen flex items-center overflow-hidden gradient-animated">
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden gradient-animated">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
           <div className="absolute bottom-32 right-10 w-[500px] h-[500px] bg-accent/25 rounded-full blur-3xl float-delayed"></div>
@@ -248,7 +255,7 @@ const Search = () => {
 
       {/* Search Results */}
       {searchQuery && (
-        <section className="py-16 px-4 bg-background">
+        <section id="results" className="py-16 px-4 bg-background">
           <div className="container mx-auto max-w-5xl">
             {searchResults.length === 0 ? (
               <div className="text-center py-20">

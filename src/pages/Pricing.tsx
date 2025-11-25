@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, TrendingDown, DollarSign, Users, Database, Clock } from "lucide-react";
 import ROICalculator from "@/components/ROICalculator";
+import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
+
+const sections = [
+  { id: "hero", label: "Overview" },
+  { id: "benefits", label: "Benefits" },
+  { id: "calculator", label: "Calculator" },
+];
 
 const Pricing = () => {
   const benefits = [
@@ -42,9 +49,10 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <ScrollProgressIndicator sections={sections} />
       
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden gradient-animated pt-32 pb-20">
+      <section id="hero" className="relative min-h-[60vh] flex items-center overflow-hidden gradient-animated pt-32 pb-20">
         {/* Dynamic Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
@@ -73,7 +81,7 @@ const Pricing = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section id="benefits" className="py-24 relative overflow-hidden">
         {/* Venio branded gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.15),transparent_50%)]" />
@@ -108,7 +116,7 @@ const Pricing = () => {
       </section>
 
       {/* Savings Calculator */}
-      <section className="py-20 px-4">
+      <section id="calculator" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Calculate Your Savings</h2>

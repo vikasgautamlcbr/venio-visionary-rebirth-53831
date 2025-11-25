@@ -234,7 +234,7 @@ const ProblemSolutionSection = () => {
   };
 
   return (
-    <section className="relative py-24 px-4 overflow-hidden gradient-animated">
+    <section id="problem" className="relative py-24 px-4 overflow-hidden gradient-animated">
       {/* Animated Background Elements - Match Hero Section */}
       <div className="absolute inset-0">
         {/* Large Glowing Orbs */}

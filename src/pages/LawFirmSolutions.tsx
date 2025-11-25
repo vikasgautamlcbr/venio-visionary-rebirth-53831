@@ -6,6 +6,7 @@ import CaseStudiesSection from "@/components/CaseStudiesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { ResourcesCarousel } from "@/components/ResourcesCarousel";
 import ProblemSolutionSection from "@/components/ProblemSolutionSection";
+import { ScrollProgressIndicator } from "@/components/ScrollProgressIndicator";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import amentum from "@/assets/clients/amentum.webp";
@@ -17,6 +18,16 @@ import proteus from "@/assets/clients/proteus.webp";
 import cds from "@/assets/clients/cds.webp";
 import epario from "@/assets/clients/epario.webp";
 import { useEffect } from "react";
+
+const sections = [
+  { id: "hero", label: "Overview" },
+  { id: "clients", label: "Clients" },
+  { id: "problem", label: "Problem" },
+  { id: "data", label: "Data" },
+  { id: "case-studies", label: "Case Studies" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "resources", label: "Resources" },
+];
 
 const LawFirmSolutions = () => {
   // Scroll to top on page load
@@ -38,10 +49,11 @@ const LawFirmSolutions = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <ScrollProgressIndicator sections={sections} />
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-32 pb-36">
+        <section id="hero" className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden gradient-animated pt-32 pb-36">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
@@ -133,7 +145,7 @@ const LawFirmSolutions = () => {
         <ProblemSolutionSection />
 
         {/* AI Chatbot Section */}
-        <section className="relative py-20 overflow-hidden gradient-animated">
+        <section id="clients" className="relative py-20 overflow-hidden gradient-animated">
           {/* Dynamic Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
