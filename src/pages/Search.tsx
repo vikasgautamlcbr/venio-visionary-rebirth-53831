@@ -202,7 +202,7 @@ const Search = () => {
       <Navbar />
       
       {/* Hero Section with Search */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden gradient-animated pt-32 pb-16">
+      <section className="relative min-h-screen flex items-center overflow-hidden gradient-animated">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float"></div>
           <div className="absolute bottom-32 right-10 w-[500px] h-[500px] bg-accent/25 rounded-full blur-3xl float-delayed"></div>
@@ -220,9 +220,9 @@ const Search = () => {
           </p>
 
           {/* Search Input */}
-          <form onSubmit={handleSearch} className="max-w-3xl mx-auto">
+          <form onSubmit={handleSearch} className="max-w-3xl mx-auto mb-12">
             <div className="relative">
-              <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-white/60" />
+              <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-white/60 z-10" />
               <Input
                 type="text"
                 placeholder="Search for anything..."
@@ -233,8 +233,15 @@ const Search = () => {
             </div>
           </form>
 
-          {searchQuery && (
-            <p className="mt-6 text-white/80">
+          {!searchQuery ? (
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-3 text-white">Start Searching</h3>
+              <p className="text-white/80 text-lg">
+                Enter a search term to find resources, products, and pages
+              </p>
+            </div>
+          ) : (
+            <p className="text-white/80">
               Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'} for "{searchQuery}"
             </p>
           )}
@@ -242,78 +249,70 @@ const Search = () => {
       </section>
 
       {/* Search Results */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-5xl">
-          {!searchQuery ? (
-            <div className="text-center py-20">
-              <div className="inline-flex p-6 rounded-full bg-muted mb-6">
-                <SearchIcon className="h-12 w-12 text-muted-foreground" />
+      {searchQuery && (
+        <section className="py-16 px-4 bg-background">
+          <div className="container mx-auto max-w-5xl">
+            {searchResults.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="inline-flex p-6 rounded-full bg-muted mb-6">
+                  <FileText className="h-12 w-12 text-muted-foreground" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">No results found</h3>
+                <p className="text-muted-foreground">
+                  Try adjusting your search terms or browse our resources directly
+                </p>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Start Searching</h3>
-              <p className="text-muted-foreground">
-                Enter a search term to find resources, products, and pages
-              </p>
-            </div>
-          ) : searchResults.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="inline-flex p-6 rounded-full bg-muted mb-6">
-                <FileText className="h-12 w-12 text-muted-foreground" />
-              </div>
-              <h3 className="text-2xl font-bold mb-2">No results found</h3>
-              <p className="text-muted-foreground">
-                Try adjusting your search terms or browse our resources directly
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {searchResults.map((result) => (
-                <a
-                  key={result.id}
-                  href={result.link}
-                  target={result.link.startsWith('http') ? '_blank' : undefined}
-                  rel={result.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="block"
-                >
-                  <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary/30">
-                    <div className="flex gap-4 p-6">
-                      {result.imageUrl && (
-                        <div className="flex-shrink-0 w-32 h-32 rounded-lg overflow-hidden">
-                          <img 
-                            src={result.imageUrl} 
-                            alt={result.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                        </div>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-4 mb-2">
-                          <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
-                            {result.title}
-                          </CardTitle>
-                          <span className={cn(
-                            "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap flex-shrink-0",
-                            getCategoryColor(result.category)
-                          )}>
-                            {result.category}
-                          </span>
-                        </div>
-                        <CardDescription className="line-clamp-2 mb-3">
-                          {result.description}
-                        </CardDescription>
-                        {result.date && (
-                          <p className="text-xs text-muted-foreground">
-                            {result.date}
-                          </p>
+            ) : (
+              <div className="space-y-4">
+                {searchResults.map((result) => (
+                  <a
+                    key={result.id}
+                    href={result.link}
+                    target={result.link.startsWith('http') ? '_blank' : undefined}
+                    rel={result.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="block"
+                  >
+                    <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary/30">
+                      <div className="flex gap-4 p-6">
+                        {result.imageUrl && (
+                          <div className="flex-shrink-0 w-32 h-32 rounded-lg overflow-hidden">
+                            <img 
+                              src={result.imageUrl} 
+                              alt={result.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                          </div>
                         )}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-4 mb-2">
+                            <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
+                              {result.title}
+                            </CardTitle>
+                            <span className={cn(
+                              "text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap flex-shrink-0",
+                              getCategoryColor(result.category)
+                            )}>
+                              {result.category}
+                            </span>
+                          </div>
+                          <CardDescription className="line-clamp-2 mb-3">
+                            {result.description}
+                          </CardDescription>
+                          {result.date && (
+                            <p className="text-xs text-muted-foreground">
+                              {result.date}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </Card>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+                    </Card>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <Footer />
     </div>
