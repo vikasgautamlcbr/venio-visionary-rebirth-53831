@@ -212,6 +212,11 @@ const Search = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary/80"></div>
         
         <div className="container mx-auto text-center relative z-10 px-6">
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex p-4 rounded-full bg-white/10 backdrop-blur-sm">
+              <SearchIcon className="h-12 w-12 text-white" />
+            </div>
+          </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Search Everything
           </h1>
@@ -233,14 +238,7 @@ const Search = () => {
             </div>
           </form>
 
-          {!searchQuery ? (
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3 text-white">Start Searching</h3>
-              <p className="text-white/80 text-lg">
-                Enter a search term to find resources, products, and pages
-              </p>
-            </div>
-          ) : (
+          {searchQuery && (
             <p className="text-white/80">
               Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'} for "{searchQuery}"
             </p>
