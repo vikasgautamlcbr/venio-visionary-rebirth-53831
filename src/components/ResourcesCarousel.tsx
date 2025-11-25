@@ -56,7 +56,7 @@ const categoryColors = {
 
 export const ResourcesCarousel = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-background via-background/95 to-muted/30">
+    <section id="resources" className="py-20 bg-gradient-to-b from-background via-background/95 to-muted/30">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-12 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">

@@ -89,7 +89,7 @@ const TestimonialsSection = () => {
   return (
     <>
       {/* Carousel Design */}
-      <section className="py-20 bg-gradient-to-b from-white to-muted">
+      <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-muted">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-12 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">

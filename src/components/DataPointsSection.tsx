@@ -51,7 +51,7 @@ const dataPoints = [
 
 export const DataPointsSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="data" className="py-24 relative overflow-hidden">
       {/* Venio branded gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.15),transparent_50%)]" />
