@@ -51,8 +51,8 @@ const Navbar = () => {
     },
     {
       label: "Resources",
-      hasDropdown: false,
-      link: "/resources",
+      hasDropdown: true,
+      items: ["All Resources", "Blog Demo", "Case Study Demo"],
     },
     {
       label: "Partner",
@@ -192,6 +192,43 @@ const Navbar = () => {
                             </Link>
                           );
                         }
+                        // Handle Resources dropdown
+                        if (item.label === "Resources") {
+                          if (subItem === "All Resources") {
+                            return (
+                              <Link
+                                key={subItem}
+                                to="/resources"
+                                className="group/item relative flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
+                              >
+                                <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/item:bg-accent transition-colors"></div>
+                                <span>{subItem}</span>
+                              </Link>
+                            );
+                          } else if (subItem === "Blog Demo") {
+                            return (
+                              <Link
+                                key={subItem}
+                                to="/blog/demo"
+                                className="group/item relative flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
+                              >
+                                <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/item:bg-accent transition-colors"></div>
+                                <span>{subItem}</span>
+                              </Link>
+                            );
+                          } else if (subItem === "Case Study Demo") {
+                            return (
+                              <Link
+                                key={subItem}
+                                to="/resources/demo-asset"
+                                className="group/item relative flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
+                              >
+                                <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/item:bg-accent transition-colors"></div>
+                                <span>{subItem}</span>
+                              </Link>
+                            );
+                          }
+                        }
                         return (
                           <a
                             key={subItem}
@@ -325,6 +362,46 @@ const Navbar = () => {
                         Venio Legal Hold
                       </Link>
                     );
+                  }
+                  // Handle Resources dropdown in mobile
+                  if (item.label === "Resources") {
+                    if (subItem === "All Resources") {
+                      return (
+                        <Link
+                          key={subItem}
+                          to="/resources"
+                          className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+                          {subItem}
+                        </Link>
+                      );
+                    } else if (subItem === "Blog Demo") {
+                      return (
+                        <Link
+                          key={subItem}
+                          to="/blog/demo"
+                          className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+                          {subItem}
+                        </Link>
+                      );
+                    } else if (subItem === "Case Study Demo") {
+                      return (
+                        <Link
+                          key={subItem}
+                          to="/resources/demo-asset"
+                          className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-accent hover:bg-white/10 rounded-lg transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+                          {subItem}
+                        </Link>
+                      );
+                    }
                   }
                   return (
                     <a

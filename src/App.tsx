@@ -11,6 +11,8 @@ import Pricing from "./pages/Pricing";
 import Resources from "./pages/Resources";
 import WhyVenio from "./pages/WhyVenio";
 import Search from "./pages/Search";
+import BlogPost from "./pages/BlogPost";
+import AssetDownload from "./pages/AssetDownload";
 import ChatbotWidget from "./components/ChatbotWidget";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/why-venio" element={<WhyVenio />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/blog/demo" element={<BlogPost />} />
+          <Route path="/resources/demo-asset" element={<AssetDownload />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
