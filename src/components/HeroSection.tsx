@@ -129,7 +129,7 @@ const HeroSection = () => {
             </p>
 
             {/* CTA Button */}
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-10">
               <Button 
                 size="lg" 
                 variant="outline" 
@@ -151,10 +151,10 @@ const HeroSection = () => {
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`px-5 py-2.5 backdrop-blur-sm rounded-t-lg text-sm transition-all duration-300 relative overflow-hidden ${
+                    className={`px-5 py-3 backdrop-blur-md rounded-t-lg text-sm transition-all duration-300 relative overflow-hidden border border-white/20 ${
                       isActive
-                        ? "bg-primary text-white font-bold"
-                        : "bg-primary/30 text-white/35 hover:text-white/90 font-medium"
+                        ? "bg-white/95 text-primary font-bold shadow-lg"
+                        : "bg-white/20 text-white hover:bg-white/30 hover:text-white font-medium"
                     }`}
                   >
                     {/* Progress bar - shown only for active tab */}
