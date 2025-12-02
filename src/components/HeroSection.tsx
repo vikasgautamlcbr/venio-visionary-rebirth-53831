@@ -160,8 +160,8 @@ const HeroSection = () => {
                     {/* Progress bar - shown only for active tab */}
                     {isActive && (
                       <div 
-                        className="absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-100"
-                        style={{ width: `${progress}%` }}
+                        className="absolute bottom-0 left-0 h-1 transition-all duration-100"
+                        style={{ width: `${progress}%`, backgroundColor: '#3DC47E' }}
                       />
                     )}
                     {tab.title}
