@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles, Shield, Zap, Brain, Globe } from "lucide-react";
+import { ArrowRight, Sparkles, Shield, Zap, Brain, Globe } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import BookDemoDialog from "./BookDemoDialog";
 
 const HeroSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [videoProgress, setVideoProgress] = useState<number[]>([0, 0, 0, 0]);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
 
   const tabs = [
     {
@@ -119,17 +122,28 @@ const HeroSection = () => {
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              Meet Venio
+              <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-accent to-secondary">
                 Effortless eDiscovery
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-white/90 mb-6 max-w-3xl mx-auto font-body leading-relaxed">
-              The only AI-powered, cloud and on-premises eDiscovery software that's intuitive.
+            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto font-body leading-relaxed">
+              The only AI-powered, cloud and on-premises eDiscovery software that's intuitive,
+              easy to adopt, and designed to reduce costs - all in one unified eDiscovery platform.
             </p>
 
-            {/* CTA Button */}
-            <div className="flex justify-center mb-10">
+            {/* Enhanced CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-white text-lg px-10 py-6 shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 group"
+                onClick={() => setIsDemoDialogOpen(true)}
+              >
+                Book a Demo
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
@@ -142,6 +156,10 @@ const HeroSection = () => {
               </Button>
             </div>
 
+            <p className="text-white/70 text-sm font-body mb-8">
+              No steep learning curve. Full flexibility, your way.
+            </p>
+
             {/* Feature Pills as Tabs */}
             <div className="grid grid-cols-4 gap-2 mb-2 mx-auto" style={{ width: '90%', maxWidth: '1296px' }}>
               {tabs.map((tab, index) => {
@@ -151,17 +169,17 @@ const HeroSection = () => {
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`px-5 py-3 backdrop-blur-md rounded-t-lg text-sm transition-all duration-300 relative overflow-hidden border border-white/20 ${
+                    className={`px-5 py-2.5 backdrop-blur-sm rounded-t-lg text-sm transition-all duration-300 relative overflow-hidden ${
                       isActive
-                        ? "bg-white/95 text-primary font-bold shadow-lg"
-                        : "bg-white/20 text-white hover:bg-white/30 hover:text-white font-medium"
+                        ? "bg-primary text-white font-bold"
+                        : "bg-primary/30 text-white/35 hover:text-white/90 font-medium"
                     }`}
                   >
                     {/* Progress bar - shown only for active tab */}
                     {isActive && (
                       <div 
-                        className="absolute bottom-0 left-0 h-1 transition-all duration-100"
-                        style={{ width: `${progress}%`, backgroundColor: '#3DC47E' }}
+                        className="absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-100"
+                        style={{ width: `${progress}%` }}
                       />
                     )}
                     {tab.title}
@@ -191,6 +209,7 @@ const HeroSection = () => {
         </div>
       </div>
 
+      <BookDemoDialog open={isDemoDialogOpen} onOpenChange={setIsDemoDialogOpen} />
     </section>
   );
 };
